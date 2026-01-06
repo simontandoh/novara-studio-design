@@ -8,146 +8,213 @@ const Services = () => {
       <section className="section-padding">
         <div className="container-editorial">
           <div className="max-w-3xl">
-            <div className="accent-line mb-8" />
-            <h1 className="headline-editorial mb-8">
-              Focused services. Exceptional outcomes.
+            <p className="label-small mb-6">Services</p>
+            <h1 className="headline-hero mb-8">
+              Websites and systems built for long-term reliability.
             </h1>
             <p className="body-large">
-              We do a few things exceptionally well. Each service builds 
-              toward the same goal: a digital presence that works.
+              We offer a focused set of services, all designed around the same principle: 
+              building digital systems that work reliably and improve over time.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Services Grid */}
-      <section className="section-padding bg-card">
+      {/* Service Tiers Detail */}
+      <section className="section-padding border-t border-border">
         <div className="container-editorial">
-          <div className="grid lg:grid-cols-2 gap-px bg-border">
-            {/* Service 1 */}
-            <div className="bg-card p-8 md:p-12 lg:p-16">
-              <div className="flex flex-col h-full">
-                <span className="text-accent font-serif text-sm mb-8">01</span>
-                <h2 className="font-serif text-2xl md:text-3xl mb-6">
-                  Brand Websites
-                </h2>
-                <p className="body-refined mb-8 flex-1">
-                  Complete website design and development for brands that need to 
-                  communicate with clarity. From strategy through launch, we handle 
-                  every detail.
-                </p>
-                <div className="space-y-2 text-sm text-muted-foreground">
-                  <p>Strategy & positioning</p>
-                  <p>Visual identity integration</p>
-                  <p>Responsive design & development</p>
-                  <p>Content strategy guidance</p>
+          <div className="max-w-2xl mb-16">
+            <p className="label-small mb-6">Service tiers</p>
+            <h2 className="headline-primary">
+              Choose the level of partnership that fits your needs.
+            </h2>
+          </div>
+
+          <div className="space-y-px bg-border">
+            {/* Foundation */}
+            <div className="bg-background p-8 md:p-12 lg:p-16">
+              <div className="grid lg:grid-cols-2 gap-10 lg:gap-16">
+                <div>
+                  <p className="label-small text-accent mb-4">Foundation</p>
+                  <h3 className="headline-secondary mb-4">Reliable foundations</h3>
+                  <p className="body-large">
+                    For businesses that need a reliable, modern website built or rebuilt 
+                    professionally. The starting point for a long-term partnership.
+                  </p>
+                </div>
+                <div>
+                  <p className="label-small mb-4">Includes</p>
+                  <ul className="space-y-3 text-sm text-muted-foreground">
+                    <li className="flex items-start gap-3">
+                      <span className="text-accent mt-0.5">—</span>
+                      New build or complete rebuild of your website
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-accent mt-0.5">—</span>
+                      Secure, reliable hosting infrastructure
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-accent mt-0.5">—</span>
+                      Regular updates and maintenance
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-accent mt-0.5">—</span>
+                      Basic monitoring and performance tracking
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-accent mt-0.5">—</span>
+                      Long-term care mindset from day one
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
 
-            {/* Service 2 */}
+            {/* Growth */}
             <div className="bg-card p-8 md:p-12 lg:p-16">
-              <div className="flex flex-col h-full">
-                <span className="text-accent font-serif text-sm mb-8">02</span>
-                <h2 className="font-serif text-2xl md:text-3xl mb-6">
-                  Digital Products
-                </h2>
-                <p className="body-refined mb-8 flex-1">
-                  For products that need to be as functional as they are beautiful. 
-                  We design and build interfaces that users love to use.
-                </p>
-                <div className="space-y-2 text-sm text-muted-foreground">
-                  <p>User experience design</p>
-                  <p>Interface design systems</p>
-                  <p>Prototyping & testing</p>
-                  <p>Front-end development</p>
+              <div className="grid lg:grid-cols-2 gap-10 lg:gap-16">
+                <div>
+                  <p className="label-small text-accent mb-4">Growth</p>
+                  <h3 className="headline-secondary mb-4">Continuous evolution</h3>
+                  <p className="body-large">
+                    For businesses that expect their website and systems to evolve. 
+                    Designed for teams that want to improve continuously.
+                  </p>
+                </div>
+                <div>
+                  <p className="label-small mb-4">Everything in Foundation, plus</p>
+                  <ul className="space-y-3 text-sm text-muted-foreground">
+                    <li className="flex items-start gap-3">
+                      <span className="text-accent mt-0.5">—</span>
+                      Ongoing improvements and refinements
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-accent mt-0.5">—</span>
+                      Automation and system integrations
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-accent mt-0.5">—</span>
+                      Performance optimisation and analytics
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-accent mt-0.5">—</span>
+                      Priority support and faster response times
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-accent mt-0.5">—</span>
+                      Quarterly strategy reviews
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
 
-            {/* Service 3 */}
-            <div className="bg-card p-8 md:p-12 lg:p-16">
-              <div className="flex flex-col h-full">
-                <span className="text-accent font-serif text-sm mb-8">03</span>
-                <h2 className="font-serif text-2xl md:text-3xl mb-6">
-                  Design Systems
-                </h2>
-                <p className="body-refined mb-8 flex-1">
-                  Comprehensive design systems that ensure consistency across 
-                  every touchpoint. Built to scale with your organization.
-                </p>
-                <div className="space-y-2 text-sm text-muted-foreground">
-                  <p>Component libraries</p>
-                  <p>Documentation & guidelines</p>
-                  <p>Token architecture</p>
-                  <p>Team training</p>
+            {/* Continuity */}
+            <div className="bg-background p-8 md:p-12 lg:p-16">
+              <div className="grid lg:grid-cols-2 gap-10 lg:gap-16">
+                <div>
+                  <p className="label-small text-accent mb-4">Continuity</p>
+                  <h3 className="headline-secondary mb-4">Always-on reliability</h3>
+                  <p className="body-large">
+                    For businesses where uptime and responsiveness matter beyond standard hours. 
+                    Designed for continuity, not emergencies.
+                  </p>
                 </div>
-              </div>
-            </div>
-
-            {/* Service 4 */}
-            <div className="bg-card p-8 md:p-12 lg:p-16">
-              <div className="flex flex-col h-full">
-                <span className="text-accent font-serif text-sm mb-8">04</span>
-                <h2 className="font-serif text-2xl md:text-3xl mb-6">
-                  Strategic Consulting
-                </h2>
-                <p className="body-refined mb-8 flex-1">
-                  For teams who need expert guidance without a full build. 
-                  We help you make better decisions about your digital presence.
-                </p>
-                <div className="space-y-2 text-sm text-muted-foreground">
-                  <p>Website audits</p>
-                  <p>Strategic roadmapping</p>
-                  <p>Technical guidance</p>
-                  <p>Vendor selection support</p>
+                <div>
+                  <p className="label-small mb-4">Everything in Growth, plus</p>
+                  <ul className="space-y-3 text-sm text-muted-foreground">
+                    <li className="flex items-start gap-3">
+                      <span className="text-accent mt-0.5">—</span>
+                      Enhanced monitoring and operational oversight
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-accent mt-0.5">—</span>
+                      Proactive system care and issue prevention
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-accent mt-0.5">—</span>
+                      Out-of-hours IT and system support
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-accent mt-0.5">—</span>
+                      Evening and weekend availability
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-accent mt-0.5">—</span>
+                      Incident response and resolution
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
           </div>
+
+          <div className="mt-12 p-8 bg-card border border-border">
+            <p className="body-refined text-center">
+              All tiers are subscription-based and built around long-term partnership. 
+              No lock-ins, no hidden fees — just ongoing care for systems that matter.
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* How We Work */}
-      <section className="section-padding">
+      {/* What we build */}
+      <section className="section-padding border-t border-border">
         <div className="container-editorial">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-24">
+          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
             <div>
-              <p className="text-sm uppercase tracking-wider text-muted-foreground mb-6">
-                How we work
-              </p>
-              <h2 className="headline-secondary">
-                No surprises. No drama. Just excellent work.
+              <p className="label-small mb-6">What we build</p>
+              <h2 className="headline-primary">
+                Digital systems designed for reliability and clarity.
               </h2>
             </div>
-            <div className="flex flex-col gap-6">
-              <p className="body-large">
-                Every engagement begins with a conversation. We take time to 
-                understand your goals, constraints, and definition of success.
-              </p>
-              <p className="body-refined">
-                From there, we propose a scope that makes sense—never more than 
-                you need, always enough to do the job properly. We work in 
-                close collaboration, with regular check-ins and no disappearing acts.
-              </p>
-              <p className="body-refined">
-                The result is work you're proud to show. Work that performs. 
-                Work that lasts.
-              </p>
+            <div className="flex flex-col gap-8">
+              <div className="border-l border-border pl-6">
+                <h3 className="text-base font-normal mb-2">Websites</h3>
+                <p className="body-refined">
+                  Modern, performant websites that represent your business accurately and work reliably 
+                  across all devices and conditions.
+                </p>
+              </div>
+              <div className="border-l border-border pl-6">
+                <h3 className="text-base font-normal mb-2">Platforms and portals</h3>
+                <p className="body-refined">
+                  Custom platforms for clients, teams, or operations — built with the same attention 
+                  to reliability and long-term maintenance.
+                </p>
+              </div>
+              <div className="border-l border-border pl-6">
+                <h3 className="text-base font-normal mb-2">Integrations</h3>
+                <p className="body-refined">
+                  Connecting your tools and systems so they work together smoothly, 
+                  reducing manual effort and improving operational flow.
+                </p>
+              </div>
+              <div className="border-l border-border pl-6">
+                <h3 className="text-base font-normal mb-2">Rebuilds</h3>
+                <p className="body-refined">
+                  Taking existing websites and platforms that have outgrown their current state 
+                  and bringing them up to modern standards.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="section-padding bg-card">
+      <section className="section-padding border-t border-border bg-card">
         <div className="container-narrow text-center">
-          <h2 className="headline-secondary mb-8">
+          <h2 className="headline-primary mb-8">
             Let's discuss what you need.
           </h2>
+          <p className="body-large mb-10">
+            Every engagement starts with a conversation. Tell us about your situation, 
+            and we'll let you know how we can help.
+          </p>
           <Link
             to="/contact"
-            className="inline-flex items-center gap-3 font-serif text-xl group"
+            className="inline-flex items-center gap-3 text-base font-light group"
           >
             <span className="link-underline">Start a conversation</span>
             <span className="text-accent group-hover:translate-x-1 transition-transform">→</span>
