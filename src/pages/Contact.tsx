@@ -1,11 +1,20 @@
 import { useState } from "react";
 import Layout from "@/components/Layout";
 
+const serviceOptions = [
+  { value: "", label: "What do you need?" },
+  { value: "new-build", label: "New build" },
+  { value: "rebuild", label: "Rebuild" },
+  { value: "ongoing-care", label: "Ongoing care" },
+  { value: "continuity-support", label: "Continuity support" },
+];
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
+    business: "",
     email: "",
-    company: "",
+    service: "",
     message: "",
   });
 
@@ -26,9 +35,13 @@ const Contact = () => {
               <h1 className="headline-hero mb-8">
                 Start a conversation.
               </h1>
-              <p className="body-large mb-12">
+              <p className="body-large mb-8">
                 Tell us about your situation. We'll respond within two business days 
                 to let you know if there's a good fit.
+              </p>
+              <p className="text-sm text-muted-foreground font-light mb-12 border-l border-accent/50 pl-4">
+                We'll reply honestly about whether we're the right fit. If we're not, 
+                we'll say so — no hard feelings.
               </p>
 
               <div className="space-y-8">
@@ -53,10 +66,7 @@ const Contact = () => {
             <div className="lg:pt-4">
               <form onSubmit={handleSubmit} className="space-y-8">
                 <div>
-                  <label
-                    htmlFor="name"
-                    className="block label-small mb-3"
-                  >
+                  <label htmlFor="name" className="block label-small mb-3">
                     Your name
                   </label>
                   <input
@@ -72,10 +82,23 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label
-                    htmlFor="email"
-                    className="block label-small mb-3"
-                  >
+                  <label htmlFor="business" className="block label-small mb-3">
+                    Business name
+                  </label>
+                  <input
+                    type="text"
+                    id="business"
+                    required
+                    className="w-full bg-transparent border-b border-border pb-3 focus:border-foreground focus:outline-none transition-colors text-foreground placeholder:text-muted-foreground"
+                    value={formData.business}
+                    onChange={(e) =>
+                      setFormData({ ...formData, business: e.target.value })
+                    }
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="email" className="block label-small mb-3">
                     Email address
                   </label>
                   <input
@@ -91,28 +114,32 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label
-                    htmlFor="company"
-                    className="block label-small mb-3"
-                  >
-                    Company (optional)
+                  <label htmlFor="service" className="block label-small mb-3">
+                    What do you need?
                   </label>
-                  <input
-                    type="text"
-                    id="company"
-                    className="w-full bg-transparent border-b border-border pb-3 focus:border-foreground focus:outline-none transition-colors text-foreground placeholder:text-muted-foreground"
-                    value={formData.company}
+                  <select
+                    id="service"
+                    required
+                    className="w-full bg-transparent border-b border-border pb-3 focus:border-foreground focus:outline-none transition-colors text-foreground appearance-none cursor-pointer"
+                    value={formData.service}
                     onChange={(e) =>
-                      setFormData({ ...formData, company: e.target.value })
+                      setFormData({ ...formData, service: e.target.value })
                     }
-                  />
+                  >
+                    {serviceOptions.map((option) => (
+                      <option
+                        key={option.value}
+                        value={option.value}
+                        className="bg-background text-foreground"
+                      >
+                        {option.label}
+                      </option>
+                    ))}
+                  </select>
                 </div>
 
                 <div>
-                  <label
-                    htmlFor="message"
-                    className="block label-small mb-3"
-                  >
+                  <label htmlFor="message" className="block label-small mb-3">
                     Tell us about your situation
                   </label>
                   <textarea
@@ -129,12 +156,9 @@ const Contact = () => {
 
                 <button
                   type="submit"
-                  className="inline-flex items-center gap-3 text-base font-light group pt-4"
+                  className="inline-flex items-center justify-center text-sm font-light tracking-wide bg-foreground text-background px-7 py-3 hover:bg-accent transition-colors"
                 >
-                  <span className="link-underline">Send message</span>
-                  <span className="text-accent group-hover:translate-x-1 transition-transform">
-                    →
-                  </span>
+                  Send message
                 </button>
               </form>
             </div>
