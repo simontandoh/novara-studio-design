@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Layout from "@/components/Layout";
 
@@ -35,6 +35,17 @@ const Contact = () => {
     consent: false,
   });
 
+  useEffect(() => {
+    const saved = localStorage.getItem("novaraContactDraft");
+    if (saved) {
+      setFormData((prev) => ({ ...prev, ...(JSON.parse(saved) as typeof prev) }));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("novaraContactDraft", JSON.stringify(formData));
+  }, [formData]);
+
   const validate = () => {
     const nextErrors: Record<string, string> = {};
     if (!formData.fullName.trim()) nextErrors.fullName = "Full name is required.";
@@ -55,7 +66,7 @@ const Contact = () => {
     return nextErrors;
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     const nextErrors = validate();
     setErrors(nextErrors);
@@ -66,6 +77,16 @@ const Contact = () => {
       submittedAt: new Date().toISOString(),
     };
     localStorage.setItem("novaraContactSubmission", JSON.stringify(payload, null, 2));
+    localStorage.removeItem("novaraContactDraft");
+    try {
+      await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+    } catch (error) {
+      console.warn("Lead submission failed", error);
+    }
     navigate("/submitted", { state: payload });
   };
 
