@@ -107,12 +107,12 @@ const NovaNav = () => {
               <img
                 src="/novara-logo.png"
                 alt="Novara logo"
-                className="h-7 w-7 object-contain"
+                className="h-9 w-9 object-contain"
               />
               <span className="text-lg font-light tracking-[0.4em]">NOVARA</span>
             </Link>
           </div>
-          <div className="flex justify-end items-center">
+          <div className="flex justify-end items-center justify-self-end w-full">
             <button
               ref={toggleRef}
               type="button"
