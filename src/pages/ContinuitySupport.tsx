@@ -1,5 +1,6 @@
 import Layout from "@/components/Layout";
 import CTASection from "@/components/CTASection";
+import AccordionList from "@/components/Accordion";
 import { Clock, Mail, Shield, AlertCircle, Server, KeyRound } from "lucide-react";
 
 const issuesCovered = [
@@ -9,6 +10,29 @@ const issuesCovered = [
   { icon: Mail, label: "Email domain problems" },
   { icon: Clock, label: "Urgent content updates" },
   { icon: Shield, label: "Access and security issues" },
+];
+
+const faqItems = [
+  {
+    question: "Is continuity support 24/7 emergency coverage?",
+    answer:
+      "No. It is structured, extended coverage during evenings and weekends so you have reliable help when most agencies are offline.",
+  },
+  {
+    question: "Who is continuity support best for?",
+    answer:
+      "Teams that rely on their site or systems outside standard hours and want calm, consistent support instead of last-minute firefighting.",
+  },
+  {
+    question: "How fast do you respond?",
+    answer:
+      "We aim to respond within 1-2 hours during covered times. If an issue requires more time, you get a clear update and plan.",
+  },
+  {
+    question: "Do I need to be on another service tier first?",
+    answer:
+      "Continuity support is available for clients on Growth or Continuity tiers so we can monitor, maintain, and respond with full context.",
+  },
 ];
 
 const ContinuitySupport = () => {
@@ -114,7 +138,7 @@ const ContinuitySupport = () => {
                   <div>
                     <p className="text-foreground font-light mb-1">Email</p>
                     <p className="text-sm text-muted-foreground">
-                      support@novara.studio — monitored during extended hours
+                      support@novarastudios.io - monitored during extended hours
                     </p>
                   </div>
                 </div>
@@ -168,12 +192,23 @@ const ContinuitySupport = () => {
         </div>
       </section>
 
+      {/* FAQ */}
+      <section className="section-padding border-t border-border">
+        <div className="container-editorial">
+          <div className="max-w-2xl mb-10">
+            <p className="label-small mb-4">FAQ</p>
+            <h2 className="headline-primary">Continuity support, explained.</h2>
+          </div>
+          <AccordionList items={faqItems} />
+        </div>
+      </section>
+
       <CTASection
         headline="Need support beyond standard hours?"
         description="Let's discuss how continuity support could work for your business."
-        primaryLabel="Start a conversation"
-        secondaryLabel="View all services"
-        secondaryTo="/services"
+        primaryLabel="Contact"
+        secondaryLabel="Websites"
+        secondaryTo="/local"
       />
     </Layout>
   );

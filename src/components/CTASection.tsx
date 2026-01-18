@@ -13,7 +13,7 @@ interface CTASectionProps {
 const CTASection = ({
   headline,
   description,
-  primaryLabel = "Start a conversation",
+  primaryLabel = "Contact",
   primaryTo = "/contact",
   secondaryLabel,
   secondaryTo,
@@ -38,14 +38,14 @@ const CTASection = ({
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-end">
               <Link
                 to={primaryTo}
-                className="inline-flex items-center justify-center text-sm font-light tracking-wide bg-foreground text-background px-7 py-3 hover:bg-accent transition-colors"
+                className="btn-primary rounded-full px-7 py-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 {primaryLabel}
               </Link>
               {secondaryLabel && secondaryTo && (
                 <Link
                   to={secondaryTo}
-                  className="inline-flex items-center justify-center text-sm font-light tracking-wide border border-border px-7 py-3 hover:bg-secondary transition-colors"
+                  className="btn-secondary rounded-full px-7 py-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 >
                   {secondaryLabel}
                 </Link>

@@ -100,9 +100,9 @@ const HowItWorks = () => {
       <CTASection
         headline="Ready to start?"
         description="Let's have a conversation about what you need and how we might help."
-        primaryLabel="Start a conversation"
-        secondaryLabel="View services"
-        secondaryTo="/services"
+        primaryLabel="Contact"
+        secondaryLabel="Websites"
+        secondaryTo="/local"
       />
     </Layout>
   );

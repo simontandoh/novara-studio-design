@@ -21,12 +21,16 @@ const TierCard = ({
 }: TierCardProps) => {
   return (
     <div
-      className={`group relative p-8 md:p-10 transition-all duration-300 hover:-translate-y-1 ${
+      className={`group noise-overlay surface-panel rounded-lg p-8 md:p-10 transition-all duration-[180ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:shadow-lg hover:shadow-accent/10 ${
         featured
-          ? "bg-card border border-accent/30 hover:border-accent/60"
-          : "bg-background border border-border hover:border-accent/40"
+          ? "border border-accent/30 hover:border-accent/70"
+          : "border border-border hover:border-accent/50"
       }`}
     >
+      <div
+        className="pointer-events-none absolute inset-0 rounded-lg opacity-0 transition-opacity duration-[180ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:opacity-100"
+        style={{ backgroundImage: "var(--gradient-hover)" }}
+      />
       {featured && (
         <div className="absolute -top-3 left-8">
           <span className="text-xs uppercase tracking-[0.15em] bg-accent text-background px-3 py-1">
@@ -71,10 +75,10 @@ const TierCard = ({
 
       <Link
         to="/contact"
-        className="inline-flex items-center gap-2 text-sm font-light group/link"
+        className="inline-flex items-center gap-2 text-sm font-light group/link focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
       >
-        <span className="relative after:content-[''] after:absolute after:w-full after:h-px after:bottom-0 after:left-0 after:bg-accent after:origin-left after:scale-x-0 group-hover/link:after:scale-x-100 after:transition-transform after:duration-300">
-          Get started
+        <span className="relative after:content-[''] after:absolute after:w-full after:h-px after:bottom-0 after:left-0 after:bg-accent after:origin-left after:scale-x-0 group-hover/link:after:scale-x-100 after:transition-transform after:duration-[180ms]">
+          Contact
         </span>
         <span className="text-accent group-hover/link:translate-x-1 transition-transform">
           →

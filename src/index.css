@@ -2,48 +2,95 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Novara Design System — Dark, Minimal, Premium */
+/* Novara Design System - Dark, Minimal, Premium */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap');
+@font-face {
+  font-family: "Jura";
+  src: url("/fonts/Jura-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Jura";
+  src: url("/fonts/Jura-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Jura";
+  src: url("/fonts/Jura-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Jura";
+  src: url("/fonts/Jura-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Jura";
+  src: url("/fonts/Jura-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 
 @layer base {
   :root {
-    /* Dark, minimal palette */
-    --background: 0 0% 4%;
-    --foreground: 0 0% 92%;
+    /* Depth layers */
+    --background: 220 18% 6%;
+    --foreground: 210 20% 92%;
 
-    --card: 0 0% 8%;
-    --card-foreground: 0 0% 92%;
+    --card: 220 16% 12%;
+    --card-foreground: 210 20% 92%;
 
-    --popover: 0 0% 10%;
-    --popover-foreground: 0 0% 92%;
+    --popover: 220 14% 10%;
+    --popover-foreground: 210 20% 92%;
 
-    --primary: 0 0% 92%;
-    --primary-foreground: 0 0% 4%;
+    --primary: 210 20% 92%;
+    --primary-foreground: 220 18% 6%;
 
-    --secondary: 0 0% 16%;
-    --secondary-foreground: 0 0% 92%;
+    --secondary: 220 14% 16%;
+    --secondary-foreground: 210 20% 92%;
 
-    --muted: 0 0% 16%;
-    --muted-foreground: 0 0% 55%;
+    --muted: 220 12% 16%;
+    --muted-foreground: 210 10% 60%;
 
-    --accent: 0 0% 70%;
-    --accent-foreground: 0 0% 92%;
+    --accent: 210 34% 60%;
+    --accent-foreground: 210 20% 92%;
 
     --destructive: 0 72% 50%;
     --destructive-foreground: 0 85% 97%;
 
-    --border: 0 0% 16%;
-    --input: 0 0% 16%;
-    --ring: 0 0% 70%;
+    --border: 220 12% 18%;
+    --input: 220 12% 18%;
+    --ring: 210 34% 60%;
 
-    --radius: 0.25rem;
+    --radius: 0.5rem;
 
     /* Custom tokens */
-    --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --font-sans: 'Jura', system-ui, -apple-system, 'Segoe UI', Inter, Arial, sans-serif;
 
     --spacing-section: 7rem;
     --spacing-section-sm: 4rem;
+
+    --motion-fast: 180ms;
+    --motion-slow: 280ms;
+    --ease-quiet: cubic-bezier(0.16, 1, 0.3, 1);
+
+    --gradient-hero: radial-gradient(1200px 600px at 10% 10%, hsl(210 30% 18% / 0.35), transparent 60%),
+      radial-gradient(800px 500px at 80% 20%, hsl(210 25% 15% / 0.25), transparent 65%);
+    --gradient-edge: linear-gradient(130deg, hsl(210 40% 68% / 0.6), hsl(210 25% 40% / 0.1));
+    --gradient-hover: linear-gradient(135deg, hsl(210 40% 60% / 0.18), transparent 55%);
 
     --sidebar-background: 0 0% 6%;
     --sidebar-foreground: 0 0% 92%;
@@ -86,6 +133,7 @@
     @apply bg-background text-foreground font-sans antialiased;
     font-weight: 300;
     letter-spacing: 0.01em;
+    background-image: radial-gradient(900px 600px at 15% 0%, hsl(210 25% 12% / 0.5), transparent 60%);
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -132,7 +180,7 @@
   }
 
   .link-underline {
-    @apply relative inline-block after:content-[''] after:absolute after:w-full after:h-px after:bottom-0 after:left-0 after:bg-accent after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300;
+    @apply relative inline-block after:content-[''] after:absolute after:w-full after:h-px after:bottom-0 after:left-0 after:bg-accent after:origin-left after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-200;
   }
 
   .accent-line {
@@ -141,6 +189,127 @@
 
   .surface-elevated {
     @apply bg-card border border-border;
+  }
+
+  .surface-panel {
+    @apply relative bg-card border border-border;
+  }
+
+  .surface-panel::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background-image: linear-gradient(120deg, hsl(210 25% 60% / 0.06), transparent 55%);
+    opacity: 0;
+    transition: opacity var(--motion-fast) var(--ease-quiet);
+  }
+
+  .surface-panel:hover::after,
+  .surface-panel:focus-within::after {
+    opacity: 1;
+  }
+
+  .noise-overlay {
+    position: relative;
+  }
+
+  .noise-overlay::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background-image: linear-gradient(0deg, transparent 0%, hsl(210 10% 100% / 0.04) 50%, transparent 100%),
+      repeating-linear-gradient(90deg, hsl(210 10% 100% / 0.02) 0 1px, transparent 1px 4px);
+    mix-blend-mode: soft-light;
+    opacity: 0.35;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center text-sm font-light tracking-wide text-background;
+    background-image: var(--gradient-edge);
+    background-color: hsl(var(--foreground));
+    border: 1px solid hsl(var(--accent) / 0.6);
+    transition: transform var(--motion-fast) var(--ease-quiet), box-shadow var(--motion-fast) var(--ease-quiet),
+      border-color var(--motion-fast) var(--ease-quiet);
+    box-shadow: 0 0 0 1px hsl(var(--accent) / 0.05), 0 8px 24px hsl(0 0% 0% / 0.25);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    border-color: hsl(var(--accent) / 0.9);
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center text-sm font-light tracking-wide text-foreground;
+    border: 1px solid hsl(var(--border));
+    background: transparent;
+    transition: border-color var(--motion-fast) var(--ease-quiet), background-color var(--motion-fast) var(--ease-quiet);
+  }
+
+  .btn-secondary:hover {
+    border-color: hsl(var(--accent) / 0.7);
+    background-color: hsl(var(--secondary));
+  }
+
+  .nav-glass {
+    background: linear-gradient(180deg, hsl(220 18% 10% / 0.9), hsl(220 18% 8% / 0.75));
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid hsl(var(--border) / 0.7);
+  }
+
+  .nav-glow {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .nav-glow::before {
+    content: "";
+    position: absolute;
+    inset: -20%;
+    background: radial-gradient(60% 50% at 20% 20%, hsl(210 40% 70% / 0.12), transparent 60%);
+    opacity: 0.6;
+    animation: navPulse 6s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .mask-icon {
+    width: 28px;
+    height: 28px;
+    display: inline-block;
+    background-color: currentColor;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    -webkit-mask-size: contain;
+  }
+
+  .whatsapp-fab {
+    @apply fixed bottom-5 right-5 z-50 inline-flex items-center justify-center rounded-full border border-border bg-card/90 text-foreground;
+    width: 48px;
+    height: 48px;
+    transition: transform var(--motion-fast) var(--ease-quiet), border-color var(--motion-fast) var(--ease-quiet);
+  }
+
+  .whatsapp-fab:hover {
+    transform: translateY(-2px);
+    border-color: hsl(var(--accent) / 0.6);
+  }
+}
+
+@keyframes navPulse {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: translateY(0px);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateY(-8px);
   }
 }
 

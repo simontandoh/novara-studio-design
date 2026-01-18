@@ -1,7 +1,41 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import Layout from "@/components/Layout";
+import ServiceTypeCard from "@/components/ServiceTypeCard";
+
+const serviceTypes = [
+  {
+    title: "Build",
+    description: "New websites and systems designed from the ground up.",
+    details: [
+      "Discovery-led planning and structure",
+      "Modern, performant builds",
+      "Launch-ready handover and documentation",
+    ],
+  },
+  {
+    title: "Rebuild",
+    description: "Upgrade or replace what you have without disruption.",
+    details: [
+      "Audit and rebuild of legacy sites",
+      "SEO-aware migration planning",
+      "Clear improvements in speed and clarity",
+    ],
+  },
+  {
+    title: "Ongoing care",
+    description: "Maintenance, monitoring, and improvements over time.",
+    details: [
+      "Proactive maintenance and updates",
+      "Performance and reliability checks",
+      "Prioritised support and refinements",
+    ],
+  },
+];
 
 const Services = () => {
+  const [activeType, setActiveType] = useState(0);
+
   return (
     <Layout>
       {/* Hero */}
@@ -16,6 +50,30 @@ const Services = () => {
               We offer a focused set of services, all designed around the same principle: 
               building digital systems that work reliably and improve over time.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Build / Rebuild / Ongoing care */}
+      <section className="section-padding border-t border-border">
+        <div className="container-editorial">
+          <div className="max-w-2xl mb-12">
+            <p className="label-small mb-6">Service types</p>
+            <h2 className="headline-primary">
+              Build, rebuild, and ongoing care - delivered as a single partnership.
+            </h2>
+          </div>
+          <div className="grid lg:grid-cols-3 gap-6">
+            {serviceTypes.map((type, index) => (
+              <ServiceTypeCard
+                key={type.title}
+                title={type.title}
+                description={type.description}
+                details={type.details}
+                isActive={activeType === index}
+                onClick={() => setActiveType(index)}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -214,9 +272,9 @@ const Services = () => {
           </p>
           <Link
             to="/contact"
-            className="inline-flex items-center gap-3 text-base font-light group"
+            className="inline-flex items-center gap-3 text-base font-light group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
-            <span className="link-underline">Start a conversation</span>
+            <span className="link-underline">Contact</span>
             <span className="text-accent group-hover:translate-x-1 transition-transform">→</span>
           </Link>
         </div>

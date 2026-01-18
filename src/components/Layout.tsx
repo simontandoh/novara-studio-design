@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
-import Navigation from "./Navigation";
+import NovaNav from "./NovaNav";
 import Footer from "./Footer";
+import FloatingWhatsApp from "./FloatingWhatsApp";
 
 interface LayoutProps {
   children: ReactNode;
@@ -9,8 +10,9 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <Navigation />
+      <NovaNav />
       <main className="flex-1 pt-16 md:pt-20">{children}</main>
+      <FloatingWhatsApp />
       <Footer />
     </div>
   );

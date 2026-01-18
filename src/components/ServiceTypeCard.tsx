@@ -16,10 +16,10 @@ const ServiceTypeCard = ({
   return (
     <button
       onClick={onClick}
-      className={`w-full text-left p-6 md:p-8 transition-all duration-300 border ${
+      className={`w-full text-left p-6 md:p-8 transition-all duration-[180ms] ease-[cubic-bezier(0.16,1,0.3,1)] rounded-lg noise-overlay surface-panel hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
         isActive
-          ? "bg-card border-accent/50"
-          : "bg-background border-border hover:border-accent/30 hover:bg-card/50"
+          ? "border-accent/50"
+          : "border-border hover:border-accent/40"
       }`}
     >
       <h3 className="headline-secondary mb-3">{title}</h3>

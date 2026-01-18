@@ -133,7 +133,7 @@ const About = () => {
       <CTASection
         headline="Let's work together."
         description="If our approach resonates with you, we'd love to hear about what you're building."
-        primaryLabel="Start a conversation"
+        primaryLabel="Contact"
       />
     </Layout>
   );
