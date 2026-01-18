@@ -318,3 +318,25 @@
     text-wrap: balance;
   }
 }
+
+/* Custom select dropdown styling */
+select option:checked,
+select option:hover,
+select option:focus {
+  background-color: hsl(var(--secondary)) !important;
+  color: hsl(var(--foreground)) !important;
+}
+
+select:focus option:checked {
+  background: hsl(var(--secondary)) linear-gradient(0deg, hsl(var(--secondary)) 0%, hsl(var(--secondary)) 100%) !important;
+  color: hsl(var(--foreground)) !important;
+}
+
+/* Firefox specific */
+@-moz-document url-prefix() {
+  select option:checked,
+  select option:hover {
+    background-color: hsl(var(--secondary)) !important;
+    color: hsl(var(--foreground)) !important;
+  }
+}
