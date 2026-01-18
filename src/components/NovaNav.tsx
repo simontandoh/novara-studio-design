@@ -3,7 +3,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 
 const navLinks = [
   { label: "Home", path: "/" },
-  { label: "Websites", path: "/local", primary: true },
+  { label: "Websites", path: "/websites", primary: true },
   { label: "Portfolio", path: "/portfolio" },
   { label: "Contact", path: "/contact" },
 ];

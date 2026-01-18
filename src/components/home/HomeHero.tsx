@@ -47,10 +47,10 @@ const HomeHero = () => {
               Contact
             </Link>
             <Link
-              to="/local"
+              to="/websites"
               className="btn-secondary rounded-full px-6 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
-              Novara Local
+              Websites
             </Link>
           </div>
         </div>

@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import Index from "./pages/Index";
 import Local from "./pages/Local";
 import HowItWorks from "./pages/HowItWorks";
@@ -13,6 +13,8 @@ import Contact from "./pages/Contact";
 import Portfolio from "./pages/Portfolio";
 import NotFound from "./pages/NotFound";
 import Submitted from "./pages/Submitted";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Terms from "./pages/Terms";
 
 const queryClient = new QueryClient();
 
@@ -35,14 +37,17 @@ const App = () => (
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/local" element={<Local />} />
+          <Route path="/websites" element={<Local />} />
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/how-it-works" element={<HowItWorks />} />
           <Route path="/continuity" element={<ContinuitySupport />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/submitted" element={<Submitted />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<Terms />} />
           {/* Legacy redirects */}
+          <Route path="/local" element={<Navigate to="/websites" replace />} />
           <Route path="/studio" element={<HowItWorks />} />
           <Route path="/continuity-support" element={<ContinuitySupport />} />
           <Route path="/work" element={<Portfolio />} />

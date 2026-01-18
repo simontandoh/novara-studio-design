@@ -26,7 +26,7 @@ const Footer = () => {
               <Link to="/" className="text-sm font-light text-muted-foreground hover:text-foreground transition-colors">
                 Home
               </Link>
-              <Link to="/local" className="text-sm font-light text-muted-foreground hover:text-foreground transition-colors">
+              <Link to="/websites" className="text-sm font-light text-muted-foreground hover:text-foreground transition-colors">
                 Websites
               </Link>
               <Link to="/portfolio" className="text-sm font-light text-muted-foreground hover:text-foreground transition-colors">
@@ -41,17 +41,26 @@ const Footer = () => {
           <div>
             <p className="label-small mb-4">Get in touch</p>
             <a
-              href="mailto:hello@novarastudios.io"
+              href="mailto:hello@novarastudios.co.uk"
               className="text-sm font-light text-muted-foreground hover:text-foreground transition-colors"
             >
-              hello@novarastudios.io
+              hello@novarastudios.co.uk
             </a>
+            <p className="label-small mt-6 mb-4">Legal</p>
+            <nav className="flex flex-col gap-3">
+              <Link to="/privacy-policy" className="text-sm font-light text-muted-foreground hover:text-foreground transition-colors">
+                Privacy Policy
+              </Link>
+              <Link to="/terms" className="text-sm font-light text-muted-foreground hover:text-foreground transition-colors">
+                Terms of Service
+              </Link>
+            </nav>
           </div>
         </div>
 
         <div className="mt-16 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <p className="text-xs text-muted-foreground">
-            Ac {new Date().getFullYear()} Novara
+            Novara Studios (C) 2026 All rights reserved.
           </p>
           <p className="text-xs text-muted-foreground">
             Digital systems that run quietly and reliably.

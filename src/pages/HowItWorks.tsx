@@ -102,7 +102,7 @@ const HowItWorks = () => {
         description="Let's have a conversation about what you need and how we might help."
         primaryLabel="Contact"
         secondaryLabel="Websites"
-        secondaryTo="/local"
+        secondaryTo="/websites"
       />
     </Layout>
   );

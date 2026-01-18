@@ -56,13 +56,13 @@ const Local = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
-                to="/contact?subject=Local%20Website"
+                to="/contact?subject=Websites"
                 className="btn-primary rounded-full px-7 py-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 Contact
               </Link>
               <Link
-                to="/contact?subject=WhatsApp%20Local"
+                to="/contact?subject=WhatsApp%20Websites"
                 className="btn-secondary rounded-full px-6 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 WhatsApp

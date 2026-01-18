@@ -523,10 +523,10 @@ const Contact = () => {
               WhatsApp
             </a>
             <a
-              href="mailto:hello@novarastudios.io"
+              href="mailto:hello@novarastudios.co.uk"
               className="text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
-              hello@novarastudios.io
+              hello@novarastudios.co.uk
             </a>
           </aside>
         </div>

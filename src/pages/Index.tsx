@@ -22,7 +22,7 @@ const Index = () => {
                 stays fast, stable, and current.
               </p>
               <Link
-                to="/local"
+                to="/websites"
                 className="btn-secondary rounded-full px-6 py-2"
               >
                 See services
@@ -56,7 +56,7 @@ const Index = () => {
         primaryLabel="Contact"
         primaryTo="/contact"
         secondaryLabel="Websites"
-        secondaryTo="/local"
+        secondaryTo="/websites"
       />
     </Layout>
   );

@@ -138,7 +138,7 @@ const ContinuitySupport = () => {
                   <div>
                     <p className="text-foreground font-light mb-1">Email</p>
                     <p className="text-sm text-muted-foreground">
-                      support@novarastudios.io - monitored during extended hours
+                      support@novarastudios.co.uk - monitored during extended hours
                     </p>
                   </div>
                 </div>
@@ -208,7 +208,7 @@ const ContinuitySupport = () => {
         description="Let's discuss how continuity support could work for your business."
         primaryLabel="Contact"
         secondaryLabel="Websites"
-        secondaryTo="/local"
+        secondaryTo="/websites"
       />
     </Layout>
   );
