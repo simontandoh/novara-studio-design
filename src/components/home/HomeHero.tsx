@@ -12,7 +12,7 @@ const HomeHero = () => {
           disablePictureInPicture
           className="w-full h-full object-cover"
         >
-          <source src="/video/novara-hero.mp4" type="video/mp4" />
+          <source src="/video/hero.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-black/55" />
         <div
