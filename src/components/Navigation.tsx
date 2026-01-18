@@ -176,20 +176,20 @@ const Navigation = () => {
               className="p-2 -mr-2"
               aria-label="Toggle menu"
             >
-              <div className="w-5 flex flex-col gap-1">
+              <div className="w-6 flex flex-col gap-[5px]">
                 <span
-                  className={`h-px bg-foreground transition-transform duration-[180ms] ease-[cubic-bezier(0.16,1,0.3,1)] origin-center ${
-                    mobileOpen ? "rotate-45 translate-y-[3px]" : ""
+                  className={`h-[3px] bg-foreground rounded-full transition-all duration-[180ms] ease-[cubic-bezier(0.16,1,0.3,1)] origin-center ${
+                    mobileOpen ? "rotate-45 translate-y-[8px]" : ""
                   }`}
                 />
                 <span
-                  className={`h-px bg-foreground transition-opacity duration-[180ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                    mobileOpen ? "opacity-0" : ""
+                  className={`h-[3px] bg-foreground rounded-full transition-all duration-[180ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                    mobileOpen ? "opacity-0 scale-x-0" : ""
                   }`}
                 />
                 <span
-                  className={`h-px bg-foreground transition-transform duration-[180ms] ease-[cubic-bezier(0.16,1,0.3,1)] origin-center ${
-                    mobileOpen ? "-rotate-45 -translate-y-[3px]" : ""
+                  className={`h-[3px] bg-foreground rounded-full transition-all duration-[180ms] ease-[cubic-bezier(0.16,1,0.3,1)] origin-center ${
+                    mobileOpen ? "-rotate-45 -translate-y-[8px]" : ""
                   }`}
                 />
               </div>
