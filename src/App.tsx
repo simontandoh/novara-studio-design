@@ -12,6 +12,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Portfolio from "./pages/Portfolio";
 import NotFound from "./pages/NotFound";
+import Submitted from "./pages/Submitted";
 
 const queryClient = new QueryClient();
 
@@ -40,6 +41,7 @@ const App = () => (
           <Route path="/continuity" element={<ContinuitySupport />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/submitted" element={<Submitted />} />
           {/* Legacy redirects */}
           <Route path="/studio" element={<HowItWorks />} />
           <Route path="/continuity-support" element={<ContinuitySupport />} />

@@ -1,9 +1,11 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Layout from "@/components/Layout";
 
-const whatsappNumber = "447000000000";
+const whatsappNumber = "447456849035";
 
 const Contact = () => {
+  const navigate = useNavigate();
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [formData, setFormData] = useState({
@@ -33,15 +35,6 @@ const Contact = () => {
     consent: false,
   });
 
-  const mailtoHref = useMemo(() => {
-    const body = Object.entries(formData)
-      .map(([key, value]) => `${key}: ${value}`)
-      .join("\n");
-    return `mailto:hello@novarastudios.io?subject=Website%20Consultation&body=${encodeURIComponent(
-      body
-    )}`;
-  }, [formData]);
-
   const validate = () => {
     const nextErrors: Record<string, string> = {};
     if (!formData.fullName.trim()) nextErrors.fullName = "Full name is required.";
@@ -68,7 +61,12 @@ const Contact = () => {
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) return;
     setSubmitted(true);
-    window.location.href = mailtoHref;
+    const payload = {
+      ...formData,
+      submittedAt: new Date().toISOString(),
+    };
+    localStorage.setItem("novaraContactSubmission", JSON.stringify(payload, null, 2));
+    navigate("/submitted", { state: payload });
   };
 
   const updateField = (name: string, value: string | boolean) => {
