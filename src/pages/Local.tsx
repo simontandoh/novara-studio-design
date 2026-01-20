@@ -1,10 +1,10 @@
-import { Link } from "react-router-dom";
+﻿import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 
 const maintenanceTiers = [
   {
     name: "Care",
-    price: "£99/month",
+    price: "49/month",
     description: "Baseline care for stable sites with light IT support.",
     includes: [
       "Core updates and security patching",
@@ -15,7 +15,7 @@ const maintenanceTiers = [
   },
   {
     name: "Priority",
-    price: "£199/month",
+    price: "99/month",
     description: "Proactive care with priority IT support.",
     includes: [
       "Everything in Care",
@@ -28,7 +28,7 @@ const maintenanceTiers = [
   },
   {
     name: "Continuity",
-    price: "£349/month",
+    price: "199/month",
     description: "Highest priority with deeper IT support.",
     includes: [
       "Everything in Priority",
