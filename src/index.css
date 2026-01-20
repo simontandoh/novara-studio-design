@@ -140,6 +140,21 @@
     @apply font-sans font-light;
     letter-spacing: -0.02em;
   }
+
+  select {
+    color-scheme: dark;
+  }
+
+  select option {
+    background-color: hsl(var(--card));
+    color: hsl(var(--foreground));
+  }
+
+  select option:checked,
+  select option:hover {
+    background-color: hsl(var(--accent) / 0.2);
+    color: hsl(var(--foreground));
+  }
 }
 
 @layer components {
