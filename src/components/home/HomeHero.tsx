@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 const HomeHero = () => {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden -mt-16 md:-mt-20 pt-16 md:pt-20">
+    <section className="relative min-h-[70vh] md:min-h-[75vh] flex items-center overflow-hidden -mt-16 md:-mt-20 pt-16 md:pt-20">
       <div className="absolute inset-0 z-0">
         <video
           autoPlay
@@ -14,12 +14,12 @@ const HomeHero = () => {
         >
           <source src="/video/hero.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-black/55" />
+        <div className="absolute inset-0 bg-black/65" />
         <div
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(900px 520px at 18% 12%, rgba(8, 12, 18, 0.7), transparent 60%), radial-gradient(800px 520px at 82% 18%, rgba(8, 12, 18, 0.6), transparent 65%)",
+              "radial-gradient(900px 520px at 18% 12%, rgba(6, 10, 16, 0.78), transparent 60%), radial-gradient(800px 520px at 82% 18%, rgba(6, 10, 16, 0.7), transparent 65%)",
           }}
         />
       </div>

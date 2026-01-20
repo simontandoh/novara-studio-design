@@ -144,7 +144,7 @@
 
 @layer components {
   .section-padding {
-    @apply py-20 md:py-28;
+    @apply py-16 md:py-22;
   }
 
   .container-editorial {
@@ -192,7 +192,7 @@
   }
 
   .surface-panel {
-    @apply relative bg-card border border-border;
+    @apply relative bg-card border border-border transition-[box-shadow,border-color] duration-[180ms] ease-[cubic-bezier(0.16,1,0.3,1)];
   }
 
   .surface-panel::after {
@@ -209,6 +209,11 @@
   .surface-panel:hover::after,
   .surface-panel:focus-within::after {
     opacity: 1;
+  }
+
+  .surface-panel:hover {
+    border-color: hsl(var(--accent) / 0.5);
+    box-shadow: 0 18px 40px hsl(var(--accent) / 0.12);
   }
 
   .noise-overlay {
@@ -246,12 +251,15 @@
     @apply inline-flex items-center justify-center text-sm font-light tracking-wide text-foreground;
     border: 1px solid hsl(var(--border));
     background: transparent;
-    transition: border-color var(--motion-fast) var(--ease-quiet), background-color var(--motion-fast) var(--ease-quiet);
+    transition: border-color var(--motion-fast) var(--ease-quiet), background-color var(--motion-fast) var(--ease-quiet),
+      color var(--motion-fast) var(--ease-quiet), transform var(--motion-fast) var(--ease-quiet);
   }
 
   .btn-secondary:hover {
     border-color: hsl(var(--accent) / 0.7);
-    background-color: hsl(var(--secondary));
+    background-color: hsl(var(--accent) / 0.15);
+    color: hsl(var(--accent));
+    transform: translateY(-1px);
   }
 
   .nav-glass {

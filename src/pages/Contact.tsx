@@ -8,6 +8,7 @@ const Contact = () => {
   const navigate = useNavigate();
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     fullName: "",
     businessName: "",
@@ -70,8 +71,12 @@ const Contact = () => {
     event.preventDefault();
     const nextErrors = validate();
     setErrors(nextErrors);
-    if (Object.keys(nextErrors).length > 0) return;
+    if (Object.keys(nextErrors).length > 0) {
+      setIsSubmitting(false);
+      return;
+    }
     setSubmitted(true);
+    setIsSubmitting(true);
     const payload = {
       ...formData,
       submittedAt: new Date().toISOString(),
@@ -513,8 +518,36 @@ const Contact = () => {
               {errors.consent && <p className="text-xs text-accent">{errors.consent}</p>}
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <button type="submit" className="btn-primary rounded-full px-7 py-3">
-                  Submit
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  aria-busy={isSubmitting}
+                  className="btn-primary rounded-full px-7 py-3 disabled:cursor-not-allowed disabled:opacity-70"
+                >
+                  {isSubmitting ? (
+                    <svg
+                      aria-hidden="true"
+                      className="h-5 w-5 animate-spin text-background"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="3"
+                        fill="none"
+                      />
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8v2.5a5.5 5.5 0 00-5.5 5.5H4z"
+                      />
+                    </svg>
+                  ) : (
+                    "Submit"
+                  )}
                 </button>
                 <a
                   href={`https://wa.me/${whatsappNumber}`}
