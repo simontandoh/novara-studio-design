@@ -241,7 +241,7 @@ const Contact = () => {
                     id="projectType"
                     value={formData.projectType}
                     onChange={(event) => updateField("projectType", event.target.value)}
-                    className="w-full rounded-xl border border-border bg-card/70 px-4 py-3 text-foreground backdrop-blur focus:border-foreground focus:outline-none focus:ring-2 focus:ring-accent/40 transition-colors"
+                    className="select-pill"
                   >
                     <option value="" className="bg-background text-foreground">
                       Select
@@ -306,7 +306,7 @@ const Contact = () => {
                     id="primaryGoal"
                     value={formData.primaryGoal}
                     onChange={(event) => updateField("primaryGoal", event.target.value)}
-                    className="w-full rounded-xl border border-border bg-card/70 px-4 py-3 text-foreground backdrop-blur focus:border-foreground focus:outline-none focus:ring-2 focus:ring-accent/40 transition-colors"
+                    className="select-pill"
                   >
                     <option value="" className="bg-background text-foreground">
                       Select
@@ -413,7 +413,7 @@ const Contact = () => {
                     id="domainStatus"
                     value={formData.domainStatus}
                     onChange={(event) => updateField("domainStatus", event.target.value)}
-                    className="w-full rounded-xl border border-border bg-card/70 px-4 py-3 text-foreground backdrop-blur focus:border-foreground focus:outline-none focus:ring-2 focus:ring-accent/40 transition-colors"
+                    className="select-pill"
                   >
                     <option value="" className="bg-background text-foreground">
                       Select
@@ -434,7 +434,7 @@ const Contact = () => {
                     id="hostingStatus"
                     value={formData.hostingStatus}
                     onChange={(event) => updateField("hostingStatus", event.target.value)}
-                    className="w-full rounded-xl border border-border bg-card/70 px-4 py-3 text-foreground backdrop-blur focus:border-foreground focus:outline-none focus:ring-2 focus:ring-accent/40 transition-colors"
+                    className="select-pill"
                   >
                     <option value="" className="bg-background text-foreground">
                       Select
@@ -471,7 +471,7 @@ const Contact = () => {
                     id="maintenanceTier"
                     value={formData.maintenanceTier}
                     onChange={(event) => updateField("maintenanceTier", event.target.value)}
-                    className="w-full rounded-xl border border-border bg-card/70 px-4 py-3 text-foreground backdrop-blur focus:border-foreground focus:outline-none focus:ring-2 focus:ring-accent/40 transition-colors"
+                    className="select-pill"
                   >
                     <option value="" className="bg-background text-foreground">
                       Select

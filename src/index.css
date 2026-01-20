@@ -146,7 +146,7 @@
   }
 
   select option {
-    background-color: hsl(var(--card));
+    background-color: hsl(var(--secondary));
     color: hsl(var(--foreground));
   }
 
@@ -276,6 +276,10 @@
     background-color: hsl(var(--accent) / 0.15);
     color: hsl(var(--accent));
     transform: translateY(-1px);
+  }
+
+  .select-pill {
+    @apply w-full rounded-full border border-border bg-card/80 px-5 py-3 text-foreground backdrop-blur focus:border-foreground focus:outline-none focus:ring-2 focus:ring-accent/30 transition-colors;
   }
 
   .nav-glass {
