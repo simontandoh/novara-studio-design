@@ -21,14 +21,12 @@ const MenuIcon = ({ open }: { open: boolean }) => {
   return (
     <span
       aria-hidden="true"
-      className={`mask-icon transition-transform duration-[180ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+      className={`material-symbols-outlined text-3xl transition-transform duration-[180ms] ${
         open ? "rotate-6 scale-[1.02]" : ""
       }`}
-      style={{
-        maskImage: "url('/menu-bar.png')",
-        WebkitMaskImage: "url('/menu-bar.png')",
-      }}
-    />
+    >
+      menu
+    </span>
   );
 };
 
