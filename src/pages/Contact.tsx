@@ -514,7 +514,7 @@ const Contact = () => {
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <button type="submit" className="btn-primary rounded-full px-7 py-3">
-                  Contact
+                  Submit
                 </button>
                 <a
                   href={`https://wa.me/${whatsappNumber}`}
