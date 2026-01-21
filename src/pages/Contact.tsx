@@ -55,7 +55,7 @@ const Contact = () => {
     styleRefs: [] as string[],
     brandAssetsLogo: false,
     brandAssetsPhotos: false,
-    brandAssetsCopy: false,
+    brandAssetsVideos: false,
     domainStatus: "",
     hostingStatus: "",
     timelineUnit: "weeks" as "weeks" | "days",
@@ -143,7 +143,7 @@ const Contact = () => {
       brandAssets: {
         logo: formData.brandAssetsLogo,
         photos: formData.brandAssetsPhotos,
-        copy: formData.brandAssetsCopy,
+        videos: formData.brandAssetsVideos,
       },
       domainStatus: formData.domainStatus,
       hostingStatus: formData.hostingStatus,
@@ -393,6 +393,7 @@ const Contact = () => {
                   <input
                     id="website"
                     type="url"
+                    placeholder="www.example.co.uk"
                     value={formData.website}
                     onChange={(event) => updateField("website", event.target.value)}
                     className="w-full bg-transparent border-b border-border pb-3 focus:border-foreground focus:outline-none transition-colors text-foreground"
@@ -701,10 +702,10 @@ const Contact = () => {
                   <label className="flex items-center gap-2">
                     <input
                       type="checkbox"
-                      checked={formData.brandAssetsCopy}
-                      onChange={(event) => updateField("brandAssetsCopy", event.target.checked)}
+                      checked={formData.brandAssetsVideos}
+                      onChange={(event) => updateField("brandAssetsVideos", event.target.checked)}
                     />
-                    Copy
+                    Videos
                   </label>
                 </div>
               </div>
