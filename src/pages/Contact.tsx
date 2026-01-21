@@ -1,8 +1,38 @@
+import "react-phone-number-input/style.css";
 import { useEffect, useState } from "react";
+import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
 import { useNavigate } from "react-router-dom";
 import Layout from "@/components/Layout";
 
 const whatsappNumber = "447456849035";
+
+const industryOptions = [
+  "Construction/Trades",
+  "Beauty & Wellness",
+  "Healthcare",
+  "Professional Services",
+  "Real Estate",
+  "Hospitality/Food",
+  "Retail (In-store)",
+  "E-commerce",
+  "Education/Training",
+  "Fitness",
+  "Technology/SaaS",
+  "Manufacturing",
+  "Automotive",
+  "Entertainment/Media",
+  "Non-profit",
+  "Other",
+];
+
+const budgetOptions = [
+  "£500–£999",
+  "£1,000–£1,999",
+  "£2,000–£4,999",
+  "£5,000–£9,999",
+  "£10,000+",
+  "Not sure yet",
+];
 
 const Contact = () => {
   const navigate = useNavigate();
@@ -14,27 +44,30 @@ const Contact = () => {
     businessName: "",
     email: "",
     phone: "",
-    whatsapp: "",
     location: "",
     industry: "",
+    industryOther: "",
     website: "",
     projectType: "",
-    pagesNeeded: "",
-    coreServices: "",
+    pagesNeeded: [] as string[],
+    coreServicesProducts: [] as string[],
     primaryGoal: "",
-    styleRefs: "",
+    styleRefs: [] as string[],
     brandAssetsLogo: false,
     brandAssetsPhotos: false,
     brandAssetsCopy: false,
     domainStatus: "",
     hostingStatus: "",
-    integrations: "",
-    timeline: "",
-    budget: "",
+    timelineUnit: "weeks" as "weeks" | "days",
+    timelineValue: 4,
+    budgetRange: "",
     maintenanceTier: "",
-    itSupportNeeds: "",
     consent: false,
   });
+  const [pagesInput, setPagesInput] = useState("");
+  const [coreServicesInput, setCoreServicesInput] = useState("");
+  const [styleRefInput, setStyleRefInput] = useState("");
+  const [styleRefError, setStyleRefError] = useState("");
 
   useEffect(() => {
     const saved = localStorage.getItem("novaraContactDraft");
@@ -47,23 +80,36 @@ const Contact = () => {
     localStorage.setItem("novaraContactDraft", JSON.stringify(formData));
   }, [formData]);
 
+  const isValidEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+
+  const validatePhone = (value: string) => {
+    if (!value) return false;
+    return isValidPhoneNumber(value);
+  };
+
   const validate = () => {
     const nextErrors: Record<string, string> = {};
     if (!formData.fullName.trim()) nextErrors.fullName = "Full name is required.";
     if (!formData.businessName.trim()) nextErrors.businessName = "Business name is required.";
-    if (!formData.email.trim()) nextErrors.email = "Email is required.";
-    if (formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      nextErrors.email = "Enter a valid email address.";
+    if (!formData.email.trim()) {
+      nextErrors.email = "Email is required.";
+    } else if (!isValidEmail(formData.email)) {
+      nextErrors.email = "Enter a valid email address";
     }
-    if (!formData.phone.trim()) nextErrors.phone = "Phone is required.";
+    if (!formData.phone || !validatePhone(formData.phone)) {
+      nextErrors.phone = "Enter a valid phone number";
+    }
     if (!formData.location.trim()) nextErrors.location = "Location is required.";
     if (!formData.industry.trim()) nextErrors.industry = "Industry is required.";
+    if (formData.industry === "Other" && !formData.industryOther.trim()) {
+      nextErrors.industryOther = "Industry (Other) is required.";
+    }
     if (!formData.projectType) nextErrors.projectType = "Select a project type.";
-    if (!formData.coreServices.trim()) nextErrors.coreServices = "List your core services.";
     if (!formData.primaryGoal) nextErrors.primaryGoal = "Select a primary goal.";
-    if (!formData.timeline.trim()) nextErrors.timeline = "Timeline is required.";
+    if (!formData.domainStatus) nextErrors.domainStatus = "Select a domain status.";
+    if (!formData.hostingStatus) nextErrors.hostingStatus = "Select a hosting status.";
     if (!formData.maintenanceTier) nextErrors.maintenanceTier = "Select a maintenance tier.";
-    if (!formData.consent) nextErrors.consent = "Consent is required.";
+    if (!formData.timelineValue) nextErrors.timeline = "Timeline is required.";
     return nextErrors;
   };
 
@@ -78,7 +124,31 @@ const Contact = () => {
     setSubmitted(true);
     setIsSubmitting(true);
     const payload = {
-      ...formData,
+      fullName: formData.fullName,
+      businessName: formData.businessName,
+      email: formData.email,
+      phone: formData.phone,
+      location: formData.location,
+      industry: formData.industry,
+      industryOther: formData.industry === "Other" ? formData.industryOther : "",
+      whatNeed: formData.projectType,
+      projectType: formData.projectType,
+      pagesNeeded: formData.pagesNeeded,
+      coreServicesProducts: formData.coreServicesProducts,
+      primaryGoal: formData.primaryGoal,
+      timelineUnit: formData.timelineUnit,
+      timelineValue: formData.timelineValue,
+      styleRefs: formData.styleRefs,
+      budgetRange: formData.budgetRange,
+      brandAssets: {
+        logo: formData.brandAssetsLogo,
+        photos: formData.brandAssetsPhotos,
+        copy: formData.brandAssetsCopy,
+      },
+      domainStatus: formData.domainStatus,
+      hostingStatus: formData.hostingStatus,
+      maintenanceTierInterest: formData.maintenanceTier,
+      website: formData.website,
       submittedAt: new Date().toISOString(),
     };
     localStorage.setItem("novaraContactSubmission", JSON.stringify(payload, null, 2));
@@ -95,9 +165,66 @@ const Contact = () => {
     navigate("/submitted", { state: payload });
   };
 
-  const updateField = (name: string, value: string | boolean) => {
+  const updateField = (name: string, value: string | boolean | number) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
+
+  const addToList = (
+    value: string,
+    key: "pagesNeeded" | "coreServicesProducts",
+    setter: (next: string) => void
+  ) => {
+    const trimmed = value.trim();
+    if (!trimmed) return;
+    if (formData[key].includes(trimmed)) {
+      setter("");
+      return;
+    }
+    updateField(key, [...formData[key], trimmed]);
+    setter("");
+  };
+
+  const removeFromList = (value: string, key: "pagesNeeded" | "coreServicesProducts") => {
+    updateField(
+      key,
+      formData[key].filter((item) => item !== value)
+    );
+  };
+
+  const addStyleRef = () => {
+    const trimmed = styleRefInput.trim();
+    if (!trimmed) return;
+    if (!/^https?:\/\//i.test(trimmed)) {
+      setStyleRefError("Enter a valid URL starting with http:// or https://");
+      return;
+    }
+    if (formData.styleRefs.includes(trimmed)) {
+      setStyleRefInput("");
+      setStyleRefError("");
+      return;
+    }
+    updateField("styleRefs", [...formData.styleRefs, trimmed]);
+    setStyleRefInput("");
+    setStyleRefError("");
+  };
+
+  const removeStyleRef = (value: string) => {
+    updateField(
+      "styleRefs",
+      formData.styleRefs.filter((item) => item !== value)
+    );
+  };
+
+  const setTimelineUnit = (unit: "weeks" | "days") => {
+    const nextValue = unit === "weeks" ? 4 : 14;
+    updateField("timelineUnit", unit);
+    updateField("timelineValue", nextValue);
+  };
+
+  const timelineConfig =
+    formData.timelineUnit === "weeks"
+      ? { min: 1, max: 24, step: 1, label: "weeks" }
+      : { min: 7, max: 90, step: 1, label: "days" };
 
   return (
     <Layout>
@@ -121,7 +248,7 @@ const Contact = () => {
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="fullName" className="block label-small mb-3">
-                    Full name
+                    Full name<span className="text-accent"> *</span>
                   </label>
                   <input
                     id="fullName"
@@ -136,7 +263,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <label htmlFor="businessName" className="block label-small mb-3">
-                    Business name
+                    Business name<span className="text-accent"> *</span>
                   </label>
                   <input
                     id="businessName"
@@ -151,13 +278,26 @@ const Contact = () => {
                 </div>
                 <div>
                   <label htmlFor="email" className="block label-small mb-3">
-                    Email
+                    Email<span className="text-accent"> *</span>
                   </label>
                   <input
                     id="email"
                     type="email"
                     value={formData.email}
-                    onChange={(event) => updateField("email", event.target.value)}
+                    onBlur={() => {
+                      if (formData.email && !isValidEmail(formData.email)) {
+                        setErrors((prev) => ({
+                          ...prev,
+                          email: "Enter a valid email address",
+                        }));
+                      }
+                    }}
+                    onChange={(event) => {
+                      updateField("email", event.target.value);
+                      if (errors.email) {
+                        setErrors((prev) => ({ ...prev, email: "" }));
+                      }
+                    }}
                     className="w-full bg-transparent border-b border-border pb-3 focus:border-foreground focus:outline-none transition-colors text-foreground"
                   />
                   {errors.email && (
@@ -166,34 +306,34 @@ const Contact = () => {
                 </div>
                 <div>
                   <label htmlFor="phone" className="block label-small mb-3">
-                    Phone
+                    Phone<span className="text-accent"> *</span>
                   </label>
-                  <input
+                  <PhoneInput
                     id="phone"
-                    type="tel"
+                    defaultCountry="GB"
                     value={formData.phone}
-                    onChange={(event) => updateField("phone", event.target.value)}
-                    className="w-full bg-transparent border-b border-border pb-3 focus:border-foreground focus:outline-none transition-colors text-foreground"
+                    onChange={(value) => updateField("phone", value ?? "")}
+                    onBlur={() => {
+                      if (formData.phone && !validatePhone(formData.phone)) {
+                        setErrors((prev) => ({
+                          ...prev,
+                          phone: "Enter a valid phone number",
+                        }));
+                      }
+                    }}
+                    className="flex gap-3"
+                    inputClassName="select-pill"
+                    countrySelectProps={{
+                      className: "select-pill w-[120px]",
+                    }}
                   />
                   {errors.phone && (
                     <p className="text-xs text-accent mt-2">{errors.phone}</p>
                   )}
                 </div>
                 <div>
-                  <label htmlFor="whatsapp" className="block label-small mb-3">
-                    WhatsApp (optional)
-                  </label>
-                  <input
-                    id="whatsapp"
-                    type="tel"
-                    value={formData.whatsapp}
-                    onChange={(event) => updateField("whatsapp", event.target.value)}
-                    className="w-full bg-transparent border-b border-border pb-3 focus:border-foreground focus:outline-none transition-colors text-foreground"
-                  />
-                </div>
-                <div>
                   <label htmlFor="location" className="block label-small mb-3">
-                    Business location (city/region)
+                    Business location (city/region)<span className="text-accent"> *</span>
                   </label>
                   <input
                     id="location"
@@ -208,19 +348,44 @@ const Contact = () => {
                 </div>
                 <div>
                   <label htmlFor="industry" className="block label-small mb-3">
-                    Industry
+                    Industry<span className="text-accent"> *</span>
                   </label>
-                  <input
+                  <select
                     id="industry"
-                    type="text"
                     value={formData.industry}
                     onChange={(event) => updateField("industry", event.target.value)}
-                    className="w-full bg-transparent border-b border-border pb-3 focus:border-foreground focus:outline-none transition-colors text-foreground"
-                  />
+                    className="select-pill"
+                  >
+                    <option value="" className="bg-background text-foreground">
+                      Select
+                    </option>
+                    {industryOptions.map((option) => (
+                      <option key={option} value={option} className="bg-background text-foreground">
+                        {option}
+                      </option>
+                    ))}
+                  </select>
                   {errors.industry && (
                     <p className="text-xs text-accent mt-2">{errors.industry}</p>
                   )}
                 </div>
+                {formData.industry === "Other" && (
+                  <div>
+                    <label htmlFor="industryOther" className="block label-small mb-3">
+                      Industry (Other)<span className="text-accent"> *</span>
+                    </label>
+                    <input
+                      id="industryOther"
+                      type="text"
+                      value={formData.industryOther}
+                      onChange={(event) => updateField("industryOther", event.target.value)}
+                      className="w-full bg-transparent border-b border-border pb-3 focus:border-foreground focus:outline-none transition-colors text-foreground"
+                    />
+                    {errors.industryOther && (
+                      <p className="text-xs text-accent mt-2">{errors.industryOther}</p>
+                    )}
+                  </div>
+                )}
                 <div>
                   <label htmlFor="website" className="block label-small mb-3">
                     Current website (optional)
@@ -235,7 +400,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <label htmlFor="projectType" className="block label-small mb-3">
-                    What do you need?
+                    What do you need?<span className="text-accent"> *</span>
                   </label>
                   <select
                     id="projectType"
@@ -268,39 +433,100 @@ const Contact = () => {
                 </div>
               </div>
 
-              <div>
-                <label htmlFor="pagesNeeded" className="block label-small mb-3">
-                  Pages needed (list or describe)
+              <div className="space-y-3">
+                <label htmlFor="pagesNeeded" className="block label-small">
+                  Pages needed (optional)
                 </label>
-                <input
-                  id="pagesNeeded"
-                  type="text"
-                  value={formData.pagesNeeded}
-                  onChange={(event) => updateField("pagesNeeded", event.target.value)}
-                  className="w-full bg-transparent border-b border-border pb-3 focus:border-foreground focus:outline-none transition-colors text-foreground"
-                />
+                <div className="flex flex-wrap gap-3">
+                  <input
+                    id="pagesNeeded"
+                    type="text"
+                    value={pagesInput}
+                    onChange={(event) => setPagesInput(event.target.value)}
+                    placeholder="Home, About, Services"
+                    className="flex-1 bg-transparent border-b border-border pb-3 focus:border-foreground focus:outline-none transition-colors text-foreground"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => addToList(pagesInput, "pagesNeeded", setPagesInput)}
+                    className="btn-secondary rounded-full px-4 py-2"
+                    aria-label="Add page"
+                  >
+                    +
+                  </button>
+                </div>
+                {formData.pagesNeeded.length > 0 && (
+                  <div className="flex flex-wrap gap-2">
+                    {formData.pagesNeeded.map((page) => (
+                      <span
+                        key={page}
+                        className="inline-flex items-center gap-2 rounded-full bg-card px-3 py-1 text-xs text-muted-foreground"
+                      >
+                        {page}
+                        <button
+                          type="button"
+                          onClick={() => removeFromList(page, "pagesNeeded")}
+                          className="text-muted-foreground hover:text-foreground"
+                          aria-label={`Remove ${page}`}
+                        >
+                          ×
+                        </button>
+                      </span>
+                    ))}
+                  </div>
+                )}
               </div>
 
-              <div>
-                <label htmlFor="coreServices" className="block label-small mb-3">
-                  Core services/products
+              <div className="space-y-3">
+                <label htmlFor="coreServices" className="block label-small">
+                  Core services/products (optional)
                 </label>
-                <textarea
-                  id="coreServices"
-                  rows={3}
-                  value={formData.coreServices}
-                  onChange={(event) => updateField("coreServices", event.target.value)}
-                  className="w-full bg-transparent border-b border-border pb-3 focus:border-foreground focus:outline-none transition-colors resize-none text-foreground"
-                />
-                {errors.coreServices && (
-                  <p className="text-xs text-accent mt-2">{errors.coreServices}</p>
+                <div className="flex flex-wrap gap-3">
+                  <input
+                    id="coreServices"
+                    type="text"
+                    value={coreServicesInput}
+                    onChange={(event) => setCoreServicesInput(event.target.value)}
+                    placeholder="Service name"
+                    className="flex-1 bg-transparent border-b border-border pb-3 focus:border-foreground focus:outline-none transition-colors text-foreground"
+                  />
+                  <button
+                    type="button"
+                    onClick={() =>
+                      addToList(coreServicesInput, "coreServicesProducts", setCoreServicesInput)
+                    }
+                    className="btn-secondary rounded-full px-4 py-2"
+                    aria-label="Add service"
+                  >
+                    +
+                  </button>
+                </div>
+                {formData.coreServicesProducts.length > 0 && (
+                  <div className="flex flex-wrap gap-2">
+                    {formData.coreServicesProducts.map((service) => (
+                      <span
+                        key={service}
+                        className="inline-flex items-center gap-2 rounded-full bg-card px-3 py-1 text-xs text-muted-foreground"
+                      >
+                        {service}
+                        <button
+                          type="button"
+                          onClick={() => removeFromList(service, "coreServicesProducts")}
+                          className="text-muted-foreground hover:text-foreground"
+                          aria-label={`Remove ${service}`}
+                        >
+                          ×
+                        </button>
+                      </span>
+                    ))}
+                  </div>
                 )}
               </div>
 
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="primaryGoal" className="block label-small mb-3">
-                    Primary goal
+                    Primary goal<span className="text-accent"> *</span>
                   </label>
                   <select
                     id="primaryGoal"
@@ -331,44 +557,123 @@ const Contact = () => {
                     <p className="text-xs text-accent mt-2">{errors.primaryGoal}</p>
                   )}
                 </div>
-                <div>
-                  <label htmlFor="timeline" className="block label-small mb-3">
-                    Timeline
+                <div className="space-y-3">
+                  <label htmlFor="timeline" className="block label-small">
+                    Timeline<span className="text-accent"> *</span>
                   </label>
-                  <input
-                    id="timeline"
-                    type="text"
-                    value={formData.timeline}
-                    onChange={(event) => updateField("timeline", event.target.value)}
-                    className="w-full bg-transparent border-b border-border pb-3 focus:border-foreground focus:outline-none transition-colors text-foreground"
-                  />
-                  {errors.timeline && (
-                    <p className="text-xs text-accent mt-2">{errors.timeline}</p>
-                  )}
+                  <div className="inline-flex rounded-full border border-border bg-card/60 p-1">
+                    <button
+                      type="button"
+                      onClick={() => setTimelineUnit("weeks")}
+                      className={`rounded-full px-4 py-1 text-xs transition-colors ${
+                        formData.timelineUnit === "weeks"
+                          ? "bg-accent/20 text-foreground"
+                          : "text-muted-foreground"
+                      }`}
+                    >
+                      Weeks
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setTimelineUnit("days")}
+                      className={`rounded-full px-4 py-1 text-xs transition-colors ${
+                        formData.timelineUnit === "days"
+                          ? "bg-accent/20 text-foreground"
+                          : "text-muted-foreground"
+                      }`}
+                    >
+                      Days
+                    </button>
+                  </div>
+                  <div className="space-y-2">
+                    <input
+                      id="timeline"
+                      type="range"
+                      min={timelineConfig.min}
+                      max={timelineConfig.max}
+                      step={timelineConfig.step}
+                      value={formData.timelineValue}
+                      onChange={(event) =>
+                        updateField("timelineValue", Number(event.target.value))
+                      }
+                      className="w-full accent-accent"
+                    />
+                    <p className="text-sm text-muted-foreground">
+                      {formData.timelineValue} {timelineConfig.label}
+                    </p>
+                    {errors.timeline && (
+                      <p className="text-xs text-accent">{errors.timeline}</p>
+                    )}
+                  </div>
                 </div>
                 <div>
                   <label htmlFor="styleRefs" className="block label-small mb-3">
-                    Style references (URLs)
+                    Style references (URLs) (optional)
                   </label>
-                  <input
-                    id="styleRefs"
-                    type="text"
-                    value={formData.styleRefs}
-                    onChange={(event) => updateField("styleRefs", event.target.value)}
-                    className="w-full bg-transparent border-b border-border pb-3 focus:border-foreground focus:outline-none transition-colors text-foreground"
-                  />
+                  <div className="flex flex-wrap gap-3">
+                    <input
+                      id="styleRefs"
+                      type="url"
+                      value={styleRefInput}
+                      onChange={(event) => {
+                        setStyleRefInput(event.target.value);
+                        setStyleRefError("");
+                      }}
+                      placeholder="https://example.com"
+                      className="flex-1 bg-transparent border-b border-border pb-3 focus:border-foreground focus:outline-none transition-colors text-foreground"
+                    />
+                    <button
+                      type="button"
+                      onClick={addStyleRef}
+                      className="btn-secondary rounded-full px-4 py-2"
+                      aria-label="Add style reference"
+                    >
+                      +
+                    </button>
+                  </div>
+                  {styleRefError && (
+                    <p className="text-xs text-accent mt-2">{styleRefError}</p>
+                  )}
+                  {formData.styleRefs.length > 0 && (
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      {formData.styleRefs.map((ref) => (
+                        <span
+                          key={ref}
+                          className="inline-flex items-center gap-2 rounded-full bg-card px-3 py-1 text-xs text-muted-foreground"
+                        >
+                          {ref}
+                          <button
+                            type="button"
+                            onClick={() => removeStyleRef(ref)}
+                            className="text-muted-foreground hover:text-foreground"
+                            aria-label={`Remove ${ref}`}
+                          >
+                            ×
+                          </button>
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
                 <div>
-                  <label htmlFor="budget" className="block label-small mb-3">
+                  <label htmlFor="budgetRange" className="block label-small mb-3">
                     Budget range (optional)
                   </label>
-                  <input
-                    id="budget"
-                    type="text"
-                    value={formData.budget}
-                    onChange={(event) => updateField("budget", event.target.value)}
-                    className="w-full bg-transparent border-b border-border pb-3 focus:border-foreground focus:outline-none transition-colors text-foreground"
-                  />
+                  <select
+                    id="budgetRange"
+                    value={formData.budgetRange}
+                    onChange={(event) => updateField("budgetRange", event.target.value)}
+                    className="select-pill"
+                  >
+                    <option value="" className="bg-background text-foreground">
+                      Select
+                    </option>
+                    {budgetOptions.map((option) => (
+                      <option key={option} value={option} className="bg-background text-foreground">
+                        {option}
+                      </option>
+                    ))}
+                  </select>
                 </div>
               </div>
 
@@ -407,7 +712,7 @@ const Contact = () => {
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="domainStatus" className="block label-small mb-3">
-                    Domain status
+                    Domain status<span className="text-accent"> *</span>
                   </label>
                   <select
                     id="domainStatus"
@@ -425,10 +730,13 @@ const Contact = () => {
                       Need a domain
                     </option>
                   </select>
+                  {errors.domainStatus && (
+                    <p className="text-xs text-accent mt-2">{errors.domainStatus}</p>
+                  )}
                 </div>
                 <div>
                   <label htmlFor="hostingStatus" className="block label-small mb-3">
-                    Hosting status
+                    Hosting status<span className="text-accent"> *</span>
                   </label>
                   <select
                     id="hostingStatus"
@@ -446,26 +754,16 @@ const Contact = () => {
                       Need hosting
                     </option>
                   </select>
+                  {errors.hostingStatus && (
+                    <p className="text-xs text-accent mt-2">{errors.hostingStatus}</p>
+                  )}
                 </div>
-              </div>
-
-              <div>
-                <label htmlFor="integrations" className="block label-small mb-3">
-                  Integrations needed
-                </label>
-                <input
-                  id="integrations"
-                  type="text"
-                  value={formData.integrations}
-                  onChange={(event) => updateField("integrations", event.target.value)}
-                  className="w-full bg-transparent border-b border-border pb-3 focus:border-foreground focus:outline-none transition-colors text-foreground"
-                />
               </div>
 
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="maintenanceTier" className="block label-small mb-3">
-                    Maintenance tier interest
+                    Maintenance tier interest<span className="text-accent"> *</span>
                   </label>
                   <select
                     id="maintenanceTier"
@@ -490,18 +788,6 @@ const Contact = () => {
                     <p className="text-xs text-accent mt-2">{errors.maintenanceTier}</p>
                   )}
                 </div>
-                <div>
-                  <label htmlFor="itSupportNeeds" className="block label-small mb-3">
-                    IT support needs
-                  </label>
-                  <input
-                    id="itSupportNeeds"
-                    type="text"
-                    value={formData.itSupportNeeds}
-                    onChange={(event) => updateField("itSupportNeeds", event.target.value)}
-                    className="w-full bg-transparent border-b border-border pb-3 focus:border-foreground focus:outline-none transition-colors text-foreground"
-                  />
-                </div>
               </div>
 
               <div className="flex items-start gap-3">
@@ -515,7 +801,6 @@ const Contact = () => {
                   I consent to Novara contacting me about this request.
                 </label>
               </div>
-              {errors.consent && <p className="text-xs text-accent">{errors.consent}</p>}
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
@@ -556,6 +841,7 @@ const Contact = () => {
                   WhatsApp
                 </a>
               </div>
+              <p className="text-xs text-muted-foreground">* Required fields</p>
 
               {submitted && (
                 <p className="text-sm text-muted-foreground">

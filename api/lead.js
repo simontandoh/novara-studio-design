@@ -15,27 +15,29 @@ const getClient = () => {
 const buildRow = (payload) => ({
   email: payload.email || null,
   phone: payload.phone || null,
-  whatsapp: payload.whatsapp || null,
   business_location: payload.location || null,
   industry: payload.industry || null,
   current_website: payload.website || null,
-  need: payload.projectType || null,
-  pages_needed: payload.pagesNeeded || null,
-  core_services: payload.coreServices || null,
+  need: payload.whatNeed || payload.projectType || null,
+  pages_needed: Array.isArray(payload.pagesNeeded)
+    ? payload.pagesNeeded.join(", ")
+    : payload.pagesNeeded || null,
+  core_services: Array.isArray(payload.coreServicesProducts)
+    ? payload.coreServicesProducts.join(", ")
+    : payload.coreServicesProducts || null,
   primary_goal: payload.primaryGoal || null,
-  timeline: payload.timeline || null,
-  style_references: payload.styleRefs || null,
-  budget_range: payload.budget || null,
-  brand_assets: {
-    logo: !!payload.brandAssetsLogo,
-    photos: !!payload.brandAssetsPhotos,
-    copy: !!payload.brandAssetsCopy,
+  style_references: Array.isArray(payload.styleRefs)
+    ? payload.styleRefs.join(", ")
+    : payload.styleRefs || null,
+  budget_range: payload.budgetRange || null,
+  brand_assets: payload.brandAssets || {
+    logo: false,
+    photos: false,
+    copy: false,
   },
   domain_status: payload.domainStatus || null,
   hosting_status: payload.hostingStatus || null,
-  integrations_needed: payload.integrations || null,
-  maintenance_tier_interest: payload.maintenanceTier || null,
-  it_support_needs: payload.itSupportNeeds || null,
+  maintenance_tier_interest: payload.maintenanceTierInterest || payload.maintenanceTier || null,
   raw_payload: payload,
 });
 
