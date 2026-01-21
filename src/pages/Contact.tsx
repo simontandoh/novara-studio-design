@@ -308,25 +308,27 @@ const Contact = () => {
                   <label htmlFor="phone" className="block label-small mb-3">
                     Phone<span className="text-accent"> *</span>
                   </label>
-                  <PhoneInput
-                    id="phone"
-                    defaultCountry="GB"
-                    value={formData.phone}
-                    onChange={(value) => updateField("phone", value ?? "")}
-                    onBlur={() => {
-                      if (formData.phone && !validatePhone(formData.phone)) {
-                        setErrors((prev) => ({
-                          ...prev,
-                          phone: "Enter a valid phone number",
-                        }));
-                      }
-                    }}
-                    className="flex gap-3"
-                    inputClassName="select-pill"
-                    countrySelectProps={{
-                      className: "select-pill w-[120px]",
-                    }}
-                  />
+                    <PhoneInput
+                      id="phone"
+                      defaultCountry="GB"
+                      international
+                      countryCallingCodeEditable={false}
+                      value={formData.phone}
+                      onChange={(value) => updateField("phone", value ?? "")}
+                      onBlur={() => {
+                        if (formData.phone && !validatePhone(formData.phone)) {
+                          setErrors((prev) => ({
+                            ...prev,
+                            phone: "Enter a valid phone number",
+                          }));
+                        }
+                      }}
+                      className="phone-input flex gap-3"
+                      inputClassName="select-pill"
+                      countrySelectProps={{
+                        className: "select-pill w-[120px]",
+                      }}
+                    />
                   {errors.phone && (
                     <p className="text-xs text-accent mt-2">{errors.phone}</p>
                   )}
@@ -620,7 +622,7 @@ const Contact = () => {
                         setStyleRefInput(event.target.value);
                         setStyleRefError("");
                       }}
-                      placeholder="https://example.com"
+                      placeholder="www.example.com"
                       className="flex-1 bg-transparent border-b border-border pb-3 focus:border-foreground focus:outline-none transition-colors text-foreground"
                     />
                     <button

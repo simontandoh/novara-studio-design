@@ -284,6 +284,14 @@
     box-shadow: 0 0 0 1px hsl(var(--border) / 0.5) inset;
   }
 
+  .phone-input .PhoneInputInput {
+    background-color: transparent;
+  }
+
+  .phone-input .PhoneInputInput:focus {
+    background-color: transparent;
+  }
+
   .nav-glass {
     background: linear-gradient(180deg, hsl(220 18% 10% / 0.9), hsl(220 18% 8% / 0.75));
     backdrop-filter: blur(18px);
