@@ -37,6 +37,7 @@ const budgetOptions = [
 declare global {
   interface Window {
     google?: any;
+    initGooglePlaces?: () => void;
   }
 }
 
@@ -130,8 +131,12 @@ const Contact = () => {
       });
     };
 
+    window.initGooglePlaces = () => {
+      initAutocomplete();
+    };
+
     if (window.google?.maps?.places) {
-      requestAnimationFrame(initAutocomplete);
+      initAutocomplete();
       return;
     }
 
@@ -144,17 +149,16 @@ const Contact = () => {
     }
 
     const script = document.createElement("script");
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&v=beta&loading=async`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&v=beta&loading=async&callback=initGooglePlaces`;
     script.async = true;
     script.defer = true;
     script.dataset.googlePlaces = "true";
-    script.addEventListener("load", initAutocomplete);
     document.head.appendChild(script);
 
-    const retry = window.setTimeout(initAutocomplete, 1500);
     return () => {
-      script.removeEventListener("load", initAutocomplete);
-      window.clearTimeout(retry);
+      if (window.initGooglePlaces) {
+        delete window.initGooglePlaces;
+      }
     };
   }, []);
 
