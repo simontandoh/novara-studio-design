@@ -1,5 +1,5 @@
 import "react-phone-number-input/style.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
 import { useNavigate } from "react-router-dom";
 import Layout from "@/components/Layout";
@@ -34,8 +34,16 @@ const budgetOptions = [
   "Not sure yet",
 ];
 
+declare global {
+  interface Window {
+    google?: any;
+  }
+}
+
 const Contact = () => {
   const navigate = useNavigate();
+  const locationRef = useRef<HTMLInputElement | null>(null);
+  const autocompleteRef = useRef<any>(null);
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -79,6 +87,53 @@ const Contact = () => {
   useEffect(() => {
     localStorage.setItem("novaraContactDraft", JSON.stringify(formData));
   }, [formData]);
+
+  useEffect(() => {
+    if (autocompleteRef.current || !locationRef.current) return;
+    const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+    if (!apiKey) return;
+
+    const initAutocomplete = () => {
+      if (!locationRef.current || autocompleteRef.current) return;
+      if (!window.google?.maps?.places) return;
+
+      autocompleteRef.current = new window.google.maps.places.Autocomplete(
+        locationRef.current,
+        {
+          types: ["(cities)"],
+        }
+      );
+
+      autocompleteRef.current.addListener("place_changed", () => {
+        const place = autocompleteRef.current?.getPlace();
+        const value = place?.formatted_address || place?.name || "";
+        updateField("location", value);
+      });
+    };
+
+    if (window.google?.maps?.places) {
+      initAutocomplete();
+      return;
+    }
+
+    const existingScript = document.querySelector<HTMLScriptElement>(
+      'script[data-google-places="true"]'
+    );
+    if (existingScript) {
+      existingScript.addEventListener("load", initAutocomplete);
+      return () => existingScript.removeEventListener("load", initAutocomplete);
+    }
+
+    const script = document.createElement("script");
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
+    script.async = true;
+    script.defer = true;
+    script.dataset.googlePlaces = "true";
+    script.addEventListener("load", initAutocomplete);
+    document.head.appendChild(script);
+
+    return () => script.removeEventListener("load", initAutocomplete);
+  }, []);
 
   const isValidEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
@@ -340,6 +395,7 @@ const Contact = () => {
                   <input
                     id="location"
                     type="text"
+                    ref={locationRef}
                     value={formData.location}
                     onChange={(event) => updateField("location", event.target.value)}
                     className="w-full bg-transparent border-b border-border pb-3 focus:border-foreground focus:outline-none transition-colors text-foreground"
