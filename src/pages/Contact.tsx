@@ -1,6 +1,7 @@
 import "react-phone-number-input/style.css";
 import { useEffect, useRef, useState } from "react";
 import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
+import { parsePhoneNumberFromString } from "libphonenumber-js";
 import { useNavigate } from "react-router-dom";
 import Layout from "@/components/Layout";
 
@@ -18,19 +19,19 @@ const industryOptions = [
   "Hospitality/Food",
   "Manufacturing",
   "Non-profit",
-  "Other",
   "Professional Services",
   "Real Estate",
   "Retail (In-store)",
   "Technology/SaaS",
+  "Other",
 ];
 
 const budgetOptions = [
-  "£1,000–£1,999",
-  "£10,000+",
-  "£2,000–£4,999",
-  "£5,000–£9,999",
-  "£500–£999",
+  "?10,000+",
+  "?5,000??9,999",
+  "?2,000??4,999",
+  "?1,000??1,999",
+  "?500??999",
   "Not sure yet",
 ];
 
@@ -47,6 +48,7 @@ const Contact = () => {
   const locationContainerRef = useRef<HTMLDivElement | null>(null);
   const autocompleteRef = useRef<any>(null);
   const [placesReady, setPlacesReady] = useState(false);
+  const [phoneCountry, setPhoneCountry] = useState("GB");
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -172,6 +174,35 @@ const Contact = () => {
     return isValidPhoneNumber(value);
   };
 
+  const handlePhoneChange = (value: string) => {
+    if (!value) {
+      updateField("phone", "");
+      return;
+    }
+
+    if (!value.startsWith("+") && /^\d{3,}/.test(value)) {
+      const parsed = parsePhoneNumberFromString(`+${value}`);
+      if (parsed?.country) {
+        setPhoneCountry(parsed.country);
+        updateField("phone", parsed.number);
+        return;
+      }
+    }
+
+    const parsed = parsePhoneNumberFromString(value);
+    if (parsed?.country) {
+      setPhoneCountry(parsed.country);
+    }
+    updateField("phone", value);
+  };
+
+  const syncLocationFromPlaces = () => {
+    const element = autocompleteRef.current as { value?: string } | null;
+    if (!element?.value) return;
+    updateField("location", element.value);
+    setErrors((prev) => ({ ...prev, location: "" }));
+  };
+
   const validate = () => {
     const nextErrors: Record<string, string> = {};
     if (!formData.fullName.trim()) nextErrors.fullName = "Full name is required.";
@@ -200,6 +231,7 @@ const Contact = () => {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    syncLocationFromPlaces();
     const nextErrors = validate();
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) {
@@ -393,13 +425,16 @@ const Contact = () => {
                   <label htmlFor="phone" className="block label-small mb-3">
                     Phone<span className="text-accent"> *</span>
                   </label>
-                    <PhoneInput
-                      id="phone"
-                      defaultCountry="GB"
-                      international
-                      countryCallingCodeEditable={false}
-                      value={formData.phone}
-                      onChange={(value) => updateField("phone", value ?? "")}
+                  <PhoneInput
+                    id="phone"
+                    defaultCountry="GB"
+                    country={phoneCountry}
+                    onCountryChange={(value) => setPhoneCountry(value || "GB")}
+                    international={false}
+                    withCountryCallingCode
+                    countryCallingCodeEditable={false}
+                    value={formData.phone}
+                    onChange={(value) => handlePhoneChange(value ?? "")}
                       onBlur={() => {
                         if (formData.phone && !validatePhone(formData.phone)) {
                           setErrors((prev) => ({
@@ -420,7 +455,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <label htmlFor="location" className="block label-small mb-3">
-                    Business location (city/region)<span className="text-accent"> *</span>
+                    Business location (city/region/country)<span className="text-accent"> *</span>
                   </label>
                   <div ref={locationContainerRef} />
                   <input type="hidden" value={formData.location} readOnly />
@@ -516,14 +551,14 @@ const Contact = () => {
                     <option value="landing" className="bg-background text-foreground">
                       Landing page
                     </option>
-                    <option value="other" className="bg-background text-foreground">
-                      Other
-                    </option>
                     <option value="redesign" className="bg-background text-foreground">
                       Redesign
                     </option>
                     <option value="website" className="bg-background text-foreground">
                       Website
+                    </option>
+                    <option value="other" className="bg-background text-foreground">
+                      Other
                     </option>
                   </select>
                   {errors.projectType && (
@@ -645,11 +680,11 @@ const Contact = () => {
                     <option value="leads" className="bg-background text-foreground">
                       Leads
                     </option>
-                    <option value="other" className="bg-background text-foreground">
-                      Other
-                    </option>
                     <option value="sales" className="bg-background text-foreground">
                       Sales
+                    </option>
+                    <option value="other" className="bg-background text-foreground">
+                      Other
                     </option>
                   </select>
                   {errors.primaryGoal && (
