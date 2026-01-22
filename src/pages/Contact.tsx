@@ -95,21 +95,22 @@ const Contact = () => {
     const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
     if (!apiKey) return;
 
-    const initAutocomplete = () => {
-      if (!locationContainerRef.current || autocompleteRef.current) return;
-      if (!window.google?.maps?.places?.PlaceAutocompleteElement) return;
+      const initAutocomplete = () => {
+        if (!locationContainerRef.current || autocompleteRef.current) return;
+        if (!window.google?.maps?.places?.PlaceAutocompleteElement) return;
 
-      const element = document.createElement("gmp-place-autocomplete");
-      element.setAttribute("placeholder", "Start typing a city");
-      element.setAttribute(
-        "includedPrimaryTypes",
-        "locality,postal_town,administrative_area_level_2"
-      );
-      element.className = "select-pill";
-      locationContainerRef.current.innerHTML = "";
-      locationContainerRef.current.appendChild(element);
-      autocompleteRef.current = element;
-      setPlacesReady(true);
+        const element = document.createElement("gmp-place-autocomplete");
+        element.setAttribute("placeholder", "Start typing a city");
+        element.setAttribute("includedPrimaryTypes", "locality,postal_town");
+        element.className = "select-pill";
+        element.setAttribute(
+          "style",
+          "width: 100%; max-width: 100%; display: block;"
+        );
+        locationContainerRef.current.innerHTML = "";
+        locationContainerRef.current.appendChild(element);
+        autocompleteRef.current = element;
+        setPlacesReady(true);
 
       element.addEventListener("gmp-placeselect", async (event: any) => {
         const place = event.place || event.detail?.place;
