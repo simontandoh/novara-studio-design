@@ -15,11 +15,10 @@ const Index = () => {
             <div className="surface-panel noise-overlay rounded-lg p-8 md:p-10">
               <p className="label-small mb-4">Websites</p>
               <h2 className="headline-secondary mb-4">
-                Clear websites with proper maintenance.
+                Websites. Built and kept.
               </h2>
               <p className="body-refined mb-6">
-                Focused builds for local services with ongoing care so your site
-                stays fast, stable, and current.
+                Focused builds with steady care.
               </p>
               <Link
                 to="/websites"
@@ -31,11 +30,10 @@ const Index = () => {
             <div className="surface-panel noise-overlay rounded-lg p-8 md:p-10">
               <p className="label-small mb-4">Beyond Local</p>
               <h2 className="headline-secondary mb-4">
-                Systems that evolve with your business.
+                Systems beyond local.
               </h2>
               <p className="body-refined mb-6">
-                When you're ready for larger platforms or complex systems, we deliver
-                long-term care with clarity and continuity.
+                Long-term systems. Quiet upkeep.
               </p>
               <Link
                 to="/contact"
@@ -51,8 +49,8 @@ const Index = () => {
       <Testimonials />
 
       <CTASection
-        headline="Ready to plan a website that lasts?"
-        description="We build and maintain calm systems so you are never firefighting."
+        headline="Plan the site."
+        description="Build. Rebuild. Maintain."
         primaryLabel="Contact"
         primaryTo="/contact"
         secondaryLabel="Websites"

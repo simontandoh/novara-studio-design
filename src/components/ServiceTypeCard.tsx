@@ -24,11 +24,11 @@ const ServiceTypeCard = ({
     >
       <h3 className="headline-secondary mb-3">{title}</h3>
       <p className="body-refined mb-4">{description}</p>
-      
+
       <ul className="space-y-2">
         {details.map((detail, index) => (
           <li key={index} className="flex items-start gap-2 text-sm text-muted-foreground">
-            <span className="text-accent mt-0.5">·</span>
+            <span className="text-accent mt-0.5">-</span>
             {detail}
           </li>
         ))}

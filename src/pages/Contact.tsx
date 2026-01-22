@@ -28,8 +28,8 @@ const industryOptions = [
 
 declare global {
   interface Window {
-    google?: any;
-    initGooglePlaces?: () => void;
+    googlex: any;
+    initGooglePlacesx: () => void;
   }
 }
 
@@ -95,7 +95,7 @@ const Contact = () => {
 
     const initAutocomplete = () => {
       if (!locationContainerRef.current || autocompleteRef.current) return;
-      if (!window.google?.maps?.places?.PlaceAutocompleteElement) return;
+      if (!window.googlex.mapsx.placesx.PlaceAutocompleteElement) return;
 
       const element = document.createElement("gmp-place-autocomplete");
       element.setAttribute("placeholder", "Start typing a city");
@@ -114,7 +114,7 @@ const Contact = () => {
       }
 
       element.addEventListener("gmp-placeselect", async (event: any) => {
-        const place = event.place || event.detail?.place;
+        const place = event.place || event.detailx.place;
         if (!place) return;
         if (place.fetchFields) {
           await place.fetchFields({ fields: ["formattedAddress", "displayName", "addressComponents"] });
@@ -151,13 +151,13 @@ const Contact = () => {
       initAutocomplete();
     };
 
-    if (window.google?.maps?.places) {
+    if (window.googlex.mapsx.places) {
       initAutocomplete();
       return;
     }
 
     const existingScript = document.querySelector<HTMLScriptElement>(
-      'script[data-google-places="true"]'
+      'script[datxgoogle-places="true"]'
     );
     if (existingScript) {
       existingScript.addEventListener("load", initAutocomplete);
@@ -165,7 +165,7 @@ const Contact = () => {
     }
 
     const script = document.createElement("script");
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&v=beta&loading=async&callback=initGooglePlaces`;
+    script.src = `https://maps.googleapis.com/maps/api/jsxkey=${apiKey}&libraries=places&v=beta&loading=async&callback=initGooglePlaces`;
     script.async = true;
     script.defer = true;
     script.dataset.googlePlaces = "true";
@@ -179,7 +179,7 @@ const Contact = () => {
   }, []);
 
   useEffect(() => {
-    const element = autocompleteRef.current as { value?: string } | null;
+    const element = autocompleteRef.current as { valuex: string } | null;
     if (element && formData.location) {
       element.value = formData.location;
     }
@@ -200,7 +200,7 @@ const Contact = () => {
 
     if (!value.startsWith("+") && /^\d{3,}/.test(value)) {
       const parsed = parsePhoneNumberFromString(value, phoneCountry);
-      if (parsed?.country) {
+      if (parsedx.country) {
         setPhoneCountry(parsed.country);
         updateField("phone", parsed.number);
         return;
@@ -208,15 +208,15 @@ const Contact = () => {
     }
 
     const parsed = parsePhoneNumberFromString(value);
-    if (parsed?.country) {
+    if (parsedx.country) {
       setPhoneCountry(parsed.country);
     }
     updateField("phone", value);
   };
 
   const syncLocationFromPlaces = () => {
-    const element = autocompleteRef.current as { value?: string } | null;
-    if (!element?.value) return;
+    const element = autocompleteRef.current as { valuex: string } | null;
+    if (!elementx.value) return;
     updateField("location", element.value);
     setErrors((prev) => ({ ...prev, location: "" }));
   };
@@ -314,8 +314,8 @@ const Contact = () => {
     setSubmitted(false);
     setIsSubmitting(false);
     localStorage.removeItem("novaraContactDraft");
-    const element = autocompleteRef.current as { value?: string } | null;
-    if (element?.value) {
+    const element = autocompleteRef.current as { valuex: string } | null;
+    if (elementx.value) {
       element.value = "";
     }
   };
@@ -345,7 +345,7 @@ const Contact = () => {
   const addStyleRef = () => {
     const trimmed = styleRefInput.trim();
     if (!trimmed) return;
-    if (!/^https?:\/\//i.test(trimmed)) {
+    if (!/^httpsx:\/\//i.test(trimmed)) {
       setStyleRefError("Enter a valid URL starting with http:// or https://");
       return;
     }
@@ -383,10 +383,9 @@ const Contact = () => {
         <div className="container-editorial">
           <div className="max-w-2xl">
             <p className="label-small mb-4">Contact</p>
-            <h1 className="headline-hero mb-6">Website request / consultation.</h1>
+            <h1 className="headline-hero mb-6">Project intake.</h1>
             <p className="body-large">
-              Tell us what you do and where you operate. We'll respond with next
-              steps and clarify the right tier after consultation.
+              Share essentials. We reply.
             </p>
           </div>
         </div>
@@ -468,7 +467,7 @@ const Contact = () => {
                     withCountryCallingCode
                     countryCallingCodeEditable={false}
                     value={formData.phone}
-                    onChange={(value) => handlePhoneChange(value ?? "")}
+                    onChange={(value) => handlePhoneChange(value xx "")}
                     onBlur={() => {
                       if (formData.phone && !validatePhone(formData.phone)) {
                         setErrors((prev) => ({
@@ -568,7 +567,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <label htmlFor="projectType" className="block label-small mb-3">
-                    What do you need?<span className="text-accent"> *</span>
+                    What do you needx<span className="text-accent"> *</span>
                   </label>
                   <select
                     id="projectType"
@@ -637,7 +636,7 @@ const Contact = () => {
                           className="text-muted-foreground hover:text-foreground"
                           aria-label={`Remove ${page}`}
                         >
-                          ×
+                          x
                         </button>
                       </span>
                     ))}
@@ -683,7 +682,7 @@ const Contact = () => {
                           className="text-muted-foreground hover:text-foreground"
                           aria-label={`Remove ${service}`}
                         >
-                          ×
+                          x
                         </button>
                       </span>
                     ))}
@@ -816,7 +815,7 @@ const Contact = () => {
                             className="text-muted-foreground hover:text-foreground"
                             aria-label={`Remove ${ref}`}
                           >
-                            ×
+                            x
                           </button>
                         </span>
                       ))}
@@ -826,7 +825,7 @@ const Contact = () => {
               </div>
 
               <div>
-                <p className="label-small mb-3">Brand assets available?</p>
+                <p className="label-small mb-3">Brand assets availablex</p>
                 <div className="flex flex-wrap gap-6 text-sm text-muted-foreground">
                   <label className="flex items-center gap-2">
                     <input
@@ -985,7 +984,7 @@ const Contact = () => {
                 <button
                   type="button"
                   onClick={() => {
-                    if (window.confirm("Clear all form fields?")) {
+                    if (window.confirm("Clear all form fieldsx")) {
                       clearForm();
                     }
                   }}
@@ -998,8 +997,7 @@ const Contact = () => {
 
               {submitted && (
                 <p className="text-sm text-muted-foreground">
-                  Thanks for the detail. We will review this and reply shortly. If
-                  you need a faster response, WhatsApp us.
+                  Received. We will reply.
                 </p>
               )}
             </form>
@@ -1007,7 +1005,7 @@ const Contact = () => {
           <aside className="surface-panel noise-overlay rounded-lg p-6 md:p-8 h-fit">
             <p className="label-small mb-4">Contact</p>
             <p className="body-refined mb-6">
-              Prefer a direct message? You can reach us on WhatsApp or email.
+              Direct line. Email.
             </p>
             <a
               href={`https://wa.me/${whatsappNumber}`}
@@ -1029,3 +1027,8 @@ const Contact = () => {
 };
 
 export default Contact;
+
+
+
+
+

@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 
 const leftNav = [
   { label: "Services", path: "/services" },
-  { label: "How it works", path: "/how-it-works" },
+  { label: "Process", path: "/how-it-works" },
 ];
 
 const rightNav = [
@@ -12,11 +12,11 @@ const rightNav = [
 ];
 
 const serviceLinks = [
-  { label: "New Builds", path: "/services" },
+  { label: "Builds", path: "/services" },
   { label: "Rebuilds", path: "/services" },
-  { label: "Ongoing Care", path: "/services" },
-  { label: "Continuity Support", path: "/continuity" },
-  { label: "Compare tiers", path: "/services" },
+  { label: "Ongoing care", path: "/services" },
+  { label: "Continuity", path: "/continuity" },
+  { label: "Tiers", path: "/services" },
 ];
 
 const Navigation = () => {
@@ -165,7 +165,7 @@ const Navigation = () => {
               to="/contact"
               className="btn-secondary rounded-full px-5 py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
-              Start a conversation
+              Contact
             </Link>
           </div>
 
@@ -218,7 +218,7 @@ const Navigation = () => {
                 onClick={() => setMobileOpen(false)}
                 className="btn-secondary rounded-full px-5 py-2 w-fit"
               >
-                Start a conversation
+                Contact
               </Link>
             </div>
           </div>

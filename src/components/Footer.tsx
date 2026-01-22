@@ -15,8 +15,7 @@ const Footer = () => {
               <span className="text-lg font-light tracking-wide">Novara</span>
             </div>
             <p className="mt-4 body-refined max-w-sm">
-              A digital systems studio that builds, rebuilds, and maintains websites
-              businesses can rely on.
+              A digital systems studio. Build, rebuild, maintain.
             </p>
           </div>
 
@@ -39,7 +38,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <p className="label-small mb-4">Get in touch</p>
+            <p className="label-small mb-4">Contact</p>
             <a
               href="mailto:hello@novarastudios.co.uk"
               className="text-sm font-light text-muted-foreground hover:text-foreground transition-colors"
@@ -62,9 +61,7 @@ const Footer = () => {
           <p className="text-xs text-muted-foreground">
             Novara Studios (C) 2026 All rights reserved.
           </p>
-          <p className="text-xs text-muted-foreground">
-            Digital systems that run quietly and reliably.
-          </p>
+          <p className="text-xs text-muted-foreground">Quiet systems. Steady care.</p>
         </div>
       </div>
     </footer>

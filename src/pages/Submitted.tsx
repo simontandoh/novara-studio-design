@@ -18,10 +18,8 @@ const Submitted = () => {
         <div className="container-editorial">
           <div className="max-w-2xl">
             <p className="label-small mb-4">Submitted</p>
-            <h1 className="headline-hero mb-6">Thanks, your form is in.</h1>
-            <p className="body-large mb-6">
-              We have received your details and will respond shortly.
-            </p>
+            <h1 className="headline-hero mb-6">Received.</h1>
+            <p className="body-large mb-6">We will respond shortly.</p>
             {!data && (
               <p className="text-sm text-muted-foreground">
                 Submission data is unavailable in this session.

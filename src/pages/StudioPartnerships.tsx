@@ -8,10 +8,8 @@ const StudioPartnerships = () => {
         <div className="container-editorial">
           <div className="max-w-3xl">
             <p className="label-small mb-6">Studio Partnerships</p>
-            <h1 className="headline-hero mb-8">Studio Partnerships</h1>
-            <p className="body-large">
-              Long-term website care and system evolution.
-            </p>
+            <h1 className="headline-hero mb-8">Long-term care.</h1>
+            <p className="body-large">Ongoing maintenance and system evolution.</p>
           </div>
         </div>
       </section>
@@ -20,9 +18,7 @@ const StudioPartnerships = () => {
         <div className="container-editorial">
           <div className="max-w-2xl mb-16">
             <p className="label-small mb-6">Service tiers</p>
-            <h2 className="headline-primary">
-              Choose the level of partnership that fits your needs.
-            </h2>
+            <h2 className="headline-primary">Choose the level of care.</h2>
           </div>
 
           <div className="space-y-px bg-border">
@@ -32,32 +28,31 @@ const StudioPartnerships = () => {
                   <p className="label-small text-accent mb-4">Foundation</p>
                   <h3 className="headline-secondary mb-4">Reliable foundations</h3>
                   <p className="body-large">
-                    For businesses that need a reliable, modern website built or rebuilt
-                    professionally. The starting point for a long-term partnership.
+                    A modern build or rebuild, with long-term care.
                   </p>
                 </div>
                 <div>
                   <p className="label-small mb-4">Includes</p>
                   <ul className="space-y-3 text-sm text-muted-foreground">
                     <li className="flex items-start gap-3">
-                      <span className="text-accent mt-0.5">ƒ?"</span>
-                      New build or complete rebuild of your website
+                      <span className="text-accent mt-0.5">-</span>
+                      New build or complete rebuild
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-accent mt-0.5">ƒ?"</span>
-                      Secure, reliable hosting infrastructure
+                      <span className="text-accent mt-0.5">-</span>
+                      Secure hosting infrastructure
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-accent mt-0.5">ƒ?"</span>
+                      <span className="text-accent mt-0.5">-</span>
                       Regular updates and maintenance
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-accent mt-0.5">ƒ?"</span>
-                      Basic monitoring and performance tracking
+                      <span className="text-accent mt-0.5">-</span>
+                      Monitoring and performance tracking
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-accent mt-0.5">ƒ?"</span>
-                      Long-term care mindset from day one
+                      <span className="text-accent mt-0.5">-</span>
+                      Long-term care mindset
                     </li>
                   </ul>
                 </div>
@@ -69,33 +64,30 @@ const StudioPartnerships = () => {
                 <div>
                   <p className="label-small text-accent mb-4">Growth</p>
                   <h3 className="headline-secondary mb-4">Continuous evolution</h3>
-                  <p className="body-large">
-                    For businesses that expect their website and systems to evolve.
-                    Designed for teams that want to improve continuously.
-                  </p>
+                  <p className="body-large">Ongoing improvement and refinement.</p>
                 </div>
                 <div>
                   <p className="label-small mb-4">Everything in Foundation, plus</p>
                   <ul className="space-y-3 text-sm text-muted-foreground">
                     <li className="flex items-start gap-3">
-                      <span className="text-accent mt-0.5">ƒ?"</span>
-                      Ongoing improvements and refinements
+                      <span className="text-accent mt-0.5">-</span>
+                      Ongoing improvements
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-accent mt-0.5">ƒ?"</span>
-                      Automation and system integrations
+                      <span className="text-accent mt-0.5">-</span>
+                      Automation and integrations
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-accent mt-0.5">ƒ?"</span>
-                      Performance optimisation and analytics
+                      <span className="text-accent mt-0.5">-</span>
+                      Performance optimization
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-accent mt-0.5">ƒ?"</span>
-                      Priority support and faster response times
+                      <span className="text-accent mt-0.5">-</span>
+                      Priority support
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-accent mt-0.5">ƒ?"</span>
-                      Quarterly strategy reviews
+                      <span className="text-accent mt-0.5">-</span>
+                      Quarterly reviews
                     </li>
                   </ul>
                 </div>
@@ -107,33 +99,30 @@ const StudioPartnerships = () => {
                 <div>
                   <p className="label-small text-accent mb-4">Continuity</p>
                   <h3 className="headline-secondary mb-4">Always-on reliability</h3>
-                  <p className="body-large">
-                    For businesses where uptime and responsiveness matter beyond standard hours.
-                    Designed for continuity, not emergencies.
-                  </p>
+                  <p className="body-large">Coverage beyond standard hours.</p>
                 </div>
                 <div>
                   <p className="label-small mb-4">Everything in Growth, plus</p>
                   <ul className="space-y-3 text-sm text-muted-foreground">
                     <li className="flex items-start gap-3">
-                      <span className="text-accent mt-0.5">ƒ?"</span>
-                      Enhanced monitoring and operational oversight
+                      <span className="text-accent mt-0.5">-</span>
+                      Enhanced monitoring
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-accent mt-0.5">ƒ?"</span>
-                      Proactive system care and issue prevention
+                      <span className="text-accent mt-0.5">-</span>
+                      Proactive system care
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-accent mt-0.5">ƒ?"</span>
-                      Out-of-hours IT and system support
+                      <span className="text-accent mt-0.5">-</span>
+                      Out-of-hours support
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-accent mt-0.5">ƒ?"</span>
+                      <span className="text-accent mt-0.5">-</span>
                       Evening and weekend availability
                     </li>
                     <li className="flex items-start gap-3">
-                      <span className="text-accent mt-0.5">ƒ?"</span>
-                      Incident response and resolution
+                      <span className="text-accent mt-0.5">-</span>
+                      Incident response
                     </li>
                   </ul>
                 </div>
@@ -143,8 +132,7 @@ const StudioPartnerships = () => {
 
           <div className="mt-12 p-8 bg-card border border-border">
             <p className="body-refined text-center">
-              All tiers are subscription-based and built around long-term partnership.
-              No lock-ins, no hidden fees - just ongoing care for systems that matter.
+              Subscription-based, long-term care. No lock-ins or hidden fees.
             </p>
           </div>
         </div>
@@ -152,17 +140,14 @@ const StudioPartnerships = () => {
 
       <section className="section-padding border-t border-border bg-card">
         <div className="container-narrow text-center">
-          <h2 className="headline-primary mb-8">Let's discuss what you need.</h2>
-          <p className="body-large mb-10">
-            Every engagement starts with a conversation. Tell us about your situation,
-            and we'll let you know how we can help.
-          </p>
+          <h2 className="headline-primary mb-8">Discuss your project.</h2>
+          <p className="body-large mb-10">A short call is the start.</p>
           <Link
             to="/contact?subject=Studio%20Partnership"
             className="inline-flex items-center gap-3 text-base font-light group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             <span className="link-underline">Contact</span>
-            <span className="text-accent group-hover:translate-x-1 transition-transform">ƒ+'</span>
+            <span className="text-accent group-hover:translate-x-1 transition-transform">+</span>
           </Link>
         </div>
       </section>

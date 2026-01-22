@@ -31,13 +31,13 @@ const HomeHero = () => {
               NOVARA
             </span>
           </div>
-          <p className="label-small mb-4">Born From Light. Built For The Future.</p>
-          <h1 className="headline-hero mb-6">Websites that stay calm under pressure.</h1>
+          <p className="label-small mb-4">BORN FROM LIGHT.</p>
+          <h1 className="headline-hero mb-6">Quiet systems for the web.</h1>
           <p className="body-large max-w-xl mb-8">
-            Calm digital systems that last, maintained with clarity and continuity.
+            Built, rebuilt, and kept.
           </p>
           <p className="text-sm text-muted-foreground max-w-xl mb-10">
-            Clear, maintained systems for local services that need reliability.
+            Clear structure. Steady care.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link

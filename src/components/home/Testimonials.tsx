@@ -2,15 +2,15 @@ import { useEffect, useState } from "react";
 
 const testimonials = [
   {
-    quote: "Everything feels calm and maintained. No more surprises.",
+    quote: "Quiet. Stable. Clear.",
     name: "Trade Owner",
   },
   {
-    quote: "The site looks sharp and stays fast without us chasing fixes.",
+    quote: "Fast. Maintained. Out of the way.",
     name: "Service Director",
   },
   {
-    quote: "We finally have a website that feels like it belongs to our business.",
+    quote: "It fits the business.",
     name: "Operations Lead",
   },
 ];
@@ -30,7 +30,7 @@ const Testimonials = () => {
   return (
     <section className="section-padding border-t border-border">
       <div className="container-narrow text-center">
-        <p className="label-small mb-4">Testimonials</p>
+        <p className="label-small mb-4">Notes</p>
         <div className="relative">
           {testimonials.map((item, i) => (
             <div
@@ -39,7 +39,7 @@ const Testimonials = () => {
                 i === index ? "opacity-100" : "opacity-0 absolute inset-0"
               }`}
             >
-              <p className="headline-secondary mb-4">“{item.quote}”</p>
+              <p className="headline-secondary mb-4">"{item.quote}"</p>
               <p className="text-sm text-muted-foreground">{item.name}</p>
             </div>
           ))}

@@ -57,7 +57,7 @@ const TierCard = ({
         <ul className="space-y-2">
           {includes.map((item, index) => (
             <li key={index} className="flex items-start gap-3 text-sm text-muted-foreground">
-              <span className="text-accent mt-0.5">—</span>
+              <span className="text-accent mt-0.5">-</span>
               {item}
             </li>
           ))}
@@ -81,7 +81,7 @@ const TierCard = ({
           Contact
         </span>
         <span className="text-accent group-hover/link:translate-x-1 transition-transform">
-          →
+          +
         </span>
       </Link>
     </div>

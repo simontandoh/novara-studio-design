@@ -10,8 +10,8 @@ const navLinks = [
 
 const footerLinks = [
   { label: "About", path: "/about" },
-  { label: "How it works", path: "/how-it-works" },
-  { label: "Continuity Support", path: "/continuity" },
+  { label: "Process", path: "/how-it-works" },
+  { label: "Continuity", path: "/continuity" },
 ];
 
 const focusSelector =
@@ -143,7 +143,7 @@ const NovaNav = () => {
           >
             <div className="flex items-center justify-between mb-10">
               <span className="text-xs uppercase tracking-[0.35em] text-muted-foreground">
-                Navigation
+                Menu
               </span>
               <button
                 type="button"
@@ -177,7 +177,7 @@ const NovaNav = () => {
 
             <div className="mt-10 p-6 rounded-lg border border-border/60 bg-background/60">
               <p className="text-sm text-muted-foreground mb-4">
-                Ready to start? Tell us what you need and we will respond quickly.
+                Share the brief. We respond.
               </p>
               <Link
                 to="/contact"

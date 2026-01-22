@@ -3,7 +3,7 @@ import Layout from "@/components/Layout";
 const projects = [
   {
     title: "Plumber One-Page",
-    highlights: ["Call-focused layout", "Emergency banner", "Service areas"],
+    highlights: ["Call-first layout", "Emergency banner", "Service areas"],
     href: "#",
   },
   {
@@ -13,7 +13,7 @@ const projects = [
   },
   {
     title: "Cleaning Service One-Page",
-    highlights: ["Lead capture form", "Before/after gallery", "Simple pricing"],
+    highlights: ["Lead capture form", "Before and after gallery", "Simple pricing"],
     href: "#",
   },
 ];
@@ -26,9 +26,7 @@ const Portfolio = () => {
           <div className="max-w-2xl">
             <p className="label-small mb-6">Portfolio</p>
             <h1 className="headline-hero mb-6">Selected work.</h1>
-            <p className="body-large">
-              Placeholder links for now. Replace with your Behance projects.
-            </p>
+            <p className="body-large">Placeholder links for now.</p>
           </div>
         </div>
       </section>

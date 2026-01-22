@@ -1,22 +1,22 @@
-﻿import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 
 const maintenanceTiers = [
   {
     name: "Care",
     price: "£49/month",
-    description: "Baseline care for stable sites with light IT support.",
+    description: "Baseline care for stable sites.",
     includes: [
       "Core updates and security patching",
-      "Uptime monitoring and backups checks",
+      "Uptime monitoring and backup checks",
       "Email support",
-      "Best-effort remote assistance (1 hour/month)",
+      "Best-effort assistance (1 hour/month)",
     ],
   },
   {
     name: "Priority",
     price: "£99/month",
-    description: "Proactive care with priority IT support.",
+    description: "Proactive care with priority support.",
     includes: [
       "Everything in Care",
       "Performance reviews and proactive fixes",
@@ -29,7 +29,7 @@ const maintenanceTiers = [
   {
     name: "Continuity",
     price: "£199/month",
-    description: "Highest priority with deeper IT support.",
+    description: "Highest priority with deeper support.",
     includes: [
       "Everything in Priority",
       "Enhanced monitoring and incident triage",
@@ -47,13 +47,8 @@ const Local = () => {
         <div className="container-editorial">
           <div className="max-w-3xl">
             <p className="label-small mb-4">Websites</p>
-            <h1 className="headline-hero mb-6">
-              Calm websites with proper maintenance.
-            </h1>
-            <p className="body-large mb-8">
-              Built for clarity, maintained for continuity, and supported when it
-              matters.
-            </p>
+            <h1 className="headline-hero mb-6">Calm websites. Proper care.</h1>
+            <p className="body-large mb-8">Built for clarity. Maintained for continuity.</p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 to="/contact?subject=Websites"
@@ -82,15 +77,15 @@ const Local = () => {
             {[
               {
                 name: "Foundation",
-                detail: "One-page or compact multi-section site for local services.",
+                detail: "One-page or compact multi-section site.",
               },
               {
                 name: "Growth",
-                detail: "Expanded pages, stronger conversion flow, and clearer service depth.",
+                detail: "Expanded pages and deeper service structure.",
               },
               {
                 name: "Premium",
-                detail: "Larger builds with advanced content and deeper system support.",
+                detail: "Larger builds with advanced content.",
               },
             ].map((tier) => (
               <div key={tier.name} className="surface-panel noise-overlay rounded-lg p-6 md:p-8">
@@ -100,7 +95,7 @@ const Local = () => {
             ))}
           </div>
           <p className="body-refined text-center mt-8">
-            Website build pricing is discussed after consultation.
+            Pricing is set after consultation.
           </p>
         </div>
       </section>
@@ -109,9 +104,7 @@ const Local = () => {
         <div className="container-editorial">
           <div className="max-w-2xl mb-10">
             <p className="label-small mb-4">Maintenance plans</p>
-            <h2 className="headline-primary">
-              Ongoing care with graduated IT support.
-            </h2>
+            <h2 className="headline-primary">Ongoing care.</h2>
           </div>
           <div className="grid lg:grid-cols-3 gap-6">
             {maintenanceTiers.map((tier) => (
@@ -143,7 +136,7 @@ const Local = () => {
             ))}
           </div>
           <p className="body-refined text-center mt-10">
-            Maintenance is a professional standard for performance and continuity.
+            Maintenance is the standard for continuity.
           </p>
         </div>
       </section>

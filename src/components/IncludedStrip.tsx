@@ -1,19 +1,19 @@
 import { Shield, Code, Gauge, Lock, FileText, Heart } from "lucide-react";
 
 const items = [
-  { icon: Shield, label: "Reliability-first builds" },
-  { icon: Code, label: "Clean structure" },
-  { icon: Gauge, label: "Performance baseline" },
-  { icon: Lock, label: "Security hygiene" },
+  { icon: Shield, label: "Reliability" },
+  { icon: Code, label: "Structure" },
+  { icon: Gauge, label: "Performance" },
+  { icon: Lock, label: "Security" },
   { icon: FileText, label: "Documentation" },
-  { icon: Heart, label: "Ongoing care mindset" },
+  { icon: Heart, label: "Care" },
 ];
 
 const IncludedStrip = () => {
   return (
     <section className="py-12 border-t border-b border-border bg-card">
       <div className="container-editorial">
-        <p className="label-small text-center mb-8">Included in every tier</p>
+        <p className="label-small text-center mb-8">Included</p>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
           {items.map((item, index) => (
             <div key={index} className="flex flex-col items-center text-center gap-3">
