@@ -7,30 +7,30 @@ import Layout from "@/components/Layout";
 const whatsappNumber = "447456849035";
 
 const industryOptions = [
-  "Construction/Trades",
+  "Automotive",
   "Beauty & Wellness",
-  "Healthcare",
-  "Professional Services",
-  "Real Estate",
-  "Hospitality/Food",
-  "Retail (In-store)",
+  "Construction/Trades",
   "E-commerce",
   "Education/Training",
-  "Fitness",
-  "Technology/SaaS",
-  "Manufacturing",
-  "Automotive",
   "Entertainment/Media",
+  "Fitness",
+  "Healthcare",
+  "Hospitality/Food",
+  "Manufacturing",
   "Non-profit",
   "Other",
+  "Professional Services",
+  "Real Estate",
+  "Retail (In-store)",
+  "Technology/SaaS",
 ];
 
 const budgetOptions = [
-  "£500–£999",
   "£1,000–£1,999",
+  "£10,000+",
   "£2,000–£4,999",
   "£5,000–£9,999",
-  "£10,000+",
+  "£500–£999",
   "Not sure yet",
 ];
 
@@ -105,7 +105,10 @@ const Contact = () => {
 
       const element = document.createElement("gmp-place-autocomplete");
       element.setAttribute("placeholder", "Start typing a city");
-      element.setAttribute("includedPrimaryTypes", "locality,postal_town");
+      element.setAttribute(
+        "includedPrimaryTypes",
+        "locality,postal_town,administrative_area_level_1,country"
+      );
       element.className = "select-pill gmp-place";
       element.setAttribute("style", "width: 100%; max-width: 100%; display: block;");
       locationContainerRef.current.innerHTML = "";
@@ -507,20 +510,20 @@ const Contact = () => {
                     <option value="" className="bg-background text-foreground">
                       Select
                     </option>
-                    <option value="website" className="bg-background text-foreground">
-                      Website
-                    </option>
-                    <option value="redesign" className="bg-background text-foreground">
-                      Redesign
+                    <option value="ecommerce" className="bg-background text-foreground">
+                      Ecommerce
                     </option>
                     <option value="landing" className="bg-background text-foreground">
                       Landing page
                     </option>
-                    <option value="ecommerce" className="bg-background text-foreground">
-                      Ecommerce
-                    </option>
                     <option value="other" className="bg-background text-foreground">
                       Other
+                    </option>
+                    <option value="redesign" className="bg-background text-foreground">
+                      Redesign
+                    </option>
+                    <option value="website" className="bg-background text-foreground">
+                      Website
                     </option>
                   </select>
                   {errors.projectType && (
@@ -633,20 +636,20 @@ const Contact = () => {
                     <option value="" className="bg-background text-foreground">
                       Select
                     </option>
-                    <option value="leads" className="bg-background text-foreground">
-                      Leads
-                    </option>
                     <option value="bookings" className="bg-background text-foreground">
                       Bookings
-                    </option>
-                    <option value="sales" className="bg-background text-foreground">
-                      Sales
                     </option>
                     <option value="credibility" className="bg-background text-foreground">
                       Credibility
                     </option>
+                    <option value="leads" className="bg-background text-foreground">
+                      Leads
+                    </option>
                     <option value="other" className="bg-background text-foreground">
                       Other
+                    </option>
+                    <option value="sales" className="bg-background text-foreground">
+                      Sales
                     </option>
                   </select>
                   {errors.primaryGoal && (
@@ -873,11 +876,11 @@ const Contact = () => {
                     <option value="care" className="bg-background text-foreground">
                       Care
                     </option>
-                    <option value="priority" className="bg-background text-foreground">
-                      Priority
-                    </option>
                     <option value="continuity" className="bg-background text-foreground">
                       Continuity
+                    </option>
+                    <option value="priority" className="bg-background text-foreground">
+                      Priority
                     </option>
                   </select>
                   {errors.maintenanceTier && (
