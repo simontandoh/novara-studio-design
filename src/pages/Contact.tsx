@@ -467,7 +467,7 @@ const Contact = () => {
                     withCountryCallingCode
                     countryCallingCodeEditable={false}
                     value={formData.phone}
-                    onChange={(value) => handlePhoneChange(value xx "")}
+                    onChange={(value) => handlePhoneChange(value ?? "")}
                     onBlur={() => {
                       if (formData.phone && !validatePhone(formData.phone)) {
                         setErrors((prev) => ({
