@@ -1014,12 +1014,6 @@ const Contact = () => {
                 >
                   Clear
                 </button>
-                <a
-                  href={`https://wa.me/${whatsappNumber}`}
-                  className="btn-secondary rounded-full px-7 py-3 text-center"
-                >
-                  WhatsApp
-                </a>
               </div>
               <p className="text-xs text-muted-foreground">* Required fields</p>
 
