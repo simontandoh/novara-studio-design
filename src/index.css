@@ -293,7 +293,8 @@
   }
 
   .phone-input .PhoneInputCountry {
-    flex: 0 0 84px;
+    flex: 0 0 90px;
+    margin-right: 8px;
   }
 
   .phone-input .PhoneInputCountrySelect {
@@ -306,6 +307,18 @@
   }
 
   .phone-country {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .phone-input .PhoneInputInput {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .phone-input {
+    align-items: center;
+  }
     padding-left: 0.75rem;
     padding-right: 0.75rem;
   }

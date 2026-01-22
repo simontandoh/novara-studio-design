@@ -109,6 +109,9 @@ const Contact = () => {
       locationContainerRef.current.appendChild(element);
       autocompleteRef.current = element;
       requestAnimationFrame(() => setPlacesReady(true));
+      if (formData.location) {
+        element.value = formData.location;
+      }
 
       element.addEventListener("gmp-placeselect", async (event: any) => {
         const place = event.place || event.detail?.place;
@@ -175,6 +178,13 @@ const Contact = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const element = autocompleteRef.current as { value?: string } | null;
+    if (element && formData.location) {
+      element.value = formData.location;
+    }
+  }, [formData.location]);
+
   const isValidEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
   const validatePhone = (value: string) => {
@@ -189,7 +199,7 @@ const Contact = () => {
     }
 
     if (!value.startsWith("+") && /^\d{3,}/.test(value)) {
-      const parsed = parsePhoneNumberFromString(`+${value}`);
+      const parsed = parsePhoneNumberFromString(value, phoneCountry);
       if (parsed?.country) {
         setPhoneCountry(parsed.country);
         updateField("phone", parsed.number);
