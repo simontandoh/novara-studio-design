@@ -93,7 +93,10 @@ const Contact = () => {
   useEffect(() => {
     if (autocompleteRef.current || !locationContainerRef.current) return;
     const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-    if (!apiKey) return;
+    if (!apiKey) {
+      console.warn("Missing VITE_GOOGLE_MAPS_API_KEY for Places autocomplete.");
+      return;
+    }
 
       const initAutocomplete = () => {
         if (!locationContainerRef.current || autocompleteRef.current) return;
