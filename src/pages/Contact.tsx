@@ -1003,6 +1003,17 @@ const Contact = () => {
                     "Submit"
                   )}
                 </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (window.confirm("Clear all form fields?")) {
+                      clearForm();
+                    }
+                  }}
+                  className="btn-secondary rounded-full px-7 py-3 text-center"
+                >
+                  Clear
+                </button>
                 <a
                   href={`https://wa.me/${whatsappNumber}`}
                   className="btn-secondary rounded-full px-7 py-3 text-center"
