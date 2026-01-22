@@ -17,6 +17,7 @@ const buildRow = (payload) => ({
   phone: payload.phone || null,
   business_location: payload.location || null,
   industry: payload.industry || null,
+  industry_other: payload.industryOther || null,
   current_website: payload.website || null,
   need: payload.whatNeed || payload.projectType || null,
   pages_needed: Array.isArray(payload.pagesNeeded)
@@ -26,6 +27,8 @@ const buildRow = (payload) => ({
     ? payload.coreServicesProducts.join(", ")
     : payload.coreServicesProducts || null,
   primary_goal: payload.primaryGoal || null,
+  timeline_unit: payload.timelineUnit || null,
+  timeline_value: typeof payload.timelineValue === "number" ? payload.timelineValue : null,
   style_references: Array.isArray(payload.styleRefs)
     ? payload.styleRefs.join(", ")
     : payload.styleRefs || null,

@@ -43,7 +43,9 @@ declare global {
 const Contact = () => {
   const navigate = useNavigate();
   const locationRef = useRef<HTMLInputElement | null>(null);
+  const locationContainerRef = useRef<HTMLDivElement | null>(null);
   const autocompleteRef = useRef<any>(null);
+  const [placesReady, setPlacesReady] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -89,24 +91,30 @@ const Contact = () => {
   }, [formData]);
 
   useEffect(() => {
-    if (autocompleteRef.current || !locationRef.current) return;
+    if (autocompleteRef.current || !locationContainerRef.current) return;
     const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
     if (!apiKey) return;
 
     const initAutocomplete = () => {
-      if (!locationRef.current || autocompleteRef.current) return;
-      if (!window.google?.maps?.places) return;
+      if (!locationContainerRef.current || autocompleteRef.current) return;
+      if (!window.google?.maps?.places?.PlaceAutocompleteElement) return;
 
-      autocompleteRef.current = new window.google.maps.places.Autocomplete(
-        locationRef.current,
-        {
-          types: ["(cities)"],
+      const element = document.createElement("gmp-place-autocomplete");
+      element.setAttribute("placeholder", "Start typing a city");
+      element.setAttribute("types", "(cities)");
+      element.className = "select-pill";
+      locationContainerRef.current.innerHTML = "";
+      locationContainerRef.current.appendChild(element);
+      autocompleteRef.current = element;
+      setPlacesReady(true);
+
+      element.addEventListener("gmp-placeselect", async (event: any) => {
+        const place = event.place || event.detail?.place;
+        if (!place) return;
+        if (place.fetchFields) {
+          await place.fetchFields({ fields: ["formattedAddress", "displayName"] });
         }
-      );
-
-      autocompleteRef.current.addListener("place_changed", () => {
-        const place = autocompleteRef.current?.getPlace();
-        const value = place?.formatted_address || place?.name || "";
+        const value = place.formattedAddress || place.displayName || "";
         updateField("location", value);
       });
     };
@@ -125,7 +133,7 @@ const Contact = () => {
     }
 
     const script = document.createElement("script");
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&v=beta&loading=async`;
     script.async = true;
     script.defer = true;
     script.dataset.googlePlaces = "true";
@@ -392,14 +400,18 @@ const Contact = () => {
                   <label htmlFor="location" className="block label-small mb-3">
                     Business location (city/region)<span className="text-accent"> *</span>
                   </label>
-                  <input
-                    id="location"
-                    type="text"
-                    ref={locationRef}
-                    value={formData.location}
-                    onChange={(event) => updateField("location", event.target.value)}
-                    className="w-full bg-transparent border-b border-border pb-3 focus:border-foreground focus:outline-none transition-colors text-foreground"
-                  />
+                  <div ref={locationContainerRef} />
+                  {!placesReady && (
+                    <input
+                      id="location"
+                      type="text"
+                      ref={locationRef}
+                      value={formData.location}
+                      onChange={(event) => updateField("location", event.target.value)}
+                      className="w-full bg-transparent border-b border-border pb-3 focus:border-foreground focus:outline-none transition-colors text-foreground"
+                      placeholder="Start typing a city"
+                    />
+                  )}
                   {errors.location && (
                     <p className="text-xs text-accent mt-2">{errors.location}</p>
                   )}
