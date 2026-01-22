@@ -26,15 +26,6 @@ const industryOptions = [
   "Other",
 ];
 
-const budgetOptions = [
-  "£500–£999",
-  "£1,000–£1,999",
-  "£2,000–£4,999",
-  "£5,000–£9,999",
-  "£10,000+",
-  "Not sure yet",
-];
-
 declare global {
   interface Window {
     google?: any;
@@ -63,7 +54,6 @@ const initialFormState = {
   hostingStatus: "",
   timelineUnit: "weeks" as "weeks" | "days",
   timelineValue: 4,
-  budgetRange: "",
   maintenanceTier: "",
   consent: false,
 };
@@ -275,7 +265,6 @@ const Contact = () => {
       timelineUnit: formData.timelineUnit,
       timelineValue: formData.timelineValue,
       styleRefs: formData.styleRefs,
-      budgetRange: formData.budgetRange,
       brandAssets: {
         logo: formData.brandAssetsLogo,
         photos: formData.brandAssetsPhotos,
@@ -823,26 +812,6 @@ const Contact = () => {
                       ))}
                     </div>
                   )}
-                </div>
-                <div>
-                  <label htmlFor="budgetRange" className="block label-small mb-3">
-                    Budget range (optional)
-                  </label>
-                  <select
-                    id="budgetRange"
-                    value={formData.budgetRange}
-                    onChange={(event) => updateField("budgetRange", event.target.value)}
-                    className="select-pill"
-                  >
-                    <option value="" className="bg-background text-foreground">
-                      Select
-                    </option>
-                    {budgetOptions.map((option) => (
-                      <option key={option} value={option} className="bg-background text-foreground">
-                        {option}
-                      </option>
-                    ))}
-                  </select>
                 </div>
               </div>
 
