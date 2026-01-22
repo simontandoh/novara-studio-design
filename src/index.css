@@ -292,6 +292,31 @@
     background-color: transparent;
   }
 
+  .gmp-place {
+    width: 100%;
+  }
+
+  .gmp-place::part(input),
+  .gmp-place::part(container) {
+    width: 100%;
+    border-radius: 9999px;
+    padding: 0.75rem 1.25rem;
+    background: hsl(var(--card) / 0.6);
+    color: hsl(var(--foreground));
+    border: 1px solid hsl(var(--border) / 0.5);
+    box-shadow: 0 0 0 1px hsl(var(--border) / 0.2) inset;
+  }
+
+  .gmp-place::part(input):focus {
+    outline: none;
+    border-color: hsl(var(--accent) / 0.4);
+    box-shadow: 0 0 0 2px hsl(var(--accent) / 0.2);
+  }
+
+  .gmp-place::part(input)::placeholder {
+    color: hsl(var(--muted-foreground));
+  }
+
   .nav-glass {
     background: linear-gradient(180deg, hsl(220 18% 10% / 0.9), hsl(220 18% 8% / 0.75));
     backdrop-filter: blur(18px);

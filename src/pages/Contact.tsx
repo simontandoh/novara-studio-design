@@ -98,22 +98,19 @@ const Contact = () => {
       return;
     }
 
-      const initAutocomplete = () => {
-        if (!locationContainerRef.current || autocompleteRef.current) return;
-        if (!window.google?.maps?.places?.PlaceAutocompleteElement) return;
+    const initAutocomplete = () => {
+      if (!locationContainerRef.current || autocompleteRef.current) return;
+      if (!window.google?.maps?.places?.PlaceAutocompleteElement) return;
 
-        const element = document.createElement("gmp-place-autocomplete");
-        element.setAttribute("placeholder", "Start typing a city");
-        element.setAttribute("includedPrimaryTypes", "locality,postal_town");
-        element.className = "select-pill";
-        element.setAttribute(
-          "style",
-          "width: 100%; max-width: 100%; display: block;"
-        );
-        locationContainerRef.current.innerHTML = "";
-        locationContainerRef.current.appendChild(element);
-        autocompleteRef.current = element;
-        setPlacesReady(true);
+      const element = document.createElement("gmp-place-autocomplete");
+      element.setAttribute("placeholder", "Start typing a city");
+      element.setAttribute("includedPrimaryTypes", "locality,postal_town");
+      element.className = "select-pill gmp-place";
+      element.setAttribute("style", "width: 100%; max-width: 100%; display: block;");
+      locationContainerRef.current.innerHTML = "";
+      locationContainerRef.current.appendChild(element);
+      autocompleteRef.current = element;
+      requestAnimationFrame(() => setPlacesReady(true));
 
       element.addEventListener("gmp-placeselect", async (event: any) => {
         const place = event.place || event.detail?.place;
@@ -134,7 +131,7 @@ const Contact = () => {
     };
 
     if (window.google?.maps?.places) {
-      initAutocomplete();
+      requestAnimationFrame(initAutocomplete);
       return;
     }
 
@@ -154,7 +151,11 @@ const Contact = () => {
     script.addEventListener("load", initAutocomplete);
     document.head.appendChild(script);
 
-    return () => script.removeEventListener("load", initAutocomplete);
+    const retry = window.setTimeout(initAutocomplete, 1500);
+    return () => {
+      script.removeEventListener("load", initAutocomplete);
+      window.clearTimeout(retry);
+    };
   }, []);
 
   const isValidEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
