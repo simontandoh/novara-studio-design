@@ -101,7 +101,10 @@ const Contact = () => {
 
       const element = document.createElement("gmp-place-autocomplete");
       element.setAttribute("placeholder", "Start typing a city");
-      element.setAttribute("types", "(cities)");
+      element.setAttribute(
+        "includedPrimaryTypes",
+        "locality,postal_town,administrative_area_level_2"
+      );
       element.className = "select-pill";
       locationContainerRef.current.innerHTML = "";
       locationContainerRef.current.appendChild(element);
@@ -112,10 +115,17 @@ const Contact = () => {
         const place = event.place || event.detail?.place;
         if (!place) return;
         if (place.fetchFields) {
-          await place.fetchFields({ fields: ["formattedAddress", "displayName"] });
+          await place.fetchFields({ fields: ["formattedAddress", "displayName", "addressComponents"] });
         }
-        const value = place.formattedAddress || place.displayName || "";
+        const value =
+          place.formattedAddress ||
+          place.displayName ||
+          (place.addressComponents || [])
+            .map((component: any) => component.longText)
+            .filter(Boolean)
+            .join(", ");
         updateField("location", value);
+        setErrors((prev) => ({ ...prev, location: "" }));
       });
     };
 
@@ -401,13 +411,19 @@ const Contact = () => {
                     Business location (city/region)<span className="text-accent"> *</span>
                   </label>
                   <div ref={locationContainerRef} />
+                  <input type="hidden" value={formData.location} readOnly />
                   {!placesReady && (
                     <input
                       id="location"
                       type="text"
                       ref={locationRef}
                       value={formData.location}
-                      onChange={(event) => updateField("location", event.target.value)}
+                      onChange={(event) => {
+                        updateField("location", event.target.value);
+                        if (errors.location) {
+                          setErrors((prev) => ({ ...prev, location: "" }));
+                        }
+                      }}
                       className="w-full bg-transparent border-b border-border pb-3 focus:border-foreground focus:outline-none transition-colors text-foreground"
                       placeholder="Start typing a city"
                     />
