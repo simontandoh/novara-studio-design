@@ -292,6 +292,24 @@
     background-color: transparent;
   }
 
+  .phone-input .PhoneInputCountry {
+    flex: 0 0 84px;
+  }
+
+  .phone-input .PhoneInputCountrySelect {
+    width: 100%;
+  }
+
+  .phone-number {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .phone-country {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
   .gmp-place {
     width: 100%;
   }

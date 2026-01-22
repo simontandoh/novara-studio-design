@@ -27,11 +27,11 @@ const industryOptions = [
 ];
 
 const budgetOptions = [
-  "?10,000+",
-  "?5,000??9,999",
-  "?2,000??4,999",
-  "?1,000??1,999",
-  "?500??999",
+  "£10,000+",
+  "£5,000–£9,999",
+  "£2,000–£4,999",
+  "£1,000–£1,999",
+  "£500–£999",
   "Not sure yet",
 ];
 
@@ -41,6 +41,32 @@ declare global {
     initGooglePlaces?: () => void;
   }
 }
+
+const initialFormState = {
+  fullName: "",
+  businessName: "",
+  email: "",
+  phone: "",
+  location: "",
+  industry: "",
+  industryOther: "",
+  website: "",
+  projectType: "",
+  pagesNeeded: [] as string[],
+  coreServicesProducts: [] as string[],
+  primaryGoal: "",
+  styleRefs: [] as string[],
+  brandAssetsLogo: false,
+  brandAssetsPhotos: false,
+  brandAssetsVideos: false,
+  domainStatus: "",
+  hostingStatus: "",
+  timelineUnit: "weeks" as "weeks" | "days",
+  timelineValue: 4,
+  budgetRange: "",
+  maintenanceTier: "",
+  consent: false,
+};
 
 const Contact = () => {
   const navigate = useNavigate();
@@ -52,31 +78,7 @@ const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formData, setFormData] = useState({
-    fullName: "",
-    businessName: "",
-    email: "",
-    phone: "",
-    location: "",
-    industry: "",
-    industryOther: "",
-    website: "",
-    projectType: "",
-    pagesNeeded: [] as string[],
-    coreServicesProducts: [] as string[],
-    primaryGoal: "",
-    styleRefs: [] as string[],
-    brandAssetsLogo: false,
-    brandAssetsPhotos: false,
-    brandAssetsVideos: false,
-    domainStatus: "",
-    hostingStatus: "",
-    timelineUnit: "weeks" as "weeks" | "days",
-    timelineValue: 4,
-    budgetRange: "",
-    maintenanceTier: "",
-    consent: false,
-  });
+  const [formData, setFormData] = useState(initialFormState);
   const [pagesInput, setPagesInput] = useState("");
   const [coreServicesInput, setCoreServicesInput] = useState("");
   const [styleRefInput, setStyleRefInput] = useState("");
@@ -133,6 +135,22 @@ const Contact = () => {
             .join(", ");
         updateField("location", value);
         setErrors((prev) => ({ ...prev, location: "" }));
+      });
+
+      element.addEventListener("input", () => {
+        const value = element.value || "";
+        updateField("location", value);
+        if (value) {
+          setErrors((prev) => ({ ...prev, location: "" }));
+        }
+      });
+
+      element.addEventListener("blur", () => {
+        const value = element.value || "";
+        updateField("location", value);
+        if (value) {
+          setErrors((prev) => ({ ...prev, location: "" }));
+        }
       });
     };
 
@@ -204,6 +222,7 @@ const Contact = () => {
   };
 
   const validate = () => {
+    syncLocationFromPlaces();
     const nextErrors: Record<string, string> = {};
     if (!formData.fullName.trim()) nextErrors.fullName = "Full name is required.";
     if (!formData.businessName.trim()) nextErrors.businessName = "Business name is required.";
@@ -284,6 +303,22 @@ const Contact = () => {
 
   const updateField = (name: string, value: string | boolean | number) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const clearForm = () => {
+    setFormData(initialFormState);
+    setPagesInput("");
+    setCoreServicesInput("");
+    setStyleRefInput("");
+    setStyleRefError("");
+    setErrors({});
+    setSubmitted(false);
+    setIsSubmitting(false);
+    localStorage.removeItem("novaraContactDraft");
+    const element = autocompleteRef.current as { value?: string } | null;
+    if (element?.value) {
+      element.value = "";
+    }
   };
 
   const addToList = (
@@ -435,20 +470,20 @@ const Contact = () => {
                     countryCallingCodeEditable={false}
                     value={formData.phone}
                     onChange={(value) => handlePhoneChange(value ?? "")}
-                      onBlur={() => {
-                        if (formData.phone && !validatePhone(formData.phone)) {
-                          setErrors((prev) => ({
-                            ...prev,
-                            phone: "Enter a valid phone number",
-                          }));
-                        }
-                      }}
-                      className="phone-input flex gap-3"
-                      inputClassName="select-pill"
-                      countrySelectProps={{
-                        className: "select-pill w-[120px]",
-                      }}
-                    />
+                    onBlur={() => {
+                      if (formData.phone && !validatePhone(formData.phone)) {
+                        setErrors((prev) => ({
+                          ...prev,
+                          phone: "Enter a valid phone number",
+                        }));
+                      }
+                    }}
+                    className="phone-input flex gap-3"
+                    inputClassName="select-pill phone-number"
+                    countrySelectProps={{
+                      className: "select-pill phone-country",
+                    }}
+                  />
                   {errors.phone && (
                     <p className="text-xs text-accent mt-2">{errors.phone}</p>
                   )}
