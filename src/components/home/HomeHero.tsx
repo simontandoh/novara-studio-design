@@ -17,23 +17,35 @@ const fragmentShaderSource = `
   uniform float u_time;
   uniform float u_intensity;
 
-  float band(vec2 uv, float offset, float width) {
-    float line = sin((uv.x + offset) * 6.0 + sin(u_time * 0.2));
-    float mask = smoothstep(width, 0.0, abs(line));
-    return mask;
+  float hash(vec2 p) {
+    return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
+  }
+
+  float star(vec2 uv, float scale) {
+    vec2 grid = uv * scale;
+    vec2 id = floor(grid);
+    vec2 gv = fract(grid) - 0.5;
+    float rnd = hash(id);
+    float mask = step(0.985, rnd);
+    float radius = mix(0.35, 0.05, rnd);
+    float twinkle = 0.4 + 0.6 * sin(u_time * 0.8 + rnd * 12.0);
+    return smoothstep(radius, 0.0, length(gv)) * mask * twinkle;
   }
 
   void main() {
     vec2 uv = v_uv;
-    uv.x += sin(uv.y * 2.5 + u_time * 0.25) * 0.02;
-    float glow = 0.0;
-    glow += band(uv, u_time * 0.03, 0.18);
-    glow += band(uv, -u_time * 0.02 + 0.4, 0.14);
-    glow += band(uv, u_time * 0.015 - 0.7, 0.12);
-    float vignette = smoothstep(1.1, 0.5, distance(uv, vec2(0.5)));
-    vec3 base = vec3(0.02, 0.03, 0.05);
-    vec3 tint = vec3(0.7, 0.75, 0.85);
-    vec3 color = base + tint * glow * 0.35 * u_intensity;
+    float aspect = u_resolution.x / u_resolution.y;
+    uv.x *= aspect;
+    uv.y += u_time * 0.015;
+
+    vec3 base = vec3(0.01, 0.02, 0.04);
+    float stars = 0.0;
+    stars += star(uv, 48.0);
+    stars += star(uv + 0.3, 72.0) * 0.6;
+    stars += star(uv - 0.6, 24.0) * 0.35;
+
+    float vignette = smoothstep(1.2, 0.4, distance(v_uv, vec2(0.5)));
+    vec3 color = base + vec3(0.6, 0.7, 0.9) * stars * 0.7 * u_intensity;
     color *= vignette;
     gl_FragColor = vec4(color, 1.0);
   }

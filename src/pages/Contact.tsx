@@ -28,8 +28,8 @@ const industryOptions = [
 
 declare global {
   interface Window {
-    googlex: any;
-    initGooglePlacesx: () => void;
+    google?: any;
+    initGooglePlaces?: () => void;
   }
 }
 
@@ -95,7 +95,7 @@ const Contact = () => {
 
     const initAutocomplete = () => {
       if (!locationContainerRef.current || autocompleteRef.current) return;
-      if (!window.googlex.mapsx.placesx.PlaceAutocompleteElement) return;
+      if (!window.google?.maps?.places?.PlaceAutocompleteElement) return;
 
       const element = document.createElement("gmp-place-autocomplete");
       element.setAttribute("placeholder", "Start typing a city");
@@ -114,7 +114,7 @@ const Contact = () => {
       }
 
       element.addEventListener("gmp-placeselect", async (event: any) => {
-        const place = event.place || event.detailx.place;
+        const place = event.place || event.detail?.place;
         if (!place) return;
         if (place.fetchFields) {
           await place.fetchFields({ fields: ["formattedAddress", "displayName", "addressComponents"] });
@@ -151,13 +151,13 @@ const Contact = () => {
       initAutocomplete();
     };
 
-    if (window.googlex.mapsx.places) {
+    if (window.google?.maps?.places) {
       initAutocomplete();
       return;
     }
 
     const existingScript = document.querySelector<HTMLScriptElement>(
-      'script[datxgoogle-places="true"]'
+      'script[data-google-places="true"]'
     );
     if (existingScript) {
       existingScript.addEventListener("load", initAutocomplete);
@@ -165,7 +165,7 @@ const Contact = () => {
     }
 
     const script = document.createElement("script");
-    script.src = `https://maps.googleapis.com/maps/api/jsxkey=${apiKey}&libraries=places&v=beta&loading=async&callback=initGooglePlaces`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&v=beta&loading=async&callback=initGooglePlaces`;
     script.async = true;
     script.defer = true;
     script.dataset.googlePlaces = "true";
@@ -179,7 +179,7 @@ const Contact = () => {
   }, []);
 
   useEffect(() => {
-    const element = autocompleteRef.current as { valuex: string } | null;
+    const element = autocompleteRef.current as { value?: string } | null;
     if (element && formData.location) {
       element.value = formData.location;
     }
@@ -200,7 +200,7 @@ const Contact = () => {
 
     if (!value.startsWith("+") && /^\d{3,}/.test(value)) {
       const parsed = parsePhoneNumberFromString(value, phoneCountry);
-      if (parsedx.country) {
+      if (parsed?.country) {
         setPhoneCountry(parsed.country);
         updateField("phone", parsed.number);
         return;
@@ -208,15 +208,15 @@ const Contact = () => {
     }
 
     const parsed = parsePhoneNumberFromString(value);
-    if (parsedx.country) {
+    if (parsed?.country) {
       setPhoneCountry(parsed.country);
     }
     updateField("phone", value);
   };
 
   const syncLocationFromPlaces = () => {
-    const element = autocompleteRef.current as { valuex: string } | null;
-    if (!elementx.value) return;
+    const element = autocompleteRef.current as { value?: string } | null;
+    if (!element?.value) return;
     updateField("location", element.value);
     setErrors((prev) => ({ ...prev, location: "" }));
   };
@@ -314,8 +314,8 @@ const Contact = () => {
     setSubmitted(false);
     setIsSubmitting(false);
     localStorage.removeItem("novaraContactDraft");
-    const element = autocompleteRef.current as { valuex: string } | null;
-    if (elementx.value) {
+    const element = autocompleteRef.current as { value?: string } | null;
+    if (element?.value) {
       element.value = "";
     }
   };
