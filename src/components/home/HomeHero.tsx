@@ -27,8 +27,8 @@ const fragmentShaderSource = `
     vec2 gv = fract(grid) - 0.5;
     float rnd = hash(id);
     float mask = step(threshold, rnd);
-    float radius = mix(0.28, 0.04, rnd);
-    float twinkle = 0.8 + 0.2 * sin(u_time * 0.3 + rnd * 6.0);
+    float radius = mix(0.26, 0.03, rnd);
+    float twinkle = 0.9 + 0.1 * sin(u_time * 0.2 + rnd * 4.0);
     return smoothstep(radius, 0.0, length(gv)) * mask * twinkle;
   }
 
@@ -51,21 +51,23 @@ const fragmentShaderSource = `
     uvNear += vec2(0.02, -0.03) * sin(u_time * 0.05);
     uvNear.y += u_time * 0.02;
 
-    vec3 base = vec3(0.01, 0.02, 0.045);
+    vec3 base = vec3(0.008, 0.015, 0.035);
     float stars = 0.0;
-    stars += star(uvFar, 40.0, 0.965);
-    stars += star(uvFar + 0.2, 60.0, 0.972) * 0.9;
-    stars += star(uvNear - 0.5, 28.0, 0.96) * 0.9;
-    stars += star(uvNear + 0.8, 90.0, 0.975) * 0.7;
+    stars += star(uvFar, 32.0, 0.955);
+    stars += star(uvFar + 0.2, 48.0, 0.962) * 0.95;
+    stars += star(uvNear - 0.5, 24.0, 0.95) * 0.95;
+    stars += star(uvNear + 0.8, 72.0, 0.965) * 0.8;
+    stars += star(uvNear + 1.4, 110.0, 0.975) * 0.6;
 
     float haze = 0.0;
-    haze += nebula(uvBase * vec2(aspect, 1.0), 0.1) * 0.45;
-    haze += nebula(uvBase * vec2(aspect, 1.0) + 0.3, 0.6) * 0.35;
-    vec3 hazeColor = vec3(0.15, 0.22, 0.35) * haze;
+    haze += nebula(uvBase * vec2(aspect, 1.0), 0.1) * 0.55;
+    haze += nebula(uvBase * vec2(aspect, 1.0) + 0.3, 0.6) * 0.45;
+    haze += nebula(uvBase * vec2(aspect, 1.0) - 0.4, 1.2) * 0.3;
+    vec3 hazeColor = vec3(0.18, 0.24, 0.36) * haze;
 
     float vignette = smoothstep(1.2, 0.4, distance(v_uv, vec2(0.5)));
     vec3 color = base + hazeColor;
-    color += vec3(0.7, 0.8, 1.0) * stars * 1.1 * u_intensity;
+    color += vec3(0.75, 0.85, 1.0) * stars * 1.35 * u_intensity;
     color *= vignette;
     gl_FragColor = vec4(color, 1.0);
   }
