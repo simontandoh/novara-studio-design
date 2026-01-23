@@ -27,8 +27,8 @@ const fragmentShaderSource = `
     vec2 gv = fract(grid) - 0.5;
     float rnd = hash(id);
     float mask = step(threshold, rnd);
-    float radius = mix(0.32, 0.05, rnd);
-    float twinkle = 0.4 + 0.6 * sin(u_time * 0.8 + rnd * 12.0);
+    float radius = mix(0.28, 0.04, rnd);
+    float twinkle = 0.8 + 0.2 * sin(u_time * 0.3 + rnd * 6.0);
     return smoothstep(radius, 0.0, length(gv)) * mask * twinkle;
   }
 
@@ -40,12 +40,13 @@ const fragmentShaderSource = `
 
     vec3 base = vec3(0.015, 0.02, 0.045);
     float stars = 0.0;
-    stars += star(uv, 40.0, 0.975);
-    stars += star(uv + 0.3, 64.0, 0.982) * 0.75;
-    stars += star(uv - 0.6, 22.0, 0.97) * 0.5;
+    stars += star(uv, 36.0, 0.965);
+    stars += star(uv + 0.2, 52.0, 0.972) * 0.9;
+    stars += star(uv - 0.5, 26.0, 0.96) * 0.8;
+    stars += star(uv + 0.8, 80.0, 0.975) * 0.6;
 
     float vignette = smoothstep(1.2, 0.4, distance(v_uv, vec2(0.5)));
-    vec3 color = base + vec3(0.65, 0.75, 0.95) * stars * 0.9 * u_intensity;
+    vec3 color = base + vec3(0.7, 0.8, 1.0) * stars * 1.1 * u_intensity;
     color *= vignette;
     gl_FragColor = vec4(color, 1.0);
   }
