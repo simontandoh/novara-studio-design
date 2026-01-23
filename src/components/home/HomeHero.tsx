@@ -32,21 +32,40 @@ const fragmentShaderSource = `
     return smoothstep(radius, 0.0, length(gv)) * mask * twinkle;
   }
 
+  float nebula(vec2 uv, float seed) {
+    float n = sin((uv.x + seed) * 2.1 + u_time * 0.06) *
+      sin((uv.y - seed) * 1.7 - u_time * 0.04);
+    n += sin((uv.x + uv.y + seed) * 1.3 + u_time * 0.03);
+    return smoothstep(0.2, 0.8, n * 0.5 + 0.5);
+  }
+
   void main() {
     vec2 uv = v_uv;
     float aspect = u_resolution.x / u_resolution.y;
-    uv.x *= aspect;
-    uv.y += u_time * 0.015;
+    vec2 uvBase = uv;
+    vec2 uvFar = uv;
+    uvFar.x = (uvFar.x - 0.5) * aspect + 0.5;
+    uvFar.y += u_time * 0.01;
+    vec2 uvNear = uv;
+    uvNear.x = (uvNear.x - 0.5) * aspect + 0.5;
+    uvNear += vec2(0.02, -0.03) * sin(u_time * 0.05);
+    uvNear.y += u_time * 0.02;
 
-    vec3 base = vec3(0.015, 0.02, 0.045);
+    vec3 base = vec3(0.01, 0.02, 0.045);
     float stars = 0.0;
-    stars += star(uv, 36.0, 0.965);
-    stars += star(uv + 0.2, 52.0, 0.972) * 0.9;
-    stars += star(uv - 0.5, 26.0, 0.96) * 0.8;
-    stars += star(uv + 0.8, 80.0, 0.975) * 0.6;
+    stars += star(uvFar, 40.0, 0.965);
+    stars += star(uvFar + 0.2, 60.0, 0.972) * 0.9;
+    stars += star(uvNear - 0.5, 28.0, 0.96) * 0.9;
+    stars += star(uvNear + 0.8, 90.0, 0.975) * 0.7;
+
+    float haze = 0.0;
+    haze += nebula(uvBase * vec2(aspect, 1.0), 0.1) * 0.45;
+    haze += nebula(uvBase * vec2(aspect, 1.0) + 0.3, 0.6) * 0.35;
+    vec3 hazeColor = vec3(0.15, 0.22, 0.35) * haze;
 
     float vignette = smoothstep(1.2, 0.4, distance(v_uv, vec2(0.5)));
-    vec3 color = base + vec3(0.7, 0.8, 1.0) * stars * 1.1 * u_intensity;
+    vec3 color = base + hazeColor;
+    color += vec3(0.7, 0.8, 1.0) * stars * 1.1 * u_intensity;
     color *= vignette;
     gl_FragColor = vec4(color, 1.0);
   }
@@ -185,20 +204,14 @@ const HomeHero = () => {
       </div>
 
       <div className="container-editorial relative z-10">
-        <div className="max-w-3xl">
+        <div className="max-w-3xl pt-6 md:pt-10">
           <div className="mb-8">
             <span className="text-4xl md:text-5xl font-light tracking-[0.6em] text-foreground">
               NOVARA
             </span>
           </div>
           <p className="label-small mb-4">BORN FROM LIGHT.</p>
-          <h1 className="headline-hero mb-6">Quiet systems for the web.</h1>
-          <p className="body-large max-w-xl mb-8">
-            Built, rebuilt, and kept.
-          </p>
-          <p className="text-sm text-muted-foreground max-w-xl mb-10">
-            Clear structure. Steady care.
-          </p>
+          <h1 className="headline-hero mb-5">Quiet systems for the web.</h1>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link
               to="/contact"
