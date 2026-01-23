@@ -20,7 +20,7 @@ const CTASection = ({
   centered = false,
 }: CTASectionProps) => {
   return (
-    <section className="section-padding border-t border-border">
+    <section className="section-padding">
       <div className="container-editorial">
         <div
           className={`${

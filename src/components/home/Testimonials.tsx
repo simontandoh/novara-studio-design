@@ -28,7 +28,7 @@ const Testimonials = () => {
   }, []);
 
   return (
-    <section className="section-padding border-t border-border">
+    <section className="section-padding">
       <div className="container-narrow text-center">
         <p className="label-small mb-4">Notes</p>
         <div className="relative">

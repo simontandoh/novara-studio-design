@@ -14,7 +14,7 @@ const Studio = () => {
         </div>
       </section>
 
-      <section className="section-padding border-t border-border">
+      <section className="section-padding">
         <div className="container-editorial">
           <div className="max-w-2xl mb-16">
             <p className="label-small mb-6">Process</p>
@@ -46,7 +46,7 @@ const Studio = () => {
         </div>
       </section>
 
-      <section className="section-padding border-t border-border bg-card">
+      <section className="section-padding bg-card">
         <div className="container-editorial">
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-24">
             <div className="lg:col-span-5">
@@ -64,7 +64,7 @@ const Studio = () => {
         </div>
       </section>
 
-      <section className="section-padding border-t border-border">
+      <section className="section-padding">
         <div className="container-editorial">
           <div className="mb-16">
             <p className="label-small mb-6">Values</p>
@@ -92,7 +92,7 @@ const Studio = () => {
         </div>
       </section>
 
-      <section className="section-padding border-t border-border bg-card">
+      <section className="section-padding bg-card">
         <div className="container-editorial">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
             <div>
@@ -123,7 +123,7 @@ const Studio = () => {
         </div>
       </section>
 
-      <section className="section-padding border-t border-border">
+      <section className="section-padding">
         <div className="container-narrow text-center">
           <h2 className="headline-primary mb-8">Start a conversation.</h2>
           <p className="body-large mb-10">Tell us the situation.</p>

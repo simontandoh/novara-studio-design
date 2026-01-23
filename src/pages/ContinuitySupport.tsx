@@ -46,7 +46,7 @@ const ContinuitySupport = () => {
         </div>
       </section>
 
-      <section className="section-padding border-t border-border">
+      <section className="section-padding">
         <div className="container-editorial">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
             <div>
@@ -86,7 +86,7 @@ const ContinuitySupport = () => {
         </div>
       </section>
 
-      <section className="section-padding border-t border-border bg-card">
+      <section className="section-padding bg-card">
         <div className="container-editorial">
           <div className="text-center mb-12">
             <h2 className="headline-primary mb-4">Typical issues we handle</h2>
@@ -110,7 +110,7 @@ const ContinuitySupport = () => {
         </div>
       </section>
 
-      <section className="section-padding border-t border-border">
+      <section className="section-padding">
         <div className="container-editorial">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
             <div>
@@ -165,15 +165,7 @@ const ContinuitySupport = () => {
         </div>
       </section>
 
-      <section className="section-padding border-t border-border bg-card">
-        <div className="container-narrow text-center">
-          <h2 className="headline-primary mb-6">Proactive care</h2>
-          <p className="body-large mb-4">Monitoring that catches issues early.</p>
-          <p className="body-refined">Quiet is the goal.</p>
-        </div>
-      </section>
-
-      <section className="section-padding border-t border-border">
+      <section className="section-padding">
         <div className="container-editorial">
           <div className="max-w-2xl mb-10">
             <p className="label-small mb-4">FAQ</p>

@@ -19,14 +19,20 @@ const focusSelector =
 
 const MenuIcon = ({ open }: { open: boolean }) => {
   return (
-    <span
+    <svg
       aria-hidden="true"
-      className={`material-symbols-outlined text-3xl transition-transform duration-[180ms] ${
-        open ? "rotate-6 scale-[1.02]" : ""
+      viewBox="0 0 24 24"
+      className={`w-6 h-6 transition-transform duration-[180ms] ${
+        open ? "rotate-180" : ""
       }`}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     >
-      menu
-    </span>
+      <path d="M6 9l6 6 6-6" />
+    </svg>
   );
 };
 

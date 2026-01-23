@@ -11,7 +11,7 @@ const items = [
 
 const IncludedStrip = () => {
   return (
-    <section className="py-12 border-t border-b border-border bg-card">
+    <section className="py-12 bg-card">
       <div className="container-editorial">
         <p className="label-small text-center mb-8">Included</p>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">

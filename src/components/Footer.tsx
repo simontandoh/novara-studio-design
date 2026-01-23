@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <footer className="border-t border-border">
-      <div className="container-editorial py-16 md:py-20">
-        <div className="grid md:grid-cols-4 gap-10 md:gap-8">
+      <div className="container-editorial py-10 md:py-12">
+        <div className="grid md:grid-cols-4 gap-8 md:gap-6">
           <div className="md:col-span-2">
             <div className="flex items-center gap-3">
               <img
@@ -57,7 +57,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-16 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div className="mt-10 pt-6 border-t border-border flex flex-col md:flex-row justify-between items-start md:items-center gap-3">
           <p className="text-xs text-muted-foreground">
             Novara Studios (C) 2026 All rights reserved.
           </p>

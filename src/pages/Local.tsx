@@ -67,7 +67,7 @@ const Local = () => {
         </div>
       </section>
 
-      <section className="section-padding border-t border-border">
+      <section className="section-padding">
         <div className="container-editorial">
           <div className="max-w-2xl mb-10">
             <p className="label-small mb-4">Website builds</p>
@@ -100,7 +100,7 @@ const Local = () => {
         </div>
       </section>
 
-      <section className="section-padding border-t border-border bg-card">
+      <section className="section-padding bg-card">
         <div className="container-editorial">
           <div className="max-w-2xl mb-10">
             <p className="label-small mb-4">Maintenance plans</p>

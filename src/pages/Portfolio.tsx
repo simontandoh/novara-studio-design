@@ -1,56 +1,28 @@
 import Layout from "@/components/Layout";
 
-const projects = [
-  {
-    title: "Plumber One-Page",
-    highlights: ["Call-first layout", "Emergency banner", "Service areas"],
-    href: "#",
-  },
-  {
-    title: "Electrician One-Page",
-    highlights: ["Mobile-first", "Fast enquiry flow", "Trust badges"],
-    href: "#",
-  },
-  {
-    title: "Cleaning Service One-Page",
-    highlights: ["Lead capture form", "Before and after gallery", "Simple pricing"],
-    href: "#",
-  },
-];
+const slides = Array.from({ length: 6 }, (_, index) => ({
+  id: `slide-${index}`,
+}));
 
 const Portfolio = () => {
   return (
     <Layout>
       <section className="section-padding">
         <div className="container-editorial">
-          <div className="max-w-2xl">
-            <p className="label-small mb-6">Portfolio</p>
-            <h1 className="headline-hero mb-6">Selected work.</h1>
-            <p className="body-large">Placeholder links for now.</p>
+          <div className="overflow-x-auto pb-4 -mx-6 md:-mx-12 px-6 md:px-12">
+            <div className="flex gap-6 min-w-full snap-x snap-mandatory">
+              {slides.map((slide) => (
+                <div
+                  key={slide.id}
+                  className="snap-center shrink-0 w-[85vw] md:w-[60vw] lg:w-[45vw] aspect-[16/9] rounded-2xl border border-border/60 bg-card/40 backdrop-blur-sm"
+                  style={{
+                    background:
+                      "radial-gradient(120% 120% at 20% 20%, rgba(255,255,255,0.08), transparent 55%), radial-gradient(120% 120% at 80% 70%, rgba(140,170,220,0.18), transparent 60%)",
+                  }}
+                />
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
-
-      <section className="section-padding border-t border-border">
-        <div className="container-editorial grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project) => (
-            <a
-              key={project.title}
-              href={project.href}
-              className="surface-panel noise-overlay rounded-lg p-6 md:p-8 transition-all duration-[180ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1"
-            >
-              <h3 className="headline-secondary mb-4">{project.title}</h3>
-              <ul className="space-y-2 text-sm text-muted-foreground mb-6">
-                {project.highlights.map((item) => (
-                  <li key={item} className="flex items-start gap-2">
-                    <span className="text-accent mt-0.5">+</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <span className="text-sm text-muted-foreground">View on Behance</span>
-            </a>
-          ))}
         </div>
       </section>
     </Layout>

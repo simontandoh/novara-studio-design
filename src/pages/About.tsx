@@ -38,7 +38,7 @@ const About = () => {
         </div>
       </section>
 
-      <section className="section-padding border-t border-border">
+      <section className="section-padding">
         <div className="container-editorial">
           <div className="max-w-3xl">
             <h2 className="headline-primary mb-8">Why Novara</h2>
@@ -51,7 +51,7 @@ const About = () => {
         </div>
       </section>
 
-      <section className="section-padding border-t border-border bg-card">
+      <section className="section-padding bg-card">
         <div className="container-editorial">
           <h2 className="headline-primary mb-12">Values</h2>
           <div className="grid md:grid-cols-2 gap-px bg-border">
@@ -65,7 +65,7 @@ const About = () => {
         </div>
       </section>
 
-      <section className="section-padding border-t border-border">
+      <section className="section-padding">
         <div className="container-editorial">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
             <div>

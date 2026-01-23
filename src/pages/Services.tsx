@@ -48,7 +48,7 @@ const Services = () => {
         </div>
       </section>
 
-      <section className="section-padding border-t border-border">
+      <section className="section-padding">
         <div className="container-editorial">
           <div className="max-w-2xl mb-12">
             <p className="label-small mb-6">Service types</p>
@@ -69,7 +69,7 @@ const Services = () => {
         </div>
       </section>
 
-      <section className="section-padding border-t border-border">
+      <section className="section-padding">
         <div className="container-editorial">
           <div className="max-w-2xl mb-16">
             <p className="label-small mb-6">Service tiers</p>
@@ -193,7 +193,7 @@ const Services = () => {
         </div>
       </section>
 
-      <section className="section-padding border-t border-border">
+      <section className="section-padding">
         <div className="container-editorial">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
             <div>
@@ -222,7 +222,7 @@ const Services = () => {
         </div>
       </section>
 
-      <section className="section-padding border-t border-border bg-card">
+      <section className="section-padding bg-card">
         <div className="container-narrow text-center">
           <h2 className="headline-primary mb-8">Discuss your project.</h2>
           <p className="body-large mb-10">A short call is the start.</p>

@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 
 const HomeHero = () => {
   return (
@@ -12,20 +11,24 @@ const HomeHero = () => {
           </div>
           <p className="label-small mb-4">BORN FROM LIGHT.</p>
           <h1 className="headline-hero mb-5">Quiet systems for the web.</h1>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Link
-              to="/contact"
-              className="btn-primary rounded-full px-7 py-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+          <a
+            href="#home-next"
+            className="inline-flex items-center justify-center w-12 h-12 rounded-full border border-border/60 text-foreground/80 hover:text-foreground hover:border-accent/60 transition-colors"
+            aria-label="Scroll to next section"
+          >
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
-              Contact
-            </Link>
-            <Link
-              to="/websites"
-              className="btn-secondary rounded-full px-6 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-            >
-              Websites
-            </Link>
-          </div>
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </a>
         </div>
       </div>
     </section>
