@@ -400,6 +400,10 @@
     transform: translateY(-2px);
     border-color: hsl(var(--accent) / 0.6);
   }
+
+  .hero-webgl {
+    display: block;
+  }
 }
 
 @keyframes navPulse {
