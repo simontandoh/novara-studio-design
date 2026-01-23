@@ -33,10 +33,12 @@ const MenuIcon = ({ open }: { open: boolean }) => {
 const NovaNav = () => {
   const location = useLocation();
   const [open, setOpen] = useState(false);
+  const [scrolledPastHero, setScrolledPastHero] = useState(false);
   const panelRef = useRef<HTMLDivElement | null>(null);
   const toggleRef = useRef<HTMLButtonElement | null>(null);
 
   const activePath = useMemo(() => location.pathname, [location.pathname]);
+  const isHome = activePath === "/";
 
   useEffect(() => {
     setOpen(false);
@@ -88,12 +90,31 @@ const NovaNav = () => {
     };
   }, [open]);
 
+  useEffect(() => {
+    if (!isHome) {
+      setScrolledPastHero(true);
+      return;
+    }
+
+    const onScroll = () => {
+      const threshold = window.innerHeight * 0.65;
+      setScrolledPastHero(window.scrollY > threshold);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [isHome]);
+
   const closeMenu = () => {
     setOpen(false);
   };
 
   return (
-    <nav className="sticky top-0 left-0 right-0 z-50 bg-black">
+    <nav
+      className={`sticky top-0 left-0 right-0 z-50 transition-colors duration-[180ms] ${
+        isHome && !scrolledPastHero ? "bg-transparent" : "bg-black"
+      }`}
+    >
       <div className="container-editorial">
         <div className="grid grid-cols-3 items-center h-16 md:h-20">
           <div />
@@ -118,7 +139,9 @@ const NovaNav = () => {
               aria-expanded={open}
               aria-controls="nova-nav-panel"
               onClick={() => setOpen((prev) => !prev)}
-              className="text-white bg-black rounded-full p-2.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              className={`text-white rounded-full p-2.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
+                isHome && !scrolledPastHero ? "bg-transparent" : "bg-black"
+              }`}
             >
               <span className="sr-only">Toggle navigation</span>
               <MenuIcon open={open} />
