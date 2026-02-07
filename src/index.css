@@ -127,6 +127,7 @@
 
   html {
     scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
   }
 
   body {
@@ -134,6 +135,7 @@
     font-weight: 300;
     letter-spacing: 0.01em;
     background-image: radial-gradient(900px 600px at 15% 0%, hsl(210 25% 12% / 0.5), transparent 60%);
+    scroll-snap-type: y mandatory;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -403,6 +405,16 @@
 
   .hero-webgl {
     display: block;
+  }
+
+  .snap-container {
+    scroll-snap-type: y mandatory;
+  }
+
+  .snap-container > section {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    scroll-margin-top: 96px;
   }
 }
 

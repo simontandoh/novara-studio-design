@@ -52,11 +52,13 @@ const fragmentShaderSource = `
 
     vec3 base = vec3(0.008, 0.015, 0.035);
     float stars = 0.0;
-    stars += star(uvFar, 32.0, 0.955);
-    stars += star(uvFar + 0.2, 48.0, 0.962) * 0.95;
-    stars += star(uvNear - 0.5, 24.0, 0.95) * 0.95;
-    stars += star(uvNear + 0.8, 72.0, 0.965) * 0.8;
-    stars += star(uvNear + 1.4, 110.0, 0.975) * 0.6;
+    stars += star(uvFar, 24.0, 0.92);
+    stars += star(uvFar + 0.2, 38.0, 0.935) * 0.95;
+    stars += star(uvNear - 0.5, 32.0, 0.93) * 0.9;
+    stars += star(uvNear + 0.8, 64.0, 0.94) * 0.85;
+    stars += star(uvNear + 1.4, 120.0, 0.955) * 0.8;
+    stars += star(uvFar - 0.7, 180.0, 0.965) * 0.6;
+    stars += star(uvNear + 2.2, 260.0, 0.972) * 0.45;
 
     float haze = 0.0;
     haze += nebula(uvBase * vec2(aspect, 1.0), 0.1) * 0.55;
@@ -66,7 +68,7 @@ const fragmentShaderSource = `
 
     float vignette = smoothstep(1.2, 0.4, distance(v_uv, vec2(0.5)));
     vec3 color = base + hazeColor;
-    color += vec3(0.75, 0.85, 1.0) * stars * 1.35 * u_intensity;
+    color += vec3(0.82, 0.92, 1.1) * stars * 1.8 * u_intensity;
     color *= vignette;
     gl_FragColor = vec4(color, 1.0);
   }
@@ -156,7 +158,7 @@ const SpaceBackground = () => {
       gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
       gl.uniform2f(resolutionLocation, canvas.width, canvas.height);
       gl.uniform1f(timeLocation, time * 0.001);
-      gl.uniform1f(intensityLocation, isMobile ? 0.7 : 1.0);
+      gl.uniform1f(intensityLocation, isMobile ? 0.85 : 1.2);
       gl.drawArrays(gl.TRIANGLES, 0, 6);
     };
 
