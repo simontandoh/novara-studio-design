@@ -144,7 +144,7 @@ const NovaNav = () => {
   return (
     <nav
       aria-label="Primary"
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-[280ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+      className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-[280ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
         hidden && !open ? "-translate-y-full opacity-0" : "translate-y-0 opacity-100"
       } ${solid || open ? "bg-black" : "bg-transparent"}`}
     >

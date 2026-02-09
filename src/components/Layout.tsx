@@ -22,10 +22,10 @@ const Layout = ({ children }: LayoutProps) => {
         </Suspense>
       )}
       <NovaNav />
-      <main className="flex-1 pt-16 md:pt-20 relative z-10">
+      <main className="flex-1 pt-16 md:pt-20 relative z-10 text-center">
         {children}
       </main>
-      <section className="section-padding footer-section mt-auto">
+      <section className="section-padding footer-section mt-auto w-full text-center">
         <Footer />
       </section>
       <FloatingWhatsApp />

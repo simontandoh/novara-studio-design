@@ -12,7 +12,7 @@ const HomeHero = () => {
               NOVARA
             </span>
           </div>
-          <p className="label-small mb-4">Born from light. Built for the future.</p>
+          <p className="label-small mb-4">Born from light.</p>
           <h1 className="headline-hero mb-5">
             Digital systems studio for websites that stay clear, fast, and reliable.
           </h1>

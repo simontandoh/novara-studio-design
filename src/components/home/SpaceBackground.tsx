@@ -180,7 +180,7 @@ const SpaceBackground = () => {
   }, []);
 
   return (
-    <div className="fixed inset-0 z-0 pointer-events-none" aria-hidden="true">
+    <div className="fixed inset-0 -z-10 pointer-events-none" aria-hidden="true">
       <canvas ref={canvasRef} className="hero-webgl w-full h-full" />
       <div className="absolute inset-0 bg-black/70" />
       <div

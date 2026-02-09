@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import HomeHero from "@/components/home/HomeHero";
-import Testimonials from "@/components/home/Testimonials";
-import CTASection from "@/components/CTASection";
 import Seo from "@/components/Seo";
 import { SITE_URL } from "@/lib/seo";
 import { trackEvent } from "@/lib/analytics";
@@ -173,17 +171,6 @@ const Index = () => {
         </div>
       </section>
 
-      <Testimonials />
-
-      <CTASection
-        headline="Ready for a calmer, faster site?"
-        description="Share the essentials and we will respond with scope, timelines, and next steps."
-        primaryLabel="Start a project"
-        primaryTo="/contact"
-        secondaryLabel="View services"
-        secondaryTo="/websites"
-        centered
-      />
     </Layout>
   );
 };

@@ -2,8 +2,9 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="border-t border-border">
-      <div className="container-editorial py-10 md:py-12">
+    <footer className="w-full">
+      <div className="border-t border-border">
+        <div className="container-editorial py-10 md:py-12">
         <div className="grid md:grid-cols-4 gap-8 md:gap-6">
           <div className="md:col-span-2">
             <div className="flex items-center gap-3">
@@ -67,6 +68,7 @@ const Footer = () => {
             Registered office: [Registered Address].
           </p>
           <p className="text-xs text-muted-foreground">Quiet systems. Steady care.</p>
+        </div>
         </div>
       </div>
     </footer>
