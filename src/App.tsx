@@ -21,6 +21,7 @@ const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const Terms = lazy(() => import("./pages/Terms"));
 const CookieNotice = lazy(() => import("./pages/CookieNotice"));
 const AccessibilityStatement = lazy(() => import("./pages/AccessibilityStatement"));
+const Legal = lazy(() => import("./pages/Legal"));
 
 const queryClient = new QueryClient();
 
@@ -94,6 +95,7 @@ const App = () => (
               <Route path="/terms" element={<Terms />} />
               <Route path="/cookie-notice" element={<CookieNotice />} />
               <Route path="/accessibility" element={<AccessibilityStatement />} />
+              <Route path="/legal" element={<Legal />} />
               {/* Legacy redirects */}
               <Route path="/local" element={<Navigate to="/websites" replace />} />
               <Route path="/studio" element={<HowItWorks />} />

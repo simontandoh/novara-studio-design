@@ -188,11 +188,11 @@
   }
 
   .container-editorial {
-    @apply max-w-6xl mx-auto px-6 md:px-12;
+    @apply max-w-6xl mx-auto px-6 md:px-12 text-center;
   }
 
   .container-narrow {
-    @apply max-w-3xl mx-auto px-6 md:px-12;
+    @apply max-w-3xl mx-auto px-6 md:px-12 text-center;
   }
 
   .headline-hero {

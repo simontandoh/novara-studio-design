@@ -45,6 +45,7 @@ const NovaNav = () => {
   const [solid, setSolid] = useState(false);
   const panelRef = useRef<HTMLDivElement | null>(null);
   const toggleRef = useRef<HTMLButtonElement | null>(null);
+  const isHome = location.pathname === "/";
 
   const activePath = useMemo(() => location.pathname, [location.pathname]);
   useEffect(() => {
@@ -163,7 +164,7 @@ const NovaNav = () => {
                 height={36}
                 className="h-9 w-9 object-contain"
               />
-              <span className="text-lg font-light tracking-[0.4em]">NOVARA</span>
+              {!isHome && <span className="text-lg font-light tracking-[0.4em]">NOVARA</span>}
             </Link>
           </div>
           <div className="flex justify-end items-center justify-self-end w-full">
@@ -187,7 +188,7 @@ const NovaNav = () => {
 
       {open && (
         <div
-          className="fixed inset-0 z-50 bg-background/80"
+          className="fixed inset-0 z-[70] bg-background/80"
           onClick={closeMenu}
         >
           <div
@@ -196,7 +197,7 @@ const NovaNav = () => {
             role="dialog"
             aria-modal="true"
             aria-label="Site navigation"
-            className="absolute right-0 top-0 h-full w-full max-w-md p-8 md:p-10 bg-card border-l border-border shadow-2xl animate-fade-in nav-glow"
+            className="absolute right-0 top-0 h-full w-full max-w-md p-8 md:p-10 bg-card border-l border-border shadow-2xl animate-fade-in nav-glow z-[80]"
             onClick={(event) => event.stopPropagation()}
           >
             <div className="flex items-center justify-between mb-10">

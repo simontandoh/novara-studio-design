@@ -2,73 +2,51 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="w-full">
-      <div className="border-t border-border">
-        <div className="container-editorial py-10 md:py-12">
-        <div className="grid md:grid-cols-4 gap-8 md:gap-6">
-          <div className="md:col-span-2">
-            <div className="flex items-center gap-3">
-              <span className="text-lg font-light tracking-wide">Novara</span>
-            </div>
-            <p className="mt-4 body-refined max-w-sm">
+    <footer className="w-full border-t border-border">
+      <div className="container-editorial py-6">
+        <div className="flex flex-wrap items-center justify-between gap-6">
+          <div className="flex flex-col items-center md:items-start gap-2">
+            <span className="text-lg font-light tracking-wide">Novara</span>
+            <p className="text-xs text-muted-foreground">
               A digital systems studio. Build, rebuild, maintain.
             </p>
           </div>
 
-          <div>
-            <p className="label-small mb-4">Navigation</p>
-            <nav className="flex flex-col gap-3">
-              <Link to="/" className="text-sm font-light text-muted-foreground hover:text-foreground transition-colors">
-                Home
-              </Link>
-              <Link to="/websites" className="text-sm font-light text-muted-foreground hover:text-foreground transition-colors">
-                Websites
-              </Link>
-              <Link to="/portfolio" className="text-sm font-light text-muted-foreground hover:text-foreground transition-colors">
-                Portfolio
-              </Link>
-              <Link to="/faq" className="text-sm font-light text-muted-foreground hover:text-foreground transition-colors">
-                FAQ
-              </Link>
-              <Link to="/contact" className="text-sm font-light text-muted-foreground hover:text-foreground transition-colors">
-                Contact
-              </Link>
-            </nav>
-          </div>
+          <nav className="flex flex-wrap items-center justify-center gap-4 text-sm">
+            <Link to="/" className="font-light text-muted-foreground hover:text-foreground transition-colors">
+              Home
+            </Link>
+            <Link to="/websites" className="font-light text-muted-foreground hover:text-foreground transition-colors">
+              Websites
+            </Link>
+            <Link to="/portfolio" className="font-light text-muted-foreground hover:text-foreground transition-colors">
+              Portfolio
+            </Link>
+            <Link to="/faq" className="font-light text-muted-foreground hover:text-foreground transition-colors">
+              FAQ
+            </Link>
+            <Link to="/contact" className="font-light text-muted-foreground hover:text-foreground transition-colors">
+              Contact
+            </Link>
+            <Link to="/legal" className="font-light text-muted-foreground hover:text-foreground transition-colors">
+              Legal
+            </Link>
+          </nav>
 
-          <div>
-            <p className="label-small mb-4">Contact</p>
+          <div className="flex flex-col items-center md:items-end gap-2 text-xs text-muted-foreground">
             <a
               href="mailto:hello@novarastudios.co.uk"
-              className="text-sm font-light text-muted-foreground hover:text-foreground transition-colors"
+              className="font-light hover:text-foreground transition-colors"
             >
               hello@novarastudios.co.uk
             </a>
-            <p className="label-small mt-6 mb-4">Legal</p>
-            <nav className="flex flex-col gap-3">
-              <Link to="/privacy-policy" className="text-sm font-light text-muted-foreground hover:text-foreground transition-colors">
-                Privacy Policy
-              </Link>
-              <Link to="/terms" className="text-sm font-light text-muted-foreground hover:text-foreground transition-colors">
-                Terms of Service
-              </Link>
-              <Link to="/cookie-notice" className="text-sm font-light text-muted-foreground hover:text-foreground transition-colors">
-                Cookie Notice
-              </Link>
-              <Link to="/accessibility" className="text-sm font-light text-muted-foreground hover:text-foreground transition-colors">
-                Accessibility Statement
-              </Link>
-            </nav>
+            <span>Quiet systems. Steady care.</span>
           </div>
         </div>
 
-        <div className="mt-10 pt-6 border-t border-border flex flex-col md:flex-row justify-between items-start md:items-center gap-3">
-          <p className="text-xs text-muted-foreground">
-            Novara Studios Ltd. Company No. [Company Number]. Registered in England and Wales.
-            Registered office: [Registered Address].
-          </p>
-          <p className="text-xs text-muted-foreground">Quiet systems. Steady care.</p>
-        </div>
+        <div className="mt-4 text-xs text-muted-foreground text-center">
+          Novara Studios Ltd. Company No. [Company Number]. Registered in England and Wales.
+          Registered office: [Registered Address].
         </div>
       </div>
     </footer>
