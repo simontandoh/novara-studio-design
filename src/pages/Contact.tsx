@@ -4,8 +4,6 @@ import Layout from "@/components/Layout";
 import Seo from "@/components/Seo";
 import { trackEvent } from "@/lib/analytics";
 
-const whatsappNumber = "447456849035";
-
 const industryOptions = [
   "Automotive",
   "Beauty & Wellness",
@@ -159,8 +157,8 @@ const Contact = () => {
       </section>
 
       <section className="section-padding border-t border-border">
-        <div className="container-editorial grid lg:grid-cols-3 gap-10 lg:gap-16">
-          <div className="lg:col-span-2">
+        <div className="container-editorial">
+          <div className="max-w-3xl mx-auto">
             <form onSubmit={handleSubmit} className="space-y-8" noValidate>
               <div className="sr-only" aria-hidden="true">
                 <label htmlFor="companyWebsite">Company website</label>
@@ -343,7 +341,7 @@ const Contact = () => {
                     aria-invalid={Boolean(errors.corePages)}
                     aria-describedby={errors.corePages ? "corePages-error" : undefined}
                     className="w-full bg-transparent border border-border/60 rounded-2xl p-4 focus:border-foreground focus:outline-none transition-colors text-foreground text-center min-h-[110px]"
-                    placeholder="Pages you believe you’ll need (e.g. Home, About, Services)"
+                    placeholder="Pages you believe youâ€™ll need (e.g. Home, About, Services)"
                     required
                   />
                   {errors.corePages && (
@@ -482,24 +480,6 @@ const Contact = () => {
               )}
             </form>
           </div>
-          <aside className="surface-panel noise-overlay rounded-lg p-6 md:p-8 h-fit">
-            <p className="label-small mb-4">Contact</p>
-            <p className="body-refined mb-6">Direct line. Email.</p>
-            <a
-              href={`https://wa.me/${whatsappNumber}`}
-              className="btn-secondary rounded-full px-6 py-2 w-full text-center mb-4"
-              target="_blank"
-              rel="noreferrer"
-            >
-              WhatsApp
-            </a>
-            <a
-              href="mailto:hello@novarastudios.co.uk"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              hello@novarastudios.co.uk
-            </a>
-          </aside>
         </div>
       </section>
     </Layout>

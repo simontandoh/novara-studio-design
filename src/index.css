@@ -146,6 +146,15 @@
     background-image: radial-gradient(900px 600px at 15% 0%, hsl(210 25% 12% / 0.5), transparent 60%);
   }
 
+  body {
+    scrollbar-width: none;
+  }
+
+  body::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
   a:focus-visible,
   button:focus-visible,
   input:focus-visible,

@@ -145,7 +145,7 @@ const NovaNav = () => {
   return (
     <nav
       aria-label="Primary"
-      className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-[280ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-[280ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
         hidden && !open ? "-translate-y-full opacity-0" : "translate-y-0 opacity-100"
       } ${solid || open ? "bg-black" : "bg-transparent"}`}
     >
@@ -188,7 +188,7 @@ const NovaNav = () => {
 
       {open && (
         <div
-          className="fixed inset-0 z-[70] bg-background/80"
+          className="fixed inset-0 z-[110] bg-background/80"
           onClick={closeMenu}
         >
           <div
@@ -197,7 +197,7 @@ const NovaNav = () => {
             role="dialog"
             aria-modal="true"
             aria-label="Site navigation"
-            className="absolute right-0 top-0 h-full w-full max-w-md p-8 md:p-10 bg-card border-l border-border shadow-2xl animate-fade-in nav-glow z-[80]"
+            className="absolute right-0 top-0 h-full w-full max-w-md p-8 md:p-10 bg-card border-l border-border shadow-2xl animate-fade-in nav-glow z-[120]"
             onClick={(event) => event.stopPropagation()}
           >
             <div className="flex items-center justify-between mb-10">
