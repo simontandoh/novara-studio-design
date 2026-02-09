@@ -1,8 +1,14 @@
 import Layout from "@/components/Layout";
+import Seo from "@/components/Seo";
 
 const Terms = () => {
   return (
     <Layout>
+      <Seo
+        title="Terms of Service"
+        description="Basic terms for working with Novara Studios."
+        path="/terms"
+      />
       <section className="section-padding">
         <div className="container-editorial">
           <div className="max-w-3xl">
@@ -20,6 +26,10 @@ const Terms = () => {
               <p>
                 Client materials remain your property. Final deliverables are
                 yours once invoices are paid in full.
+              </p>
+              <p>
+                Any third-party services (hosting, analytics, or platforms) are
+                subject to their own terms and policies.
               </p>
               <p>
                 For questions about these terms, contact us at

@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
 import Layout from "@/components/Layout";
+import Seo from "@/components/Seo";
 
 type SubmissionData = Record<string, unknown> & {
   submittedAt?: string;
@@ -14,6 +15,12 @@ const Submitted = () => {
 
   return (
     <Layout>
+      <Seo
+        title="Submitted"
+        description="Your message was submitted to Novara Studios."
+        path="/submitted"
+        noIndex
+      />
       <section className="section-padding">
         <div className="container-editorial">
           <div className="max-w-2xl">

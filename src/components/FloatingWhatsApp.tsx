@@ -1,11 +1,13 @@
-const phoneNumber = "+447456849035";
+const whatsappNumber = "447456849035";
 
 const FloatingWhatsApp = () => {
   return (
     <a
-      href={`tel:${phoneNumber}`}
+      href={`https://wa.me/${whatsappNumber}`}
+      target="_blank"
+      rel="noreferrer"
       className="whatsapp-fab focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-      aria-label="Call Novara Studios"
+      aria-label="Message Novara Studios on WhatsApp"
     >
       <svg
         aria-hidden="true"

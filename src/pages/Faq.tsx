@@ -1,5 +1,6 @@
 import Layout from "@/components/Layout";
 import AccordionList from "@/components/Accordion";
+import Seo from "@/components/Seo";
 
 const faqItems = [
   {
@@ -23,6 +24,11 @@ const faqItems = [
 const Faq = () => {
   return (
     <Layout>
+      <Seo
+        title="FAQ"
+        description="Straight answers to common questions about Novara Studios."
+        path="/faq"
+      />
       <section className="section-padding">
         <div className="container-editorial">
           <div className="max-w-2xl mb-10">

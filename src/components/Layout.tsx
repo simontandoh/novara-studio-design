@@ -1,9 +1,10 @@
-import { ReactNode } from "react";
+import { ReactNode, Suspense, lazy } from "react";
 import { useLocation } from "react-router-dom";
 import NovaNav from "./NovaNav";
 import Footer from "./Footer";
 import FloatingWhatsApp from "./FloatingWhatsApp";
-import SpaceBackground from "./home/SpaceBackground";
+
+const SpaceBackground = lazy(() => import("./home/SpaceBackground"));
 
 interface LayoutProps {
   children: ReactNode;
@@ -15,9 +16,13 @@ const Layout = ({ children }: LayoutProps) => {
 
   return (
     <div className={`min-h-screen flex flex-col ${showSpace ? "bg-transparent" : "bg-background"}`}>
-      {showSpace && <SpaceBackground />}
+      {showSpace && (
+        <Suspense fallback={null}>
+          <SpaceBackground />
+        </Suspense>
+      )}
       <NovaNav />
-      <main className="flex-1 pt-16 md:pt-20 relative z-10 snap-container">
+      <main className="flex-1 pt-16 md:pt-20 relative z-10">
         {children}
         <section className="section-padding footer-section">
           <Footer />

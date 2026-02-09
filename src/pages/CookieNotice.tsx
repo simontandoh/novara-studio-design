@@ -1,0 +1,42 @@
+import Layout from "@/components/Layout";
+import Seo from "@/components/Seo";
+
+const CookieNotice = () => {
+  return (
+    <Layout>
+      <Seo
+        title="Cookie Notice"
+        description="Learn how Novara Studios uses cookies and analytics on this site."
+        path="/cookie-notice"
+      />
+      <section className="section-padding">
+        <div className="container-editorial">
+          <div className="max-w-3xl">
+            <p className="label-small mb-4">Legal</p>
+            <h1 className="headline-hero mb-6">Cookie Notice</h1>
+            <p className="body-large mb-6">
+              We use a small number of cookies and similar technologies to keep this site
+              working and to understand how people use it.
+            </p>
+            <div className="space-y-4 text-sm text-muted-foreground">
+              <p>
+                Essential cookies keep the site functioning (for example, remembering form
+                preferences). Optional analytics cookies help us improve the experience by
+                measuring anonymous usage.
+              </p>
+              <p>
+                You can block or delete cookies in your browser settings. If you disable
+                cookies, some features may not work as expected.
+              </p>
+              <p>
+                For questions, contact us at hello@novarastudios.co.uk.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </Layout>
+  );
+};
+
+export default CookieNotice;

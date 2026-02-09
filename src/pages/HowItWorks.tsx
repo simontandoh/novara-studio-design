@@ -1,5 +1,6 @@
 import Layout from "@/components/Layout";
 import ProcessStep from "@/components/ProcessStep";
+import Seo from "@/components/Seo";
 
 const processSteps = [
   {
@@ -31,6 +32,11 @@ const processSteps = [
 const HowItWorks = () => {
   return (
     <Layout>
+      <Seo
+        title="How It Works"
+        description="A calm, structured process from discovery to launch and ongoing care."
+        path="/how-it-works"
+      />
       <section className="section-padding">
         <div className="container-editorial">
           <div className="max-w-3xl">

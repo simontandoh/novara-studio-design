@@ -1,4 +1,5 @@
 import Layout from "@/components/Layout";
+import Seo from "@/components/Seo";
 const values = [
   {
     title: "Reliability",
@@ -21,6 +22,11 @@ const values = [
 const About = () => {
   return (
     <Layout>
+      <Seo
+        title="About"
+        description="Novara Studios is a digital systems studio focused on clear strategy, reliable builds, and long-term care."
+        path="/about"
+      />
       <section className="section-padding">
         <div className="container-editorial">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">

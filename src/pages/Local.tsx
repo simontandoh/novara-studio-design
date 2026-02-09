@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
+import Seo from "@/components/Seo";
 
 const maintenanceTiers = [
   {
     name: "Care",
-    price: "£49/month",
-    description: "Baseline care for stable sites.",
+    price: "GBP 49/month",
+    description: "Baseline care for stable, well-run sites.",
     includes: [
       "Core updates and security patching",
       "Uptime monitoring and backup checks",
@@ -15,8 +16,8 @@ const maintenanceTiers = [
   },
   {
     name: "Priority",
-    price: "£99/month",
-    description: "Proactive care with priority support.",
+    price: "GBP 99/month",
+    description: "Proactive care with priority response.",
     includes: [
       "Everything in Care",
       "Performance reviews and proactive fixes",
@@ -28,8 +29,8 @@ const maintenanceTiers = [
   },
   {
     name: "Continuity",
-    price: "£199/month",
-    description: "Highest priority with deeper support.",
+    price: "GBP 199/month",
+    description: "Highest priority with deeper continuity support.",
     includes: [
       "Everything in Priority",
       "Enhanced monitoring and incident triage",
@@ -43,6 +44,11 @@ const maintenanceTiers = [
 const Local = () => {
   return (
     <Layout>
+      <Seo
+        title="Websites"
+        description="Calm, high-performing websites with ongoing care plans built for long-term continuity."
+        path="/websites"
+      />
       <section className="section-padding">
         <div className="container-editorial">
           <div className="max-w-3xl">

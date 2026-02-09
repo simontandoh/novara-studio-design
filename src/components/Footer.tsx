@@ -51,13 +51,20 @@ const Footer = () => {
               <Link to="/terms" className="text-sm font-light text-muted-foreground hover:text-foreground transition-colors">
                 Terms of Service
               </Link>
+              <Link to="/cookie-notice" className="text-sm font-light text-muted-foreground hover:text-foreground transition-colors">
+                Cookie Notice
+              </Link>
+              <Link to="/accessibility" className="text-sm font-light text-muted-foreground hover:text-foreground transition-colors">
+                Accessibility Statement
+              </Link>
             </nav>
           </div>
         </div>
 
         <div className="mt-10 pt-6 border-t border-border flex flex-col md:flex-row justify-between items-start md:items-center gap-3">
           <p className="text-xs text-muted-foreground">
-            Novara Studios (C) 2026 All rights reserved.
+            Novara Studios Ltd. Company No. [Company Number]. Registered in England and Wales.
+            Registered office: [Registered Address].
           </p>
           <p className="text-xs text-muted-foreground">Quiet systems. Steady care.</p>
         </div>

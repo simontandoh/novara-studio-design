@@ -1,21 +1,26 @@
-import { useEffect } from "react";
+import { Suspense, useEffect, lazy } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
-import Index from "./pages/Index";
-import Local from "./pages/Local";
-import HowItWorks from "./pages/HowItWorks";
-import ContinuitySupport from "./pages/ContinuitySupport";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import Faq from "./pages/Faq";
-import Portfolio from "./pages/Portfolio";
-import NotFound from "./pages/NotFound";
-import Submitted from "./pages/Submitted";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import Terms from "./pages/Terms";
+import { HelmetProvider } from "react-helmet-async";
+import { trackEvent, trackPageView } from "@/lib/analytics";
+import { buildTitle } from "@/lib/seo";
+const Index = lazy(() => import("./pages/Index"));
+const Local = lazy(() => import("./pages/Local"));
+const HowItWorks = lazy(() => import("./pages/HowItWorks"));
+const ContinuitySupport = lazy(() => import("./pages/ContinuitySupport"));
+const About = lazy(() => import("./pages/About"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Faq = lazy(() => import("./pages/Faq"));
+const Portfolio = lazy(() => import("./pages/Portfolio"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+const Submitted = lazy(() => import("./pages/Submitted"));
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+const Terms = lazy(() => import("./pages/Terms"));
+const CookieNotice = lazy(() => import("./pages/CookieNotice"));
+const AccessibilityStatement = lazy(() => import("./pages/AccessibilityStatement"));
 
 const queryClient = new QueryClient();
 
@@ -29,35 +34,78 @@ const ScrollToTop = () => {
   return null;
 };
 
+const AnalyticsListener = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    const title = buildTitle(document.title);
+    trackPageView(location.pathname + location.search, title);
+  }, [location.pathname, location.search]);
+
+  useEffect(() => {
+    const seen = new Set<number>();
+    const thresholds = [25, 50, 75, 90];
+    const onScroll = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - window.innerHeight;
+      if (height <= 0) return;
+      const pct = Math.round((scrollTop / height) * 100);
+      thresholds.forEach((threshold) => {
+        if (pct >= threshold && !seen.has(threshold)) {
+          seen.add(threshold);
+          trackEvent("scroll_depth", { percent: threshold });
+        }
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return null;
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/websites" element={<Local />} />
-          <Route path="/portfolio" element={<Portfolio />} />
-          <Route path="/how-it-works" element={<HowItWorks />} />
-          <Route path="/continuity" element={<ContinuitySupport />} />
-          <Route path="/faq" element={<Faq />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/submitted" element={<Submitted />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/terms" element={<Terms />} />
-          {/* Legacy redirects */}
-          <Route path="/local" element={<Navigate to="/websites" replace />} />
-          <Route path="/studio" element={<HowItWorks />} />
-          <Route path="/continuity-support" element={<ContinuitySupport />} />
-          <Route path="/work" element={<Portfolio />} />
-          <Route path="/studio-partnerships" element={<Index />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
+    <HelmetProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <ScrollToTop />
+          <AnalyticsListener />
+          <Suspense
+            fallback={
+              <div className="min-h-screen flex items-center justify-center text-sm text-muted-foreground">
+                Loading...
+              </div>
+            }
+          >
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/websites" element={<Local />} />
+              <Route path="/portfolio" element={<Portfolio />} />
+              <Route path="/how-it-works" element={<HowItWorks />} />
+              <Route path="/continuity" element={<ContinuitySupport />} />
+              <Route path="/faq" element={<Faq />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/submitted" element={<Submitted />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/terms" element={<Terms />} />
+              <Route path="/cookie-notice" element={<CookieNotice />} />
+              <Route path="/accessibility" element={<AccessibilityStatement />} />
+              {/* Legacy redirects */}
+              <Route path="/local" element={<Navigate to="/websites" replace />} />
+              <Route path="/studio" element={<HowItWorks />} />
+              <Route path="/continuity-support" element={<ContinuitySupport />} />
+              <Route path="/work" element={<Portfolio />} />
+              <Route path="/studio-partnerships" element={<Index />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
+        </BrowserRouter>
+      </TooltipProvider>
+    </HelmetProvider>
   </QueryClientProvider>
 );
 

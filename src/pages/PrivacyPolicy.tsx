@@ -1,8 +1,14 @@
 import Layout from "@/components/Layout";
+import Seo from "@/components/Seo";
 
 const PrivacyPolicy = () => {
   return (
     <Layout>
+      <Seo
+        title="Privacy Policy"
+        description="How Novara Studios collects and uses information."
+        path="/privacy-policy"
+      />
       <section className="section-padding">
         <div className="container-editorial">
           <div className="max-w-3xl">
@@ -21,6 +27,10 @@ const PrivacyPolicy = () => {
                 We only use this information to respond to your request, deliver
                 services, and maintain our working relationship. We do not sell
                 your data.
+              </p>
+              <p>
+                We may use privacy-friendly analytics to understand how the site
+                is used. This data is aggregated and does not identify you.
               </p>
               <p>
                 If you would like a copy of your data, or want it removed, email

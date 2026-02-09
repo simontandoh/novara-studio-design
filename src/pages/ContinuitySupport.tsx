@@ -1,5 +1,6 @@
 import Layout from "@/components/Layout";
-import { Clock, Mail, Shield, AlertCircle, Server, KeyRound } from "lucide-react";
+import { Mail, AlertCircle, Server, KeyRound } from "lucide-react";
+import Seo from "@/components/Seo";
 
 const issuesCovered = [
   { icon: Server, label: "Site downtime" },
@@ -13,6 +14,11 @@ const issuesCovered = [
 const ContinuitySupport = () => {
   return (
     <Layout>
+      <Seo
+        title="Continuity Support"
+        description="Structured out-of-hours coverage for websites and digital systems."
+        path="/continuity"
+      />
       <section className="section-padding">
         <div className="container-editorial">
           <div className="max-w-3xl">

@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { trackEvent } from "@/lib/analytics";
 
 const navLinks = [
   { label: "Home", path: "/" },
@@ -135,8 +136,14 @@ const NovaNav = () => {
     setOpen(false);
   };
 
+  const handleNavClick = (label: string, path: string) => {
+    trackEvent("nav_click", { label, path });
+    closeMenu();
+  };
+
   return (
     <nav
+      aria-label="Primary"
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-[280ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
         hidden ? "-translate-y-full opacity-0" : "translate-y-0 opacity-100"
       } ${solid ? "bg-black" : "bg-transparent"}`}
@@ -150,8 +157,10 @@ const NovaNav = () => {
               className="flex items-center gap-3 text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               <img
-                src="/novara-logo.png"
+                src="/favicon.png"
                 alt="Novara logo"
+                width={36}
+                height={36}
                 className="h-9 w-9 object-contain"
               />
               <span className="text-lg font-light tracking-[0.4em]">NOVARA</span>
@@ -208,7 +217,7 @@ const NovaNav = () => {
                 <Link
                   key={item.path}
                   to={item.path}
-                  onClick={closeMenu}
+                  onClick={() => handleNavClick(item.label, item.path)}
                   className={`group relative text-2xl font-light tracking-tight transition-all duration-[180ms] ease-[cubic-bezier(0.16,1,0.3,1)] animate-fade-up ${
                     item.primary
                       ? "text-accent"
@@ -230,7 +239,7 @@ const NovaNav = () => {
               </p>
               <Link
                 to="/contact"
-                onClick={closeMenu}
+                onClick={() => handleNavClick("Contact", "/contact")}
                 className="btn-primary rounded-full px-6 py-2"
               >
                 Contact
@@ -242,7 +251,7 @@ const NovaNav = () => {
                 <Link
                   key={item.path}
                   to={item.path}
-                  onClick={closeMenu}
+                  onClick={() => handleNavClick(item.label, item.path)}
                   className="group relative text-muted-foreground hover:text-foreground transition-colors"
                 >
                   {item.label}

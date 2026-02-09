@@ -31,7 +31,7 @@ const Testimonials = () => {
     <section className="section-padding">
       <div className="container-narrow text-center">
         <p className="label-small mb-4">Notes</p>
-        <div className="relative">
+        <div className="relative min-h-[110px]" aria-live="polite">
           {testimonials.map((item, i) => (
             <div
               key={item.quote}

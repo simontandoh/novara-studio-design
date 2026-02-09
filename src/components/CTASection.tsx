@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { trackEvent } from "@/lib/analytics";
 
 interface CTASectionProps {
   headline: string;
@@ -38,6 +39,7 @@ const CTASection = ({
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-end">
               <Link
                 to={primaryTo}
+                onClick={() => trackEvent("cta_click", { label: primaryLabel, location: "cta_section" })}
                 className="btn-primary rounded-full px-7 py-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 {primaryLabel}
@@ -45,6 +47,9 @@ const CTASection = ({
               {secondaryLabel && secondaryTo && (
                 <Link
                   to={secondaryTo}
+                  onClick={() =>
+                    trackEvent("cta_click", { label: secondaryLabel, location: "cta_section" })
+                  }
                   className="btn-secondary rounded-full px-7 py-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 >
                   {secondaryLabel}

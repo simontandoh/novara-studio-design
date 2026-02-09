@@ -2,8 +2,10 @@ import "react-phone-number-input/style.css";
 import { useEffect, useState } from "react";
 import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
 import { parsePhoneNumberFromString } from "libphonenumber-js";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Layout from "@/components/Layout";
+import Seo from "@/components/Seo";
+import { trackEvent } from "@/lib/analytics";
 
 const whatsappNumber = "447456849035";
 
@@ -73,11 +75,14 @@ const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
   const [formData, setFormData] = useState(initialFormState);
   const [pagesInput, setPagesInput] = useState("");
   const [coreServicesInput, setCoreServicesInput] = useState("");
   const [styleRefInput, setStyleRefInput] = useState("");
   const [styleRefError, setStyleRefError] = useState("");
+  const [honeypot, setHoneypot] = useState("");
+  const [formStartedAt] = useState(() => Date.now());
 
   useEffect(() => {
     const saved = localStorage.getItem("novaraContactDraft");
@@ -141,18 +146,23 @@ const Contact = () => {
     if (!formData.domainStatus) nextErrors.domainStatus = "Select a domain status.";
     if (!formData.hostingStatus) nextErrors.hostingStatus = "Select a hosting status.";
     if (!formData.maintenanceTier) nextErrors.maintenanceTier = "Select a maintenance tier.";
+    if (!formData.consent) nextErrors.consent = "Consent is required.";
     return nextErrors;
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    setSubmitStatus("idle");
     const nextErrors = validate();
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) {
       setIsSubmitting(false);
       return;
     }
-    setSubmitted(true);
+    if (honeypot) {
+      setSubmitStatus("success");
+      return;
+    }
     setIsSubmitting(true);
     const payload = {
       fullName: formData.fullName,
@@ -178,19 +188,31 @@ const Contact = () => {
       maintenanceTierInterest: formData.maintenanceTier,
       website: formData.website,
       submittedAt: new Date().toISOString(),
+      formDurationMs: Date.now() - formStartedAt,
+      honeypot,
     };
     localStorage.setItem("novaraContactSubmission", JSON.stringify(payload, null, 2));
     localStorage.removeItem("novaraContactDraft");
     try {
-      await fetch("/api/lead", {
+      const response = await fetch("/api/lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
+      if (!response.ok) {
+        throw new Error("Lead submission failed");
+      }
+      trackEvent("form_submit_success", { form: "contact" });
+      setSubmitStatus("success");
+      setSubmitted(true);
+      navigate("/submitted", { state: payload });
     } catch (error) {
       console.warn("Lead submission failed", error);
+      trackEvent("form_submit_error", { form: "contact" });
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
     }
-    navigate("/submitted", { state: payload });
   };
 
   const updateField = (name: string, value: string | boolean | number) => {
@@ -206,6 +228,7 @@ const Contact = () => {
     setErrors({});
     setSubmitted(false);
     setIsSubmitting(false);
+    setSubmitStatus("idle");
     localStorage.removeItem("novaraContactDraft");
   };
 
@@ -234,7 +257,7 @@ const Contact = () => {
   const addStyleRef = () => {
     const trimmed = styleRefInput.trim();
     if (!trimmed) return;
-    if (!/^httpsx:\/\//i.test(trimmed)) {
+    if (!/^https?:\/\//i.test(trimmed)) {
       setStyleRefError("Enter a valid URL starting with http:// or https://");
       return;
     }
@@ -257,13 +280,18 @@ const Contact = () => {
 
   return (
     <Layout>
+      <Seo
+        title="Contact"
+        description="Share your project details and get a clear response from Novara Studios."
+        path="/contact"
+      />
       <section className="section-padding">
         <div className="container-editorial">
           <div className="max-w-2xl">
             <p className="label-small mb-4">Contact</p>
             <h1 className="headline-hero mb-6">Project intake.</h1>
             <p className="body-large">
-              Share essentials. We reply.
+              Share the essentials. We reply with next steps and a clear plan.
             </p>
           </div>
         </div>
@@ -272,7 +300,19 @@ const Contact = () => {
       <section className="section-padding border-t border-border">
         <div className="container-editorial grid lg:grid-cols-3 gap-10 lg:gap-16">
           <div className="lg:col-span-2">
-            <form onSubmit={handleSubmit} className="space-y-8">
+            <form onSubmit={handleSubmit} className="space-y-8" noValidate>
+              <div className="sr-only" aria-hidden="true">
+                <label htmlFor="companyWebsite">Company website</label>
+                <input
+                  id="companyWebsite"
+                  name="companyWebsite"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={honeypot}
+                  onChange={(event) => setHoneypot(event.target.value)}
+                />
+              </div>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="fullName" className="block label-small mb-3">
@@ -280,13 +320,20 @@ const Contact = () => {
                   </label>
                   <input
                     id="fullName"
+                    name="fullName"
                     type="text"
+                    autoComplete="name"
                     value={formData.fullName}
                     onChange={(event) => updateField("fullName", event.target.value)}
+                    aria-invalid={Boolean(errors.fullName)}
+                    aria-describedby={errors.fullName ? "fullName-error" : undefined}
                     className="w-full bg-transparent border-b border-border pb-3 focus:border-foreground focus:outline-none transition-colors text-foreground"
+                    required
                   />
                   {errors.fullName && (
-                    <p className="text-xs text-accent mt-2">{errors.fullName}</p>
+                    <p id="fullName-error" className="text-xs text-accent mt-2" role="alert">
+                      {errors.fullName}
+                    </p>
                   )}
                 </div>
                 <div>
@@ -295,13 +342,20 @@ const Contact = () => {
                   </label>
                   <input
                     id="businessName"
+                    name="businessName"
                     type="text"
+                    autoComplete="organization"
                     value={formData.businessName}
                     onChange={(event) => updateField("businessName", event.target.value)}
+                    aria-invalid={Boolean(errors.businessName)}
+                    aria-describedby={errors.businessName ? "businessName-error" : undefined}
                     className="w-full bg-transparent border-b border-border pb-3 focus:border-foreground focus:outline-none transition-colors text-foreground"
+                    required
                   />
                   {errors.businessName && (
-                    <p className="text-xs text-accent mt-2">{errors.businessName}</p>
+                    <p id="businessName-error" className="text-xs text-accent mt-2" role="alert">
+                      {errors.businessName}
+                    </p>
                   )}
                 </div>
                 <div>
@@ -310,7 +364,9 @@ const Contact = () => {
                   </label>
                   <input
                     id="email"
+                    name="email"
                     type="email"
+                    autoComplete="email"
                     value={formData.email}
                     onBlur={() => {
                       if (formData.email && !isValidEmail(formData.email)) {
@@ -326,10 +382,15 @@ const Contact = () => {
                         setErrors((prev) => ({ ...prev, email: "" }));
                       }
                     }}
+                    aria-invalid={Boolean(errors.email)}
+                    aria-describedby={errors.email ? "email-error" : undefined}
                     className="w-full bg-transparent border-b border-border pb-3 focus:border-foreground focus:outline-none transition-colors text-foreground"
+                    required
                   />
                   {errors.email && (
-                    <p className="text-xs text-accent mt-2">{errors.email}</p>
+                    <p id="email-error" className="text-xs text-accent mt-2" role="alert">
+                      {errors.email}
+                    </p>
                   )}
                 </div>
                 <div>
@@ -338,6 +399,7 @@ const Contact = () => {
                   </label>
                   <PhoneInput
                     id="phone"
+                    name="phone"
                     defaultCountry="GB"
                     country={phoneCountry}
                     onCountryChange={(value) => setPhoneCountry(value || "GB")}
@@ -354,6 +416,8 @@ const Contact = () => {
                         }));
                       }
                     }}
+                    aria-invalid={Boolean(errors.phone)}
+                    aria-describedby={errors.phone ? "phone-error" : undefined}
                     className="phone-input flex gap-3 rounded-full border border-border/60 bg-card/40 p-1"
                     inputClassName="select-pill phone-number"
                     countrySelectProps={{
@@ -361,7 +425,9 @@ const Contact = () => {
                     }}
                   />
                   {errors.phone && (
-                    <p className="text-xs text-accent mt-2">{errors.phone}</p>
+                    <p id="phone-error" className="text-xs text-accent mt-2" role="alert">
+                      {errors.phone}
+                    </p>
                   )}
                 </div>
                 <div>
@@ -370,6 +436,7 @@ const Contact = () => {
                   </label>
                   <input
                     id="location"
+                    name="location"
                     type="text"
                     list="city-options"
                     value={formData.location}
@@ -379,8 +446,11 @@ const Contact = () => {
                         setErrors((prev) => ({ ...prev, location: "" }));
                       }
                     }}
+                    aria-invalid={Boolean(errors.location)}
+                    aria-describedby={errors.location ? "location-error" : undefined}
                     className="w-full bg-transparent border-b border-border pb-3 focus:border-foreground focus:outline-none transition-colors text-foreground"
                     placeholder="Start typing a city"
+                    required
                   />
                   <datalist id="city-options">
                     {cityOptions.map((option) => (
@@ -388,7 +458,9 @@ const Contact = () => {
                     ))}
                   </datalist>
                   {errors.location && (
-                    <p className="text-xs text-accent mt-2">{errors.location}</p>
+                    <p id="location-error" className="text-xs text-accent mt-2" role="alert">
+                      {errors.location}
+                    </p>
                   )}
                 </div>
                 <div>
@@ -397,9 +469,13 @@ const Contact = () => {
                   </label>
                   <select
                     id="industry"
+                    name="industry"
                     value={formData.industry}
                     onChange={(event) => updateField("industry", event.target.value)}
+                    aria-invalid={Boolean(errors.industry)}
+                    aria-describedby={errors.industry ? "industry-error" : undefined}
                     className="select-pill"
+                    required
                   >
                     <option value="" className="bg-background text-foreground">
                       Select
@@ -411,7 +487,9 @@ const Contact = () => {
                     ))}
                   </select>
                   {errors.industry && (
-                    <p className="text-xs text-accent mt-2">{errors.industry}</p>
+                    <p id="industry-error" className="text-xs text-accent mt-2" role="alert">
+                      {errors.industry}
+                    </p>
                   )}
                 </div>
                 {formData.industry === "Other" && (
@@ -421,13 +499,19 @@ const Contact = () => {
                     </label>
                     <input
                       id="industryOther"
+                      name="industryOther"
                       type="text"
                       value={formData.industryOther}
                       onChange={(event) => updateField("industryOther", event.target.value)}
+                      aria-invalid={Boolean(errors.industryOther)}
+                      aria-describedby={errors.industryOther ? "industryOther-error" : undefined}
                       className="w-full bg-transparent border-b border-border pb-3 focus:border-foreground focus:outline-none transition-colors text-foreground"
+                      required
                     />
                     {errors.industryOther && (
-                      <p className="text-xs text-accent mt-2">{errors.industryOther}</p>
+                      <p id="industryOther-error" className="text-xs text-accent mt-2" role="alert">
+                        {errors.industryOther}
+                      </p>
                     )}
                   </div>
                 )}
@@ -437,22 +521,28 @@ const Contact = () => {
                   </label>
                   <input
                     id="website"
+                    name="website"
                     type="url"
                     placeholder="www.example.co.uk"
                     value={formData.website}
                     onChange={(event) => updateField("website", event.target.value)}
                     className="w-full bg-transparent border-b border-border pb-3 focus:border-foreground focus:outline-none transition-colors text-foreground"
+                    autoComplete="url"
                   />
                 </div>
                 <div>
                   <label htmlFor="projectType" className="block label-small mb-3">
-                    What do you needx<span className="text-accent"> *</span>
+                    What do you need<span className="text-accent"> *</span>
                   </label>
                   <select
                     id="projectType"
+                    name="projectType"
                     value={formData.projectType}
                     onChange={(event) => updateField("projectType", event.target.value)}
+                    aria-invalid={Boolean(errors.projectType)}
+                    aria-describedby={errors.projectType ? "projectType-error" : undefined}
                     className="select-pill"
+                    required
                   >
                     <option value="" className="bg-background text-foreground">
                       Select
@@ -474,7 +564,9 @@ const Contact = () => {
                     </option>
                   </select>
                   {errors.projectType && (
-                    <p className="text-xs text-accent mt-2">{errors.projectType}</p>
+                    <p id="projectType-error" className="text-xs text-accent mt-2" role="alert">
+                      {errors.projectType}
+                    </p>
                   )}
                 </div>
               </div>
@@ -486,6 +578,7 @@ const Contact = () => {
                 <div className="flex flex-wrap gap-3">
                   <input
                     id="pagesNeeded"
+                    name="pagesNeeded"
                     type="text"
                     value={pagesInput}
                     onChange={(event) => setPagesInput(event.target.value)}
@@ -530,6 +623,7 @@ const Contact = () => {
                 <div className="flex flex-wrap gap-3">
                   <input
                     id="coreServices"
+                    name="coreServices"
                     type="text"
                     value={coreServicesInput}
                     onChange={(event) => setCoreServicesInput(event.target.value)}
@@ -576,9 +670,13 @@ const Contact = () => {
                   </label>
                   <select
                     id="primaryGoal"
+                    name="primaryGoal"
                     value={formData.primaryGoal}
                     onChange={(event) => updateField("primaryGoal", event.target.value)}
+                    aria-invalid={Boolean(errors.primaryGoal)}
+                    aria-describedby={errors.primaryGoal ? "primaryGoal-error" : undefined}
                     className="select-pill"
+                    required
                   >
                     <option value="" className="bg-background text-foreground">
                       Select
@@ -600,7 +698,9 @@ const Contact = () => {
                     </option>
                   </select>
                   {errors.primaryGoal && (
-                    <p className="text-xs text-accent mt-2">{errors.primaryGoal}</p>
+                    <p id="primaryGoal-error" className="text-xs text-accent mt-2" role="alert">
+                      {errors.primaryGoal}
+                    </p>
                   )}
                 </div>
                 <div>
@@ -610,6 +710,7 @@ const Contact = () => {
                   <div className="flex flex-wrap gap-3">
                     <input
                       id="styleRefs"
+                      name="styleRefs"
                       type="url"
                       value={styleRefInput}
                       onChange={(event) => {
@@ -629,7 +730,9 @@ const Contact = () => {
                     </button>
                   </div>
                   {styleRefError && (
-                    <p className="text-xs text-accent mt-2">{styleRefError}</p>
+                    <p className="text-xs text-accent mt-2" role="alert">
+                      {styleRefError}
+                    </p>
                   )}
                   {formData.styleRefs.length > 0 && (
                     <div className="mt-2 flex flex-wrap gap-2">
@@ -655,10 +758,11 @@ const Contact = () => {
               </div>
 
               <div>
-                <p className="label-small mb-3">Brand assets availablex</p>
+                <p className="label-small mb-3">Brand assets available</p>
                 <div className="flex flex-wrap gap-6 text-sm text-muted-foreground">
                   <label className="flex items-center gap-2">
                     <input
+                      name="brandAssetsLogo"
                       type="checkbox"
                       checked={formData.brandAssetsLogo}
                       onChange={(event) => updateField("brandAssetsLogo", event.target.checked)}
@@ -667,6 +771,7 @@ const Contact = () => {
                   </label>
                   <label className="flex items-center gap-2">
                     <input
+                      name="brandAssetsPhotos"
                       type="checkbox"
                       checked={formData.brandAssetsPhotos}
                       onChange={(event) =>
@@ -677,6 +782,7 @@ const Contact = () => {
                   </label>
                   <label className="flex items-center gap-2">
                     <input
+                      name="brandAssetsVideos"
                       type="checkbox"
                       checked={formData.brandAssetsVideos}
                       onChange={(event) => updateField("brandAssetsVideos", event.target.checked)}
@@ -693,9 +799,13 @@ const Contact = () => {
                   </label>
                   <select
                     id="domainStatus"
+                    name="domainStatus"
                     value={formData.domainStatus}
                     onChange={(event) => updateField("domainStatus", event.target.value)}
+                    aria-invalid={Boolean(errors.domainStatus)}
+                    aria-describedby={errors.domainStatus ? "domainStatus-error" : undefined}
                     className="select-pill"
+                    required
                   >
                     <option value="" className="bg-background text-foreground">
                       Select
@@ -708,7 +818,9 @@ const Contact = () => {
                     </option>
                   </select>
                   {errors.domainStatus && (
-                    <p className="text-xs text-accent mt-2">{errors.domainStatus}</p>
+                    <p id="domainStatus-error" className="text-xs text-accent mt-2" role="alert">
+                      {errors.domainStatus}
+                    </p>
                   )}
                 </div>
                 <div>
@@ -717,9 +829,13 @@ const Contact = () => {
                   </label>
                   <select
                     id="hostingStatus"
+                    name="hostingStatus"
                     value={formData.hostingStatus}
                     onChange={(event) => updateField("hostingStatus", event.target.value)}
+                    aria-invalid={Boolean(errors.hostingStatus)}
+                    aria-describedby={errors.hostingStatus ? "hostingStatus-error" : undefined}
                     className="select-pill"
+                    required
                   >
                     <option value="" className="bg-background text-foreground">
                       Select
@@ -732,7 +848,9 @@ const Contact = () => {
                     </option>
                   </select>
                   {errors.hostingStatus && (
-                    <p className="text-xs text-accent mt-2">{errors.hostingStatus}</p>
+                    <p id="hostingStatus-error" className="text-xs text-accent mt-2" role="alert">
+                      {errors.hostingStatus}
+                    </p>
                   )}
                 </div>
               </div>
@@ -744,9 +862,13 @@ const Contact = () => {
                   </label>
                   <select
                     id="maintenanceTier"
+                    name="maintenanceTier"
                     value={formData.maintenanceTier}
                     onChange={(event) => updateField("maintenanceTier", event.target.value)}
+                    aria-invalid={Boolean(errors.maintenanceTier)}
+                    aria-describedby={errors.maintenanceTier ? "maintenanceTier-error" : undefined}
                     className="select-pill"
+                    required
                   >
                     <option value="" className="bg-background text-foreground">
                       Select
@@ -762,7 +884,9 @@ const Contact = () => {
                     </option>
                   </select>
                   {errors.maintenanceTier && (
-                    <p className="text-xs text-accent mt-2">{errors.maintenanceTier}</p>
+                    <p id="maintenanceTier-error" className="text-xs text-accent mt-2" role="alert">
+                      {errors.maintenanceTier}
+                    </p>
                   )}
                 </div>
               </div>
@@ -770,14 +894,23 @@ const Contact = () => {
               <div className="flex items-start gap-3">
                 <input
                   id="consent"
+                  name="consent"
                   type="checkbox"
                   checked={formData.consent}
                   onChange={(event) => updateField("consent", event.target.checked)}
+                  aria-invalid={Boolean(errors.consent)}
+                  aria-describedby={errors.consent ? "consent-error" : undefined}
+                  required
                 />
                 <label htmlFor="consent" className="text-sm text-muted-foreground">
                   I consent to Novara contacting me about this request.
                 </label>
               </div>
+              {errors.consent && (
+                <p id="consent-error" className="text-xs text-accent" role="alert">
+                  {errors.consent}
+                </p>
+              )}
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
@@ -814,7 +947,7 @@ const Contact = () => {
                 <button
                   type="button"
                   onClick={() => {
-                    if (window.confirm("Clear all form fieldsx")) {
+                    if (window.confirm("Clear all form fields?")) {
                       clearForm();
                     }
                   }}
@@ -823,11 +956,22 @@ const Contact = () => {
                   Clear
                 </button>
               </div>
-              <p className="text-xs text-muted-foreground">* Required fields</p>
+              <p className="text-xs text-muted-foreground">
+                * Required fields. By submitting, you agree to our{" "}
+                <Link className="underline" to="/privacy-policy">
+                  Privacy Policy
+                </Link>
+                .
+              </p>
 
               {submitted && (
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-muted-foreground" role="status">
                   Received. We will reply.
+                </p>
+              )}
+              {submitStatus === "error" && (
+                <p className="text-sm text-accent" role="alert">
+                  We could not send that right now. Please email hello@novarastudios.co.uk.
                 </p>
               )}
             </form>
@@ -840,6 +984,8 @@ const Contact = () => {
             <a
               href={`https://wa.me/${whatsappNumber}`}
               className="btn-secondary rounded-full px-6 py-2 w-full text-center mb-4"
+              target="_blank"
+              rel="noreferrer"
             >
               WhatsApp
             </a>
