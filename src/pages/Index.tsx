@@ -23,29 +23,6 @@ const proofItems = [
   },
 ];
 
-const workSteps = [
-  {
-    number: "01",
-    title: "Brief and goals",
-    detail: "We align on outcomes, pages, and constraints in one focused session.",
-  },
-  {
-    number: "02",
-    title: "Build and review",
-    detail: "We ship a working version fast, then refine with real feedback.",
-  },
-  {
-    number: "03",
-    title: "Launch and polish",
-    detail: "We QA, optimize performance, and go live with clean handover.",
-  },
-  {
-    number: "04",
-    title: "Care and continuity",
-    detail: "We monitor, maintain, and improve so the site stays sharp.",
-  },
-];
-
 const Index = () => {
   return (
     <Layout>
@@ -131,43 +108,6 @@ const Index = () => {
           <p className="text-xs text-muted-foreground mt-6">
             Outcomes shown are representative. Case studies are anonymized.
           </p>
-        </div>
-      </section>
-
-      <section className="section-padding">
-        <div className="container-editorial">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
-            <div>
-              <p className="label-small mb-4">How we work</p>
-              <h2 className="headline-primary mb-6">Structured, quiet delivery.</h2>
-              <p className="body-large">
-                A clear 4-step process that keeps momentum and avoids surprises.
-              </p>
-              <div className="mt-8 grid md:grid-cols-2 gap-6 text-sm text-muted-foreground">
-                <div className="border border-border/60 rounded-lg p-5">
-                  <p className="text-foreground mb-2">You provide</p>
-                  <p>Goals, key content, and approvals on milestones.</p>
-                </div>
-                <div className="border border-border/60 rounded-lg p-5">
-                  <p className="text-foreground mb-2">We deliver</p>
-                  <p>Strategy, design, build, QA, and ongoing care.</p>
-                </div>
-              </div>
-            </div>
-            <div className="space-y-6">
-              {workSteps.map((step) => (
-                <div key={step.number} className="flex gap-4">
-                  <span className="text-xs tracking-[0.3em] text-muted-foreground">
-                    {step.number}
-                  </span>
-                  <div>
-                    <h3 className="text-base font-normal mb-2">{step.title}</h3>
-                    <p className="body-refined">{step.detail}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 

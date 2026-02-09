@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer className="w-full border-t border-border">
       <div className="container-editorial py-6">
-        <div className="flex flex-wrap items-center justify-between gap-6">
+        <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-6 text-center md:text-left">
           <div className="flex flex-col items-center md:items-start gap-2">
             <span className="text-lg font-light tracking-wide">Novara</span>
             <p className="text-xs text-muted-foreground">
