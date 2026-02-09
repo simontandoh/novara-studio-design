@@ -145,8 +145,8 @@ const NovaNav = () => {
     <nav
       aria-label="Primary"
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-[280ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
-        hidden ? "-translate-y-full opacity-0" : "translate-y-0 opacity-100"
-      } ${solid ? "bg-black" : "bg-transparent"}`}
+        hidden && !open ? "-translate-y-full opacity-0" : "translate-y-0 opacity-100"
+      } ${solid || open ? "bg-black" : "bg-transparent"}`}
     >
       <div className="container-editorial">
         <div className="grid grid-cols-3 items-center h-16 md:h-20">
