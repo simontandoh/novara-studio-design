@@ -10,6 +10,7 @@ import HowItWorks from "./pages/HowItWorks";
 import ContinuitySupport from "./pages/ContinuitySupport";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import Faq from "./pages/Faq";
 import Portfolio from "./pages/Portfolio";
 import NotFound from "./pages/NotFound";
 import Submitted from "./pages/Submitted";
@@ -41,6 +42,7 @@ const App = () => (
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/how-it-works" element={<HowItWorks />} />
           <Route path="/continuity" element={<ContinuitySupport />} />
+          <Route path="/faq" element={<Faq />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/submitted" element={<Submitted />} />

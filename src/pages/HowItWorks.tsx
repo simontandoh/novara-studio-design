@@ -1,5 +1,4 @@
 import Layout from "@/components/Layout";
-import CTASection from "@/components/CTASection";
 import ProcessStep from "@/components/ProcessStep";
 
 const processSteps = [
@@ -94,13 +93,6 @@ const HowItWorks = () => {
         </div>
       </section>
 
-      <CTASection
-        headline="Ready to start?"
-        description="Let's have a conversation about what you need and how we might help."
-        primaryLabel="Contact"
-        secondaryLabel="Websites"
-        secondaryTo="/websites"
-      />
     </Layout>
   );
 };

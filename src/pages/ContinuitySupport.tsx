@@ -1,6 +1,4 @@
 import Layout from "@/components/Layout";
-import CTASection from "@/components/CTASection";
-import AccordionList from "@/components/Accordion";
 import { Clock, Mail, Shield, AlertCircle, Server, KeyRound } from "lucide-react";
 
 const issuesCovered = [
@@ -10,25 +8,6 @@ const issuesCovered = [
   { icon: Mail, label: "Email domain issues" },
   { icon: Clock, label: "Urgent updates" },
   { icon: Shield, label: "Access and security" },
-];
-
-const faqItems = [
-  {
-    question: "Is continuity support 24/7 emergency coverage?",
-    answer: "No. It covers evenings and weekends.",
-  },
-  {
-    question: "Who is continuity support best for?",
-    answer: "Teams that rely on their site outside standard hours.",
-  },
-  {
-    question: "How fast do you respond?",
-    answer: "Typically within 1-2 hours during coverage.",
-  },
-  {
-    question: "Do I need to be on another service tier first?",
-    answer: "Available to Growth and Continuity clients.",
-  },
 ];
 
 const ContinuitySupport = () => {
@@ -110,7 +89,7 @@ const ContinuitySupport = () => {
         </div>
       </section>
 
-      <section className="section-padding">
+      <section className="section-padding bg-card">
         <div className="container-editorial">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
             <div>
@@ -140,7 +119,7 @@ const ContinuitySupport = () => {
                 </div>
               </div>
             </div>
-            <div className="bg-card border border-border p-8 md:p-10">
+            <div className="bg-background border border-border p-8 md:p-10">
               <h3 className="text-lg font-light mb-6">Clear expectations</h3>
               <ul className="space-y-4 text-sm text-muted-foreground font-light">
                 <li className="flex items-start gap-3">
@@ -164,24 +143,6 @@ const ContinuitySupport = () => {
           </div>
         </div>
       </section>
-
-      <section className="section-padding">
-        <div className="container-editorial">
-          <div className="max-w-2xl mb-10">
-            <p className="label-small mb-4">FAQ</p>
-            <h2 className="headline-primary">Continuity support.</h2>
-          </div>
-          <AccordionList items={faqItems} />
-        </div>
-      </section>
-
-      <CTASection
-        headline="Need coverage beyond standard hours?"
-        description="We will outline scope and fit."
-        primaryLabel="Contact"
-        secondaryLabel="Websites"
-        secondaryTo="/websites"
-      />
     </Layout>
   );
 };

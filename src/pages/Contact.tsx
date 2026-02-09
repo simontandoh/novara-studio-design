@@ -1,5 +1,5 @@
 import "react-phone-number-input/style.css";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
 import { parsePhoneNumberFromString } from "libphonenumber-js";
 import { useNavigate } from "react-router-dom";
@@ -26,13 +26,6 @@ const industryOptions = [
   "Other",
 ];
 
-declare global {
-  interface Window {
-    google?: any;
-    initGooglePlaces?: () => void;
-  }
-}
-
 const initialFormState = {
   fullName: "",
   businessName: "",
@@ -52,18 +45,30 @@ const initialFormState = {
   brandAssetsVideos: false,
   domainStatus: "",
   hostingStatus: "",
-  timelineUnit: "weeks" as "weeks" | "days",
-  timelineValue: 4,
   maintenanceTier: "",
   consent: false,
 };
 
+const cityOptions = [
+  "London, UK",
+  "Manchester, UK",
+  "Birmingham, UK",
+  "Leeds, UK",
+  "Edinburgh, UK",
+  "Dublin, IE",
+  "Paris, FR",
+  "Berlin, DE",
+  "Amsterdam, NL",
+  "New York, US",
+  "Los Angeles, US",
+  "Toronto, CA",
+  "Sydney, AU",
+  "Dubai, AE",
+  "Singapore, SG",
+];
+
 const Contact = () => {
   const navigate = useNavigate();
-  const locationRef = useRef<HTMLInputElement | null>(null);
-  const locationContainerRef = useRef<HTMLDivElement | null>(null);
-  const autocompleteRef = useRef<any>(null);
-  const [placesReady, setPlacesReady] = useState(false);
   const [phoneCountry, setPhoneCountry] = useState("GB");
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -84,106 +89,6 @@ const Contact = () => {
   useEffect(() => {
     localStorage.setItem("novaraContactDraft", JSON.stringify(formData));
   }, [formData]);
-
-  useEffect(() => {
-    if (autocompleteRef.current || !locationContainerRef.current) return;
-    const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-    if (!apiKey) {
-      console.warn("Missing VITE_GOOGLE_MAPS_API_KEY for Places autocomplete.");
-      return;
-    }
-
-    const initAutocomplete = () => {
-      if (!locationContainerRef.current || autocompleteRef.current) return;
-      if (!window.google?.maps?.places?.PlaceAutocompleteElement) return;
-
-      const element = document.createElement("gmp-place-autocomplete");
-      element.setAttribute("placeholder", "Start typing a city");
-      element.setAttribute(
-        "includedPrimaryTypes",
-        "locality,postal_town,administrative_area_level_1,country"
-      );
-      element.className = "select-pill gmp-place";
-      element.setAttribute("style", "width: 100%; max-width: 100%; display: block;");
-      locationContainerRef.current.innerHTML = "";
-      locationContainerRef.current.appendChild(element);
-      autocompleteRef.current = element;
-      requestAnimationFrame(() => setPlacesReady(true));
-      if (formData.location) {
-        element.value = formData.location;
-      }
-
-      element.addEventListener("gmp-placeselect", async (event: any) => {
-        const place = event.place || event.detail?.place;
-        if (!place) return;
-        if (place.fetchFields) {
-          await place.fetchFields({ fields: ["formattedAddress", "displayName", "addressComponents"] });
-        }
-        const value =
-          place.formattedAddress ||
-          place.displayName ||
-          (place.addressComponents || [])
-            .map((component: any) => component.longText)
-            .filter(Boolean)
-            .join(", ");
-        updateField("location", value);
-        setErrors((prev) => ({ ...prev, location: "" }));
-      });
-
-      element.addEventListener("input", () => {
-        const value = element.value || "";
-        updateField("location", value);
-        if (value) {
-          setErrors((prev) => ({ ...prev, location: "" }));
-        }
-      });
-
-      element.addEventListener("blur", () => {
-        const value = element.value || "";
-        updateField("location", value);
-        if (value) {
-          setErrors((prev) => ({ ...prev, location: "" }));
-        }
-      });
-    };
-
-    window.initGooglePlaces = () => {
-      initAutocomplete();
-    };
-
-    if (window.google?.maps?.places) {
-      initAutocomplete();
-      return;
-    }
-
-    const existingScript = document.querySelector<HTMLScriptElement>(
-      'script[data-google-places="true"]'
-    );
-    if (existingScript) {
-      existingScript.addEventListener("load", initAutocomplete);
-      return () => existingScript.removeEventListener("load", initAutocomplete);
-    }
-
-    const script = document.createElement("script");
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&v=beta&loading=async&callback=initGooglePlaces`;
-    script.async = true;
-    script.defer = true;
-    script.dataset.googlePlaces = "true";
-    document.head.appendChild(script);
-
-    return () => {
-      if (window.initGooglePlaces) {
-        delete window.initGooglePlaces;
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    const element = autocompleteRef.current as { value?: string } | null;
-    if (element && formData.location) {
-      element.value = formData.location;
-    }
-  }, [formData.location]);
 
   const isValidEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
@@ -214,15 +119,7 @@ const Contact = () => {
     updateField("phone", value);
   };
 
-  const syncLocationFromPlaces = () => {
-    const element = autocompleteRef.current as { value?: string } | null;
-    if (!element?.value) return;
-    updateField("location", element.value);
-    setErrors((prev) => ({ ...prev, location: "" }));
-  };
-
   const validate = () => {
-    syncLocationFromPlaces();
     const nextErrors: Record<string, string> = {};
     if (!formData.fullName.trim()) nextErrors.fullName = "Full name is required.";
     if (!formData.businessName.trim()) nextErrors.businessName = "Business name is required.";
@@ -244,13 +141,11 @@ const Contact = () => {
     if (!formData.domainStatus) nextErrors.domainStatus = "Select a domain status.";
     if (!formData.hostingStatus) nextErrors.hostingStatus = "Select a hosting status.";
     if (!formData.maintenanceTier) nextErrors.maintenanceTier = "Select a maintenance tier.";
-    if (!formData.timelineValue) nextErrors.timeline = "Timeline is required.";
     return nextErrors;
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    syncLocationFromPlaces();
     const nextErrors = validate();
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) {
@@ -272,8 +167,6 @@ const Contact = () => {
       pagesNeeded: formData.pagesNeeded,
       coreServicesProducts: formData.coreServicesProducts,
       primaryGoal: formData.primaryGoal,
-      timelineUnit: formData.timelineUnit,
-      timelineValue: formData.timelineValue,
       styleRefs: formData.styleRefs,
       brandAssets: {
         logo: formData.brandAssetsLogo,
@@ -314,10 +207,6 @@ const Contact = () => {
     setSubmitted(false);
     setIsSubmitting(false);
     localStorage.removeItem("novaraContactDraft");
-    const element = autocompleteRef.current as { value?: string } | null;
-    if (element?.value) {
-      element.value = "";
-    }
   };
 
   const addToList = (
@@ -365,17 +254,6 @@ const Contact = () => {
       formData.styleRefs.filter((item) => item !== value)
     );
   };
-
-  const setTimelineUnit = (unit: "weeks" | "days") => {
-    const nextValue = unit === "weeks" ? 4 : 14;
-    updateField("timelineUnit", unit);
-    updateField("timelineValue", nextValue);
-  };
-
-  const timelineConfig =
-    formData.timelineUnit === "weeks"
-      ? { min: 1, max: 24, step: 1, label: "weeks" }
-      : { min: 7, max: 90, step: 1, label: "days" };
 
   return (
     <Layout>
@@ -476,7 +354,7 @@ const Contact = () => {
                         }));
                       }
                     }}
-                    className="phone-input flex gap-3"
+                    className="phone-input flex gap-3 rounded-full border border-border/60 bg-card/40 p-1"
                     inputClassName="select-pill phone-number"
                     countrySelectProps={{
                       className: "select-pill phone-country",
@@ -490,24 +368,25 @@ const Contact = () => {
                   <label htmlFor="location" className="block label-small mb-3">
                     Business location (city/region/country)<span className="text-accent"> *</span>
                   </label>
-                  <div ref={locationContainerRef} />
-                  <input type="hidden" value={formData.location} readOnly />
-                  {!placesReady && (
-                    <input
-                      id="location"
-                      type="text"
-                      ref={locationRef}
-                      value={formData.location}
-                      onChange={(event) => {
-                        updateField("location", event.target.value);
-                        if (errors.location) {
-                          setErrors((prev) => ({ ...prev, location: "" }));
-                        }
-                      }}
-                      className="w-full bg-transparent border-b border-border pb-3 focus:border-foreground focus:outline-none transition-colors text-foreground"
-                      placeholder="Start typing a city"
-                    />
-                  )}
+                  <input
+                    id="location"
+                    type="text"
+                    list="city-options"
+                    value={formData.location}
+                    onChange={(event) => {
+                      updateField("location", event.target.value);
+                      if (errors.location) {
+                        setErrors((prev) => ({ ...prev, location: "" }));
+                      }
+                    }}
+                    className="w-full bg-transparent border-b border-border pb-3 focus:border-foreground focus:outline-none transition-colors text-foreground"
+                    placeholder="Start typing a city"
+                  />
+                  <datalist id="city-options">
+                    {cityOptions.map((option) => (
+                      <option key={option} value={option} />
+                    ))}
+                  </datalist>
                   {errors.location && (
                     <p className="text-xs text-accent mt-2">{errors.location}</p>
                   )}
@@ -723,55 +602,6 @@ const Contact = () => {
                   {errors.primaryGoal && (
                     <p className="text-xs text-accent mt-2">{errors.primaryGoal}</p>
                   )}
-                </div>
-                <div className="space-y-3">
-                  <label htmlFor="timeline" className="block label-small">
-                    Timeline<span className="text-accent"> *</span>
-                  </label>
-                  <div className="inline-flex rounded-full border border-border bg-card/60 p-1">
-                    <button
-                      type="button"
-                      onClick={() => setTimelineUnit("weeks")}
-                      className={`rounded-full px-4 py-1 text-xs transition-colors ${
-                        formData.timelineUnit === "weeks"
-                          ? "bg-accent/20 text-foreground"
-                          : "text-muted-foreground"
-                      }`}
-                    >
-                      Weeks
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setTimelineUnit("days")}
-                      className={`rounded-full px-4 py-1 text-xs transition-colors ${
-                        formData.timelineUnit === "days"
-                          ? "bg-accent/20 text-foreground"
-                          : "text-muted-foreground"
-                      }`}
-                    >
-                      Days
-                    </button>
-                  </div>
-                  <div className="space-y-2">
-                    <input
-                      id="timeline"
-                      type="range"
-                      min={timelineConfig.min}
-                      max={timelineConfig.max}
-                      step={timelineConfig.step}
-                      value={formData.timelineValue}
-                      onChange={(event) =>
-                        updateField("timelineValue", Number(event.target.value))
-                      }
-                      className="w-full accent-accent"
-                    />
-                    <p className="text-sm text-muted-foreground">
-                      {formData.timelineValue} {timelineConfig.label}
-                    </p>
-                    {errors.timeline && (
-                      <p className="text-xs text-accent">{errors.timeline}</p>
-                    )}
-                  </div>
                 </div>
                 <div>
                   <label htmlFor="styleRefs" className="block label-small mb-3">

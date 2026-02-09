@@ -92,37 +92,6 @@ const Studio = () => {
         </div>
       </section>
 
-      <section className="section-padding bg-card">
-        <div className="container-editorial">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
-            <div>
-              <p className="label-small mb-6">Continuity support</p>
-              <h2 className="headline-primary mb-6">Support beyond standard hours.</h2>
-              <p className="body-large mb-4">
-                Operational and IT support during evenings and weekends.
-              </p>
-              <p className="body-refined">
-                Proactive monitoring to prevent issues.
-              </p>
-            </div>
-            <div className="space-y-4">
-              <div className="p-6 bg-background border border-border">
-                <h3 className="text-base font-normal mb-2">Proactive monitoring</h3>
-                <p className="body-refined">Early detection and response.</p>
-              </div>
-              <div className="p-6 bg-background border border-border">
-                <h3 className="text-base font-normal mb-2">Evening and weekend support</h3>
-                <p className="body-refined">Direct help after hours.</p>
-              </div>
-              <div className="p-6 bg-background border border-border">
-                <h3 className="text-base font-normal mb-2">Incident response</h3>
-                <p className="body-refined">Clear updates until resolved.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section className="section-padding">
         <div className="container-narrow text-center">
           <h2 className="headline-primary mb-8">Start a conversation.</h2>

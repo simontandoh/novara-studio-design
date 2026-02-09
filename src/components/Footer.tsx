@@ -7,11 +7,6 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-8 md:gap-6">
           <div className="md:col-span-2">
             <div className="flex items-center gap-3">
-              <img
-                src="/novara-logo.png"
-                alt="Novara logo"
-                className="w-8 h-8 object-contain"
-              />
               <span className="text-lg font-light tracking-wide">Novara</span>
             </div>
             <p className="mt-4 body-refined max-w-sm">
@@ -30,6 +25,9 @@ const Footer = () => {
               </Link>
               <Link to="/portfolio" className="text-sm font-light text-muted-foreground hover:text-foreground transition-colors">
                 Portfolio
+              </Link>
+              <Link to="/faq" className="text-sm font-light text-muted-foreground hover:text-foreground transition-colors">
+                FAQ
               </Link>
               <Link to="/contact" className="text-sm font-light text-muted-foreground hover:text-foreground transition-colors">
                 Contact
