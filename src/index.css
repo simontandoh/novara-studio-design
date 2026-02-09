@@ -147,12 +147,27 @@
   }
 
   body {
-    scrollbar-width: none;
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--accent) / 0.5) transparent;
   }
 
-  body::-webkit-scrollbar {
-    width: 0;
-    height: 0;
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    border: 1px solid hsl(var(--accent) / 0.45);
+    border-radius: 999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    border-color: hsl(var(--accent) / 0.75);
   }
 
   a:focus-visible,

@@ -1,20 +1,5 @@
 
-import { useEffect, useState } from "react";
-
 const HomeHero = () => {
-  const [scrollUnlocked, setScrollUnlocked] = useState(false);
-
-  useEffect(() => {
-    if (scrollUnlocked) {
-      document.body.style.overflow = "";
-      return;
-    }
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [scrollUnlocked]);
-
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden -mt-16 md:-mt-20 pt-16 md:pt-20">
       <div className="container-editorial relative z-10">
@@ -31,7 +16,6 @@ const HomeHero = () => {
       </div>
       <a
         href="#home-next"
-        onClick={() => setScrollUnlocked(true)}
         className="absolute bottom-6 left-1/2 -translate-x-1/2 inline-flex items-center justify-center w-12 h-12 rounded-full border border-border/60 text-foreground/80 hover:text-foreground hover:border-accent/60 transition-colors"
         aria-label="Scroll to next section"
       >

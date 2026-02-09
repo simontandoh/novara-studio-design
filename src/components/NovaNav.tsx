@@ -3,7 +3,6 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { trackEvent } from "@/lib/analytics";
 
 const navLinks = [
-  { label: "Home", path: "/" },
   { label: "Websites", path: "/websites", primary: true },
   { label: "Portfolio", path: "/portfolio" },
   { label: "Contact", path: "/contact" },
