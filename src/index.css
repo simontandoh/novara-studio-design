@@ -162,12 +162,8 @@
 
   ::-webkit-scrollbar-thumb {
     background-color: transparent;
-    border: 1px solid hsl(var(--accent) / 0.45);
+    border: 0;
     border-radius: 999px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    border-color: hsl(var(--accent) / 0.75);
   }
 
   a:focus-visible,
@@ -486,9 +482,17 @@
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.text-balance {
+  text-wrap: balance;
+}
+}
+
+.portfolio-scroll::-webkit-scrollbar-thumb {
+  border: 1px solid hsl(var(--accent) / 0.45);
+}
+
+.portfolio-scroll::-webkit-scrollbar-thumb:hover {
+  border-color: hsl(var(--accent) / 0.75);
 }
 
 @media (prefers-reduced-motion: reduce) {

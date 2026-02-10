@@ -22,7 +22,7 @@ const Portfolio = () => {
               Anonymized previews with a focus on outcomes, structure, and delivery.
             </p>
           </div>
-          <div className="overflow-x-auto pb-4 -mx-6 md:-mx-12 px-6 md:px-12">
+          <div className="overflow-x-auto pb-4 -mx-6 md:-mx-12 px-6 md:px-12 portfolio-scroll">
             <div className="flex gap-6 min-w-full snap-x snap-mandatory">
               {slides.map((slide) => (
                 <div

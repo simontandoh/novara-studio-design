@@ -25,9 +25,6 @@ const Footer = () => {
             <Link to="/faq" className="font-light text-muted-foreground hover:text-foreground transition-colors">
               FAQ
             </Link>
-            <Link to="/contact" className="font-light text-muted-foreground hover:text-foreground transition-colors">
-              Contact
-            </Link>
             <Link to="/legal" className="font-light text-muted-foreground hover:text-foreground transition-colors">
               Legal
             </Link>
@@ -40,7 +37,7 @@ const Footer = () => {
             >
               hello@novarastudios.co.uk
             </a>
-            <span>Quiet systems. Steady care.</span>
+            <span>Built for the future.</span>
           </div>
         </div>
 

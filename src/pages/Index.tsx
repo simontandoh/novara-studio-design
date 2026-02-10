@@ -90,7 +90,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="section-padding bg-card">
+      <section className="section-padding">
         <div className="container-editorial">
           <div className="max-w-2xl mb-12">
             <p className="label-small mb-4">Proof</p>
@@ -98,7 +98,10 @@ const Index = () => {
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {proofItems.map((item) => (
-              <div key={item.title} className="surface-panel noise-overlay rounded-lg p-6 md:p-8">
+              <div
+                key={item.title}
+                className="rounded-lg p-6 md:p-8 border border-border/60 bg-transparent transition-all duration-200 hover:bg-card/70 hover:border-accent/60 hover:shadow-xl"
+              >
                 <h3 className="text-base font-normal mb-3">{item.title}</h3>
                 <p className="text-sm text-foreground mb-4">{item.outcome}</p>
                 <p className="body-refined">{item.focus}</p>

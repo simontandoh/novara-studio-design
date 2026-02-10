@@ -40,8 +40,6 @@ const MenuIcon = ({ open }: { open: boolean }) => {
 const NovaNav = () => {
   const location = useLocation();
   const [open, setOpen] = useState(false);
-  const [hidden, setHidden] = useState(false);
-  const [solid, setSolid] = useState(false);
   const panelRef = useRef<HTMLDivElement | null>(null);
   const toggleRef = useRef<HTMLButtonElement | null>(null);
   const isHome = location.pathname === "/";
@@ -97,41 +95,6 @@ const NovaNav = () => {
     };
   }, [open]);
 
-  useEffect(() => {
-    let lastY = window.scrollY;
-    let ticking = false;
-
-    const update = () => {
-      const currentY = window.scrollY;
-      const atTop = currentY <= 8;
-      const delta = currentY - lastY;
-
-      if (atTop) {
-        setHidden(false);
-        setSolid(false);
-      } else if (delta > 6) {
-        setHidden(true);
-      } else if (delta < -6) {
-        setHidden(false);
-        setSolid(true);
-      }
-
-      lastY = currentY;
-      ticking = false;
-    };
-
-    const onScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(update);
-        ticking = true;
-      }
-    };
-
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   const closeMenu = () => {
     setOpen(false);
   };
@@ -144,9 +107,7 @@ const NovaNav = () => {
   return (
     <nav
       aria-label="Primary"
-      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-[280ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
-        hidden && !open ? "-translate-y-full opacity-0" : "translate-y-0 opacity-100"
-      } ${solid || open ? "bg-black" : "bg-transparent"}`}
+      className="fixed top-0 left-0 right-0 z-[100] bg-black/60 backdrop-blur-md border-b border-border/60"
     >
       <div className="container-editorial">
         <div className="grid grid-cols-3 items-center h-16 md:h-20">
@@ -174,9 +135,7 @@ const NovaNav = () => {
               aria-expanded={open}
               aria-controls="nova-nav-panel"
               onClick={() => setOpen((prev) => !prev)}
-              className={`text-white rounded-full p-2.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
-                solid || open ? "bg-black" : "bg-transparent"
-              }`}
+              className="text-white rounded-full p-2.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background bg-black/70"
             >
               <span className="sr-only">Toggle navigation</span>
               <MenuIcon open={open} />
