@@ -1,5 +1,5 @@
 import { ReactNode, Suspense, lazy } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import NovaNav from "./NovaNav";
 import Footer from "./Footer";
 import FloatingWhatsApp from "./FloatingWhatsApp";
@@ -25,19 +25,6 @@ const Layout = ({ children }: LayoutProps) => {
       <main className="flex-1 pt-16 md:pt-20 relative z-10 text-center">
         {children}
       </main>
-      <div className="flex justify-center pb-6">
-        <div className="flex items-center gap-3 text-xs text-muted-foreground">
-          <Link to="/faq" className="btn-secondary rounded-full px-4 py-2">
-            Left
-          </Link>
-          <Link to="/faq" className="btn-secondary rounded-full px-4 py-2">
-            Back to Menu
-          </Link>
-          <Link to="/faq" className="btn-secondary rounded-full px-4 py-2">
-            Right
-          </Link>
-        </div>
-      </div>
       <section className="mt-auto w-full text-center">
         <Footer />
       </section>

@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import Seo from "@/components/Seo";
 
@@ -51,30 +50,6 @@ const Local = () => {
       />
       <section className="section-padding">
         <div className="container-editorial">
-          <div className="max-w-3xl">
-            <p className="label-small mb-4">Websites</p>
-            <h1 className="headline-hero mb-6">Calm websites. Proper care.</h1>
-            <p className="body-large mb-8">Built for clarity. Maintained for continuity.</p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link
-                to="/contact?subject=Websites"
-                className="btn-primary rounded-full px-7 py-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-              >
-                Contact
-              </Link>
-              <Link
-                to="/contact?subject=WhatsApp%20Websites"
-                className="btn-secondary rounded-full px-6 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-              >
-                WhatsApp
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section-padding">
-        <div className="container-editorial">
           <div className="max-w-2xl mb-10">
             <p className="label-small mb-4">Website builds</p>
             <h2 className="headline-primary">Three build tiers.</h2>
@@ -106,7 +81,7 @@ const Local = () => {
         </div>
       </section>
 
-      <section className="section-padding bg-card">
+      <section className="section-padding">
         <div className="container-editorial">
           <div className="max-w-2xl mb-10">
             <p className="label-small mb-4">Maintenance plans</p>
@@ -116,10 +91,8 @@ const Local = () => {
             {maintenanceTiers.map((tier) => (
               <div
                 key={tier.name}
-                className={`surface-panel noise-overlay rounded-lg p-8 md:p-10 transition-all duration-[180ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 ${
-                  tier.featured
-                    ? "border border-accent/60 shadow-lg shadow-accent/10"
-                    : "border border-border"
+                className={`rounded-lg p-8 md:p-10 border border-border/60 bg-transparent transition-all duration-[180ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-card/70 hover:border-accent/60 hover:shadow-xl ${
+                  tier.featured ? "shadow-lg shadow-accent/10" : ""
                 }`}
               >
                 {tier.featured && (
