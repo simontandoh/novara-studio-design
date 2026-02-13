@@ -51,8 +51,7 @@ const Footer = () => {
         </div>
 
         <div className="mt-4 text-xs text-muted-foreground text-center">
-          Novara Studios Ltd. Company No. [Company Number]. Registered in England and Wales.
-          Registered office: [Registered Address].
+          © 2026 Novara Studios Ltd. All rights reserved. Registered in England and Wales. Company No. 17025468.
         </div>
       </div>
     </footer>
