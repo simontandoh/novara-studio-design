@@ -8,7 +8,7 @@ const StudioPartnerships = () => {
         <div className="container-editorial">
           <div className="max-w-3xl">
             <p className="label-small mb-6">Studio Partnerships</p>
-            <h1 className="headline-hero mb-8">Long-term care.</h1>
+            <h1 className="headline-hero mb-8 text-center">Long-term care.</h1>
             <p className="body-large">Ongoing maintenance and system evolution.</p>
           </div>
         </div>

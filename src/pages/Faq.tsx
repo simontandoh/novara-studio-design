@@ -25,15 +25,15 @@ const Faq = () => {
   return (
     <Layout>
       <Seo
-        title="FAQ"
-        description="Straight answers to common questions about Novara Studios."
+        title="Novara Studios FAQ and Process Notes"
+        description="Clear answers on process, timelines, and collaboration with Novara Studios, written for calm, premium delivery."
         path="/faq"
       />
       <section className="section-padding">
         <div className="container-editorial">
           <div className="max-w-2xl mb-10">
             <p className="label-small mb-4">FAQ</p>
-            <h1 className="headline-hero mb-6">Answers, clearly.</h1>
+            <h1 className="headline-hero mb-6 text-center">Answers, clearly.</h1>
             <p className="body-large">Straight responses to common questions.</p>
           </div>
           <AccordionList items={faqItems} />

@@ -1,6 +1,7 @@
 import Layout from "@/components/Layout";
-import { Mail, AlertCircle, Server, KeyRound } from "lucide-react";
+import { Mail, AlertCircle, Server, KeyRound, Clock, Shield } from "lucide-react";
 import Seo from "@/components/Seo";
+import { SITE_URL } from "@/lib/seo";
 
 const issuesCovered = [
   { icon: Server, label: "Site downtime" },
@@ -15,15 +16,26 @@ const ContinuitySupport = () => {
   return (
     <Layout>
       <Seo
-        title="Continuity Support"
-        description="Structured out-of-hours coverage for websites and digital systems."
+        title="Continuity Support for Critical Websites"
+        description="Out-of-hours monitoring and response for websites that need reliable coverage, clear updates, and calm continuity."
         path="/continuity"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          name: "Continuity Support",
+          provider: {
+            "@type": "Organization",
+            name: "Novara Studios",
+            url: SITE_URL,
+          },
+          areaServed: "United Kingdom",
+        }}
       />
       <section className="section-padding">
         <div className="container-editorial">
           <div className="max-w-3xl">
             <p className="label-small mb-6">Continuity support</p>
-            <h1 className="headline-hero mb-8">Support beyond standard hours.</h1>
+            <h1 className="headline-hero mb-8 text-center">Support beyond standard hours.</h1>
             <p className="body-large">
               Evening and weekend coverage, with monitoring and response.
             </p>

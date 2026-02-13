@@ -20,20 +20,14 @@ const focusSelector =
 
 const MenuIcon = ({ open }: { open: boolean }) => {
   return (
-    <svg
+    <img
+      src="/menu-bar.png"
+      alt=""
       aria-hidden="true"
-      viewBox="0 0 24 24"
-      className={`w-6 h-6 transition-transform duration-[180ms] ${
-        open ? "rotate-180" : ""
+      className={`h-5 w-5 transition-transform duration-[180ms] ${
+        open ? "rotate-90" : ""
       }`}
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.6"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M6 9l6 6 6-6" />
-    </svg>
+    />
   );
 };
 
@@ -144,83 +138,86 @@ const NovaNav = () => {
         </div>
       </div>
 
-      {open && (
+      <div
+        className={`fixed inset-0 z-[110] bg-background/80 transition-opacity duration-[200ms] ${
+          open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
+        aria-hidden={!open}
+        onClick={closeMenu}
+      >
         <div
-          className="fixed inset-0 z-[110] bg-background/80"
-          onClick={closeMenu}
+          id="nova-nav-panel"
+          ref={panelRef}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Site navigation"
+          className={`absolute right-0 top-0 h-full w-full max-w-md p-8 md:p-10 bg-card border-l border-border shadow-2xl nav-glow z-[120] transition-transform duration-[220ms] ${
+            open ? "translate-x-0" : "translate-x-full"
+          }`}
+          onClick={(event) => event.stopPropagation()}
         >
-          <div
-            id="nova-nav-panel"
-            ref={panelRef}
-            role="dialog"
-            aria-modal="true"
-            aria-label="Site navigation"
-            className="absolute right-0 top-0 h-full w-full max-w-md p-8 md:p-10 bg-card border-l border-border shadow-2xl animate-fade-in nav-glow z-[120]"
-            onClick={(event) => event.stopPropagation()}
-          >
-            <div className="flex items-center justify-between mb-10">
-              <span className="text-xs uppercase tracking-[0.35em] text-muted-foreground">
-                Menu
-              </span>
-              <button
-                type="button"
-                onClick={closeMenu}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-              >
-                Close
-              </button>
-            </div>
+          <div className="flex items-center justify-between mb-10">
+            <span className="text-xs uppercase tracking-[0.35em] text-muted-foreground">
+              Menu
+            </span>
+            <button
+              type="button"
+              onClick={closeMenu}
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            >
+              Close
+            </button>
+          </div>
 
-            <div className="flex flex-col gap-6">
-              {navLinks.map((item, index) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  onClick={() => handleNavClick(item.label, item.path)}
-                  className={`group relative text-2xl font-light tracking-tight transition-all duration-[180ms] ease-[cubic-bezier(0.16,1,0.3,1)] animate-fade-up ${
-                    item.primary
-                      ? "text-accent"
-                      : activePath === item.path
-                        ? "text-foreground"
-                        : "text-muted-foreground hover:text-foreground"
-                  }`}
-                  style={{ animationDelay: `${index * 80}ms` }}
-                >
-                  {item.label}
-                  <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-accent transition-transform duration-[180ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100" />
-                </Link>
-              ))}
-            </div>
-
-            <div className="mt-10 p-6 rounded-lg border border-border/60 bg-background/60">
-              <p className="text-sm text-muted-foreground mb-4">
-                Share the brief. We respond.
-              </p>
+          <div className="flex flex-col gap-6">
+            {navLinks.map((item, index) => (
               <Link
-                to="/contact"
-                onClick={() => handleNavClick("Contact", "/contact")}
-                className="btn-primary rounded-full px-6 py-2"
+                key={item.path}
+                to={item.path}
+                onClick={() => handleNavClick(item.label, item.path)}
+                className={`group relative text-2xl font-light tracking-tight transition-all duration-[180ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                  item.primary
+                    ? "text-accent"
+                    : activePath === item.path
+                      ? "text-foreground"
+                      : "text-muted-foreground hover:text-foreground"
+                }`}
+                style={{ animationDelay: `${index * 80}ms` }}
               >
-                Contact
+                {item.label}
+                <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-accent transition-transform duration-[180ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100" />
               </Link>
-            </div>
+            ))}
+          </div>
 
-            <div className="mt-auto pt-10 border-t border-border flex items-center gap-6 text-sm">
-              {footerLinks.map((item) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  onClick={() => handleNavClick(item.label, item.path)}
-                  className="group relative text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  {item.label}
-                  <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-accent transition-transform duration-[180ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100" />
-                </Link>
-              ))}
-            </div>
+          <div className="mt-10 p-6 rounded-lg border border-border/60 bg-background/60">
+            <p className="text-sm text-muted-foreground mb-4">
+              Share the brief. We respond.
+            </p>
+            <Link
+              to="/contact"
+              onClick={() => handleNavClick("Contact", "/contact")}
+              className="btn-primary rounded-full px-6 py-2"
+            >
+              Contact
+            </Link>
+          </div>
+
+          <div className="mt-auto pt-10 border-t border-border flex items-center gap-6 text-sm">
+            {footerLinks.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                onClick={() => handleNavClick(item.label, item.path)}
+                className="group relative text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {item.label}
+                <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-accent transition-transform duration-[180ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100" />
+              </Link>
+            ))}
           </div>
         </div>
-      )}
+      </div>
     </nav>
   );
 };

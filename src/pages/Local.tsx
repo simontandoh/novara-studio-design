@@ -1,5 +1,6 @@
 import Layout from "@/components/Layout";
 import Seo from "@/components/Seo";
+import { SITE_URL } from "@/lib/seo";
 
 const maintenanceTiers = [
   {
@@ -44,13 +45,31 @@ const Local = () => {
   return (
     <Layout>
       <Seo
-        title="Websites"
-        description="Calm, high-performing websites with ongoing care plans built for long-term continuity."
+        title="Website Builds and Ongoing Care Plans"
+        description="Premium website builds and structured care plans for stable performance, clear structure, and long-term continuity."
         path="/websites"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          name: "Website Builds and Ongoing Care",
+          provider: {
+            "@type": "Organization",
+            name: "Novara Studios",
+            url: SITE_URL,
+          },
+          areaServed: "United Kingdom",
+        }}
       />
       <section className="section-padding">
         <div className="container-editorial">
-          <div className="max-w-2xl mb-10">
+          <div className="max-w-3xl mx-auto mb-12">
+            <p className="label-small mb-4">Websites</p>
+            <h1 className="headline-hero mb-6 text-center">Website builds with long-term care.</h1>
+            <p className="body-large">
+              Structured builds and maintenance plans designed for calm delivery and reliable performance.
+            </p>
+          </div>
+          <div className="max-w-2xl mb-10 mx-auto">
             <p className="label-small mb-4">Website builds</p>
             <h2 className="headline-primary">Three build tiers.</h2>
           </div>

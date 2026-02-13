@@ -23,8 +23,8 @@ const About = () => {
   return (
     <Layout>
       <Seo
-        title="About"
-        description="Novara Studios is a digital systems studio focused on clear strategy, reliable builds, and long-term care."
+        title="About Novara Studios and Our Approach"
+        description="Novara Studios is a premium digital systems studio focused on clear strategy, reliable builds, and long-term care for modern websites."
         path="/about"
       />
       <section className="section-padding">
@@ -32,7 +32,7 @@ const About = () => {
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
             <div>
               <p className="label-small mb-6">About</p>
-              <h1 className="headline-hero">Websites that keep working.</h1>
+              <h1 className="headline-hero text-center">Websites that keep working.</h1>
             </div>
             <div className="lg:pt-4">
               <p className="body-large mb-6">

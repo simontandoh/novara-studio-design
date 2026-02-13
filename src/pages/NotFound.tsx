@@ -21,7 +21,7 @@ const NotFound = () => {
       <section className="section-padding">
         <div className="container-editorial text-center">
           <p className="label-small mb-4">404</p>
-          <h1 className="headline-hero mb-6">Page not found.</h1>
+          <h1 className="headline-hero mb-6 text-center">Page not found.</h1>
           <p className="body-large mb-8">
             The page you were looking for has moved or no longer exists.
           </p>

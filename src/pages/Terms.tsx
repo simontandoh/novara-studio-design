@@ -5,15 +5,15 @@ const Terms = () => {
   return (
     <Layout>
       <Seo
-        title="Terms of Service"
-        description="Basic terms for working with Novara Studios."
+        title="Terms of Service for Novara Studios"
+        description="The working terms for projects delivered by Novara Studios, including scope, fees, and ownership."
         path="/terms"
       />
       <section className="section-padding">
         <div className="container-editorial">
           <div className="max-w-3xl">
             <p className="label-small mb-4">Legal</p>
-            <h1 className="headline-hero mb-6">Terms of Service</h1>
+            <h1 className="headline-hero mb-6 text-center">Terms of Service</h1>
             <p className="body-large mb-6">
               By engaging Novara Studios, you agree to the scope, fees, and
               timelines outlined in your proposal or statement of work.

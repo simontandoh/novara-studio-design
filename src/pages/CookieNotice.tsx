@@ -5,15 +5,15 @@ const CookieNotice = () => {
   return (
     <Layout>
       <Seo
-        title="Cookie Notice"
-        description="Learn how Novara Studios uses cookies and analytics on this site."
+        title="Cookie Notice and Site Tracking for Novara"
+        description="How Novara Studios uses cookies and privacy-friendly analytics to keep the site running and improve the experience."
         path="/cookie-notice"
       />
       <section className="section-padding">
         <div className="container-editorial">
           <div className="max-w-3xl">
             <p className="label-small mb-4">Legal</p>
-            <h1 className="headline-hero mb-6">Cookie Notice</h1>
+            <h1 className="headline-hero mb-6 text-center">Cookie Notice</h1>
             <p className="body-large mb-6">
               We use a small number of cookies and similar technologies to keep this site
               working and to understand how people use it.

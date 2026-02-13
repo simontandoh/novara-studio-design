@@ -5,15 +5,15 @@ const AccessibilityStatement = () => {
   return (
     <Layout>
       <Seo
-        title="Accessibility Statement"
-        description="Accessibility commitments and contact details for Novara Studios."
+        title="Accessibility Statement for Novara Studios"
+        description="Accessibility commitments and support contact details for Novara Studios, aligned with WCAG 2.1 AA guidance."
         path="/accessibility"
       />
       <section className="section-padding">
         <div className="container-editorial">
           <div className="max-w-3xl">
             <p className="label-small mb-4">Legal</p>
-            <h1 className="headline-hero mb-6">Accessibility Statement</h1>
+            <h1 className="headline-hero mb-6 text-center">Accessibility Statement</h1>
             <p className="body-large mb-6">
               We want this site to be usable for as many people as possible. We design and
               build with accessibility in mind and continue to improve based on feedback.

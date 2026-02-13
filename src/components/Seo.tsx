@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { buildCanonical, buildTitle, DEFAULT_OG_IMAGE } from "@/lib/seo";
+import { buildCanonical, buildTitle, DEFAULT_OG_IMAGE, ORGANIZATION_SCHEMA } from "@/lib/seo";
 
 type SeoProps = {
   title: string;
@@ -23,11 +23,12 @@ const Seo = ({
   const fullTitle = buildTitle(title);
   const canonicalUrl = canonical ?? buildCanonical(path);
   const ogImage = image ?? DEFAULT_OG_IMAGE;
-  const structured = structuredData
+  const structuredInput = structuredData
     ? Array.isArray(structuredData)
       ? structuredData
       : [structuredData]
     : [];
+  const structured = [ORGANIZATION_SCHEMA, ...structuredInput];
 
   return (
     <Helmet>

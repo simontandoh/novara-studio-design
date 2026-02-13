@@ -42,7 +42,7 @@ const Services = () => {
         <div className="container-editorial">
           <div className="max-w-3xl">
             <p className="label-small mb-6">Services</p>
-            <h1 className="headline-hero mb-8">Systems built to last.</h1>
+            <h1 className="headline-hero mb-8 text-center">Systems built to last.</h1>
             <p className="body-large">Build, rebuild, and care under one roof.</p>
           </div>
         </div>

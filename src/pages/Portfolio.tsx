@@ -9,15 +9,15 @@ const Portfolio = () => {
   return (
     <Layout>
       <Seo
-        title="Portfolio"
-        description="Selected project snapshots and outcome-focused work from Novara Studios."
+        title="Selected Website Work and Outcomes"
+        description="Anonymized snapshots of Novara Studios work focused on outcomes, structure, and delivery across premium websites."
         path="/portfolio"
       />
       <section className="section-padding">
         <div className="container-editorial">
           <div className="max-w-2xl mb-10">
             <p className="label-small mb-4">Portfolio</p>
-            <h1 className="headline-hero mb-6">Selected work snapshots.</h1>
+            <h1 className="headline-hero mb-6 text-center">Selected work snapshots.</h1>
             <p className="body-large">
               Anonymized previews with a focus on outcomes, structure, and delivery.
             </p>

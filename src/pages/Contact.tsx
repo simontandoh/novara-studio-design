@@ -142,15 +142,15 @@ const Contact = () => {
   return (
     <Layout>
       <Seo
-        title="Contact"
-        description="Begin a private consultation with Novara Studios."
+        title="Contact Novara Studios for New Projects"
+        description="Private intake for Novara Studios. Share your project details and receive a clear, calm response from our team."
         path="/contact"
       />
       <section className="section-padding">
         <div className="container-editorial">
           <div className="max-w-2xl mx-auto">
             <p className="label-small mb-4">Contact</p>
-            <h1 className="headline-hero mb-6">Private intake.</h1>
+            <h1 className="headline-hero mb-6 text-center">Private intake.</h1>
             <p className="body-large">A quiet first step. We respond with clarity.</p>
           </div>
         </div>

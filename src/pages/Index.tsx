@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import HomeHero from "@/components/home/HomeHero";
 import Seo from "@/components/Seo";
-import { SITE_URL } from "@/lib/seo";
 import { trackEvent } from "@/lib/analytics";
 
 const proofItems = [
@@ -27,31 +26,9 @@ const Index = () => {
   return (
     <Layout>
       <Seo
-        title="Digital Systems Studio"
-        description="Novara Studios designs, builds, and maintains high-performing websites and digital systems with calm delivery and measurable outcomes."
+        title="Digital Systems for Premium Websites"
+        description="Novara Studios designs, builds, and maintains calm, high-performing websites and digital systems with clear delivery, continuity, and measurable outcomes."
         path="/"
-        structuredData={[
-          {
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            name: "Novara Studios",
-            url: SITE_URL,
-            logo: `${SITE_URL}/favicon.png`,
-            contactPoint: [
-              {
-                "@type": "ContactPoint",
-                email: "hello@novarastudios.co.uk",
-                contactType: "sales",
-              },
-            ],
-          },
-          {
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            name: "Novara Studios",
-            url: SITE_URL,
-          },
-        ]}
       />
       <HomeHero />
 

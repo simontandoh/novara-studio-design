@@ -5,15 +5,15 @@ const PrivacyPolicy = () => {
   return (
     <Layout>
       <Seo
-        title="Privacy Policy"
-        description="How Novara Studios collects and uses information."
+        title="Privacy Policy and Data Use at Novara Studios"
+        description="How Novara Studios collects, uses, and protects information shared through our site and contact channels."
         path="/privacy-policy"
       />
       <section className="section-padding">
         <div className="container-editorial">
           <div className="max-w-3xl">
             <p className="label-small mb-4">Legal</p>
-            <h1 className="headline-hero mb-6">Privacy Policy</h1>
+            <h1 className="headline-hero mb-6 text-center">Privacy Policy</h1>
             <p className="body-large mb-6">
               We collect information you submit through our contact forms and
               communication channels so we can respond to your enquiry.

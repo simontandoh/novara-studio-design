@@ -33,15 +33,15 @@ const HowItWorks = () => {
   return (
     <Layout>
       <Seo
-        title="How It Works"
-        description="A calm, structured process from discovery to launch and ongoing care."
+        title="How Novara Delivers Calm Website Builds"
+        description="A calm, structured process from discovery to launch and ongoing care, focused on clarity, timelines, and reliable delivery."
         path="/how-it-works"
       />
       <section className="section-padding">
         <div className="container-editorial">
           <div className="max-w-3xl">
             <p className="label-small mb-6">How it works</p>
-            <h1 className="headline-hero mb-8">
+            <h1 className="headline-hero mb-8 text-center">
               A calm, structured process focused on outcomes.
             </h1>
             <p className="body-large">

@@ -25,7 +25,7 @@ const Submitted = () => {
         <div className="container-editorial">
           <div className="max-w-2xl">
             <p className="label-small mb-4">Submitted</p>
-            <h1 className="headline-hero mb-6">Received.</h1>
+            <h1 className="headline-hero mb-6 text-center">Received.</h1>
             <p className="body-large mb-6">We will respond shortly.</p>
             {!data && (
               <p className="text-sm text-muted-foreground">

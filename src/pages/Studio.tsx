@@ -8,7 +8,7 @@ const Studio = () => {
         <div className="container-editorial">
           <div className="max-w-3xl">
             <p className="label-small mb-6">Studio</p>
-            <h1 className="headline-hero mb-8">Quiet process. Long partnership.</h1>
+            <h1 className="headline-hero mb-8 text-center">Quiet process. Long partnership.</h1>
             <p className="body-large">Direct, measured, and focused on delivery.</p>
           </div>
         </div>
