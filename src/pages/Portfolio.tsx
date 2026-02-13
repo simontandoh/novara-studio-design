@@ -15,7 +15,7 @@ const Portfolio = () => {
       />
       <section className="section-padding">
         <div className="container-editorial">
-          <div className="max-w-2xl mb-10">
+          <div className="max-w-2xl mb-10 mx-auto text-center">
             <p className="label-small mb-4">Portfolio</p>
             <h1 className="headline-hero mb-6 text-center">Selected work snapshots.</h1>
             <p className="body-large">
