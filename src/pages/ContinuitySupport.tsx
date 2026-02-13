@@ -33,7 +33,7 @@ const ContinuitySupport = () => {
       />
       <section className="section-padding">
         <div className="container-editorial">
-          <div className="max-w-3xl">
+          <div className="max-w-3xl mx-auto text-center">
             <p className="label-small mb-6">Continuity support</p>
             <h1 className="headline-hero mb-8 text-center">Support beyond standard hours.</h1>
             <p className="body-large">
