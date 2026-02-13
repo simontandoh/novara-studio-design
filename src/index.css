@@ -180,6 +180,12 @@
     letter-spacing: -0.02em;
   }
 
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+
   select {
     color-scheme: dark;
   }

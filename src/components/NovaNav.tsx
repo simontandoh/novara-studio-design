@@ -166,7 +166,7 @@ const NovaNav = () => {
               aria-expanded={open}
               aria-controls="nova-nav-panel"
               onClick={handleToggle}
-              className="text-white rounded-full p-2.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background bg-black/70"
+              className="text-white rounded-full p-2.5 min-h-[44px] min-w-[44px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background bg-black/70"
             >
               <span className="sr-only">Toggle navigation</span>
               <MenuIcon open={open} />
@@ -207,15 +207,18 @@ const NovaNav = () => {
           </div>
 
           <div className="flex flex-col gap-6">
-            {navLinks.map((item, index) => (
+            {navLinks.map((item, index) => {
+              const isActive = activePath === item.path;
+              return (
               <Link
                 key={item.path}
                 to={item.path}
                 onClick={() => handleNavClick(item.label, item.path)}
+                aria-current={isActive ? "page" : undefined}
                 className={`group relative text-2xl font-light tracking-tight transition-all duration-[180ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
                   item.primary
                     ? "text-accent"
-                    : activePath === item.path
+                    : isActive
                       ? "text-foreground"
                       : "text-muted-foreground hover:text-foreground"
                 }`}
@@ -224,7 +227,8 @@ const NovaNav = () => {
                 {item.label}
                 <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-accent transition-transform duration-[180ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100" />
               </Link>
-            ))}
+              );
+            })}
           </div>
 
           <div className="mt-10 p-6 rounded-lg border border-border/60 bg-background/60">
