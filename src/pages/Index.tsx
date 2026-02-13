@@ -77,7 +77,7 @@ const Index = () => {
             {proofItems.map((item) => (
               <div
                 key={item.title}
-                className="rounded-lg p-6 md:p-8 border border-border/60 bg-transparent transition-all duration-200 hover:bg-card/70 hover:border-accent/60 hover:shadow-xl"
+                className="rounded-lg p-6 md:p-8 border border-border/60 bg-transparent transition-all duration-200 hover:bg-card/70 hover:border-accent/60 hover:shadow-xl text-center"
               >
                 <h3 className="text-base font-normal mb-3">{item.title}</h3>
                 <p className="text-sm text-foreground mb-4">{item.outcome}</p>
