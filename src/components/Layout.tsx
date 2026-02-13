@@ -16,13 +16,19 @@ const Layout = ({ children }: LayoutProps) => {
 
   return (
     <div className={`min-h-screen flex flex-col ${showSpace ? "bg-transparent" : "bg-background"}`}>
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:rounded-full focus:bg-background focus:px-4 focus:py-2 focus:text-foreground focus:shadow-lg"
+      >
+        Skip to main content
+      </a>
       {showSpace && (
         <Suspense fallback={null}>
           <SpaceBackground />
         </Suspense>
       )}
       <NovaNav />
-      <main className="flex-1 pt-16 md:pt-20 relative z-10 text-center">
+      <main id="main-content" className="flex-1 pt-16 md:pt-20 relative z-10 text-center">
         {children}
       </main>
       <section className="mt-auto w-full text-center">
