@@ -25,7 +25,7 @@ const MenuIcon = ({ open }: { open: boolean }) => {
       src="/menu-bar.png"
       alt=""
       aria-hidden="true"
-      className={`h-5 w-5 transition-transform duration-[180ms] ${
+      className={`h-5 w-5 transition-transform duration-[180ms] brightness-0 invert ${
         open ? "rotate-90" : ""
       }`}
     />
@@ -123,6 +123,11 @@ const NovaNav = () => {
     closeMenu();
   };
 
+  const handleToggle = () => {
+    setHidden(false);
+    setOpen((prev) => !prev);
+  };
+
   return (
     <nav
       aria-label="Primary"
@@ -155,7 +160,7 @@ const NovaNav = () => {
               aria-label={open ? "Close navigation menu" : "Open navigation menu"}
               aria-expanded={open}
               aria-controls="nova-nav-panel"
-              onClick={() => setOpen((prev) => !prev)}
+              onClick={handleToggle}
               className="text-white rounded-full p-2.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background bg-black/70"
             >
               <span className="sr-only">Toggle navigation</span>
