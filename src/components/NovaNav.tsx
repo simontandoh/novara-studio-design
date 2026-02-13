@@ -38,6 +38,8 @@ const NovaNav = () => {
   const panelRef = useRef<HTMLDivElement | null>(null);
   const toggleRef = useRef<HTMLButtonElement | null>(null);
   const isHome = location.pathname === "/";
+  const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
 
   const activePath = useMemo(() => location.pathname, [location.pathname]);
   useEffect(() => {
@@ -54,6 +56,28 @@ const NovaNav = () => {
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
+
+  useEffect(() => {
+    let lastY = window.scrollY;
+    const onScroll = () => {
+      const currentY = window.scrollY;
+      setScrolled(currentY > 8);
+      if (open) return;
+      if (currentY < 10) {
+        setHidden(false);
+        return;
+      }
+      if (currentY > lastY + 6) {
+        setHidden(true);
+      } else if (currentY < lastY - 6) {
+        setHidden(false);
+      }
+      lastY = currentY;
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [open]);
 
   useEffect(() => {
     if (!open) return;
@@ -102,7 +126,9 @@ const NovaNav = () => {
   return (
     <nav
       aria-label="Primary"
-      className="fixed top-0 left-0 right-0 z-[100] bg-black/60 backdrop-blur-md border-b border-border/60"
+      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-[200ms] ${
+        hidden ? "-translate-y-full" : "translate-y-0"
+      } ${scrolled ? "bg-black/90 border-b border-border/60" : "bg-transparent border-b border-transparent"}`}
     >
       <div className="container-editorial">
         <div className="grid grid-cols-3 items-center h-16 md:h-20">
