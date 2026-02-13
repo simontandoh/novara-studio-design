@@ -31,7 +31,7 @@ const Faq = () => {
       />
       <section className="section-padding">
         <div className="container-editorial">
-          <div className="max-w-2xl mb-10">
+          <div className="max-w-2xl mb-10 mx-auto text-center">
             <p className="label-small mb-4">FAQ</p>
             <h1 className="headline-hero mb-6 text-center">Answers, clearly.</h1>
             <p className="body-large">Straight responses to common questions.</p>
