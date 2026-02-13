@@ -62,7 +62,7 @@ const Local = () => {
       />
       <section className="section-padding">
         <div className="container-editorial">
-          <div className="max-w-3xl mx-auto mb-12">
+          <div className="max-w-3xl mx-auto mb-12 text-center surface-panel noise-overlay rounded-2xl p-8 md:p-10">
             <p className="label-small mb-4">Websites</p>
             <h1 className="headline-hero mb-6 text-center">Website builds with long-term care.</h1>
             <p className="body-large">
@@ -94,15 +94,12 @@ const Local = () => {
               </div>
             ))}
           </div>
-          <p className="body-refined text-center mt-8">
-            Pricing is set after consultation.
-          </p>
         </div>
       </section>
 
       <section className="section-padding">
         <div className="container-editorial">
-          <div className="max-w-2xl mb-10">
+          <div className="max-w-2xl mb-10 mx-auto text-center">
             <p className="label-small mb-4">Maintenance plans</p>
             <h2 className="headline-primary">Ongoing care.</h2>
           </div>
@@ -133,9 +130,6 @@ const Local = () => {
               </div>
             ))}
           </div>
-          <p className="body-refined text-center mt-10">
-            Maintenance is the standard for continuity.
-          </p>
         </div>
       </section>
     </Layout>
