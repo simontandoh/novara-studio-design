@@ -35,7 +35,7 @@ const Index = () => {
       <section id="home-next" className="section-padding">
         <div className="container-editorial">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-20">
-            <div className="surface-panel noise-overlay rounded-lg p-8 md:p-10">
+            <div className="rounded-lg p-8 md:p-10 border border-border/60 bg-transparent transition-all duration-200 hover:bg-card/30 hover:border-accent/60 hover:shadow-xl noise-overlay">
               <p className="label-small mb-4">Websites</p>
               <h2 className="headline-secondary mb-4">Websites built to last.</h2>
               <p className="body-refined mb-6">
@@ -49,11 +49,11 @@ const Index = () => {
                 See services
               </Link>
             </div>
-            <div className="surface-panel noise-overlay rounded-lg p-8 md:p-10">
+            <div className="rounded-lg p-8 md:p-10 border border-border/60 bg-transparent transition-all duration-200 hover:bg-card/30 hover:border-accent/60 hover:shadow-xl noise-overlay">
               <p className="label-small mb-4">Beyond Local</p>
               <h2 className="headline-secondary mb-4">Systems that scale quietly.</h2>
               <p className="body-refined mb-6">
-                Stable infrastructure, reliable flows, and steady improvements.
+                Stable infrastructure and steady improvements.
               </p>
               <Link
                 to="/contact"
@@ -77,7 +77,7 @@ const Index = () => {
             {proofItems.map((item) => (
               <div
                 key={item.title}
-                className="rounded-lg p-6 md:p-8 border border-border/60 bg-transparent transition-all duration-200 hover:bg-card/70 hover:border-accent/60 hover:shadow-xl text-center"
+                className="rounded-lg p-6 md:p-8 border border-border/60 bg-card/70 transition-all duration-200 hover:bg-card/90 hover:border-accent/60 hover:shadow-xl text-center"
               >
                 <h3 className="text-base font-normal mb-3">{item.title}</h3>
                 <p className="text-sm text-foreground mb-4">{item.outcome}</p>
