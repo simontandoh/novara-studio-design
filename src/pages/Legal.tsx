@@ -32,17 +32,6 @@ const Legal = () => {
                 Accessibility Statement
               </Link>
             </div>
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-3 text-xs text-muted-foreground">
-              <Link to="/privacy-policy" className="btn-secondary rounded-full px-4 py-2">
-                Left
-              </Link>
-              <Link to="/legal" className="btn-secondary rounded-full px-4 py-2">
-                Back to Menu
-              </Link>
-              <Link to="/terms" className="btn-secondary rounded-full px-4 py-2">
-                Right
-              </Link>
-            </div>
           </div>
         </div>
       </section>

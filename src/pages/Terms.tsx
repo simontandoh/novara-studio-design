@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import Seo from "@/components/Seo";
 
@@ -35,6 +36,20 @@ const Terms = () => {
                 For questions about these terms, contact us at
                 hello@novarastudios.co.uk.
               </p>
+            </div>
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-3 text-xs text-muted-foreground">
+              <Link to="/legal" className="btn-secondary rounded-full px-4 py-2">
+                Back to Legal
+              </Link>
+              <Link to="/privacy-policy" className="btn-secondary rounded-full px-4 py-2">
+                Privacy Policy
+              </Link>
+              <Link to="/cookie-notice" className="btn-secondary rounded-full px-4 py-2">
+                Cookie Notice
+              </Link>
+              <Link to="/accessibility" className="btn-secondary rounded-full px-4 py-2">
+                Accessibility
+              </Link>
             </div>
           </div>
         </div>

@@ -5,6 +5,7 @@ import { trackEvent } from "@/lib/analytics";
 const navLinks = [
   { label: "Websites", path: "/websites", primary: true },
   { label: "Portfolio", path: "/portfolio" },
+  { label: "Legal", path: "/legal" },
   { label: "Contact", path: "/contact" },
 ];
 
