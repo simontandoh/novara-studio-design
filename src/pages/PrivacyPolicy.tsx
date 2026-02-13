@@ -12,7 +12,7 @@ const PrivacyPolicy = () => {
       />
       <section className="section-padding">
         <div className="container-editorial">
-          <div className="max-w-3xl">
+          <div className="max-w-3xl text-center mx-auto">
             <p className="label-small mb-4">Legal</p>
             <h1 className="headline-hero mb-6 text-center">Privacy Policy</h1>
             <p className="body-large mb-6">
