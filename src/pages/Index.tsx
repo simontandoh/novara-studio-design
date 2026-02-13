@@ -69,7 +69,7 @@ const Index = () => {
 
       <section className="section-padding">
         <div className="container-editorial">
-          <div className="max-w-2xl mb-12">
+          <div className="max-w-2xl mb-12 mx-auto text-center">
             <p className="label-small mb-4">Proof</p>
             <h2 className="headline-primary">Outcomes that stay measurable.</h2>
           </div>
