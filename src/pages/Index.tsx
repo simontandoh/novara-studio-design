@@ -30,6 +30,7 @@ const Index = () => {
         description="Novara Studios designs, builds, and maintains calm, high-performing websites and digital systems with clear delivery, continuity, and measurable outcomes."
         path="/"
       />
+      <h1 className="sr-only">Novara Studios digital systems studio</h1>
       <HomeHero />
 
       <section id="home-next" className="section-padding">

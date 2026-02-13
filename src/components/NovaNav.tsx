@@ -188,7 +188,7 @@ const NovaNav = () => {
           role="dialog"
           aria-modal="true"
           aria-label="Site navigation"
-          className={`absolute right-0 top-0 h-full w-full max-w-md p-8 md:p-10 bg-card border-l border-border shadow-2xl nav-glow z-[120] transition-transform duration-[220ms] ${
+          className={`absolute right-0 top-0 h-full w-full max-w-md p-8 md:p-10 bg-card border-l border-border shadow-2xl nav-glow z-[120] transition-transform duration-[220ms] overflow-y-auto ${
             open ? "translate-x-0" : "translate-x-full"
           }`}
           onClick={(event) => event.stopPropagation()}
