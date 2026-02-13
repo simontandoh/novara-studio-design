@@ -29,18 +29,15 @@ const AccessibilityStatement = () => {
                 format, email us at hello@novarastudios.co.uk and we will respond.
               </p>
             </div>
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-3 text-xs text-muted-foreground">
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-3 text-xs text-muted-foreground text-center">
+              <Link to="/cookie-notice" className="btn-secondary rounded-full px-4 py-2">
+                Left
+              </Link>
               <Link to="/legal" className="btn-secondary rounded-full px-4 py-2">
-                Back to Legal
+                Back to Menu
               </Link>
               <Link to="/privacy-policy" className="btn-secondary rounded-full px-4 py-2">
-                Privacy Policy
-              </Link>
-              <Link to="/terms" className="btn-secondary rounded-full px-4 py-2">
-                Terms
-              </Link>
-              <Link to="/cookie-notice" className="btn-secondary rounded-full px-4 py-2">
-                Cookie Notice
+                Right
               </Link>
             </div>
           </div>

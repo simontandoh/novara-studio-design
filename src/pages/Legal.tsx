@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import Seo from "@/components/Seo";
 
@@ -18,20 +17,6 @@ const Legal = () => {
             <p className="body-large mb-8">
               Everything in one place.
             </p>
-            <div className="grid gap-4 text-sm">
-              <Link to="/privacy-policy" className="btn-secondary rounded-full px-6 py-2">
-                Privacy Policy
-              </Link>
-              <Link to="/terms" className="btn-secondary rounded-full px-6 py-2">
-                Terms of Service
-              </Link>
-              <Link to="/cookie-notice" className="btn-secondary rounded-full px-6 py-2">
-                Cookie Notice
-              </Link>
-              <Link to="/accessibility" className="btn-secondary rounded-full px-6 py-2">
-                Accessibility Statement
-              </Link>
-            </div>
           </div>
         </div>
       </section>
