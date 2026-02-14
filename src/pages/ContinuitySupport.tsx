@@ -53,25 +53,25 @@ const ContinuitySupport = () => {
                 Monitoring, response, and clear updates when timing matters.
               </p>
             </div>
-            <div className="bg-card border border-border p-8 md:p-10">
-              <h3 className="text-lg font-light mb-6">Coverage includes</h3>
-              <ul className="space-y-4">
+            <div className="bg-card/80 border border-border p-8 md:p-10">
+              <h3 className="text-lg md:text-xl font-light mb-6 text-center">Coverage includes</h3>
+              <ul className="space-y-5 max-w-md mx-auto">
                 <li className="flex items-start gap-4">
-                  <span className="text-accent mt-1">-</span>
+                  <span className="text-accent mt-0.5">-</span>
                   <p className="text-muted-foreground font-light">
                     <span className="text-foreground">Evenings</span> - typically 6pm to
                     10pm weekdays
                   </p>
                 </li>
                 <li className="flex items-start gap-4">
-                  <span className="text-accent mt-1">-</span>
+                  <span className="text-accent mt-0.5">-</span>
                   <p className="text-muted-foreground font-light">
                     <span className="text-foreground">Weekends</span> - reasonable hours
                     on Saturday and Sunday
                   </p>
                 </li>
                 <li className="flex items-start gap-4">
-                  <span className="text-accent mt-1">-</span>
+                  <span className="text-accent mt-0.5">-</span>
                   <p className="text-muted-foreground font-light">
                     <span className="text-foreground">Monitoring</span> - early detection
                     where possible
@@ -110,11 +110,11 @@ const ContinuitySupport = () => {
       <section className="section-padding bg-card">
         <div className="container-editorial">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
-            <div>
+            <div className="bg-background/70 border border-border p-8 md:p-10">
               <h2 className="headline-primary mb-6">Request support</h2>
               <p className="body-large mb-8">Direct contact. Clear responses.</p>
-              <div className="space-y-6">
-                <div className="flex gap-4">
+              <div className="space-y-7 max-w-lg">
+                <div className="grid grid-cols-[20px_1fr] gap-4 items-start">
                   <Mail className="w-5 h-5 text-accent shrink-0 mt-1" strokeWidth={1.5} />
                   <div>
                     <p className="text-foreground font-light mb-1">Email</p>
@@ -123,7 +123,7 @@ const ContinuitySupport = () => {
                     </p>
                   </div>
                 </div>
-                <div className="flex gap-4">
+                <div className="grid grid-cols-[20px_1fr] gap-4 items-start">
                   <AlertCircle
                     className="w-5 h-5 text-accent shrink-0 mt-1"
                     strokeWidth={1.5}
@@ -138,7 +138,7 @@ const ContinuitySupport = () => {
               </div>
             </div>
             <div className="bg-background border border-border p-8 md:p-10">
-              <h3 className="text-lg font-light mb-6">Clear expectations</h3>
+              <h3 className="text-lg md:text-xl font-light mb-6">Clear expectations</h3>
               <ul className="space-y-4 text-sm text-muted-foreground font-light">
                 <li className="flex items-start gap-3">
                   <span className="text-accent mt-0.5">-</span>

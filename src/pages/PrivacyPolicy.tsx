@@ -19,7 +19,7 @@ const PrivacyPolicy = () => {
               We collect information you submit through our contact forms and
               communication channels so we can respond to your enquiry.
             </p>
-            <div className="space-y-4 text-sm text-muted-foreground">
+            <div className="space-y-5 text-sm md:text-base md:leading-relaxed text-muted-foreground">
               <p>
                 Data we collect may include your name, business details, contact
                 information, and any project notes you provide.
@@ -39,13 +39,13 @@ const PrivacyPolicy = () => {
               </p>
             </div>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-3 text-xs text-muted-foreground text-center">
-              <Link to="/accessibility" className="btn-secondary rounded-full px-4 py-2">
+              <Link to="/accessibility" className="btn-secondary rounded-full px-4 py-2 md:px-5 md:py-2.5 md:text-sm">
                 &lt;
               </Link>
-              <Link to="/legal" className="btn-secondary rounded-full px-4 py-2">
+              <Link to="/legal" className="btn-secondary rounded-full px-4 py-2 md:px-5 md:py-2.5 md:text-sm">
                 Menu
               </Link>
-              <Link to="/terms" className="btn-secondary rounded-full px-4 py-2">
+              <Link to="/terms" className="btn-secondary rounded-full px-4 py-2 md:px-5 md:py-2.5 md:text-sm">
                 &gt;
               </Link>
             </div>

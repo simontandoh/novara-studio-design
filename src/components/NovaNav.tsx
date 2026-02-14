@@ -39,7 +39,7 @@ const NovaNav = () => {
   const panelRef = useRef<HTMLDivElement | null>(null);
   const toggleRef = useRef<HTMLButtonElement | null>(null);
   const lastScrollYRef = useRef(0);
-  const isHome = location.pathname === "/";
+  const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [visible, setVisible] = useState(true);
 
@@ -60,6 +60,22 @@ const NovaNav = () => {
   }, []);
 
   useEffect(() => {
+    const media = window.matchMedia("(max-width: 1024px)");
+    const onChange = () => setIsMobileOrTablet(media.matches);
+    onChange();
+    media.addEventListener("change", onChange);
+    return () => media.removeEventListener("change", onChange);
+  }, []);
+
+  useEffect(() => {
+    if (isMobileOrTablet) {
+      setScrolled(true);
+      setVisible(true);
+    }
+  }, [isMobileOrTablet]);
+
+  useEffect(() => {
+    if (isMobileOrTablet) return;
     lastScrollYRef.current = window.scrollY;
     const onScroll = () => {
       const currentY = window.scrollY;
@@ -81,7 +97,7 @@ const NovaNav = () => {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [isMobileOrTablet]);
 
   useEffect(() => {
     if (!open) return;
@@ -140,7 +156,7 @@ const NovaNav = () => {
     >
       <div
         className={`transition-transform duration-[200ms] ${
-          open || visible ? "translate-y-0" : "-translate-y-[110%]"
+          isMobileOrTablet || open || visible ? "translate-y-0" : "-translate-y-[110%]"
         }`}
       >
         <div className="container-editorial">
@@ -158,7 +174,7 @@ const NovaNav = () => {
                   height={36}
                   className="h-9 w-9 object-contain"
                 />
-                {!isHome && <span className="text-lg font-light tracking-[0.4em]">NOVARA</span>}
+                <span className="text-lg font-light tracking-[0.4em]">NOVARA</span>
               </Link>
             </div>
             <div className="flex justify-end items-center justify-self-end w-full">

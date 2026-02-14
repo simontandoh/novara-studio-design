@@ -190,7 +190,7 @@ const SpaceBackground = () => {
         className="absolute inset-0"
         style={{
           background: isMobile
-            ? "none"
+            ? "radial-gradient(120% 80% at 20% 10%, rgba(28, 40, 64, 0.45), transparent 60%), radial-gradient(120% 90% at 80% 85%, rgba(24, 34, 56, 0.4), transparent 60%), linear-gradient(180deg, rgba(6, 12, 22, 0.92) 0%, rgba(8, 14, 28, 0.96) 50%, rgba(4, 9, 18, 0.98) 100%)"
             : "radial-gradient(900px 520px at 18% 12%, rgba(6, 10, 16, 0.78), transparent 60%), radial-gradient(800px 520px at 82% 18%, rgba(6, 10, 16, 0.7), transparent 65%)",
         }}
       />

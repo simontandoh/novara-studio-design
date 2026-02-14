@@ -19,7 +19,7 @@ const AccessibilityStatement = () => {
               We want this site to be usable for as many people as possible. We design and
               build with accessibility in mind and continue to improve based on feedback.
             </p>
-            <div className="space-y-4 text-sm text-muted-foreground">
+            <div className="space-y-5 text-sm md:text-base md:leading-relaxed text-muted-foreground">
               <p>
                 The site aims to meet WCAG 2.1 AA guidelines, including keyboard access,
                 visible focus states, and readable contrast.
@@ -30,13 +30,13 @@ const AccessibilityStatement = () => {
               </p>
             </div>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-3 text-xs text-muted-foreground text-center">
-              <Link to="/cookie-notice" className="btn-secondary rounded-full px-4 py-2">
+              <Link to="/cookie-notice" className="btn-secondary rounded-full px-4 py-2 md:px-5 md:py-2.5 md:text-sm">
                 &lt;
               </Link>
-              <Link to="/legal" className="btn-secondary rounded-full px-4 py-2">
+              <Link to="/legal" className="btn-secondary rounded-full px-4 py-2 md:px-5 md:py-2.5 md:text-sm">
                 Menu
               </Link>
-              <Link to="/privacy-policy" className="btn-secondary rounded-full px-4 py-2">
+              <Link to="/privacy-policy" className="btn-secondary rounded-full px-4 py-2 md:px-5 md:py-2.5 md:text-sm">
                 &gt;
               </Link>
             </div>

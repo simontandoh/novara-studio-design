@@ -39,9 +39,9 @@ const HowItWorks = () => {
       />
       <section className="section-padding">
         <div className="container-editorial">
-          <div className="max-w-3xl">
+          <div className="max-w-3xl mx-auto text-center">
             <p className="label-small mb-6">How it works</p>
-            <h1 className="headline-hero mb-8 text-center">
+            <h1 className="headline-hero mb-8">
               A calm, structured process focused on outcomes.
             </h1>
             <p className="body-large">
@@ -54,18 +54,20 @@ const HowItWorks = () => {
 
       <section className="section-padding">
         <div className="container-editorial">
-          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
-            <div>
-              <h2 className="headline-primary mb-6">Four simple steps</h2>
-              <p className="body-large">
-                From first conversation to ongoing care, we follow a consistent 
-                process that respects your time and focuses on delivering real value.
-              </p>
-            </div>
-            <div className="space-y-8">
-              {processSteps.map((step) => (
-                <ProcessStep key={step.number} {...step} />
-              ))}
+          <div className="max-w-6xl mx-auto rounded-2xl border border-border/60 bg-card/35 p-8 md:p-10 lg:p-14">
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+              <div className="text-center lg:text-left">
+                <h2 className="headline-primary mb-6">Four simple steps</h2>
+                <p className="body-large">
+                  From first conversation to ongoing care, we follow a consistent
+                  process that respects your time and focuses on delivering real value.
+                </p>
+              </div>
+              <div className="space-y-8 text-center lg:text-left">
+                {processSteps.map((step) => (
+                  <ProcessStep key={step.number} {...step} />
+                ))}
+              </div>
             </div>
           </div>
         </div>

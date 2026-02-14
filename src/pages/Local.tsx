@@ -5,7 +5,7 @@ import { SITE_URL } from "@/lib/seo";
 const maintenanceTiers = [
   {
     name: "Care",
-    price: "GBP 49/month",
+    price: "£49/month",
     description: "Baseline care for stable, well-run sites.",
     includes: [
       "Core updates and security patching",
@@ -16,7 +16,7 @@ const maintenanceTiers = [
   },
   {
     name: "Priority",
-    price: "GBP 99/month",
+    price: "£99/month",
     description: "Proactive care with priority response.",
     includes: [
       "Everything in Care",
@@ -29,7 +29,7 @@ const maintenanceTiers = [
   },
   {
     name: "Continuity",
-    price: "GBP 199/month",
+    price: "£199/month",
     description: "Highest priority with deeper continuity support.",
     includes: [
       "Everything in Priority",
@@ -62,7 +62,7 @@ const Local = () => {
       />
       <section className="section-padding">
         <div className="container-editorial">
-          <div className="max-w-3xl mx-auto mb-12 text-center surface-panel noise-overlay rounded-2xl p-8 md:p-10">
+          <div className="max-w-3xl mx-auto mb-12 text-center rounded-2xl p-8 md:p-10 border border-border/60 bg-transparent noise-overlay">
             <p className="label-small mb-4">Websites</p>
             <h1 className="headline-hero mb-6 text-center">Website builds with long-term care.</h1>
             <p className="body-large">
@@ -88,7 +88,7 @@ const Local = () => {
                 detail: "Larger builds with advanced content.",
               },
             ].map((tier) => (
-              <div key={tier.name} className="surface-panel noise-overlay rounded-lg p-6 md:p-8">
+              <div key={tier.name} className="rounded-lg p-6 md:p-8 border border-border/60 bg-transparent noise-overlay">
                 <h3 className="headline-secondary mb-3">{tier.name}</h3>
                 <p className="body-refined">{tier.detail}</p>
               </div>
@@ -107,7 +107,7 @@ const Local = () => {
             {maintenanceTiers.map((tier) => (
               <div
                 key={tier.name}
-                className={`rounded-lg p-8 md:p-10 border border-border/60 bg-transparent transition-all duration-[180ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-card/70 hover:border-accent/60 hover:shadow-xl ${
+                className={`rounded-lg p-8 md:p-10 border border-border/60 bg-card/80 noise-overlay transition-all duration-[180ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-card hover:border-accent/60 hover:shadow-xl ${
                   tier.featured ? "shadow-lg shadow-accent/10" : ""
                 }`}
               >

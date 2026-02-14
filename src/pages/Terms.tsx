@@ -19,7 +19,7 @@ const Terms = () => {
               By engaging Novara Studios, you agree to the scope, fees, and
               timelines outlined in your proposal or statement of work.
             </p>
-            <div className="space-y-4 text-sm text-muted-foreground">
+            <div className="space-y-5 text-sm md:text-base md:leading-relaxed text-muted-foreground">
               <p>
                 Project deliverables, timelines, and payment terms are confirmed
                 in writing before work starts.
@@ -38,13 +38,13 @@ const Terms = () => {
               </p>
             </div>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-3 text-xs text-muted-foreground text-center">
-              <Link to="/privacy-policy" className="btn-secondary rounded-full px-4 py-2">
+              <Link to="/privacy-policy" className="btn-secondary rounded-full px-4 py-2 md:px-5 md:py-2.5 md:text-sm">
                 &lt;
               </Link>
-              <Link to="/legal" className="btn-secondary rounded-full px-4 py-2">
+              <Link to="/legal" className="btn-secondary rounded-full px-4 py-2 md:px-5 md:py-2.5 md:text-sm">
                 Menu
               </Link>
-              <Link to="/cookie-notice" className="btn-secondary rounded-full px-4 py-2">
+              <Link to="/cookie-notice" className="btn-secondary rounded-full px-4 py-2 md:px-5 md:py-2.5 md:text-sm">
                 &gt;
               </Link>
             </div>

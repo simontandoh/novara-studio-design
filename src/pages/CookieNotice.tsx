@@ -19,7 +19,7 @@ const CookieNotice = () => {
               We use a small number of cookies and similar technologies to keep this site
               working and to understand how people use it.
             </p>
-            <div className="space-y-4 text-sm text-muted-foreground">
+            <div className="space-y-5 text-sm md:text-base md:leading-relaxed text-muted-foreground">
               <p>
                 Essential cookies keep the site functioning (for example, remembering form
                 preferences). Optional analytics cookies help us improve the experience by
@@ -34,13 +34,13 @@ const CookieNotice = () => {
               </p>
             </div>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-3 text-xs text-muted-foreground text-center">
-              <Link to="/terms" className="btn-secondary rounded-full px-4 py-2">
+              <Link to="/terms" className="btn-secondary rounded-full px-4 py-2 md:px-5 md:py-2.5 md:text-sm">
                 &lt;
               </Link>
-              <Link to="/legal" className="btn-secondary rounded-full px-4 py-2">
+              <Link to="/legal" className="btn-secondary rounded-full px-4 py-2 md:px-5 md:py-2.5 md:text-sm">
                 Menu
               </Link>
-              <Link to="/accessibility" className="btn-secondary rounded-full px-4 py-2">
+              <Link to="/accessibility" className="btn-secondary rounded-full px-4 py-2 md:px-5 md:py-2.5 md:text-sm">
                 &gt;
               </Link>
             </div>
