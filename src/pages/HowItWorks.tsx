@@ -13,7 +13,7 @@ const processSteps = [
     number: "02",
     title: "Build or rebuild",
     description:
-      "We deliver a working first version quickly, then refine based on real feedback. Whether it's a new build or an upgrade to an existing site, we move efficiently toward launch.",
+      "We deliver a working first version quickly, then refine it based on real feedback. Whether it's a new build or an upgrade to an existing site, we move efficiently toward launch.",
   },
   {
     number: "03",
@@ -25,7 +25,7 @@ const processSteps = [
     number: "04",
     title: "Ongoing care",
     description:
-      "Websites need attention over time. We handle maintenance, improvements, and monitoring - so your site stays reliable, secure, and ready to evolve when you are.",
+      "Websites need attention over time. We handle maintenance, improvements, and monitoring - so your site stays reliable, secure, and ready to evolve as you grow.",
   },
 ];
 
@@ -45,8 +45,7 @@ const HowItWorks = () => {
               A calm, structured process focused on outcomes.
             </h1>
             <p className="body-large">
-              We keep things simple. No complex methodologies, no unnecessary meetings. 
-              Just clear communication and steady progress toward a website that works.
+              We keep things simple. Clear communication, steady progress, and a website that works — without unnecessary process or meetings.
             </p>
           </div>
         </div>
@@ -59,8 +58,7 @@ const HowItWorks = () => {
               <div className="text-center lg:text-left">
                 <h2 className="headline-primary mb-6">Four simple steps</h2>
                 <p className="body-large">
-                  From first conversation to ongoing care, we follow a consistent
-                  process that respects your time and focuses on delivering real value.
+                  From first conversation to ongoing care, we follow a consistent process that respects your time and focuses on outcomes that matter.
                 </p>
               </div>
               <div className="space-y-8 text-center lg:text-left">
