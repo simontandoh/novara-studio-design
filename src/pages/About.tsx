@@ -100,12 +100,12 @@ const About = () => {
         </div>
       </section>
 
-      <section className="section-padding bg-card">
+      <section className="section-padding">
         <div className="container-editorial">
           <h2 className="headline-primary mb-12">Values</h2>
-          <div className="grid md:grid-cols-2 gap-px bg-border">
+          <div className="grid md:grid-cols-2 gap-px bg-border border border-border/70 rounded-lg overflow-hidden">
             {values.map((value, index) => (
-              <div key={index} className="bg-card p-8 md:p-10">
+              <div key={index} className="bg-background p-8 md:p-10">
                 <h3 className="text-lg font-light mb-3">{value.title}</h3>
                 <p className="body-refined">{value.description}</p>
               </div>
@@ -114,7 +114,7 @@ const About = () => {
         </div>
       </section>
 
-      <section className="section-padding section-padding-proof">
+      <section className="section-padding section-padding-proof bg-card">
         <div className="container-editorial">
           <div className="max-w-2xl mb-12 mx-auto text-center">
             <p className="label-small mb-4">Proof</p>
@@ -124,7 +124,7 @@ const About = () => {
             {proofItems.map((item) => (
               <div
                 key={item.title}
-                className="rounded-lg p-6 md:p-8 border border-border/60 bg-card/70 transition-all duration-200 hover:bg-card/90 hover:border-accent/60 hover:shadow-xl text-center"
+                className="rounded-lg p-6 md:p-8 border border-border bg-background/70 transition-all duration-200 hover:bg-background/90 hover:border-accent/60 hover:shadow-xl text-center"
               >
                 <h3 className="text-base font-normal mb-3">{item.title}</h3>
                 <p className="text-sm text-foreground mb-4">{item.outcome}</p>
