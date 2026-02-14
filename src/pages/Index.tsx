@@ -68,7 +68,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="section-padding">
+      <section className="section-padding section-padding-proof">
         <div className="container-editorial">
           <div className="max-w-2xl mb-12 mx-auto text-center">
             <p className="label-small mb-4">Proof</p>

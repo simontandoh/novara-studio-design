@@ -38,8 +38,10 @@ const NovaNav = () => {
   const [open, setOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement | null>(null);
   const toggleRef = useRef<HTMLButtonElement | null>(null);
+  const lastScrollYRef = useRef(0);
   const isHome = location.pathname === "/";
   const [scrolled, setScrolled] = useState(false);
+  const [visible, setVisible] = useState(true);
 
   const activePath = useMemo(() => location.pathname, [location.pathname]);
   useEffect(() => {
@@ -58,8 +60,23 @@ const NovaNav = () => {
   }, []);
 
   useEffect(() => {
+    lastScrollYRef.current = window.scrollY;
     const onScroll = () => {
-      setScrolled(window.scrollY > 8);
+      const currentY = window.scrollY;
+      const lastY = lastScrollYRef.current;
+      const isAtTop = currentY <= 8;
+
+      setScrolled(!isAtTop);
+
+      if (isAtTop) {
+        setVisible(true);
+      } else if (currentY > lastY) {
+        setVisible(false);
+      } else if (currentY < lastY) {
+        setVisible(true);
+      }
+
+      lastScrollYRef.current = currentY;
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -118,7 +135,9 @@ const NovaNav = () => {
     <nav
       aria-label="Primary"
       className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-[200ms] ${
-        scrolled ? "bg-black/90 border-b border-border/60" : "bg-transparent border-b border-transparent"
+        scrolled ? "bg-black border-b border-border/60" : "bg-transparent border-b border-transparent"
+      } ${
+        open || visible ? "translate-y-0" : "-translate-y-[110%]"
       }`}
     >
       <div className="container-editorial">

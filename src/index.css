@@ -207,9 +207,17 @@
     padding-block: var(--spacing-section);
   }
 
+  .section-padding-proof {
+    padding-block: calc(var(--spacing-section) - 10px);
+  }
+
   @media (max-width: 768px) {
     .section-padding {
       padding-block: var(--spacing-section-sm);
+    }
+
+    .section-padding-proof {
+      padding-block: calc(var(--spacing-section-sm) - 10px);
     }
   }
 
