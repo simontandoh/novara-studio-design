@@ -62,9 +62,9 @@ const Local = () => {
       />
       <section className="section-padding">
         <div className="container-editorial">
-          <div className="max-w-3xl mx-auto mb-12 text-center rounded-2xl p-8 md:p-10 bg-transparent noise-overlay">
+          <div className="max-w-3xl mx-auto mb-12 text-center p-8 md:p-10">
             <p className="label-small mb-4">Builds</p>
-            <h1 className="headline-hero mb-6 text-center">Builds with long-term care.</h1>
+            <h1 className="headline-hero mb-6 text-center">Websites</h1>
             <p className="body-large">
               Structured builds and maintenance plans designed for calm delivery and reliable performance.
             </p>
@@ -110,7 +110,7 @@ const Local = () => {
             {maintenanceTiers.map((tier) => (
               <div
                 key={tier.name}
-                className={`rounded-lg p-8 md:p-10 border border-border/60 bg-card/80 noise-overlay transition-all duration-[180ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-card hover:border-accent/60 hover:shadow-xl ${
+                className={`rounded-lg p-8 md:p-10 border border-border/60 bg-card/80 noise-overlay transition-all duration-[180ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-card hover:border-accent/60 hover:shadow-xl flex h-full flex-col text-center ${
                   tier.featured ? "shadow-lg shadow-accent/10" : ""
                 }`}
               >
@@ -122,7 +122,7 @@ const Local = () => {
                 <h3 className="headline-secondary mb-3">{tier.name}</h3>
                 <p className="text-lg font-light text-foreground mb-2">{tier.price}</p>
                 <p className="body-refined mb-6">{tier.description}</p>
-                <ul className="space-y-3 text-sm text-muted-foreground">
+                <ul className="space-y-3 text-sm text-muted-foreground w-full max-w-[290px] mx-auto text-left">
                   {tier.includes.map((item) => (
                     <li key={item} className="flex items-start gap-3">
                       <span className="text-accent mt-0.5">+</span>
