@@ -63,7 +63,7 @@ const Local = () => {
       <section className="section-padding">
         <div className="container-editorial">
           <div className="max-w-3xl mx-auto mb-12 text-center p-8 md:p-10">
-            <p className="label-small mb-4">Builds</p>
+            <p className="label-small mb-4">Services</p>
             <h1 className="headline-hero mb-6 text-center">Websites</h1>
             <p className="body-large">
               Structured builds and maintenance plans designed for calm delivery and reliable performance.
