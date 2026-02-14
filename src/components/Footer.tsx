@@ -13,20 +13,20 @@ const Footer = () => {
             <Link to="/" className="font-light text-muted-foreground hover:text-foreground transition-colors">
               Home
             </Link>
-            <Link to="/websites" className="font-light text-muted-foreground hover:text-foreground transition-colors">
-              Websites
-            </Link>
-            <Link to="/continuity" className="font-light text-muted-foreground hover:text-foreground transition-colors">
-              Continuity
-            </Link>
             <Link to="/about" className="font-light text-muted-foreground hover:text-foreground transition-colors">
               About
+            </Link>
+            <Link to="/how-it-works" className="font-light text-muted-foreground hover:text-foreground transition-colors">
+              Process
             </Link>
             <Link to="/portfolio" className="font-light text-muted-foreground hover:text-foreground transition-colors">
               Portfolio
             </Link>
-            <Link to="/contact" className="font-light text-muted-foreground hover:text-foreground transition-colors">
-              Contact
+            <Link to="/websites" className="font-light text-muted-foreground hover:text-foreground transition-colors">
+              Services
+            </Link>
+            <Link to="/continuity" className="font-light text-muted-foreground hover:text-foreground transition-colors">
+              Support
             </Link>
             <Link to="/faq" className="font-light text-muted-foreground hover:text-foreground transition-colors">
               FAQ
