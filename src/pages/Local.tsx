@@ -6,37 +6,40 @@ const maintenanceTiers = [
   {
     name: "Care",
     price: "\u00A349/month",
-    description: "Baseline care for stable, well-run sites.",
+    description: "This plan ensures your site is stable, secure, and managed, without you needing to deal with technical overhead.",
     includes: [
+      "Domain and DNS management",
+      "Hosting management",
       "Core updates and security patching",
-      "Uptime monitoring and backup checks",
-      "Email support",
-      "Best-effort assistance (1 hour/month)",
+      "Basic uptime monitoring",
+      "Small content or configuration updates",
     ],
   },
   {
     name: "Priority",
     price: "\u00A399/month",
-    description: "Proactive care with priority response.",
+    description: "This plan is for businesses where the website supports growth and needs ongoing attention, not just maintenance.",
     includes: [
       "Everything in Care",
-      "Performance reviews and proactive fixes",
-      "Priority email support",
-      "Remote assistance (2 hours/month)",
-      "Response targets during business hours",
+      "Performance monitoring and review",
+      "Google Analytics and Search Console setup and oversight",
+      "Technical SEO foundations (indexing, crawl health, metadata)",
+      "Proactive fixes and improvements",
+      "Faster response and priority support",
     ],
     featured: true,
   },
   {
     name: "Continuity",
     price: "\u00A3199/month",
-    description: "Highest priority with deeper continuity support.",
+    description: "This plan is designed for organisations where downtime, performance issues, or missed problems carry real business risk.",
     includes: [
       "Everything in Priority",
       "Enhanced monitoring and incident triage",
-      "Priority response with continuity coverage",
-      "Remote assistance (4 hours/month)",
-      "SLA-style expectations (best-effort)",
+      "Deeper infrastructure oversight",
+      "Greater support allocation",
+      "Continuity-focused response expectations",
+      "SLA-style reliability expectations (best-effort)",
     ],
   },
 ];
@@ -79,15 +82,15 @@ const Local = () => {
               {[
                 {
                   name: "Foundation",
-                  detail: "One-page or compact multi-section site.",
+                  detail: "A focused, well-structured website for early-stage businesses or individuals who need a clear, credible online presence with essential pages and clean execution.",
                 },
                 {
                   name: "Growth",
-                  detail: "Expanded pages and deeper service structure.",
+                  detail: "A deeper, more flexible build for established businesses that need clearer service structure, stronger user flows, and a website designed to evolve over time.",
                 },
                 {
                   name: "Premium",
-                  detail: "Larger builds with advanced content.",
+                  detail: "Larger, more complex builds for organisations where the website is business-critical, with advanced content, integrations, and long-term technical oversight.",
                 },
               ].map((tier) => (
                 <div key={tier.name} className="rounded-lg p-6 md:p-8 border border-border/60 bg-transparent noise-overlay">

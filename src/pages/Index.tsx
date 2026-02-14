@@ -30,7 +30,6 @@ const Index = () => {
         <div className="container-editorial">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-20">
             <div className="rounded-lg p-8 md:p-10 border border-border/60 bg-transparent transition-all duration-200 hover:bg-card/30 hover:border-accent/60 hover:shadow-xl noise-overlay">
-              <p className="label-small mb-4">Websites</p>
               <h2 className="headline-secondary mb-4">Websites built to last.</h2>
               <p className="body-refined mb-6">
                 Strategy, design, and build with ongoing care built in.
@@ -44,7 +43,6 @@ const Index = () => {
               </Link>
             </div>
             <div className="rounded-lg p-8 md:p-10 border border-border/60 bg-transparent transition-all duration-200 hover:bg-card/30 hover:border-accent/60 hover:shadow-xl noise-overlay">
-              <p className="label-small mb-4">Beyond Local</p>
               <h2 className="headline-secondary mb-4">Systems that scale quietly.</h2>
               <p className="body-refined mb-6">
                 Stable infrastructure and steady improvements.
