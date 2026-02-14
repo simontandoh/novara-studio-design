@@ -136,41 +136,45 @@ const NovaNav = () => {
       aria-label="Primary"
       className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-[200ms] ${
         scrolled ? "bg-black border-b border-border/60" : "bg-transparent border-b border-transparent"
-      } ${
-        open || visible ? "translate-y-0" : "-translate-y-[110%]"
       }`}
     >
-      <div className="container-editorial">
-        <div className="grid grid-cols-3 items-center h-16 md:h-20">
-          <div />
-          <div className="flex justify-center">
-            <Link
-              to="/"
-              className="flex items-center gap-3 text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-            >
-              <img
-                src="/favicon.png"
-                alt="Novara logo"
-                width={36}
-                height={36}
-                className="h-9 w-9 object-contain"
-              />
-              {!isHome && <span className="text-lg font-light tracking-[0.4em]">NOVARA</span>}
-            </Link>
-          </div>
-          <div className="flex justify-end items-center justify-self-end w-full">
-            <button
-              ref={toggleRef}
-              type="button"
-              aria-label={open ? "Close navigation menu" : "Open navigation menu"}
-              aria-expanded={open}
-              aria-controls="nova-nav-panel"
-              onClick={handleToggle}
-              className="text-white rounded-full p-2.5 min-h-[44px] min-w-[44px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background bg-black/70"
-            >
-              <span className="sr-only">Toggle navigation</span>
-              <MenuIcon open={open} />
-            </button>
+      <div
+        className={`transition-transform duration-[200ms] ${
+          open || visible ? "translate-y-0" : "-translate-y-[110%]"
+        }`}
+      >
+        <div className="container-editorial">
+          <div className="grid grid-cols-3 items-center h-16 md:h-20">
+            <div />
+            <div className="flex justify-center">
+              <Link
+                to="/"
+                className="flex items-center gap-3 text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              >
+                <img
+                  src="/favicon.png"
+                  alt="Novara logo"
+                  width={36}
+                  height={36}
+                  className="h-9 w-9 object-contain"
+                />
+                {!isHome && <span className="text-lg font-light tracking-[0.4em]">NOVARA</span>}
+              </Link>
+            </div>
+            <div className="flex justify-end items-center justify-self-end w-full">
+              <button
+                ref={toggleRef}
+                type="button"
+                aria-label={open ? "Close navigation menu" : "Open navigation menu"}
+                aria-expanded={open}
+                aria-controls="nova-nav-panel"
+                onClick={handleToggle}
+                className="text-white rounded-full p-2.5 min-h-[44px] min-w-[44px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background bg-black/70"
+              >
+                <span className="sr-only">Toggle navigation</span>
+                <MenuIcon open={open} />
+              </button>
+            </div>
           </div>
         </div>
       </div>
