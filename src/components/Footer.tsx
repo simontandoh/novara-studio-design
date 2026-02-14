@@ -6,10 +6,7 @@ const Footer = () => {
       <div className="container-editorial py-6">
         <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-6 text-center md:text-left">
           <div className="flex flex-col items-center md:items-start gap-2">
-            <span className="text-lg font-light tracking-wide">Novara</span>
-            <p className="text-xs text-muted-foreground">
-              A digital systems studio. Build, rebuild, maintain.
-            </p>
+            <span className="text-lg font-light tracking-wide">NOVARA</span>
           </div>
 
           <nav className="flex flex-wrap items-center justify-center gap-4 text-sm">
@@ -40,12 +37,6 @@ const Footer = () => {
           </nav>
 
           <div className="flex flex-col items-center md:items-end gap-2 text-xs text-muted-foreground">
-            <a
-              href="mailto:hello@novarastudios.co.uk"
-              className="font-light hover:text-foreground transition-colors"
-            >
-              hello@novarastudios.co.uk
-            </a>
             <span>Built for the future.</span>
           </div>
         </div>

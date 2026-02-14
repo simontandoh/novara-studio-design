@@ -136,6 +136,7 @@
   }
 
   html {
+    font-size: 18px;
     scroll-behavior: smooth;
   }
 
@@ -465,8 +466,12 @@
     border-color: hsl(var(--accent) / 0.6);
   }
 
-  .hero-webgl {
-    display: block;
+  .space-gradient__base {
+    background: linear-gradient(180deg, #05070c 0%, #070c16 100%);
+  }
+
+  .space-gradient__glow {
+    background: radial-gradient(55% 40% at 50% 12%, rgb(11 18 34 / 0.38) 0%, transparent 72%);
   }
 
   .snap-container {
@@ -521,6 +526,10 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  .space-gradient__glow {
+    background: radial-gradient(50% 34% at 50% 10%, rgb(11 18 34 / 0.24) 0%, transparent 72%);
   }
 }
 

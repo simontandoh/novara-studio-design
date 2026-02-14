@@ -3,7 +3,7 @@ export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.png`;
 export const ORGANIZATION_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "Novara Studios",
+  name: "NOVARA Studios",
   url: SITE_URL,
   logo: `${SITE_URL}/favicon.png`,
   email: "hello@novarastudios.co.uk",
@@ -16,7 +16,7 @@ export const buildCanonical = (path?: string) => {
 };
 
 export const buildTitle = (title: string) => {
-  if (!title) return "Novara Studios";
-  if (title.includes("Novara Studios")) return title;
-  return `${title} | Novara Studios`;
+  if (!title) return "NOVARA Studios";
+  if (title.includes("NOVARA Studios")) return title;
+  return `${title} | NOVARA Studios`;
 };
