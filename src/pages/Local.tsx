@@ -111,13 +111,29 @@ const Local = () => {
               <div
                 key={tier.name}
                 className={`rounded-lg p-8 md:p-10 border border-border/60 bg-card/80 noise-overlay transition-all duration-[180ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-card hover:border-accent/60 hover:shadow-xl flex h-full flex-col text-center ${
-                  tier.featured ? "shadow-lg shadow-accent/10" : ""
+                  tier.featured ? "relative overflow-hidden shadow-lg shadow-accent/20 border-accent/50" : ""
                 }`}
               >
                 {tier.featured && (
-                  <span className="inline-flex items-center text-xs uppercase tracking-[0.2em] text-accent mb-6">
-                    Most Popular
-                  </span>
+                  <>
+                    <div
+                      className="pointer-events-none absolute inset-0"
+                      style={{
+                        background:
+                          "radial-gradient(120% 90% at 20% 0%, rgba(135, 170, 220, 0.2), transparent 58%), radial-gradient(110% 80% at 100% 100%, rgba(95, 125, 180, 0.14), transparent 62%)",
+                      }}
+                    />
+                    <span
+                      className="absolute top-4 left-4 text-accent/90"
+                      aria-label="Featured plan"
+                      role="img"
+                    >
+                      ★
+                    </span>
+                  </>
+                )}
+                {tier.featured && (
+                  <div className="h-4" aria-hidden="true" />
                 )}
                 <h3 className="headline-secondary mb-3">{tier.name}</h3>
                 <p className="text-lg font-light text-foreground mb-2">{tier.price}</p>
