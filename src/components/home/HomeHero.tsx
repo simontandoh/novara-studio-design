@@ -1,7 +1,7 @@
 
 const HomeHero = () => {
   return (
-    <section className="relative min-h-[100svh] md:min-h-screen flex items-center overflow-hidden -mt-16 md:-mt-20 pt-16 md:pt-20 pb-20 md:pb-0">
+    <section className="relative min-h-[100svh] md:min-h-screen flex items-center overflow-hidden -mt-16 md:-mt-20 pt-16 md:pt-20 pb-20 md:pb-0 snap-start">
       <div className="container-editorial relative z-10">
         <div className="max-w-3xl pt-6 md:pt-10 mx-auto text-center">
           <div className="mb-6">
