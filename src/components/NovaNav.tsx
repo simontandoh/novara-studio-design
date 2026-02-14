@@ -150,13 +150,13 @@ const NovaNav = () => {
   return (
     <nav
       aria-label="Primary"
-      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-[200ms] ${
-        scrolled ? "bg-black border-b border-border/60" : "bg-transparent border-b border-transparent"
-      }`}
+      className="fixed top-0 left-0 right-0 z-[100]"
     >
       <div
         className={`transition-transform duration-[200ms] ${
           isMobileOrTablet || open || visible ? "translate-y-0" : "-translate-y-[110%]"
+        } ${
+          scrolled ? "bg-black border-b border-border/60" : "bg-transparent border-b border-transparent"
         }`}
       >
         <div className="container-editorial">

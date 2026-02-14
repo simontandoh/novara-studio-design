@@ -5,7 +5,7 @@ import { SITE_URL } from "@/lib/seo";
 const maintenanceTiers = [
   {
     name: "Care",
-    price: "£49/month",
+    price: "\u00A349/month",
     description: "Baseline care for stable, well-run sites.",
     includes: [
       "Core updates and security patching",
@@ -16,7 +16,7 @@ const maintenanceTiers = [
   },
   {
     name: "Priority",
-    price: "£99/month",
+    price: "\u00A399/month",
     description: "Proactive care with priority response.",
     includes: [
       "Everything in Care",
@@ -29,7 +29,7 @@ const maintenanceTiers = [
   },
   {
     name: "Continuity",
-    price: "£199/month",
+    price: "\u00A3199/month",
     description: "Highest priority with deeper continuity support.",
     includes: [
       "Everything in Priority",
@@ -62,37 +62,40 @@ const Local = () => {
       />
       <section className="section-padding">
         <div className="container-editorial">
-          <div className="max-w-3xl mx-auto mb-12 text-center rounded-2xl p-8 md:p-10 border border-border/60 bg-transparent noise-overlay">
-            <p className="label-small mb-4">Websites</p>
-            <h1 className="headline-hero mb-6 text-center">Website builds with long-term care.</h1>
+          <div className="max-w-3xl mx-auto mb-12 text-center rounded-2xl p-8 md:p-10 bg-transparent noise-overlay">
+            <p className="label-small mb-4">Builds</p>
+            <h1 className="headline-hero mb-6 text-center">Builds with long-term care.</h1>
             <p className="body-large">
               Structured builds and maintenance plans designed for calm delivery and reliable performance.
             </p>
           </div>
-          <div className="max-w-2xl mb-10 mx-auto">
-            <p className="label-small mb-4">Website builds</p>
-            <h2 className="headline-primary">Three build tiers.</h2>
-          </div>
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              {
-                name: "Foundation",
-                detail: "One-page or compact multi-section site.",
-              },
-              {
-                name: "Growth",
-                detail: "Expanded pages and deeper service structure.",
-              },
-              {
-                name: "Premium",
-                detail: "Larger builds with advanced content.",
-              },
-            ].map((tier) => (
-              <div key={tier.name} className="rounded-lg p-6 md:p-8 border border-border/60 bg-transparent noise-overlay">
-                <h3 className="headline-secondary mb-3">{tier.name}</h3>
-                <p className="body-refined">{tier.detail}</p>
-              </div>
-            ))}
+
+          <div className="rounded-2xl border border-border/60 p-6 md:p-8">
+            <div className="max-w-2xl mb-10 mx-auto">
+              <p className="label-small mb-4">Builds</p>
+              <h2 className="headline-primary">Three build tiers.</h2>
+            </div>
+            <div className="grid md:grid-cols-3 gap-6">
+              {[
+                {
+                  name: "Foundation",
+                  detail: "One-page or compact multi-section site.",
+                },
+                {
+                  name: "Growth",
+                  detail: "Expanded pages and deeper service structure.",
+                },
+                {
+                  name: "Premium",
+                  detail: "Larger builds with advanced content.",
+                },
+              ].map((tier) => (
+                <div key={tier.name} className="rounded-lg p-6 md:p-8 border border-border/60 bg-transparent noise-overlay">
+                  <h3 className="headline-secondary mb-3">{tier.name}</h3>
+                  <p className="body-refined">{tier.detail}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
