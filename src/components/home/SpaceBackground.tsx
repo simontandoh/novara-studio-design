@@ -108,7 +108,7 @@ const SpaceBackground = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const mobileQuery = window.matchMedia("(max-width: 768px)");
+    const mobileQuery = window.matchMedia("(max-width: 1024px)");
     setIsMobile(mobileQuery.matches);
     if (mobileQuery.matches || prefersReduced) return;
     const gl = canvas.getContext("webgl", { antialias: false, powerPreference: "low-power" });
@@ -185,12 +185,12 @@ const SpaceBackground = () => {
   return (
     <div className="fixed inset-0 -z-10 pointer-events-none" aria-hidden="true">
       {!isMobile && <canvas ref={canvasRef} className="hero-webgl w-full h-full" />}
-      <div className="absolute inset-0 bg-black/80" />
+      <div className={`absolute inset-0 ${isMobile ? "bg-[#0b101a]" : "bg-black/80"}`} />
       <div
         className="absolute inset-0"
         style={{
           background: isMobile
-            ? "radial-gradient(700px 420px at 22% 12%, rgba(18, 26, 40, 0.6), transparent 60%), radial-gradient(680px 460px at 80% 18%, rgba(10, 14, 22, 0.7), transparent 65%)"
+            ? "none"
             : "radial-gradient(900px 520px at 18% 12%, rgba(6, 10, 16, 0.78), transparent 60%), radial-gradient(800px 520px at 82% 18%, rgba(6, 10, 16, 0.7), transparent 65%)",
         }}
       />

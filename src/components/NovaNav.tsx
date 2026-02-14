@@ -4,21 +4,13 @@ import { trackEvent } from "@/lib/analytics";
 
 const navLinks = [
   { label: "Home", path: "/", primary: true },
-  { label: "Websites", path: "/websites" },
-  { label: "Portfolio", path: "/portfolio" },
-  { label: "Process", path: "/how-it-works" },
-  { label: "Continuity", path: "/continuity" },
   { label: "About", path: "/about" },
+  { label: "Process", path: "/how-it-works" },
+  { label: "Portfolio", path: "/portfolio" },
+  { label: "Services", path: "/websites" },
+  { label: "Support", path: "/continuity" },
   { label: "FAQ", path: "/faq" },
   { label: "Legal", path: "/legal" },
-  { label: "Contact", path: "/contact" },
-];
-
-const footerLinks = [
-  { label: "About", path: "/about" },
-  { label: "Process", path: "/how-it-works" },
-  { label: "Continuity", path: "/continuity" },
-  { label: "FAQ", path: "/faq" },
 ];
 
 const focusSelector =
@@ -233,19 +225,6 @@ const NovaNav = () => {
             </Link>
           </div>
 
-          <div className="mt-auto pt-10 border-t border-border flex items-center gap-6 text-sm">
-            {footerLinks.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                onClick={() => handleNavClick(item.label, item.path)}
-                className="group relative text-muted-foreground hover:text-foreground transition-colors"
-              >
-                {item.label}
-                <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-accent transition-transform duration-[180ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100" />
-              </Link>
-            ))}
-          </div>
         </div>
       </div>
     </nav>
