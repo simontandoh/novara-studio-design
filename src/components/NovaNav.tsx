@@ -26,14 +26,18 @@ const focusSelector =
 
 const MenuIcon = ({ open }: { open: boolean }) => {
   return (
-    <img
-      src="/menu-bar.png"
-      alt=""
+    <svg
       aria-hidden="true"
-      className={`h-5 w-5 transition-transform duration-[180ms] brightness-0 invert ${
-        open ? "rotate-90" : ""
-      }`}
-    />
+      viewBox="0 0 24 24"
+      className={`h-4 w-4 transition-transform duration-[180ms] ${open ? "rotate-180" : ""}`}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M6 9l6 6 6-6" />
+    </svg>
   );
 };
 
@@ -44,7 +48,6 @@ const NovaNav = () => {
   const toggleRef = useRef<HTMLButtonElement | null>(null);
   const isHome = location.pathname === "/";
   const [scrolled, setScrolled] = useState(false);
-  const [hidden, setHidden] = useState(false);
 
   const activePath = useMemo(() => location.pathname, [location.pathname]);
   useEffect(() => {
@@ -63,26 +66,13 @@ const NovaNav = () => {
   }, []);
 
   useEffect(() => {
-    let lastY = window.scrollY;
     const onScroll = () => {
-      const currentY = window.scrollY;
-      setScrolled(currentY > 8);
-      if (open) return;
-      if (currentY < 10) {
-        setHidden(false);
-        return;
-      }
-      if (currentY > lastY + 6) {
-        setHidden(true);
-      } else if (currentY < lastY - 6) {
-        setHidden(false);
-      }
-      lastY = currentY;
+      setScrolled(window.scrollY > 8);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, [open]);
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -129,7 +119,6 @@ const NovaNav = () => {
   };
 
   const handleToggle = () => {
-    setHidden(false);
     setOpen((prev) => !prev);
   };
 
@@ -137,8 +126,8 @@ const NovaNav = () => {
     <nav
       aria-label="Primary"
       className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-[200ms] ${
-        hidden ? "-translate-y-full" : "translate-y-0"
-      } ${scrolled ? "bg-black/90 border-b border-border/60" : "bg-transparent border-b border-transparent"}`}
+        scrolled ? "bg-black/90 border-b border-border/60" : "bg-transparent border-b border-transparent"
+      }`}
     >
       <div className="container-editorial">
         <div className="grid grid-cols-3 items-center h-16 md:h-20">

@@ -102,12 +102,15 @@ const createProgram = (gl: WebGLRenderingContext, vertex: WebGLShader, fragment:
 const SpaceBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [webglReady, setWebglReady] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    const mobileQuery = window.matchMedia("(max-width: 768px)");
+    setIsMobile(mobileQuery.matches);
+    if (mobileQuery.matches || prefersReduced) return;
     const gl = canvas.getContext("webgl", { antialias: false, powerPreference: "low-power" });
     if (!gl || prefersReduced) return;
 
@@ -181,16 +184,17 @@ const SpaceBackground = () => {
 
   return (
     <div className="fixed inset-0 -z-10 pointer-events-none" aria-hidden="true">
-      <canvas ref={canvasRef} className="hero-webgl w-full h-full" />
-      <div className="absolute inset-0 bg-black/70" />
+      {!isMobile && <canvas ref={canvasRef} className="hero-webgl w-full h-full" />}
+      <div className="absolute inset-0 bg-black/80" />
       <div
         className="absolute inset-0"
         style={{
-          background:
-            "radial-gradient(900px 520px at 18% 12%, rgba(6, 10, 16, 0.78), transparent 60%), radial-gradient(800px 520px at 82% 18%, rgba(6, 10, 16, 0.7), transparent 65%)",
+          background: isMobile
+            ? "radial-gradient(700px 420px at 22% 12%, rgba(18, 26, 40, 0.6), transparent 60%), radial-gradient(680px 460px at 80% 18%, rgba(10, 14, 22, 0.7), transparent 65%)"
+            : "radial-gradient(900px 520px at 18% 12%, rgba(6, 10, 16, 0.78), transparent 60%), radial-gradient(800px 520px at 82% 18%, rgba(6, 10, 16, 0.7), transparent 65%)",
         }}
       />
-      {!webglReady && (
+      {!webglReady && !isMobile && (
         <div
           className="absolute inset-0"
           style={{

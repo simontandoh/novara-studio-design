@@ -39,13 +39,13 @@ const Terms = () => {
             </div>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-3 text-xs text-muted-foreground text-center">
               <Link to="/privacy-policy" className="btn-secondary rounded-full px-4 py-2">
-                Left
+                &lt;
               </Link>
               <Link to="/legal" className="btn-secondary rounded-full px-4 py-2">
-                Back to Menu
+                Menu
               </Link>
               <Link to="/cookie-notice" className="btn-secondary rounded-full px-4 py-2">
-                Right
+                &gt;
               </Link>
             </div>
           </div>
