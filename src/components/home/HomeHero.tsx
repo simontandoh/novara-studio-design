@@ -10,7 +10,7 @@ const HomeHero = () => {
             </span>
           </div>
           <p className="text-2xl md:text-3xl font-light tracking-[0.4em] text-muted-foreground">
-            BORN FROM LIGHT.
+            BORN FROM LIGHT
           </p>
         </div>
       </div>
