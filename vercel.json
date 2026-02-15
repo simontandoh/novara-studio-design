@@ -1,4 +1,11 @@
 {
+  "redirects": [
+    { "source": "/local", "destination": "/websites", "permanent": true },
+    { "source": "/studio", "destination": "/how-it-works", "permanent": true },
+    { "source": "/continuity-support", "destination": "/continuity", "permanent": true },
+    { "source": "/work", "destination": "/portfolio", "permanent": true },
+    { "source": "/studio-partnerships", "destination": "/", "permanent": true }
+  ],
   "routes": [
     { "handle": "filesystem" },
     { "src": "/(.*)", "dest": "/index.html" }

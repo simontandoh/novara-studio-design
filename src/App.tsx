@@ -98,10 +98,10 @@ const App = () => (
               <Route path="/legal" element={<Legal />} />
               {/* Legacy redirects */}
               <Route path="/local" element={<Navigate to="/websites" replace />} />
-              <Route path="/studio" element={<HowItWorks />} />
-              <Route path="/continuity-support" element={<ContinuitySupport />} />
-              <Route path="/work" element={<Portfolio />} />
-              <Route path="/studio-partnerships" element={<Index />} />
+              <Route path="/studio" element={<Navigate to="/how-it-works" replace />} />
+              <Route path="/continuity-support" element={<Navigate to="/continuity" replace />} />
+              <Route path="/work" element={<Navigate to="/portfolio" replace />} />
+              <Route path="/studio-partnerships" element={<Navigate to="/" replace />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
