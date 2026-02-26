@@ -4,42 +4,45 @@ import { SITE_URL } from "@/lib/seo";
 
 const maintenanceTiers = [
   {
-    name: "Care",
+    name: "Continuity",
     price: "\u00A349/month",
-    description: "This plan ensures your site is stable, secure, and managed, without you needing to deal with technical overhead.",
+    description:
+      "Keeps your site stable, secure, and up to date - without you needing to think about it.",
     includes: [
-      "Domain and DNS management",
+      "Domain & DNS management",
       "Hosting management",
-      "Core updates and security patching",
+      "Core updates & security patching",
       "Basic uptime monitoring",
       "Small content or configuration updates",
+      "Monthly health check (lightweight)",
     ],
   },
   {
-    name: "Priority",
+    name: "Managed Presence",
     price: "\u00A399/month",
-    description: "This plan is for businesses where the website supports growth and needs ongoing attention, not just maintenance.",
+    description: "Ongoing oversight where the website supports growth - not just maintenance.",
     includes: [
-      "Everything in Care",
+      "Everything in Continuity",
       "Performance monitoring and review",
-      "Google Analytics and Search Console setup and oversight",
-      "Technical SEO foundations (indexing, crawl health, metadata)",
+      "Google Analytics & Search Console setup/oversight",
+      "Technical SEO (indexing, crawl health, metadata)",
       "Proactive fixes and improvements",
-      "Faster response and priority support",
+      "Faster response times and priority support",
     ],
     featured: true,
   },
   {
-    name: "Continuity",
+    name: "Operations Support",
     price: "\u00A3199/month",
-    description: "This plan is designed for organisations where downtime, performance issues, or missed problems carry real business risk.",
+    description:
+      "For businesses where downtime, performance issues, or missed enquiries carry real risk.",
     includes: [
-      "Everything in Priority",
+      "Everything in Managed Presence",
       "Enhanced monitoring and incident triage",
-      "Deeper infrastructure oversight",
+      "Deeper technical oversight (infrastructure/integrations)",
       "Greater support allocation",
       "Continuity-focused response expectations",
-      "SLA-style reliability expectations (best-effort)",
+      "Best-effort reliability expectations",
     ],
   },
 ];
@@ -151,6 +154,17 @@ const Local = () => {
                 </ul>
               </div>
             ))}
+          </div>
+          <div className="max-w-3xl mx-auto mt-10 rounded-lg border border-border/60 bg-card/50 p-6 md:p-8 text-center">
+            <p className="label-small mb-3">Optional automation</p>
+            <p className="body-refined mb-6">
+              Automation can be added as operational enhancements such as after-hours
+              responses, enquiry routing, quote follow-ups, and review requests. Pricing is
+              assessed per business based on enquiry volume and setup complexity.
+            </p>
+            <a href="/contact" className="btn-secondary rounded-full px-6 py-2">
+              Discuss automation
+            </a>
           </div>
         </div>
       </section>
