@@ -7,8 +7,7 @@
     { "source": "/work", "destination": "/portfolio", "permanent": true },
     { "source": "/studio-partnerships", "destination": "/", "permanent": true }
   ],
-  "routes": [
-    { "handle": "filesystem" },
-    { "src": "/(.*)", "dest": "/index.html" }
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
