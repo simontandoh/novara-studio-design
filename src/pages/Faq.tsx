@@ -4,20 +4,34 @@ import Seo from "@/components/Seo";
 
 const faqItems = [
   {
-    question: "Is continuity support 24/7 emergency coverage?",
-    answer: "No. It covers evenings and weekends.",
+    question: "Is support included with maintenance 24/7?",
+    answer:
+      "No. Support is provided through maintenance tiers, with business-hours coverage as baseline and evening/weekend help on a best-effort, tier-dependent basis.",
   },
   {
-    question: "Who is continuity support best for?",
-    answer: "Teams that rely on their site outside standard hours.",
+    question: "Who is maintenance support best suited for?",
+    answer:
+      "Businesses that want reassurance beyond weekdays, especially where downtime, slow performance, or missed enquiries carry operational risk.",
   },
   {
     question: "How fast do you respond?",
-    answer: "Typically within 1-2 hours during coverage.",
+    answer:
+      "Response is best-effort and based on issue severity and tier. We prioritise triage and clear communication first, then resolution work.",
   },
   {
-    question: "Do I need to be on another service tier first?",
-    answer: "Available to Growth and Continuity clients.",
+    question: "Do I need another tier first?",
+    answer:
+      "Support sits alongside the maintenance tiers. A minimum tier may be recommended where monitoring access or deeper oversight is needed.",
+  },
+  {
+    question: "What isn't included?",
+    answer:
+      "Maintenance support does not include full redesigns, major development scope, guaranteed uptime, or formal SLA commitments.",
+  },
+  {
+    question: "How does support relate to maintenance?",
+    answer:
+      "Support is part of maintenance, not a separate product. Continuity is the £49/month baseline tier, with broader coverage in Managed Presence and Operations Support.",
   },
 ];
 

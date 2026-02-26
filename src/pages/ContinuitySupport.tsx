@@ -16,13 +16,13 @@ const ContinuitySupport = () => {
   return (
     <Layout>
       <Seo
-        title="Continuity Support for Critical Websites"
-        description="Out-of-hours monitoring and response for websites that need reliable coverage, clear updates, and calm continuity."
+        title="Maintenance & Support Overview"
+        description="An overview of ongoing maintenance and support coverage across tiers, including expectations, boundaries, and best-effort response."
         path="/continuity"
         structuredData={{
           "@context": "https://schema.org",
           "@type": "Service",
-          name: "Continuity Support",
+          name: "Maintenance and Support",
           provider: {
             "@type": "Organization",
             name: "Novara Studios",
@@ -34,10 +34,12 @@ const ContinuitySupport = () => {
       <section className="section-padding">
         <div className="container-editorial">
           <div className="max-w-3xl mx-auto text-center">
-            <p className="label-small mb-6">Continuity support</p>
-            <h1 className="headline-hero mb-8 text-center">Support beyond standard hours.</h1>
+            <p className="label-small mb-6">Maintenance and support</p>
+            <h1 className="headline-hero mb-8 text-center">Ongoing maintenance, with support built in.</h1>
             <p className="body-large">
-              Evening and weekend coverage, with monitoring and response.
+              Maintenance keeps your site stable and secure over time. Support sits within the
+              maintenance tiers, with coverage depth that varies by tier and no 24/7 emergency
+              claims.
             </p>
           </div>
         </div>
@@ -48,9 +50,12 @@ const ContinuitySupport = () => {
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
             <div>
               <h2 className="headline-primary mb-6">What it is</h2>
-              <p className="body-large mb-6">Structured coverage beyond standard hours.</p>
+              <p className="body-large mb-6">
+                Ongoing technical care to keep your website operational, secure, and current.
+              </p>
               <p className="body-refined">
-                Monitoring, response, and clear updates when timing matters.
+                Support covers triage, response, and clear communication when issues arise. The
+                tier you are on determines depth, oversight, and expected pace.
               </p>
             </div>
             <div className="bg-card/80 border border-border p-8 md:p-10">
@@ -59,15 +64,15 @@ const ContinuitySupport = () => {
                 <li className="flex items-start gap-4">
                   <span className="text-accent mt-0.5">-</span>
                   <p className="text-muted-foreground font-light">
-                    <span className="text-foreground">Evenings</span> - typically 6pm to
-                    10pm weekdays
+                    <span className="text-foreground">Business-hours coverage</span> as the
+                    baseline for maintenance support
                   </p>
                 </li>
                 <li className="flex items-start gap-4">
                   <span className="text-accent mt-0.5">-</span>
                   <p className="text-muted-foreground font-light">
-                    <span className="text-foreground">Weekends</span> - reasonable hours
-                    on Saturday and Sunday
+                    <span className="text-foreground">Evening and weekend coverage</span>{" "}
+                    where appropriate, on a best-effort basis
                   </p>
                 </li>
                 <li className="flex items-start gap-4">
@@ -75,6 +80,13 @@ const ContinuitySupport = () => {
                   <p className="text-muted-foreground font-light">
                     <span className="text-foreground">Monitoring</span> - early detection
                     where possible
+                  </p>
+                </li>
+                <li className="flex items-start gap-4">
+                  <span className="text-accent mt-0.5">-</span>
+                  <p className="text-muted-foreground font-light">
+                    <span className="text-foreground">Issue triage and communication</span>{" "}
+                    with clear updates while work is in progress
                   </p>
                 </li>
               </ul>
@@ -129,12 +141,20 @@ const ContinuitySupport = () => {
                     strokeWidth={1.5}
                   />
                   <div>
-                    <p className="text-foreground font-light mb-1">Direct line</p>
+                    <p className="text-foreground font-light mb-1">Support channel</p>
                     <p className="text-sm text-muted-foreground">
-                      Dedicated number for continuity clients
+                      Available for maintenance clients based on tier and coverage context
                     </p>
                   </div>
                 </div>
+              </div>
+              <div className="mt-8 pt-8 border-t border-border">
+                <h3 className="text-base font-normal mb-3">How tiers differ</h3>
+                <p className="text-sm text-muted-foreground font-light">
+                  Continuity provides baseline maintenance and support. Managed Presence adds
+                  deeper oversight and proactive improvements. Operations Support is designed for
+                  higher-risk, business-critical use cases that need broader support allocation.
+                </p>
               </div>
             </div>
             <div className="bg-background border border-border p-8 md:p-10">
@@ -142,21 +162,25 @@ const ContinuitySupport = () => {
               <ul className="space-y-4 text-sm text-muted-foreground font-light">
                 <li className="flex items-start gap-3">
                   <span className="text-accent mt-0.5">-</span>
-                  Response within 1-2 hours during coverage
+                  Response is best-effort and tier-dependent, with triage and communication first
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-accent mt-0.5">-</span>
-                  Complex issues take longer; updates follow
+                  Complex issues can take longer; updates follow throughout
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-accent mt-0.5">-</span>
-                  Professional support, not instant on-demand
+                  Professional support, not instant on-demand response
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-accent mt-0.5">-</span>
-                  Designed for continuity, not crisis response
+                  Designed for continuity and operational stability, not crisis response
                 </li>
               </ul>
+              <p className="text-sm text-muted-foreground font-light mt-8 pt-6 border-t border-border">
+                What it is not: 24/7 emergency on-call, an SLA, or a guarantee of uptime or
+                outcomes.
+              </p>
             </div>
           </div>
         </div>

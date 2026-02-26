@@ -7,7 +7,7 @@ const leftNav = [
 ];
 
 const rightNav = [
-  { label: "Continuity", path: "/continuity" },
+  { label: "Maintenance", path: "/continuity" },
   { label: "Contact", path: "/contact" },
 ];
 
@@ -15,7 +15,7 @@ const serviceLinks = [
   { label: "Builds", path: "/services" },
   { label: "Rebuilds", path: "/services" },
   { label: "Ongoing care", path: "/services" },
-  { label: "Continuity", path: "/continuity" },
+  { label: "Maintenance support", path: "/continuity" },
   { label: "Tiers", path: "/services" },
 ];
 
