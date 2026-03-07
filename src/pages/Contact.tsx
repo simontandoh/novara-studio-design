@@ -13,8 +13,8 @@ const initialFormState = {
   message: "",
   consent: false,
 };
-const CONTACT_PHONE_DISPLAY = "+44 (0) 0000 000000";
-const CONTACT_PHONE_LINK = "+440000000000";
+const CONTACT_PHONE_DISPLAY = "+44 7456 849035";
+const CONTACT_PHONE_LINK = "+447456849035";
 
 const Contact = () => {
   const navigate = useNavigate();
