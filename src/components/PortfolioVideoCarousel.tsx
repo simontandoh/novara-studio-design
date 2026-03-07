@@ -4,11 +4,11 @@ interface PortfolioVideoCarouselProps {
 }
 
 const slides = [
-  { id: "slide-1", title: "Allura", src: "/video/hero.mp4" },
-  { id: "slide-2", title: "Placeholder", src: "" },
-  { id: "slide-3", title: "Placeholder", src: "" },
-  { id: "slide-4", title: "Placeholder", src: "" },
-  { id: "slide-5", title: "Placeholder", src: "" },
+  { id: "slide-1", src: "/video/recording-2026-02-26-181053.mp4" },
+  { id: "slide-2", src: "" },
+  { id: "slide-3", src: "" },
+  { id: "slide-4", src: "" },
+  { id: "slide-5", src: "" },
 ];
 
 const playVideo = (video: HTMLVideoElement | null) => {
@@ -51,11 +51,7 @@ const PortfolioVideoCarousel = ({ className = "", maxSlides }: PortfolioVideoCar
                 <source src={slide.src} type="video/mp4" />
               </video>
             ) : (
-              <div className="h-full w-full flex items-center justify-center bg-black/30">
-                <span className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                  {slide.title}
-                </span>
-              </div>
+              <div className="h-full w-full bg-black/30" />
             )}
           </div>
         ))}
