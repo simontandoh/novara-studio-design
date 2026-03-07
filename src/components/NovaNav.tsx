@@ -7,8 +7,6 @@ const navLinks = [
   { label: "About", path: "/about" },
   { label: "Services", path: "/services" },
   { label: "Portfolio", path: "/portfolio" },
-  { label: "FAQs", path: "/faq" },
-  { label: "Legal", path: "/legal" },
 ];
 
 const focusSelector =
