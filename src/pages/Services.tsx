@@ -5,19 +5,20 @@ import Seo from "@/components/Seo";
 const categories = [
   {
     title: "Websites & Automation",
-    forWho: "Local businesses and small companies that need a professional online presence and optional growth systems later.",
+    forWho:
+      "Local businesses that need a professional online presence and systems that can grow with them.",
     covers:
-      "Website strategy, build, launch support, maintenance foundations, SEO basics, and optional automation upgrades.",
-    result: "A credible online presence with systems that can scale as operations grow.",
+      "Website strategy, build, launch support, maintenance foundations, SEO setup, and optional automation upgrades.",
+    result: "A credible online presence supported by systems that scale with your business.",
     href: "/websites",
     cta: "View Websites & Automation",
   },
   {
     title: "IT Support",
-    forWho: "Small businesses needing practical technical support for day-to-day operations.",
+    forWho: "Small businesses needing reliable day-to-day technical support.",
     covers:
-      "Account support, devices, Microsoft 365 help, troubleshooting, backups, and network support.",
-    result: "More reliable operations and faster resolution for technical issues.",
+      "Accounts, devices, Microsoft 365 support, troubleshooting, backups, and network assistance.",
+    result: "Reliable operations and faster resolution when technical issues arise.",
     href: "/it-support",
     cta: "View IT Support",
   },
@@ -34,11 +35,11 @@ const Services = () => {
 
       <section className="section-padding">
         <div className="container-editorial">
-          <div className="max-w-3xl mx-auto text-center">
-            <p className="label-small mb-4">Services</p>
-            <h1 className="headline-hero mb-6 text-center">Two clear service avenues.</h1>
+          <div className="max-w-2xl mx-auto text-center">
+            <p className="label-small mb-4">SERVICES</p>
+            <h1 className="headline-hero mb-6 text-center">Two clear service paths.</h1>
             <p className="body-large">
-              Select the support path your business needs now. Expand with additional systems as priorities change.
+              Choose the support path your business needs today. Expand as your systems evolve.
             </p>
           </div>
         </div>
@@ -57,11 +58,11 @@ const Services = () => {
                 }}
               >
                 <h2 className="headline-secondary mb-5">{category.title}</h2>
-                <p className="label-small mb-2">Who it is for</p>
+                <p className="label-small mb-2">WHO IT IS FOR</p>
                 <p className="body-refined mb-5">{category.forWho}</p>
-                <p className="label-small mb-2">What it covers</p>
+                <p className="label-small mb-2">WHAT&apos;S INCLUDED</p>
                 <p className="body-refined mb-5">{category.covers}</p>
-                <p className="label-small mb-2">Result</p>
+                <p className="label-small mb-2">RESULT</p>
                 <p className="body-refined mb-8">{category.result}</p>
                 <Link to={category.href} className="btn-secondary rounded-full px-6 py-2">
                   {category.cta}
