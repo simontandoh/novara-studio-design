@@ -7,6 +7,7 @@ const navLinks = [
   { label: "Services", path: "/services" },
   { label: "Websites & Automation", path: "/websites" },
   { label: "IT Support", path: "/it-support" },
+  { label: "Portfolio", path: "/portfolio" },
   { label: "About", path: "/about" },
   { label: "Contact", path: "/contact" },
 ];
@@ -245,7 +246,7 @@ const NovaNav = () => {
           </div>
 
           <div className="mt-10 p-6 rounded-lg border border-border/60 bg-background/60">
-            <p className="text-sm text-muted-foreground mb-4">Tell us your goals. We will recommend the right path.</p>
+            <p className="text-sm text-muted-foreground mb-4">Tell us what you need. We will guide the next step.</p>
             <Link
               to="/contact"
               onClick={() => handleNavClick("Contact", "/contact")}
