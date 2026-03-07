@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import Seo from "@/components/Seo";
 import { trackEvent } from "@/lib/analytics";
+import PortfolioVideoCarousel from "@/components/PortfolioVideoCarousel";
 
 const servicePaths = [
   {
@@ -17,39 +18,6 @@ const servicePaths = [
       "Practical business IT support for devices, accounts, Microsoft 365, backups, and network reliability.",
     href: "/it-support",
     cta: "Explore IT Support",
-  },
-];
-
-const process = [
-  {
-    title: "Launch",
-    detail: "Define priorities, build the essentials, and launch with dependable setup.",
-  },
-  {
-    title: "Support",
-    detail: "Maintain stability with ongoing technical support and practical oversight.",
-  },
-  {
-    title: "Grow",
-    detail: "Add automation and improvements that save time and strengthen conversion flow.",
-  },
-];
-
-const portfolioPreview = [
-  {
-    name: "Coastal Dental Care",
-    category: "Websites & Automation",
-    summary: "Reworked service structure and enquiry flow to improve qualified appointment requests.",
-  },
-  {
-    name: "Briarfield Electrical",
-    category: "Websites",
-    summary: "Modernized website with clear service pathways and stronger quote conversion journeys.",
-  },
-  {
-    name: "Northline Advisory",
-    category: "Business IT Support",
-    summary: "Introduced support workflows and Microsoft 365 account controls for smoother operations.",
   },
 ];
 
@@ -127,38 +95,13 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="section-padding bg-card">
-        <div className="container-editorial">
-          <div className="max-w-2xl mx-auto mb-12 text-center">
-            <p className="label-small mb-4">How It Works</p>
-            <h2 className="headline-primary">Launch. Support. Grow.</h2>
-          </div>
-          <div className="grid md:grid-cols-3 gap-6">
-            {process.map((step) => (
-              <div key={step.title} className="border border-border/60 rounded-xl p-6 md:p-8 bg-background/50">
-                <h3 className="headline-secondary mb-3">{step.title}</h3>
-                <p className="body-refined">{step.detail}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="section-padding">
         <div className="container-editorial">
           <div className="max-w-2xl mx-auto text-center mb-12">
             <p className="label-small mb-4">Portfolio Preview</p>
-            <h2 className="headline-primary">Selected project outcomes.</h2>
+            <h2 className="headline-primary">Selected work snapshots.</h2>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
-            {portfolioPreview.map((project) => (
-              <article key={project.name} className="rounded-xl border border-border/60 bg-card/40 p-6 md:p-8">
-                <p className="text-xs uppercase tracking-[0.16em] text-accent mb-3">{project.category}</p>
-                <h3 className="headline-secondary mb-3">{project.name}</h3>
-                <p className="body-refined">{project.summary}</p>
-              </article>
-            ))}
-          </div>
+          <PortfolioVideoCarousel />
           <div className="text-center mt-10">
             <Link to="/portfolio" className="btn-secondary rounded-full px-7 py-3">
               View Full Portfolio

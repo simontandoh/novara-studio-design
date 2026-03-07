@@ -4,11 +4,13 @@ import { trackEvent } from "@/lib/analytics";
 
 const navLinks = [
   { label: "Home", path: "/", primary: true },
+  { label: "About", path: "/about" },
   { label: "Services", path: "/services" },
+  { label: "Portfolio", path: "/portfolio" },
   { label: "Websites & Automation", path: "/websites" },
   { label: "IT Support", path: "/it-support" },
-  { label: "Portfolio", path: "/portfolio" },
-  { label: "About", path: "/about" },
+  { label: "FAQs", path: "/faq" },
+  { label: "Legal", path: "/legal" },
   { label: "Contact", path: "/contact" },
 ];
 

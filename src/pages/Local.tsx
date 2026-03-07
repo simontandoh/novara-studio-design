@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+ï»¿import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import Seo from "@/components/Seo";
 import { SITE_URL } from "@/lib/seo";
@@ -6,7 +6,7 @@ import { SITE_URL } from "@/lib/seo";
 const pricingModels = [
   {
     name: "Launch Plan",
-    price: "£79/month",
+    price: "\u00A379/month",
     description: "Low-friction option for local businesses.",
     includes: [
       "Professional business website",
@@ -24,7 +24,7 @@ const pricingModels = [
   },
   {
     name: "Ownership Plan",
-    price: "£499 upfront + £49/month",
+    price: "\u00A3499 upfront + \u00A349/month",
     description: "Upfront build with lower ongoing maintenance.",
     includes: [
       "Website build",
@@ -133,8 +133,11 @@ const Local = () => {
               ))}
             </ul>
             <p className="body-refined mb-7">
-              Add-ons and automation from £30 to £120/month depending on setup and complexity.
+              Add-ons and automation from {"\u00A3"}30 to {"\u00A3"}120/month depending on setup and complexity.
             </p>
+            <Link to="/automation" className="btn-secondary rounded-full px-6 py-2">
+              Explore Automation
+            </Link>
           </div>
         </div>
       </section>

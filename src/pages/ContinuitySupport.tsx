@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+ï»¿import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import Seo from "@/components/Seo";
 import { SITE_URL } from "@/lib/seo";
@@ -6,7 +6,7 @@ import { SITE_URL } from "@/lib/seo";
 const supportTiers = [
   {
     name: "Starter Support",
-    price: "£59/month",
+    price: "\u00A359/month",
     includes: [
       "Remote IT support",
       "Email and account assistance",
@@ -18,7 +18,7 @@ const supportTiers = [
   },
   {
     name: "Business Support",
-    price: "£119/month",
+    price: "\u00A3119/month",
     includes: [
       "Priority remote support",
       "Microsoft 365 admin and user support",
@@ -32,7 +32,7 @@ const supportTiers = [
   },
   {
     name: "Infrastructure Support",
-    price: "£199+/month",
+    price: "\u00A3199+/month",
     includes: [
       "Proactive IT support",
       "Microsoft 365 and cloud support",

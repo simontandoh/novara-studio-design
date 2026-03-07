@@ -9,8 +9,10 @@ import { trackEvent, trackPageView } from "@/lib/analytics";
 import { buildTitle } from "@/lib/seo";
 
 const Index = lazy(() => import("./pages/Index"));
+const Faq = lazy(() => import("./pages/Faq"));
 const Services = lazy(() => import("./pages/Services"));
 const Local = lazy(() => import("./pages/Local"));
+const Automation = lazy(() => import("./pages/Automation"));
 const ContinuitySupport = lazy(() => import("./pages/ContinuitySupport"));
 const About = lazy(() => import("./pages/About"));
 const Contact = lazy(() => import("./pages/Contact"));
@@ -85,8 +87,10 @@ const App = () => (
               <Route path="/" element={<Index />} />
               <Route path="/services" element={<Services />} />
               <Route path="/websites" element={<Local />} />
+              <Route path="/automation" element={<Automation />} />
               <Route path="/it-support" element={<ContinuitySupport />} />
               <Route path="/portfolio" element={<Portfolio />} />
+              <Route path="/faq" element={<Faq />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/submitted" element={<Submitted />} />
@@ -99,7 +103,6 @@ const App = () => (
               <Route path="/local" element={<Navigate to="/websites" replace />} />
               <Route path="/work" element={<Navigate to="/portfolio" replace />} />
               <Route path="/how-it-works" element={<Navigate to="/services" replace />} />
-              <Route path="/faq" element={<Navigate to="/services" replace />} />
               <Route path="/studio" element={<Navigate to="/services" replace />} />
               <Route path="/continuity-support" element={<Navigate to="/it-support" replace />} />
               <Route path="/studio-partnerships" element={<Navigate to="/" replace />} />
