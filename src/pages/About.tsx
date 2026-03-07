@@ -1,39 +1,18 @@
 import Layout from "@/components/Layout";
 import Seo from "@/components/Seo";
-const values = [
-  {
-    title: "Reliability",
-    description: "Systems that stay stable under real-world use.",
-  },
-  {
-    title: "Clarity",
-    description: "Plain language, clear scope, and simple paths forward.",
-  },
-  {
-    title: "Continuity",
-    description: "We stay involved after launch to keep things healthy.",
-  },
-  {
-    title: "Honesty",
-    description: "We say no when it is not the right fit.",
-  },
-];
 
-const proofItems = [
+const pillars = [
   {
-    title: "Hospitality group website rebuild",
-    outcome: "34% increase in direct booking enquiries in 8 weeks",
-    focus: "Rebuilt the site structure, improved page speed, and simplified the booking path.",
+    title: "Websites",
+    detail: "Modern, conversion-focused websites that present your business clearly and professionally.",
   },
   {
-    title: "B2B service firm lead flow",
-    outcome: "2.1x more qualified leads after launch",
-    focus: "Clarified services, added proof blocks, and optimized form flow.",
+    title: "Automation",
+    detail: "Practical systems for lead handling, follow-up, booking, and admin workflows.",
   },
   {
-    title: "Retail brand relaunch",
-    outcome: "28% higher conversion on core landing pages",
-    focus: "Refined messaging, improved imagery layout, and tightened CTA placement.",
+    title: "IT Support",
+    detail: "Reliable business IT support across accounts, devices, backups, and network operations.",
   },
 ];
 
@@ -41,97 +20,44 @@ const About = () => {
   return (
     <Layout>
       <Seo
-        title="About Novara Studios and Our Approach"
-        description="Novara Studios is a premium digital systems studio focused on clear strategy, reliable builds, and long-term care for modern websites."
+        title="About Novara"
+        description="Novara combines web development, automation thinking, and business IT support to help small businesses operate more effectively."
         path="/about"
       />
+
       <section className="section-padding">
         <div className="container-editorial">
-          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
-            <div>
-              <p className="label-small mb-6">About</p>
-              <h1 className="headline-hero text-center">Who we are...</h1>
-            </div>
-            <div className="lg:pt-4">
-              <p className="body-large mb-6">
-                Novara is a digital systems studio built for clarity, reliability, and long-term care.
-              </p>
-              <p className="body-refined">
-                We design websites that run quietly, stay secure, and evolve without friction.
-              </p>
-            </div>
+          <div className="max-w-3xl mx-auto text-center">
+            <p className="label-small mb-4">About</p>
+            <h1 className="headline-hero mb-6 text-center">A business technology partner for small companies.</h1>
+            <p className="body-large">
+              Novara combines web development, automation thinking, and business IT support to help
+              businesses operate more effectively.
+            </p>
           </div>
         </div>
       </section>
 
       <section className="section-padding">
         <div className="container-editorial">
-          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
-            <div>
-              <h2 className="headline-primary mb-6">What we do...</h2>
-              <p className="body-large">
-                We design, rebuild, and maintain websites intended to last.
-              </p>
-              <p className="body-refined mt-6">
-                The best websites are the ones you don’t have to think about.
-              </p>
-            </div>
-            <div className="space-y-6">
-              <div className="border-l border-border pl-6">
-                <h3 className="text-base font-normal mb-2">Builds and rebuilds</h3>
-                <p className="body-refined">
-                  Clear structure, resilient systems, and ownership you can rely on.
-                </p>
-              </div>
-              <div className="border-l border-border pl-6">
-                <h3 className="text-base font-normal mb-2">Ongoing care</h3>
-                <p className="body-refined">
-                  Ongoing monitoring, maintenance, and quiet improvement.
-                </p>
-              </div>
-              <div className="border-l border-border pl-6">
-                <h3 className="text-base font-normal mb-2">Quiet operations</h3>
-                <p className="body-refined">
-                  Consistent communication and predictable delivery
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section-padding">
-        <div className="container-editorial">
-          <h2 className="headline-primary mb-12">Values</h2>
-          <div className="grid md:grid-cols-2 gap-px bg-border border border-border/70 rounded-lg overflow-hidden">
-            {values.map((value, index) => (
-              <div key={index} className="bg-background p-8 md:p-10">
-                <h3 className="text-lg font-light mb-3">{value.title}</h3>
-                <p className="body-refined">{value.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section-padding section-padding-proof bg-card">
-        <div className="container-editorial">
-          <div className="max-w-2xl mb-12 mx-auto text-center">
-            <p className="label-small mb-4">Proof</p>
-            <h2 className="headline-primary">Outcomes that stay measurable.</h2>
-          </div>
           <div className="grid md:grid-cols-3 gap-6">
-            {proofItems.map((item) => (
-              <div
-                key={item.title}
-                className="rounded-lg p-6 md:p-8 border border-border bg-background/70 transition-all duration-200 hover:bg-background/90 hover:border-accent/60 hover:shadow-xl text-center"
-              >
-                <h3 className="text-base font-normal mb-3">{item.title}</h3>
-                <p className="text-sm text-foreground mb-4">{item.outcome}</p>
-                <p className="body-refined">{item.focus}</p>
-              </div>
+            {pillars.map((pillar) => (
+              <article key={pillar.title} className="rounded-lg border border-border/60 bg-card/50 p-6 md:p-8">
+                <h2 className="headline-secondary mb-3">{pillar.title}</h2>
+                <p className="body-refined">{pillar.detail}</p>
+              </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="section-padding bg-card">
+        <div className="container-narrow text-center">
+          <h2 className="headline-primary mb-4">How we work</h2>
+          <p className="body-large">
+            Structured delivery, clear communication, and practical recommendations based on what your
+            business needs now.
+          </p>
         </div>
       </section>
     </Layout>

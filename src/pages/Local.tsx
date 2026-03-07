@@ -1,48 +1,33 @@
+import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import Seo from "@/components/Seo";
 import { SITE_URL } from "@/lib/seo";
 
-const maintenanceTiers = [
+const pricingModels = [
   {
-    name: "Continuity",
-    price: "\u00A349/month",
-    description:
-      "Keeps your site stable, secure, and up to date - without you needing to think about it.",
+    name: "Launch Plan",
+    price: "GBP79/month",
+    description: "Low-friction option for local businesses.",
     includes: [
-      "Domain & DNS management",
-      "Hosting management",
-      "Core updates & security patching",
-      "Basic uptime monitoring",
-      "Small content or configuration updates",
-      "Monthly health check (lightweight)",
+      "Professional website",
+      "Mobile responsive layout",
+      "Hosting",
+      "Security",
+      "Contact/enquiry form",
+      "Basic updates",
+      "Maintenance",
     ],
   },
   {
-    name: "Managed Presence",
-    price: "\u00A399/month",
-    description: "Ongoing oversight where the website supports growth - not just maintenance.",
+    name: "Ownership Plan",
+    price: "GBP499 upfront + GBP49/month",
+    description: "Upfront build with lower ongoing maintenance.",
     includes: [
-      "Everything in Continuity",
-      "Performance monitoring and review",
-      "Google Analytics & Search Console setup/oversight",
-      "Technical SEO (indexing, crawl health, metadata)",
-      "Proactive fixes and improvements",
-      "Faster response times and priority support",
-    ],
-    featured: true,
-  },
-  {
-    name: "Operations Support",
-    price: "\u00A3199/month",
-    description:
-      "For businesses where downtime, performance issues, or missed enquiries carry real risk.",
-    includes: [
-      "Everything in Managed Presence",
-      "Enhanced monitoring and incident triage",
-      "Deeper technical oversight (infrastructure/integrations)",
-      "Greater support allocation",
-      "Continuity-focused response expectations",
-      "Best-effort reliability expectations",
+      "Website build",
+      "Hosting",
+      "Security",
+      "Maintenance",
+      "Ongoing support for minor updates",
     ],
   },
 ];
@@ -51,13 +36,13 @@ const Local = () => {
   return (
     <Layout>
       <Seo
-        title="Website Builds and Ongoing Care Plans"
-        description="Premium website builds and structured care plans for stable performance, clear structure, and long-term continuity."
+        title="Websites and Automation"
+        description="Novara builds modern business websites and adds optional automation to support lead handling, booking, and growth systems."
         path="/websites"
         structuredData={{
           "@context": "https://schema.org",
           "@type": "Service",
-          name: "Website Builds and Ongoing Care",
+          name: "Websites and Automation",
           provider: {
             "@type": "Organization",
             name: "Novara Studios",
@@ -66,105 +51,80 @@ const Local = () => {
           areaServed: "United Kingdom",
         }}
       />
+
       <section className="section-padding">
         <div className="container-editorial">
-          <div className="max-w-3xl mx-auto mb-12 text-center p-8 md:p-10">
-            <p className="label-small mb-4">Services</p>
-            <h1 className="headline-hero mb-6 text-center">Websites</h1>
+          <div className="max-w-3xl mx-auto text-center">
+            <p className="label-small mb-4">Websites & Automation</p>
+            <h1 className="headline-hero mb-6 text-center">Modern websites with room to grow.</h1>
             <p className="body-large">
-              Structured builds and maintenance plans designed for calm delivery and reliable performance.
+              We build reliable business websites first, then enhance them with automation and growth
+              systems when the timing is right.
             </p>
-          </div>
-
-          <div className="rounded-2xl border border-border/60 p-6 md:p-8">
-            <div className="max-w-2xl mb-10 mx-auto">
-              <p className="label-small mb-4">Builds</p>
-              <h2 className="headline-primary">Three build tiers.</h2>
-            </div>
-            <div className="grid md:grid-cols-3 gap-6">
-              {[
-                {
-                  name: "Foundation",
-                  detail: "A focused, well-structured website for early-stage businesses or individuals who need a clear, credible online presence with essential pages and clean execution.",
-                },
-                {
-                  name: "Growth",
-                  detail: "A deeper, more flexible build for established businesses that need clearer service structure, stronger user flows, and a website designed to evolve over time.",
-                },
-                {
-                  name: "Premium",
-                  detail: "Larger, more complex builds for organisations where the website is business-critical, with advanced content, integrations, and long-term technical oversight.",
-                },
-              ].map((tier) => (
-                <div key={tier.name} className="rounded-lg p-6 md:p-8 border border-border/60 bg-transparent noise-overlay">
-                  <h3 className="headline-secondary mb-3">{tier.name}</h3>
-                  <p className="body-refined">{tier.detail}</p>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </section>
 
       <section className="section-padding">
         <div className="container-editorial">
-          <div className="max-w-2xl mb-10 mx-auto text-center">
-            <p className="label-small mb-4">Maintenance plans</p>
-            <h2 className="headline-primary">Ongoing care.</h2>
+          <div className="max-w-2xl mx-auto text-center mb-12">
+            <p className="label-small mb-4">Pricing</p>
+            <h2 className="headline-primary">Two clear options.</h2>
           </div>
-          <div className="grid lg:grid-cols-3 gap-6">
-            {maintenanceTiers.map((tier) => (
-              <div
-                key={tier.name}
-                className={`rounded-lg p-8 md:p-10 border border-border/60 bg-card/80 noise-overlay transition-all duration-[180ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-card hover:border-accent/60 hover:shadow-xl flex h-full flex-col text-center ${
-                  tier.featured ? "relative overflow-hidden shadow-lg shadow-accent/20 border-accent/50" : ""
-                }`}
-              >
-                {tier.featured && (
-                  <>
-                    <div
-                      className="pointer-events-none absolute inset-0"
-                      style={{
-                        background:
-                          "radial-gradient(120% 90% at 20% 0%, rgba(135, 170, 220, 0.2), transparent 58%), radial-gradient(110% 80% at 100% 100%, rgba(95, 125, 180, 0.14), transparent 62%)",
-                      }}
-                    />
-                    <span
-                      className="absolute top-4 left-4 text-accent/90"
-                      aria-label="Featured plan"
-                      role="img"
-                    >
-                      ★
-                    </span>
-                  </>
-                )}
-                {tier.featured && (
-                  <div className="h-4" aria-hidden="true" />
-                )}
-                <h3 className="headline-secondary mb-3">{tier.name}</h3>
-                <p className="text-lg font-light text-foreground mb-2">{tier.price}</p>
-                <p className="body-refined mb-6">{tier.description}</p>
-                <ul className="space-y-3 text-sm text-muted-foreground w-full max-w-[290px] mx-auto text-left">
-                  {tier.includes.map((item) => (
+          <div className="grid lg:grid-cols-2 gap-6">
+            {pricingModels.map((model) => (
+              <article key={model.name} className="rounded-lg p-8 md:p-10 border border-border/60 bg-card/50">
+                <h3 className="headline-secondary mb-2">{model.name}</h3>
+                <p className="text-lg font-light mb-3">{model.price}</p>
+                <p className="body-refined mb-6">{model.description}</p>
+                <ul className="space-y-3 text-sm text-muted-foreground">
+                  {model.includes.map((item) => (
                     <li key={item} className="flex items-start gap-3">
                       <span className="text-accent mt-0.5">+</span>
                       {item}
                     </li>
                   ))}
                 </ul>
-              </div>
+              </article>
             ))}
           </div>
-          <div className="max-w-3xl mx-auto mt-10 rounded-lg border border-border/60 bg-card/50 p-6 md:p-8 text-center">
-            <p className="label-small mb-3">Optional automation</p>
-            <p className="body-refined mb-6">
-              Automation can be added as operational enhancements such as after-hours
-              responses, enquiry routing, quote follow-ups, and review requests. Pricing is
-              assessed per business based on enquiry volume and setup complexity.
+        </div>
+      </section>
+
+      <section className="section-padding bg-card">
+        <div className="container-editorial">
+          <div className="max-w-3xl mx-auto rounded-lg border border-border/60 p-8 md:p-10 text-center bg-background/50">
+            <p className="label-small mb-4">Optional Growth Add-Ons</p>
+            <h2 className="headline-secondary mb-4">Automation and growth systems when needed.</h2>
+            <ul className="space-y-3 text-sm text-muted-foreground max-w-xl mx-auto text-left mb-6">
+              <li className="flex items-start gap-3"><span className="text-accent mt-0.5">+</span>Booking systems</li>
+              <li className="flex items-start gap-3"><span className="text-accent mt-0.5">+</span>CRM integration</li>
+              <li className="flex items-start gap-3"><span className="text-accent mt-0.5">+</span>AI enquiry response</li>
+              <li className="flex items-start gap-3"><span className="text-accent mt-0.5">+</span>Lead follow-up automation</li>
+              <li className="flex items-start gap-3"><span className="text-accent mt-0.5">+</span>Review automation</li>
+              <li className="flex items-start gap-3"><span className="text-accent mt-0.5">+</span>Analytics dashboards</li>
+            </ul>
+            <p className="body-refined mb-7">
+              Growth add-ons and automation available from GBP30 to GBP120 per month depending on requirements.
             </p>
-            <a href="/contact" className="btn-secondary rounded-full px-6 py-2">
-              Discuss automation
-            </a>
+            <Link to="/automation" className="btn-secondary rounded-full px-6 py-2">
+              Explore Automation Options
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-padding">
+        <div className="container-narrow text-center">
+          <h2 className="headline-primary mb-4">Start your website project.</h2>
+          <p className="body-large mb-8">Book a call or request a tailored website quote.</p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link to="/contact" className="btn-primary rounded-full px-7 py-3">
+              Book a Call
+            </Link>
+            <Link to="/contact" className="btn-secondary rounded-full px-7 py-3">
+              Request Website Quote
+            </Link>
           </div>
         </div>
       </section>

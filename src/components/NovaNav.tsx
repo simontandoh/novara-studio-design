@@ -4,13 +4,11 @@ import { trackEvent } from "@/lib/analytics";
 
 const navLinks = [
   { label: "Home", path: "/", primary: true },
+  { label: "Services", path: "/services" },
+  { label: "Websites & Automation", path: "/websites" },
+  { label: "IT Support", path: "/it-support" },
   { label: "About", path: "/about" },
-  { label: "Process", path: "/how-it-works" },
-  { label: "Portfolio", path: "/portfolio" },
-  { label: "Services", path: "/websites" },
-  { label: "Support", path: "/continuity" },
-  { label: "FAQ", path: "/faq" },
-  { label: "Legal", path: "/legal" },
+  { label: "Contact", path: "/contact" },
 ];
 
 const focusSelector =
@@ -148,10 +146,7 @@ const NovaNav = () => {
   };
 
   return (
-    <nav
-      aria-label="Primary"
-      className="fixed top-0 left-0 right-0 z-[100]"
-    >
+    <nav aria-label="Primary" className="fixed top-0 left-0 right-0 z-[100]">
       <div
         className={`transition-transform duration-[200ms] ${
           isMobileOrTablet || open || visible ? "translate-y-0" : "-translate-y-[110%]"
@@ -214,9 +209,7 @@ const NovaNav = () => {
           onClick={(event) => event.stopPropagation()}
         >
           <div className="flex items-center justify-between mb-10">
-            <span className="text-xs uppercase tracking-[0.35em] text-muted-foreground">
-              Menu
-            </span>
+            <span className="text-xs uppercase tracking-[0.35em] text-muted-foreground">Menu</span>
             <button
               type="button"
               onClick={closeMenu}
@@ -230,31 +223,29 @@ const NovaNav = () => {
             {navLinks.map((item, index) => {
               const isActive = activePath === item.path;
               return (
-              <Link
-                key={item.path}
-                to={item.path}
-                onClick={() => handleNavClick(item.label, item.path)}
-                aria-current={isActive ? "page" : undefined}
-                className={`group relative text-2xl font-light tracking-tight transition-all duration-[180ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                  item.primary
-                    ? "text-accent"
-                    : isActive
-                      ? "text-foreground"
-                      : "text-muted-foreground hover:text-foreground"
-                }`}
-                style={{ animationDelay: `${index * 80}ms` }}
-              >
-                {item.label}
-                <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-accent transition-transform duration-[180ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100" />
-              </Link>
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  onClick={() => handleNavClick(item.label, item.path)}
+                  aria-current={isActive ? "page" : undefined}
+                  className={`group relative text-2xl font-light tracking-tight transition-all duration-[180ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                    item.primary
+                      ? "text-accent"
+                      : isActive
+                        ? "text-foreground"
+                        : "text-muted-foreground hover:text-foreground"
+                  }`}
+                  style={{ animationDelay: `${index * 80}ms` }}
+                >
+                  {item.label}
+                  <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-accent transition-transform duration-[180ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100" />
+                </Link>
               );
             })}
           </div>
 
           <div className="mt-10 p-6 rounded-lg border border-border/60 bg-background/60">
-            <p className="text-sm text-muted-foreground mb-4">
-              Share the brief. We respond.
-            </p>
+            <p className="text-sm text-muted-foreground mb-4">Tell us your goals. We will recommend the right path.</p>
             <Link
               to="/contact"
               onClick={() => handleNavClick("Contact", "/contact")}
@@ -263,7 +254,6 @@ const NovaNav = () => {
               Contact
             </Link>
           </div>
-
         </div>
       </div>
     </nav>

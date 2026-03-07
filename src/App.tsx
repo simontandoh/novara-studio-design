@@ -7,8 +7,11 @@ import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-route
 import { HelmetProvider } from "react-helmet-async";
 import { trackEvent, trackPageView } from "@/lib/analytics";
 import { buildTitle } from "@/lib/seo";
+
 const Index = lazy(() => import("./pages/Index"));
+const Services = lazy(() => import("./pages/Services"));
 const Local = lazy(() => import("./pages/Local"));
+const Automation = lazy(() => import("./pages/Automation"));
 const HowItWorks = lazy(() => import("./pages/HowItWorks"));
 const ContinuitySupport = lazy(() => import("./pages/ContinuitySupport"));
 const About = lazy(() => import("./pages/About"));
@@ -83,10 +86,12 @@ const App = () => (
           >
             <Routes>
               <Route path="/" element={<Index />} />
+              <Route path="/services" element={<Services />} />
               <Route path="/websites" element={<Local />} />
+              <Route path="/automation" element={<Automation />} />
+              <Route path="/it-support" element={<ContinuitySupport />} />
               <Route path="/portfolio" element={<Portfolio />} />
               <Route path="/how-it-works" element={<HowItWorks />} />
-              <Route path="/continuity" element={<ContinuitySupport />} />
               <Route path="/faq" element={<Faq />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
@@ -96,10 +101,10 @@ const App = () => (
               <Route path="/cookie-notice" element={<CookieNotice />} />
               <Route path="/accessibility" element={<AccessibilityStatement />} />
               <Route path="/legal" element={<Legal />} />
-              {/* Legacy redirects */}
+              <Route path="/continuity" element={<Navigate to="/it-support" replace />} />
               <Route path="/local" element={<Navigate to="/websites" replace />} />
-              <Route path="/studio" element={<Navigate to="/how-it-works" replace />} />
-              <Route path="/continuity-support" element={<Navigate to="/continuity" replace />} />
+              <Route path="/studio" element={<Navigate to="/services" replace />} />
+              <Route path="/continuity-support" element={<Navigate to="/it-support" replace />} />
               <Route path="/work" element={<Navigate to="/portfolio" replace />} />
               <Route path="/studio-partnerships" element={<Navigate to="/" replace />} />
               <Route path="*" element={<NotFound />} />
