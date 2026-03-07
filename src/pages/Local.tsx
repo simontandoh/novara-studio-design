@@ -7,7 +7,8 @@ const pricingModels = [
   {
     name: "Launch Plan",
     price: "\u00A379/month",
-    description: "Low-friction option for local businesses.",
+    description:
+      "Low-friction option for local businesses. Website managed by Novara under the active plan.",
     includes: [
       "Professional business website",
       "Mobile-responsive design",
@@ -20,24 +21,29 @@ const pricingModels = [
       "Basic maintenance",
       "Core content edits",
       "Security and stability oversight",
+      "Minimum 12-month term applies",
+      "Ownership transfer available later by agreement",
     ],
   },
   {
     name: "Ownership Plan",
     price: "\u00A3499 upfront + \u00A349/month",
-    description: "Upfront build with lower ongoing maintenance.",
+    description:
+      "Upfront build with lower ongoing maintenance. You own the website from launch.",
     includes: [
-      "Website build",
-      "Mobile-responsive implementation",
-      "Domain connection support",
+      "Professional business website",
+      "Mobile-responsive design",
       "Hosting",
-      "SSL and security setup",
-      "Contact forms",
-      "Basic on-page SEO",
+      "Domain connection and launch support",
+      "SSL certificate and secure setup",
+      "Contact or enquiry forms",
+      "Basic on-page SEO setup",
       "Google indexing support",
       "Ongoing maintenance",
       "Backups",
       "Minor support updates",
+      "Website ownership from launch",
+      "Maintenance can be cancelled anytime",
     ],
   },
 ];
@@ -91,6 +97,9 @@ const Local = () => {
           <div className="max-w-2xl mx-auto text-center mb-12">
             <p className="label-small mb-4">Pricing</p>
             <h2 className="headline-primary">Two clear plan models.</h2>
+            <p className="body-refined mt-4">
+              Choose between a managed monthly plan or full ownership from launch.
+            </p>
           </div>
           <div className="grid lg:grid-cols-2 gap-6">
             {pricingModels.map((model) => (

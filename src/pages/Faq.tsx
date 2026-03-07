@@ -1,37 +1,74 @@
-import Layout from "@/components/Layout";
+﻿import Layout from "@/components/Layout";
 import AccordionList from "@/components/Accordion";
 import Seo from "@/components/Seo";
 
 const faqItems = [
   {
-    question: "Is support included with maintenance 24/7?",
+    question: "What is the difference between the Launch Plan and the Ownership Plan?",
     answer:
-      "No. Support is provided through maintenance tiers, with business-hours coverage as baseline and evening/weekend help on a best-effort, tier-dependent basis.",
+      "The Launch Plan is a managed monthly option where Novara builds and maintains the site under the active plan. The Ownership Plan includes an upfront build fee and gives you website ownership from launch.",
   },
   {
-    question: "Who is maintenance support best suited for?",
+    question: "Do I own the website on the Launch Plan?",
     answer:
-      "Businesses that want reassurance beyond weekdays, especially where downtime, slow performance, or missed enquiries carry operational risk.",
+      "Not immediately. The site is managed under the active Novara plan. Ownership transfer can be discussed after the minimum term if required.",
   },
   {
-    question: "How fast do you respond?",
-    answer:
-      "Response is best-effort and based on issue severity and tier. We prioritise triage and clear communication first, then resolution work.",
+    question: "Do I own the website on the Ownership Plan?",
+    answer: "Yes. The Ownership Plan gives you website ownership from launch.",
   },
   {
-    question: "Do I need another tier first?",
-    answer:
-      "Support sits alongside the maintenance tiers. A minimum tier may be recommended where monitoring access or deeper oversight is needed.",
+    question: "Is there a minimum term on the Launch Plan?",
+    answer: "Yes. The Launch Plan has a minimum 12-month term.",
   },
   {
-    question: "What isn't included?",
+    question: "Can I cancel the Ownership Plan maintenance at any time?",
     answer:
-      "Maintenance support does not include full redesigns, major development scope, guaranteed uptime, or formal SLA commitments.",
+      "Yes. Monthly maintenance can be cancelled. Ongoing maintenance is still recommended to keep the site secure and up to date.",
   },
   {
-    question: "How does support relate to maintenance?",
+    question: "What does monthly maintenance include?",
     answer:
-      "Support is part of maintenance, not a separate product. Continuity is the £49/month baseline tier, with broader coverage in Managed Presence and Operations Support.",
+      "Maintenance typically includes hosting oversight, security updates, core content edits, general upkeep, and technical support within plan scope.",
+  },
+  {
+    question: "Are automation services included in the website plans?",
+    answer:
+      "Not by default. Automation, integrations, booking systems, CRM workflows, and advanced lead handling are available as add-ons based on requirements.",
+  },
+  {
+    question: "Can I add automation later?",
+    answer:
+      "Yes. Your website can be expanded later with automation and growth-focused systems.",
+  },
+  {
+    question: "Is IT support included with website plans?",
+    answer:
+      "No. IT support is a separate service covering business technology, devices, accounts, Microsoft 365, troubleshooting, and infrastructure assistance.",
+  },
+  {
+    question: "What kind of businesses are these plans for?",
+    answer:
+      "Local businesses, service providers, and growing companies that need a reliable website and practical technology support.",
+  },
+  {
+    question: "What happens if I want more than the standard plan includes?",
+    answer:
+      "Additional features, custom functionality, integrations, and extended support can be scoped and quoted separately.",
+  },
+  {
+    question: "Will you help with domain connection and launch?",
+    answer: "Yes. Both plans include domain connection and launch support.",
+  },
+  {
+    question: "Is SEO included?",
+    answer:
+      "Both plans include basic on-page SEO foundations and Google indexing support. Ongoing SEO or deeper technical SEO can be added separately.",
+  },
+  {
+    question: "Can I move from the Launch Plan to the Ownership Plan later?",
+    answer:
+      "Yes. You can move from a managed monthly model to full ownership by agreement.",
   },
 ];
 
@@ -39,8 +76,8 @@ const Faq = () => {
   return (
     <Layout>
       <Seo
-        title="Novara Studios FAQ and Process Notes"
-        description="Clear answers on process, timelines, and collaboration with Novara Studios, written for calm, premium delivery."
+        title="FAQ"
+        description="Clear answers about Novara website plans, ownership, maintenance, automation add-ons, and support scope."
         path="/faq"
       />
       <section className="section-padding">
@@ -48,7 +85,7 @@ const Faq = () => {
           <div className="max-w-2xl mb-10 mx-auto text-center">
             <p className="label-small mb-4">FAQ</p>
             <h1 className="headline-hero mb-6 text-center">Answers, clearly.</h1>
-            <p className="body-large">Straight responses to common questions.</p>
+            <p className="body-large">Straight responses to common commercial and service questions.</p>
           </div>
           <AccordionList items={faqItems} />
         </div>
