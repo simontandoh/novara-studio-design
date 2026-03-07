@@ -1,5 +1,6 @@
 import Layout from "@/components/Layout";
 import Seo from "@/components/Seo";
+import { Link } from "react-router-dom";
 
 const pillars = [
   {
@@ -68,6 +69,11 @@ const About = () => {
             Structured delivery, clear communication, and practical recommendations based on what your
             business needs now.
           </p>
+          <div className="mt-8">
+            <Link to="/services" className="btn-secondary rounded-full px-7 py-3 inline-flex">
+              Explore Services
+            </Link>
+          </div>
         </div>
       </section>
     </Layout>
