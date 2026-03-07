@@ -1,13 +1,14 @@
 interface PortfolioVideoCarouselProps {
   className?: string;
+  maxSlides?: number;
 }
 
 const slides = [
-  { id: "slide-1", src: "/video/hero.mp4" },
-  { id: "slide-2", src: "/video/novara-hero.mp4" },
-  { id: "slide-3", src: "/video/recording-2026-02-26-181053.mp4" },
-  { id: "slide-4", src: "/video/hero.mp4" },
-  { id: "slide-5", src: "/video/novara-hero.mp4" },
+  { id: "slide-1", title: "Allura", src: "/video/hero.mp4" },
+  { id: "slide-2", title: "Placeholder", src: "" },
+  { id: "slide-3", title: "Placeholder", src: "" },
+  { id: "slide-4", title: "Placeholder", src: "" },
+  { id: "slide-5", title: "Placeholder", src: "" },
 ];
 
 const playVideo = (video: HTMLVideoElement | null) => {
@@ -25,11 +26,13 @@ const pauseVideo = (video: HTMLVideoElement | null) => {
   video.pause();
 };
 
-const PortfolioVideoCarousel = ({ className = "" }: PortfolioVideoCarouselProps) => {
+const PortfolioVideoCarousel = ({ className = "", maxSlides }: PortfolioVideoCarouselProps) => {
+  const visibleSlides = typeof maxSlides === "number" ? slides.slice(0, maxSlides) : slides;
+
   return (
     <div className={`overflow-x-auto pb-4 -mx-6 md:-mx-12 px-6 md:px-12 portfolio-scroll ${className}`}>
       <div className="flex gap-6 min-w-full snap-x snap-mandatory">
-        {slides.map((slide) => (
+        {visibleSlides.map((slide) => (
           <div
             key={slide.id}
             className="snap-center shrink-0 w-[85vw] md:w-[60vw] lg:w-[45vw] aspect-[16/9] rounded-2xl border border-border/60 bg-card/40 backdrop-blur-sm overflow-hidden"
@@ -43,9 +46,17 @@ const PortfolioVideoCarousel = ({ className = "" }: PortfolioVideoCarouselProps)
             onBlur={(event) => pauseVideo(event.currentTarget.querySelector("video"))}
             tabIndex={0}
           >
-            <video className="h-full w-full object-cover" loop muted playsInline preload="metadata">
-              <source src={slide.src} type="video/mp4" />
-            </video>
+            {slide.src ? (
+              <video className="h-full w-full object-cover" loop muted playsInline preload="metadata">
+                <source src={slide.src} type="video/mp4" />
+              </video>
+            ) : (
+              <div className="h-full w-full flex items-center justify-center bg-black/30">
+                <span className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                  {slide.title}
+                </span>
+              </div>
+            )}
           </div>
         ))}
       </div>

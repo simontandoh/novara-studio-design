@@ -105,7 +105,7 @@ const Index = () => {
             <p className="label-small mb-4">Portfolio Preview</p>
             <h2 className="headline-primary">Selected work snapshots.</h2>
           </div>
-          <PortfolioVideoCarousel />
+          <PortfolioVideoCarousel maxSlides={3} />
           <div className="text-center mt-7 sm:mt-8 md:mt-10">
             <Link to="/portfolio" className="btn-secondary rounded-full px-7 py-3">
               View Full Portfolio
