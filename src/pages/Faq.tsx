@@ -47,28 +47,9 @@ const faqItems = [
       "No. IT support is a separate service covering business technology, devices, accounts, Microsoft 365, troubleshooting, and infrastructure assistance.",
   },
   {
-    question: "What kind of businesses are these plans for?",
-    answer:
-      "Local businesses, service providers, and growing companies that need a reliable website and practical technology support.",
-  },
-  {
-    question: "What happens if I want more than the standard plan includes?",
-    answer:
-      "Additional features, custom functionality, integrations, and extended support can be scoped and quoted separately.",
-  },
-  {
-    question: "Will you help with domain connection and launch?",
-    answer: "Yes. Both plans include domain connection and launch support.",
-  },
-  {
     question: "Is SEO included?",
     answer:
       "Both plans include basic on-page SEO foundations and Google indexing support. Ongoing SEO or deeper technical SEO can be added separately.",
-  },
-  {
-    question: "Can I move from the Launch Plan to the Ownership Plan later?",
-    answer:
-      "Yes. You can move from a managed monthly model to full ownership by agreement.",
   },
 ];
 
@@ -84,8 +65,8 @@ const Faq = () => {
         <div className="container-editorial">
           <div className="max-w-2xl mb-10 mx-auto text-center">
             <p className="label-small mb-4">FAQ</p>
-            <h1 className="headline-hero mb-6 text-center">Answers, clearly.</h1>
-            <p className="body-large">Straight responses to common commercial and service questions.</p>
+            <h1 className="headline-hero mb-6 text-center">Answers with clarity.</h1>
+            <p className="body-large">Straight answers to common commercial and service questions.</p>
           </div>
           <AccordionList items={faqItems} />
         </div>
