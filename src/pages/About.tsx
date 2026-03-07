@@ -4,15 +4,18 @@ import Seo from "@/components/Seo";
 const pillars = [
   {
     title: "Websites",
-    detail: "Modern, conversion-focused websites that present your business clearly and professionally.",
+    detail:
+      "Modern websites designed to present your business clearly and convert visitors into enquiries.",
   },
   {
     title: "Automation",
-    detail: "Practical systems for lead handling, follow-up, booking, and admin workflows.",
+    detail:
+      "Practical systems for lead handling, follow-ups, bookings, and everyday business workflows.",
   },
   {
     title: "IT Support",
-    detail: "Reliable business IT support across accounts, devices, backups, and network operations.",
+    detail:
+      "Reliable IT support across accounts, devices, backups, and network infrastructure.",
   },
 ];
 
@@ -28,11 +31,15 @@ const About = () => {
       <section className="section-padding">
         <div className="container-editorial">
           <div className="max-w-3xl mx-auto text-center">
-            <p className="label-small mb-4">About</p>
+            <p className="label-small mb-4">ABOUT</p>
             <h1 className="headline-hero mb-6 text-center">A business technology partner for small companies.</h1>
             <p className="body-large">
-              Novara combines web development, automation thinking, and business IT support to help
-              businesses operate more effectively.
+              Novara brings together websites, automation, and practical IT support to help small
+              businesses run more clearly and reliably.
+            </p>
+            <p className="body-refined mt-5">
+              The goal is simple: reduce technical friction so businesses can focus on their work
+              rather than their systems.
             </p>
           </div>
         </div>
@@ -48,6 +55,9 @@ const About = () => {
               </article>
             ))}
           </div>
+          <p className="body-refined text-center mt-10">
+            Simple systems. Clear structure. Reliable support.
+          </p>
         </div>
       </section>
 
