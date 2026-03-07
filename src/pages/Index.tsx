@@ -30,7 +30,7 @@ const Index = () => {
         path="/"
       />
 
-      <section className="relative min-h-[100svh] md:min-h-screen flex items-center overflow-hidden -mt-16 md:-mt-20 pt-16 md:pt-20 pb-14 sm:pb-16 md:pb-0">
+      <section className="relative min-h-[100svh] md:min-h-[90vh] flex items-center overflow-hidden -mt-16 md:-mt-20 pt-16 md:pt-20 pb-14 sm:pb-16 md:pb-0">
         <video
           className="absolute inset-0 h-full w-full object-cover opacity-35"
           autoPlay
@@ -44,7 +44,7 @@ const Index = () => {
         </video>
         <div className="absolute inset-0 bg-black/60" aria-hidden="true" />
 
-        <div className="container-editorial relative z-10 text-center">
+        <div className="container-editorial relative z-10 text-center lg:mt-[6vh]">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-light tracking-[0.28em] sm:tracking-[0.34em] md:tracking-[0.42em] mb-2 sm:mb-3">
             NOVARA
           </h1>
