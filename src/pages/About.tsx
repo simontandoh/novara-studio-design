@@ -38,10 +38,6 @@ const About = () => {
               Novara brings together websites, automation, and practical IT support to help small
               businesses run more clearly and reliably.
             </p>
-            <p className="body-refined mt-5">
-              The goal is simple: reduce technical friction so businesses can focus on their work
-              rather than their systems.
-            </p>
           </div>
         </div>
       </section>
@@ -56,9 +52,6 @@ const About = () => {
               </article>
             ))}
           </div>
-          <p className="body-refined text-center mt-10">
-            Simple systems. Clear structure. Reliable support.
-          </p>
         </div>
       </section>
 
