@@ -104,7 +104,10 @@ const Contact = () => {
           <div className="max-w-3xl mx-auto text-center">
             <p className="label-small mb-4">Contact</p>
             <h1 className="headline-hero mb-6 text-center">Start your next step.</h1>
-            <p className="body-large">Share a short brief and we will come back with a clear next step.</p>
+            <p className="body-large">
+              Choose the easiest way to get in touch: speak with us directly, or send a short brief and
+              we will come back with a clear next step.
+            </p>
           </div>
         </div>
       </section>
@@ -113,7 +116,7 @@ const Contact = () => {
         <div className="container-editorial">
           <div className="grid lg:grid-cols-2 gap-8 items-start">
             <div className="rounded-lg border border-border/60 bg-card/40 p-8 md:p-10">
-              <h2 className="headline-secondary mb-6">Direct contact</h2>
+              <h2 className="headline-secondary mb-6">Speak with us directly</h2>
               <div className="space-y-4 text-left">
                 <p className="body-refined">
                   Email: <a href="mailto:hello@novarastudios.co.uk" className="underline">hello@novarastudios.co.uk</a>
@@ -127,7 +130,7 @@ const Contact = () => {
                   location="contact_direct_card"
                   className="btn-secondary rounded-full px-6 py-2 inline-flex"
                 />
-                <p className="text-xs text-muted-foreground mt-3">15-minute intro call</p>
+                <p className="text-xs text-muted-foreground mt-3">15-minute discovery call</p>
               </div>
             </div>
 
@@ -200,7 +203,9 @@ const Contact = () => {
                 {isSubmitting ? "Sending..." : "Send Enquiry"}
               </button>
 
-              <p className="text-xs text-muted-foreground">You will receive a clear next step, not a generic sales reply.</p>
+              <p className="text-xs text-muted-foreground">
+                We aim to respond within one working day with a clear next step.
+              </p>
 
               <p className="text-xs text-muted-foreground">
                 By continuing, you agree to our <Link className="underline" to="/privacy-policy">Privacy Policy</Link>.
