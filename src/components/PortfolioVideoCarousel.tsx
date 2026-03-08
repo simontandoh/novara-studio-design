@@ -47,7 +47,14 @@ const PortfolioVideoCarousel = ({ className = "", maxSlides }: PortfolioVideoCar
             tabIndex={0}
           >
             {slide.src ? (
-              <video className="h-full w-full object-cover" loop muted playsInline preload="metadata">
+              <video
+                className="h-full w-full object-cover"
+                loop
+                muted
+                playsInline
+                preload="auto"
+                poster="/og-image.png"
+              >
                 <source src={slide.src} type="video/mp4" />
               </video>
             ) : (
