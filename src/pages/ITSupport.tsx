@@ -47,7 +47,7 @@ const supportTiers = [
   },
 ];
 
-const ContinuitySupport = () => {
+const ITSupport = () => {
   return (
     <Layout>
       <Seo
@@ -131,4 +131,4 @@ const ContinuitySupport = () => {
   );
 };
 
-export default ContinuitySupport;
+export default ITSupport;

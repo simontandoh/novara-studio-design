@@ -12,9 +12,9 @@ import { ensureCalendlyAssets } from "@/lib/calendly";
 const Index = lazy(() => import("./pages/Index"));
 const Faq = lazy(() => import("./pages/Faq"));
 const Services = lazy(() => import("./pages/Services"));
-const Local = lazy(() => import("./pages/Local"));
+const WebsitesAutomation = lazy(() => import("./pages/WebsitesAutomation"));
 const Automation = lazy(() => import("./pages/Automation"));
-const ContinuitySupport = lazy(() => import("./pages/ContinuitySupport"));
+const ITSupport = lazy(() => import("./pages/ITSupport"));
 const About = lazy(() => import("./pages/About"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Portfolio = lazy(() => import("./pages/Portfolio"));
@@ -92,9 +92,9 @@ const App = () => {
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/services" element={<Services />} />
-                <Route path="/websites" element={<Local />} />
+                <Route path="/websites" element={<WebsitesAutomation />} />
                 <Route path="/automation" element={<Automation />} />
-                <Route path="/it-support" element={<ContinuitySupport />} />
+                <Route path="/it-support" element={<ITSupport />} />
                 <Route path="/portfolio" element={<Portfolio />} />
                 <Route path="/faq" element={<Faq />} />
                 <Route path="/about" element={<About />} />

@@ -60,7 +60,7 @@ const growthAddOns = [
   "Analytics dashboards",
 ];
 
-const Local = () => {
+const WebsitesAutomation = () => {
   return (
     <Layout>
       <Seo
@@ -171,4 +171,4 @@ const Local = () => {
   );
 };
 
-export default Local;
+export default WebsitesAutomation;

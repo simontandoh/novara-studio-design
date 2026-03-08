@@ -1,11 +1,25 @@
-{
+﻿{
   "redirects": [
     { "source": "/index.html", "destination": "/", "permanent": true },
     { "source": "/local", "destination": "/websites", "permanent": true },
-    { "source": "/studio", "destination": "/how-it-works", "permanent": true },
-    { "source": "/continuity-support", "destination": "/continuity", "permanent": true },
+    { "source": "/continuity", "destination": "/it-support", "permanent": true },
+    { "source": "/continuity-support", "destination": "/it-support", "permanent": true },
+    { "source": "/how-it-works", "destination": "/services", "permanent": true },
+    { "source": "/studio", "destination": "/services", "permanent": true },
     { "source": "/work", "destination": "/portfolio", "permanent": true },
     { "source": "/studio-partnerships", "destination": "/", "permanent": true }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" },
+        { "key": "Strict-Transport-Security", "value": "max-age=31536000; includeSubDomains; preload" }
+      ]
+    }
   ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
