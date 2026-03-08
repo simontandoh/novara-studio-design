@@ -1,4 +1,4 @@
-﻿{
+{
   "redirects": [
     { "source": "/index.html", "destination": "/", "permanent": true },
     { "source": "/local", "destination": "/websites", "permanent": true },
