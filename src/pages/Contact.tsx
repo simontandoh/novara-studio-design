@@ -130,7 +130,7 @@ const Contact = () => {
                   location="contact_direct_card"
                   className="btn-secondary rounded-full px-6 py-2 inline-flex"
                 />
-                <p className="text-xs text-muted-foreground mt-3">15-minute introduction</p>
+                <p className="text-xs text-muted-foreground mt-3">15-minute discovery call</p>
               </div>
             </div>
 
