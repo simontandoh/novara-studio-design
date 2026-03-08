@@ -1,3 +1,5 @@
+import { useEffect, useRef } from "react";
+
 interface PortfolioVideoCarouselProps {
   className?: string;
   maxSlides?: number;
@@ -28,13 +30,48 @@ const pauseVideo = (video: HTMLVideoElement | null) => {
 
 const PortfolioVideoCarousel = ({ className = "", maxSlides }: PortfolioVideoCarouselProps) => {
   const visibleSlides = typeof maxSlides === "number" ? slides.slice(0, maxSlides) : slides;
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const root = containerRef.current;
+    if (!root) return;
+
+    const cards = Array.from(root.querySelectorAll<HTMLElement>("[data-slide-card]"));
+    if (cards.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const card = entry.target as HTMLElement;
+          const video = card.querySelector("video");
+          if (!video) return;
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.6) {
+            playVideo(video);
+          } else {
+            pauseVideo(video);
+          }
+        });
+      },
+      {
+        root,
+        threshold: [0.4, 0.6, 0.8],
+      }
+    );
+
+    cards.forEach((card) => observer.observe(card));
+    return () => observer.disconnect();
+  }, [visibleSlides.length]);
 
   return (
-    <div className={`overflow-x-auto pb-4 -mx-6 md:-mx-12 px-6 md:px-12 portfolio-scroll ${className}`}>
+    <div
+      ref={containerRef}
+      className={`overflow-x-auto pb-4 -mx-6 md:-mx-12 px-6 md:px-12 portfolio-scroll ${className}`}
+    >
       <div className="flex gap-6 min-w-full snap-x snap-mandatory">
         {visibleSlides.map((slide) => (
           <div
             key={slide.id}
+            data-slide-card
             className="snap-center shrink-0 w-[85vw] md:w-[60vw] lg:w-[45vw] aspect-[16/9] rounded-2xl border border-border/60 bg-card/40 backdrop-blur-sm overflow-hidden"
             style={{
               background:
@@ -52,7 +89,7 @@ const PortfolioVideoCarousel = ({ className = "", maxSlides }: PortfolioVideoCar
                 loop
                 muted
                 playsInline
-                preload="auto"
+                preload={slide.id === "slide-1" ? "auto" : "metadata"}
                 poster="/og-image.png"
               >
                 <source src={slide.src} type="video/mp4" />
