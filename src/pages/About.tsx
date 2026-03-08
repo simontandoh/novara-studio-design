@@ -33,10 +33,10 @@ const About = () => {
         <div className="container-editorial">
           <div className="max-w-3xl mx-auto text-center">
             <p className="label-small mb-4">ABOUT</p>
-            <h1 className="headline-hero mb-6 text-center">A business technology partner for small companies.</h1>
+            <h1 className="headline-hero mb-6 text-center">A business technology partner for growing companies.</h1>
             <p className="body-large">
-              Novara brings together websites, automation, and practical IT support to help small
-              businesses run more clearly and reliably.
+              Novara brings together websites, automation, and practical IT support to help businesses
+              operate more clearly and scale reliably.
             </p>
           </div>
         </div>
