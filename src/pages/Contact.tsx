@@ -116,7 +116,7 @@ const Contact = () => {
         <div className="container-editorial">
           <div className="grid lg:grid-cols-2 gap-8 items-start">
             <div className="rounded-lg border border-border/60 bg-card/40 p-8 md:p-10">
-              <h2 className="headline-secondary mb-6">Speak with us or schedule a short introduction.</h2>
+              <h2 className="headline-secondary mb-6">Speak with us directly</h2>
               <div className="space-y-4 text-left">
                 <p className="body-refined">
                   Email: <a href="mailto:hello@novarastudios.co.uk" className="underline">hello@novarastudios.co.uk</a>
