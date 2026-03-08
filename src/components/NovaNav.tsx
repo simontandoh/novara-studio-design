@@ -243,13 +243,15 @@ const NovaNav = () => {
           </div>
 
           <div className="mt-10 p-6 rounded-lg border border-border/60 bg-background/60">
-            <p className="text-sm text-muted-foreground mb-4">Tell us what you need. We will guide the next step.</p>
+            <p className="text-sm text-muted-foreground mb-4">
+              Tell us what you need. We&apos;ll come back with a clear next step.
+            </p>
             <Link
               to="/contact"
               onClick={() => handleNavClick("Contact", "/contact")}
               className="btn-primary rounded-full px-6 py-2"
             >
-              Contact
+              Get in touch
             </Link>
           </div>
         </div>
