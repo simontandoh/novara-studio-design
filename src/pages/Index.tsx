@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
+﻿import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import Seo from "@/components/Seo";
-import { trackEvent } from "@/lib/analytics";
 import PortfolioVideoCarousel from "@/components/PortfolioVideoCarousel";
+import BookCallButton from "@/components/BookCallButton";
 
 const servicePaths = [
   {
@@ -58,13 +58,10 @@ const Index = () => {
             Bringing clarity and control to business technology.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
-            <Link
-              to="/contact"
-              onClick={() => trackEvent("cta_click", { label: "Book a Call", location: "home_hero" })}
+            <BookCallButton
+              location="home_hero"
               className="btn-primary rounded-full px-7 py-3"
-            >
-              Book a Call
-            </Link>
+            />
             <Link to="/services" className="btn-secondary rounded-full px-7 py-3">
               Explore Services
             </Link>
@@ -119,9 +116,10 @@ const Index = () => {
           <h2 className="headline-primary mb-4">Ready to strengthen your systems?</h2>
           <p className="body-large mb-8">Start with a short call and a clear recommendation.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/contact" className="btn-primary rounded-full px-7 py-3">
-              Book a Call
-            </Link>
+            <BookCallButton
+              location="home_final_cta"
+              className="btn-primary rounded-full px-7 py-3"
+            />
             <Link to="/services" className="btn-secondary rounded-full px-7 py-3">
               Explore Services
             </Link>

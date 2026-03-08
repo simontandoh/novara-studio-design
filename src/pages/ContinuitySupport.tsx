@@ -2,6 +2,7 @@
 import Layout from "@/components/Layout";
 import Seo from "@/components/Seo";
 import { SITE_URL } from "@/lib/seo";
+import BookCallButton from "@/components/BookCallButton";
 
 const supportTiers = [
   {
@@ -119,9 +120,10 @@ const ContinuitySupport = () => {
             <Link to="/contact" className="btn-primary rounded-full px-7 py-3">
               Request IT Support
             </Link>
-            <Link to="/contact" className="btn-secondary rounded-full px-7 py-3">
-              Book a Call
-            </Link>
+            <BookCallButton
+              location="it_support_final_cta"
+              className="btn-secondary rounded-full px-7 py-3"
+            />
           </div>
         </div>
       </section>

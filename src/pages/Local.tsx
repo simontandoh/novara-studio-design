@@ -2,6 +2,7 @@
 import Layout from "@/components/Layout";
 import Seo from "@/components/Seo";
 import { SITE_URL } from "@/lib/seo";
+import BookCallButton from "@/components/BookCallButton";
 
 const pricingModels = [
   {
@@ -156,9 +157,10 @@ const Local = () => {
           <h2 className="headline-primary mb-4">Start your website project.</h2>
           <p className="body-large mb-8">Book a call or request a tailored website quote.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/contact" className="btn-primary rounded-full px-7 py-3">
-              Book a Call
-            </Link>
+            <BookCallButton
+              location="websites_final_cta"
+              className="btn-primary rounded-full px-7 py-3"
+            />
             <Link to="/contact" className="btn-secondary rounded-full px-7 py-3">
               Request Website Quote
             </Link>

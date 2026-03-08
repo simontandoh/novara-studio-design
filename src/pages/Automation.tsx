@@ -1,6 +1,7 @@
 ﻿import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import Seo from "@/components/Seo";
+import BookCallButton from "@/components/BookCallButton";
 
 const automationTypes = [
   {
@@ -84,9 +85,10 @@ const Automation = () => {
           <h2 className="headline-primary mb-4">Add automation when your business is ready.</h2>
           <p className="body-large mb-8">Most automation upgrades are scoped from {"\u00A3"}30 to {"\u00A3"}120/month depending on complexity.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/contact" className="btn-primary rounded-full px-7 py-3">
-              Book a Call
-            </Link>
+            <BookCallButton
+              location="automation_final_cta"
+              className="btn-primary rounded-full px-7 py-3"
+            />
             <Link to="/websites" className="btn-secondary rounded-full px-7 py-3">
               Back to Websites & Automation
             </Link>

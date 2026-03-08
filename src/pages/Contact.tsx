@@ -1,8 +1,9 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import Layout from "@/components/Layout";
 import Seo from "@/components/Seo";
 import { Link, useNavigate } from "react-router-dom";
 import { trackEvent } from "@/lib/analytics";
+import BookCallButton from "@/components/BookCallButton";
 
 const initialFormState = {
   fullName: "",
@@ -102,8 +103,8 @@ const Contact = () => {
         <div className="container-editorial">
           <div className="max-w-3xl mx-auto text-center">
             <p className="label-small mb-4">Contact</p>
-            <h1 className="headline-hero mb-6 text-center">Tell us what you need.</h1>
-            <p className="body-large">Share a short brief and we will respond with a clear next step.</p>
+            <h1 className="headline-hero mb-6 text-center">Start your next step.</h1>
+            <p className="body-large">Share a short brief and we will come back with a clear next step.</p>
           </div>
         </div>
       </section>
@@ -122,9 +123,11 @@ const Contact = () => {
                 </p>
               </div>
               <div className="mt-8">
-                <a href={`tel:${CONTACT_PHONE_LINK}`} className="btn-secondary rounded-full px-6 py-2 inline-flex">
-                  Book a Call
-                </a>
+                <BookCallButton
+                  location="contact_direct_card"
+                  className="btn-secondary rounded-full px-6 py-2 inline-flex"
+                />
+                <p className="text-xs text-muted-foreground mt-3">15-minute intro call</p>
               </div>
             </div>
 
@@ -176,8 +179,14 @@ const Contact = () => {
               </div>
 
               <div>
-                <label htmlFor="message" className="block label-small mb-2">What do you need help with?</label>
-                <textarea id="message" value={formData.message} onChange={(event) => updateField("message", event.target.value)} className="w-full bg-transparent border border-border/60 rounded-xl p-3 min-h-[120px]" />
+                <label htmlFor="message" className="block label-small mb-2">What are you looking to solve?</label>
+                <textarea
+                  id="message"
+                  value={formData.message}
+                  onChange={(event) => updateField("message", event.target.value)}
+                  className="w-full bg-transparent border border-border/60 rounded-xl p-3 min-h-[120px]"
+                  placeholder="Briefly tell us what you need, what stage you are at, and any deadline."
+                />
                 {errors.message && <p className="text-xs text-accent mt-1">{errors.message}</p>}
               </div>
 
@@ -190,6 +199,8 @@ const Contact = () => {
               <button type="submit" disabled={isSubmitting} className="btn-primary rounded-full px-7 py-3 disabled:opacity-70">
                 {isSubmitting ? "Sending..." : "Send Enquiry"}
               </button>
+
+              <p className="text-xs text-muted-foreground">You will receive a clear next step, not a generic sales reply.</p>
 
               <p className="text-xs text-muted-foreground">
                 By continuing, you agree to our <Link className="underline" to="/privacy-policy">Privacy Policy</Link>.

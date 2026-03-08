@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
+﻿import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import Seo from "@/components/Seo";
+import BookCallButton from "@/components/BookCallButton";
 
 const categories = [
   {
@@ -77,9 +78,10 @@ const Services = () => {
         <div className="container-narrow text-center">
           <h2 className="headline-primary mb-4">Need help choosing the right path?</h2>
           <p className="body-large mb-8">Book a short call and get a clear recommendation.</p>
-          <Link to="/contact" className="btn-primary rounded-full px-7 py-3">
-            Book a Call
-          </Link>
+          <BookCallButton
+            location="services_final_cta"
+            className="btn-primary rounded-full px-7 py-3"
+          />
         </div>
       </section>
     </Layout>

@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-route
 import { HelmetProvider } from "react-helmet-async";
 import { trackEvent, trackPageView } from "@/lib/analytics";
 import { buildTitle } from "@/lib/seo";
+import { ensureCalendlyAssets } from "@/lib/calendly";
 
 const Index = lazy(() => import("./pages/Index"));
 const Faq = lazy(() => import("./pages/Faq"));
@@ -67,52 +68,58 @@ const AnalyticsListener = () => {
   return null;
 };
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <HelmetProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <ScrollToTop />
-          <AnalyticsListener />
-          <Suspense
-            fallback={
-              <div className="min-h-screen flex items-center justify-center text-sm text-muted-foreground">
-                Loading...
-              </div>
-            }
-          >
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/websites" element={<Local />} />
-              <Route path="/automation" element={<Automation />} />
-              <Route path="/it-support" element={<ContinuitySupport />} />
-              <Route path="/portfolio" element={<Portfolio />} />
-              <Route path="/faq" element={<Faq />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/submitted" element={<Submitted />} />
-              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-              <Route path="/terms" element={<Terms />} />
-              <Route path="/cookie-notice" element={<CookieNotice />} />
-              <Route path="/accessibility" element={<AccessibilityStatement />} />
-              <Route path="/legal" element={<Legal />} />
-              <Route path="/continuity" element={<Navigate to="/it-support" replace />} />
-              <Route path="/local" element={<Navigate to="/websites" replace />} />
-              <Route path="/work" element={<Navigate to="/portfolio" replace />} />
-              <Route path="/how-it-works" element={<Navigate to="/services" replace />} />
-              <Route path="/studio" element={<Navigate to="/services" replace />} />
-              <Route path="/continuity-support" element={<Navigate to="/it-support" replace />} />
-              <Route path="/studio-partnerships" element={<Navigate to="/" replace />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Suspense>
-        </BrowserRouter>
-      </TooltipProvider>
-    </HelmetProvider>
-  </QueryClientProvider>
-);
+const App = () => {
+  useEffect(() => {
+    void ensureCalendlyAssets();
+  }, []);
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <HelmetProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <ScrollToTop />
+            <AnalyticsListener />
+            <Suspense
+              fallback={
+                <div className="min-h-screen flex items-center justify-center text-sm text-muted-foreground">
+                  Loading...
+                </div>
+              }
+            >
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/websites" element={<Local />} />
+                <Route path="/automation" element={<Automation />} />
+                <Route path="/it-support" element={<ContinuitySupport />} />
+                <Route path="/portfolio" element={<Portfolio />} />
+                <Route path="/faq" element={<Faq />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/submitted" element={<Submitted />} />
+                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                <Route path="/terms" element={<Terms />} />
+                <Route path="/cookie-notice" element={<CookieNotice />} />
+                <Route path="/accessibility" element={<AccessibilityStatement />} />
+                <Route path="/legal" element={<Legal />} />
+                <Route path="/continuity" element={<Navigate to="/it-support" replace />} />
+                <Route path="/local" element={<Navigate to="/websites" replace />} />
+                <Route path="/work" element={<Navigate to="/portfolio" replace />} />
+                <Route path="/how-it-works" element={<Navigate to="/services" replace />} />
+                <Route path="/studio" element={<Navigate to="/services" replace />} />
+                <Route path="/continuity-support" element={<Navigate to="/it-support" replace />} />
+                <Route path="/studio-partnerships" element={<Navigate to="/" replace />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Suspense>
+          </BrowserRouter>
+        </TooltipProvider>
+      </HelmetProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;
