@@ -105,8 +105,8 @@ const Contact = () => {
             <p className="label-small mb-4">Contact</p>
             <h1 className="headline-hero mb-6 text-center">Start your next step.</h1>
             <p className="body-large">
-              Choose the easiest way to get in touch: speak with us directly, or send a short brief and
-              we will come back with a clear next step.
+              Call us, schedule a quick introduction, or share a short brief and we&apos;ll respond
+              with a clear next step.
             </p>
           </div>
         </div>
@@ -116,7 +116,7 @@ const Contact = () => {
         <div className="container-editorial">
           <div className="grid lg:grid-cols-2 gap-8 items-start">
             <div className="rounded-lg border border-border/60 bg-card/40 p-8 md:p-10">
-              <h2 className="headline-secondary mb-6">Speak with us directly</h2>
+              <h2 className="headline-secondary mb-6">Speak with us or schedule a short introduction.</h2>
               <div className="space-y-4 text-left">
                 <p className="body-refined">
                   Email: <a href="mailto:hello@novarastudios.co.uk" className="underline">hello@novarastudios.co.uk</a>
@@ -130,7 +130,7 @@ const Contact = () => {
                   location="contact_direct_card"
                   className="btn-secondary rounded-full px-6 py-2 inline-flex"
                 />
-                <p className="text-xs text-muted-foreground mt-3">15-minute discovery call</p>
+                <p className="text-xs text-muted-foreground mt-3">15-minute introduction</p>
               </div>
             </div>
 
