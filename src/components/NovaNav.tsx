@@ -178,7 +178,7 @@ const NovaNav = () => {
                 aria-expanded={open}
                 aria-controls="nova-nav-panel"
                 onClick={handleToggle}
-                className="text-white rounded-full p-2.5 min-h-[44px] min-w-[44px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background bg-black/70"
+                className="text-foreground rounded-full p-2.5 min-h-[44px] min-w-[44px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 <span className="sr-only">Toggle navigation</span>
                 <MenuIcon open={open} />
