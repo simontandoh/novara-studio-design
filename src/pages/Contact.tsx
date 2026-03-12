@@ -173,9 +173,9 @@ const Contact = () => {
 
               <div>
                 <label htmlFor="serviceInterest" className="block label-small mb-2">Service path</label>
-                <select id="serviceInterest" value={formData.serviceInterest} onChange={(event) => updateField("serviceInterest", event.target.value)} className="w-full bg-transparent border border-border/60 rounded-xl p-3">
+                <select id="serviceInterest" value={formData.serviceInterest} onChange={(event) => updateField("serviceInterest", event.target.value)} className="w-full bg-card border border-border/60 rounded-xl p-3 text-foreground appearance-none cursor-pointer [&>option]:bg-card [&>option]:text-foreground" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23788CA0' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center' }}>
                   <option value="">Select service</option>
-                  <option value="Websites & Automation">Websites & Automation</option>
+                  <option value="Websites & Automation">Websites &amp; Automation</option>
                   <option value="IT Support">IT Support</option>
                 </select>
                 {errors.serviceInterest && <p className="text-xs text-accent mt-1">{errors.serviceInterest}</p>}
