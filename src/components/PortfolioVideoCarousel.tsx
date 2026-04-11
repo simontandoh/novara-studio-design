@@ -7,9 +7,9 @@ interface PortfolioVideoCarouselProps {
 
 const slides = [
   { id: "slide-1", src: "/video/recording-2026-02-26-181053.mp4" },
-  { id: "slide-2", src: "" },
-  { id: "slide-3", src: "" },
-  { id: "slide-4", src: "" },
+  { id: "slide-2", src: "/video/screen-recording-2026-04-06-203939.mp4" },
+  { id: "slide-3", src: "/video/screen-recording-2026-04-06-204742.mp4" },
+  { id: "slide-4", src: "/video/screen-recording-2026-04-11-195039.mp4" },
   { id: "slide-5", src: "" },
 ];
 
