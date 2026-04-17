@@ -1,6 +1,6 @@
 import Layout from "@/components/Layout";
 import Seo from "@/components/Seo";
-import PortfolioVideoCarousel from "@/components/PortfolioVideoCarousel";
+import PortfolioShowcase from "@/components/PortfolioShowcase";
 
 const Portfolio = () => {
   return (
@@ -20,7 +20,7 @@ const Portfolio = () => {
               Anonymized previews with a focus on outcomes, structure, and delivery.
             </p>
           </div>
-          <PortfolioVideoCarousel />
+          <PortfolioShowcase />
         </div>
       </section>
     </Layout>
