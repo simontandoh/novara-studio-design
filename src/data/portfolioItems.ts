@@ -83,7 +83,7 @@ export const PORTFOLIO_ITEMS: readonly PortfolioItem[] = [
     name: "Vellum & Co",
     category: "Jewellery Luxury Brand",
     websiteUrl: "https://vellumandco.novarastudios.co.uk",
-    videoSrc: "/videos/portfolio/vellum-and-co.mp4",
+    previewImageSrc: "/images/portfolio/vellum-and-co-preview.png",
   },
   {
     id: "redfield-fc",
