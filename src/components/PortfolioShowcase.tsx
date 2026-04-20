@@ -26,7 +26,8 @@ const PortfolioShowcase = () => {
     setSelectedId(event.target.value);
   };
 
-  const showVideo = Boolean(selected.videoSrc) && !videoFailed;
+  const showImage = Boolean(selected.previewImageSrc);
+  const showVideo = !showImage && Boolean(selected.videoSrc) && !videoFailed;
 
   return (
     <div className="w-full">
@@ -49,7 +50,7 @@ const PortfolioShowcase = () => {
           ))}
         </select>
         <p id="portfolio-project-hint" className="sr-only">
-          Choosing an option loads a screen recording and updates the project details below.
+          Choosing an option loads a screen recording or image preview and updates the project details below.
         </p>
       </div>
 
@@ -60,7 +61,16 @@ const PortfolioShowcase = () => {
             "radial-gradient(120% 120% at 20% 20%, rgba(255,255,255,0.08), transparent 55%), radial-gradient(120% 120% at 80% 70%, rgba(140,170,220,0.18), transparent 60%)",
         }}
       >
-        {showVideo ? (
+        {showImage ? (
+          <img
+            key={selected.id}
+            src={selected.previewImageSrc}
+            alt={`${selected.name} — ${selected.category} preview`}
+            className="h-full w-full object-cover object-top"
+            loading="lazy"
+            decoding="async"
+          />
+        ) : showVideo ? (
           <video
             key={selected.id}
             className="h-full w-full object-cover"
@@ -78,9 +88,11 @@ const PortfolioShowcase = () => {
           <div className="flex h-full w-full min-h-[200px] flex-col items-center justify-center gap-2 px-6 text-center text-muted-foreground">
             <p className="body-refined text-foreground/90">{selected.name}</p>
             <p className="text-sm">
-              {videoFailed || !selected.videoSrc
-                ? "Preview video is not available yet. Add the MP4 under public/videos/portfolio/ or check the file name."
-                : "Loading preview…"}
+              {videoFailed && selected.videoSrc
+                ? "Preview video failed to load. Check the MP4 under public/videos/portfolio/ or the file name."
+                : !selected.videoSrc && !selected.previewImageSrc
+                  ? "Preview is not available yet. Add an MP4 under public/videos/portfolio/ or a preview image in site data."
+                  : "Loading preview…"}
             </p>
           </div>
         )}

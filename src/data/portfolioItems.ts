@@ -3,12 +3,16 @@ export type PortfolioItem = {
   name: string;
   category: string;
   websiteUrl: string;
-  videoSrc: string;
+  /** MP4 path under public; optional when previewImageSrc is used instead. */
+  videoSrc?: string;
+  /** Static preview (e.g. hero screenshot) when no video or as the primary preview. */
+  previewImageSrc?: string;
 };
 
 /**
  * Novara demo sites — used by the dedicated Portfolio page selector.
- * Place MP4s under `public/videos/portfolio/` using the paths in `videoSrc`.
+ * Use `videoSrc` for MP4s under `public/videos/portfolio/`, or `previewImageSrc`
+ * for a static preview (e.g. hero screenshot) when no recording is available.
  */
 export const PORTFOLIO_ITEMS: readonly PortfolioItem[] = [
   {
@@ -16,7 +20,7 @@ export const PORTFOLIO_ITEMS: readonly PortfolioItem[] = [
     name: "Celeste Vane",
     category: "Influencer",
     websiteUrl: "https://celestevane.novarastudios.co.uk",
-    videoSrc: "/videos/portfolio/celeste-vane.mp4",
+    previewImageSrc: "/images/portfolio/celeste-vane-preview.png",
   },
   {
     id: "elodie-ray",
