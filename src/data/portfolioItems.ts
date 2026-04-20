@@ -48,7 +48,7 @@ export const PORTFOLIO_ITEMS: readonly PortfolioItem[] = [
     name: "Calabash",
     category: "Restaurant",
     websiteUrl: "https://calabash.novarastudios.co.uk",
-    videoSrc: "/videos/portfolio/calabash.mp4",
+    previewImageSrc: "/images/portfolio/calabash-preview.png",
   },
   {
     id: "hale-and-partners",
