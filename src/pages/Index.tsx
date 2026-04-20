@@ -1,8 +1,9 @@
-﻿import { Link } from "react-router-dom";
+﻿import BookCallButton from "@/components/BookCallButton";
+import Hero from "@/components/home/Hero";
 import Layout from "@/components/Layout";
-import Seo from "@/components/Seo";
 import PortfolioVideoCarousel from "@/components/PortfolioVideoCarousel";
-import BookCallButton from "@/components/BookCallButton";
+import Seo from "@/components/Seo";
+import { Link } from "react-router-dom";
 
 const servicePaths = [
   {
@@ -30,44 +31,7 @@ const Index = () => {
         path="/"
       />
 
-      <section className="relative min-h-[100svh] md:min-h-[90vh] flex items-center overflow-hidden -mt-16 md:-mt-20 pt-16 md:pt-20 pb-14 sm:pb-16 md:pb-0">
-        <video
-          className="absolute inset-0 h-full w-full object-cover opacity-35"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          aria-hidden="true"
-        >
-          <source src="/hero-loop.mp4" type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-black/60" aria-hidden="true" />
-
-        <div className="container-editorial relative z-10 text-center lg:mt-[6vh]">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-light tracking-[0.28em] sm:tracking-[0.34em] md:tracking-[0.42em] mb-2 sm:mb-3">
-            NOVARA
-          </h1>
-          <p className="text-lg sm:text-2xl md:text-3xl font-light tracking-[0.12em] sm:tracking-[0.14em] md:tracking-[0.16em] text-muted-foreground mb-5 sm:mb-6">
-            BORN FROM LIGHT.
-          </p>
-          <p className="headline-secondary max-w-3xl mx-auto mb-3 sm:mb-4">
-            Websites, automation, and IT support.
-          </p>
-          <p className="body-large max-w-2xl mx-auto mb-7 sm:mb-8">
-            Bringing clarity and control to business technology.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
-            <BookCallButton
-              location="home_hero"
-              className="btn-primary rounded-full px-7 py-3"
-            />
-            <Link to="/services" className="btn-secondary rounded-full px-7 py-3">
-              Explore Services
-            </Link>
-          </div>
-        </div>
-      </section>
+      <Hero />
 
       <section id="service-paths" className="section-padding py-14 sm:py-16 md:py-24">
         <div className="container-editorial">
