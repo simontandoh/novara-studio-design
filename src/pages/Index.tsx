@@ -31,7 +31,7 @@ const Index = () => {
         path="/"
       />
 
-      <Hero />
+      <Hero showScene={false} />
 
       <section id="service-paths" className="section-padding py-14 sm:py-16 md:py-24">
         <div className="container-editorial">
