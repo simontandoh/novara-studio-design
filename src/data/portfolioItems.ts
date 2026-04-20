@@ -34,7 +34,7 @@ export const PORTFOLIO_ITEMS: readonly PortfolioItem[] = [
     name: "Ironside",
     category: "Plumber",
     websiteUrl: "https://ironside.novarastudios.co.uk",
-    videoSrc: "/videos/portfolio/ironside.mp4",
+    previewImageSrc: "/images/portfolio/ironside-preview.png",
   },
   {
     id: "apex-car",
