@@ -76,7 +76,7 @@ export const PORTFOLIO_ITEMS: readonly PortfolioItem[] = [
     name: "Marcus Cole",
     category: "Fitness",
     websiteUrl: "https://marcuscole.novarastudios.co.uk",
-    videoSrc: "/videos/portfolio/marcus-cole.mp4",
+    previewImageSrc: "/images/portfolio/marcus-cole-preview.png",
   },
   {
     id: "vellum-and-co",
