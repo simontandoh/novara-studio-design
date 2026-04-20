@@ -7,6 +7,7 @@ export default function CanvasScene() {
     <Canvas
       gl={{ antialias: true, alpha: false, powerPreference: 'high-performance' }}
       dpr={[1, 1.75]}
+      resize={{ scroll: false }}
       camera={{ position: [0, 0, 1], fov: 75, near: 0.1, far: 200 }}
     >
       <color attach="background" args={['#060608']} />

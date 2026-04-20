@@ -1,6 +1,23 @@
 import { useFrame, useThree } from '@react-three/fiber';
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
+
+/** Desktop / mouse — not primary touch; avoids scroll-driven pointer jitter on phones. */
+function useFinePointer() {
+  const [fine, setFine] = useState(() =>
+    typeof window !== 'undefined' ? window.matchMedia('(pointer: fine)').matches : true,
+  );
+
+  useEffect(() => {
+    const mq = window.matchMedia('(pointer: fine)');
+    const sync = () => setFine(mq.matches);
+    sync();
+    mq.addEventListener('change', sync);
+    return () => mq.removeEventListener('change', sync);
+  }, []);
+
+  return fine;
+}
 
 interface StarFieldProps {
   count?: number;
@@ -69,6 +86,7 @@ export default function StarField({
   const pointsRef = useRef<THREE.Points>(null);
   const { viewport, mouse } = useThree();
   const smoothed = useRef({ x: 0, y: 0 });
+  const finePointer = useFinePointer();
 
   const twinkleRef = useRef<{
     baseOpacity: Float32Array;
@@ -130,8 +148,13 @@ export default function StarField({
   useFrame(({ clock }, delta) => {
     if (!pointsRef.current) return;
     const dt = Math.min(delta, 0.1);
-    smoothed.current.x += (mouse.x - smoothed.current.x) * 0.03;
-    smoothed.current.y += (mouse.y - smoothed.current.y) * 0.03;
+    if (finePointer) {
+      smoothed.current.x += (mouse.x - smoothed.current.x) * 0.03;
+      smoothed.current.y += (mouse.y - smoothed.current.y) * 0.03;
+    } else {
+      smoothed.current.x = 0;
+      smoothed.current.y = 0;
+    }
     pointsRef.current.rotation.y = smoothed.current.x * 0.12;
     pointsRef.current.rotation.x = -smoothed.current.y * 0.08;
     pointsRef.current.rotation.z += dt * speed * 0.5;
