@@ -6,7 +6,7 @@ const CanvasScene = lazy(() => import('./CanvasScene'));
 export default function PageStarBackdrop() {
   return (
     <div
-      className="fixed inset-0 z-[1] pointer-events-none h-[100dvh] w-full"
+      className="fixed inset-0 z-[1] pointer-events-none w-full transform-gpu backface-hidden"
       aria-hidden
     >
       <Suspense fallback={null}>

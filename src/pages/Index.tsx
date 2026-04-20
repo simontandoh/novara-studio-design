@@ -1,9 +1,17 @@
 ﻿import BookCallButton from "@/components/BookCallButton";
 import Hero from "@/components/home/Hero";
 import Layout from "@/components/Layout";
-import PortfolioVideoCarousel from "@/components/PortfolioVideoCarousel";
+import PortfolioVideoCarousel, {
+  type PortfolioCarouselSlide,
+} from "@/components/PortfolioVideoCarousel";
 import Seo from "@/components/Seo";
 import { Link } from "react-router-dom";
+
+const HOME_PORTFOLIO_SNIPPETS: PortfolioCarouselSlide[] = [
+  { id: "onyx", imageSrc: "/images/portfolio/onyx-preview.png" },
+  { id: "marcus-cole", imageSrc: "/images/portfolio/marcus-cole-preview.png" },
+  { id: "ironside", imageSrc: "/images/portfolio/ironside-preview.png" },
+];
 
 const servicePaths = [
   {
@@ -66,7 +74,7 @@ const Index = () => {
             <p className="label-small mb-4">Portfolio Preview</p>
             <h2 className="headline-primary">Selected work snapshots.</h2>
           </div>
-          <PortfolioVideoCarousel maxSlides={3} />
+          <PortfolioVideoCarousel maxSlides={3} slides={HOME_PORTFOLIO_SNIPPETS} />
           <div className="text-center mt-7 sm:mt-8 md:mt-10">
             <Link to="/portfolio" className="btn-secondary rounded-full px-7 py-3">
               View Full Portfolio

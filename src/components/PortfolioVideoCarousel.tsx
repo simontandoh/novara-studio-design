@@ -1,16 +1,26 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
+
+export type PortfolioCarouselSlide = {
+  id: string;
+  /** Screen recording under `public/video/`. */
+  videoSrc?: string;
+  /** Static preview under `public/images/portfolio/` etc. */
+  imageSrc?: string;
+};
 
 interface PortfolioVideoCarouselProps {
   className?: string;
   maxSlides?: number;
+  /** When omitted, uses the default screen-recording strip. */
+  slides?: PortfolioCarouselSlide[];
 }
 
-const slides = [
-  { id: "slide-1", src: "/video/recording-2026-02-26-181053.mp4" },
-  { id: "slide-2", src: "/video/screen-recording-2026-04-06-203939.mp4" },
-  { id: "slide-3", src: "/video/screen-recording-2026-04-06-204742.mp4" },
-  { id: "slide-4", src: "/video/screen-recording-2026-04-11-195039.mp4" },
-  { id: "slide-5", src: "" },
+const DEFAULT_SLIDES: PortfolioCarouselSlide[] = [
+  { id: "slide-1", videoSrc: "/video/recording-2026-02-26-181053.mp4" },
+  { id: "slide-2", videoSrc: "/video/screen-recording-2026-04-06-203939.mp4" },
+  { id: "slide-3", videoSrc: "/video/screen-recording-2026-04-06-204742.mp4" },
+  { id: "slide-4", videoSrc: "/video/screen-recording-2026-04-11-195039.mp4" },
+  { id: "slide-5" },
 ];
 
 const playVideo = (video: HTMLVideoElement | null) => {
@@ -28,8 +38,16 @@ const pauseVideo = (video: HTMLVideoElement | null) => {
   video.pause();
 };
 
-const PortfolioVideoCarousel = ({ className = "", maxSlides }: PortfolioVideoCarouselProps) => {
-  const visibleSlides = typeof maxSlides === "number" ? slides.slice(0, maxSlides) : slides;
+const PortfolioVideoCarousel = ({
+  className = "",
+  maxSlides,
+  slides: slidesProp,
+}: PortfolioVideoCarouselProps) => {
+  const baseSlides = slidesProp ?? DEFAULT_SLIDES;
+  const visibleSlides = useMemo(
+    () => (typeof maxSlides === "number" ? baseSlides.slice(0, maxSlides) : baseSlides),
+    [baseSlides, maxSlides]
+  );
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -60,7 +78,7 @@ const PortfolioVideoCarousel = ({ className = "", maxSlides }: PortfolioVideoCar
 
     cards.forEach((card) => observer.observe(card));
     return () => observer.disconnect();
-  }, [visibleSlides.length]);
+  }, [visibleSlides]);
 
   return (
     <div
@@ -83,7 +101,17 @@ const PortfolioVideoCarousel = ({ className = "", maxSlides }: PortfolioVideoCar
             onBlur={(event) => pauseVideo(event.currentTarget.querySelector("video"))}
             tabIndex={0}
           >
-            {slide.src ? (
+            {slide.imageSrc ? (
+              <div className="flex h-full w-full min-h-0 items-center justify-center p-1 sm:p-2">
+                <img
+                  src={slide.imageSrc}
+                  alt=""
+                  className="block h-auto w-auto max-h-full max-w-full object-contain object-center"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            ) : slide.videoSrc ? (
               <video
                 className="h-full w-full object-cover"
                 loop
@@ -92,7 +120,7 @@ const PortfolioVideoCarousel = ({ className = "", maxSlides }: PortfolioVideoCar
                 preload={slide.id === "slide-1" ? "auto" : "metadata"}
                 poster="/og-image.png"
               >
-                <source src={slide.src} type="video/mp4" />
+                <source src={slide.videoSrc} type="video/mp4" />
               </video>
             ) : (
               <div className="h-full w-full bg-black/30" />

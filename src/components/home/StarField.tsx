@@ -158,7 +158,9 @@ export default function StarField({
     pointsRef.current.rotation.y = smoothed.current.x * 0.12;
     pointsRef.current.rotation.x = -smoothed.current.y * 0.08;
     pointsRef.current.rotation.z += dt * speed * 0.5;
-    pointsRef.current.position.z = Math.sin(performance.now() * 0.00005) * 2;
+    pointsRef.current.position.z = finePointer
+      ? Math.sin(performance.now() * 0.00005) * 2
+      : 0;
 
     const tw = twinkleRef.current;
     const opacityAttr = pointsRef.current.geometry.attributes.opacity as
