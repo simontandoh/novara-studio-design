@@ -27,7 +27,7 @@ export const PORTFOLIO_ITEMS: readonly PortfolioItem[] = [
     name: "Elodie Marsh",
     category: "Photographer",
     websiteUrl: "https://elodiemarsh.novarastudios.co.uk",
-    videoSrc: "/videos/portfolio/elodie-marsh.mp4",
+    previewImageSrc: "/images/portfolio/elodie-marsh-preview.png",
   },
   {
     id: "ironside",
