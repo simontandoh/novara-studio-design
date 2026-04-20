@@ -55,7 +55,7 @@ export const PORTFOLIO_ITEMS: readonly PortfolioItem[] = [
     name: "Hale & Partners",
     category: "Law Firm",
     websiteUrl: "https://haleandpartners.novarastudios.co.uk",
-    videoSrc: "/videos/portfolio/hale-and-partners.mp4",
+    previewImageSrc: "/images/portfolio/hale-and-partners-preview.png",
   },
   {
     id: "onyx",
