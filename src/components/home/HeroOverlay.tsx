@@ -1,4 +1,5 @@
 import BookCallButton from '@/components/BookCallButton';
+import { ChevronDown } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -9,6 +10,10 @@ export default function HeroOverlay() {
     const t = setTimeout(() => setVisible(true), 200);
     return () => clearTimeout(t);
   }, []);
+
+  const scrollToNext = () => {
+    document.getElementById('service-paths')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   return (
     <div
@@ -31,8 +36,15 @@ export default function HeroOverlay() {
           Explore Services
         </Link>
       </div>
-      <div className="pointer-events-none absolute bottom-8 left-1/2 -translate-x-1/2 text-[10px] font-light uppercase tracking-[0.3em] text-white/30">
-        Scroll
+      <div className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 sm:bottom-8">
+        <button
+          type="button"
+          onClick={scrollToNext}
+          aria-label="Scroll to next section"
+          className="pointer-events-auto flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white/70 backdrop-blur-sm transition-colors hover:border-white/35 hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+        >
+          <ChevronDown className="h-5 w-5" strokeWidth={1.5} aria-hidden />
+        </button>
       </div>
     </div>
   );
