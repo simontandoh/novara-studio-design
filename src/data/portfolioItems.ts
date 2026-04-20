@@ -11,16 +11,59 @@ export type PortfolioItem = {
 
 /**
  * Novara demo sites — used by the dedicated Portfolio page selector.
+ * Order is alphabetical by `category` (dropdown label).
  * Use `videoSrc` for MP4s under `public/videos/portfolio/`, or `previewImageSrc`
  * for a static preview (e.g. hero screenshot) when no recording is available.
  */
 export const PORTFOLIO_ITEMS: readonly PortfolioItem[] = [
+  {
+    id: "apex-car",
+    name: "Apex Car",
+    category: "Car Manufacturer",
+    websiteUrl: "https://apexcar.novarastudios.co.uk",
+    videoSrc: "/videos/portfolio/apex-car.mp4",
+  },
+  {
+    id: "marcus-cole",
+    name: "Marcus Cole",
+    category: "Fitness",
+    websiteUrl: "https://marcuscole.novarastudios.co.uk",
+    previewImageSrc: "/images/portfolio/marcus-cole-preview.png",
+  },
+  {
+    id: "redfield-fc",
+    name: "Redfield FC",
+    category: "Football Club",
+    websiteUrl: "https://redfieldfc.novarastudios.co.uk",
+    previewImageSrc: "/images/portfolio/redfield-fc-preview.png",
+  },
   {
     id: "celeste-vane",
     name: "Celeste Vane",
     category: "Influencer",
     websiteUrl: "https://celestevane.novarastudios.co.uk",
     previewImageSrc: "/images/portfolio/celeste-vane-preview.png",
+  },
+  {
+    id: "vellum-and-co",
+    name: "Vellum & Co",
+    category: "Jewellery",
+    websiteUrl: "https://vellumandco.novarastudios.co.uk",
+    previewImageSrc: "/images/portfolio/vellum-and-co-preview.png",
+  },
+  {
+    id: "hale-and-partners",
+    name: "Hale & Partners",
+    category: "Law Firm",
+    websiteUrl: "https://haleandpartners.novarastudios.co.uk",
+    previewImageSrc: "/images/portfolio/hale-and-partners-preview.png",
+  },
+  {
+    id: "lola-nails",
+    name: "Lola Nails",
+    category: "Nail Tech",
+    websiteUrl: "https://lolanails.novarastudios.co.uk",
+    videoSrc: "/videos/portfolio/lola-nails.mp4",
   },
   {
     id: "elodie-marsh",
@@ -37,60 +80,18 @@ export const PORTFOLIO_ITEMS: readonly PortfolioItem[] = [
     previewImageSrc: "/images/portfolio/ironside-preview.png",
   },
   {
-    id: "apex-car",
-    name: "Apex Car",
-    category: "Car Manufacturer",
-    websiteUrl: "https://apexcar.novarastudios.co.uk",
-    videoSrc: "/videos/portfolio/apex-car.mp4",
-  },
-  {
-    id: "calabash",
-    name: "Calabash",
-    category: "Restaurant",
-    websiteUrl: "https://calabash.novarastudios.co.uk",
-    previewImageSrc: "/images/portfolio/calabash-preview.png",
-  },
-  {
-    id: "hale-and-partners",
-    name: "Hale & Partners",
-    category: "Law Firm",
-    websiteUrl: "https://haleandpartners.novarastudios.co.uk",
-    previewImageSrc: "/images/portfolio/hale-and-partners-preview.png",
-  },
-  {
     id: "onyx",
     name: "Onyx",
-    category: "Luxury Restaurant",
+    category: "Restaurant (Luxury)",
     websiteUrl: "https://onyx.novarastudios.co.uk",
     previewImageSrc: "/images/portfolio/onyx-preview.png",
   },
   {
-    id: "lola-nails",
-    name: "Lola Nails",
-    category: "Nail Tech",
-    websiteUrl: "https://lolanails.novarastudios.co.uk",
-    videoSrc: "/videos/portfolio/lola-nails.mp4",
-  },
-  {
-    id: "marcus-cole",
-    name: "Marcus Cole",
-    category: "Fitness",
-    websiteUrl: "https://marcuscole.novarastudios.co.uk",
-    previewImageSrc: "/images/portfolio/marcus-cole-preview.png",
-  },
-  {
-    id: "vellum-and-co",
-    name: "Vellum & Co",
-    category: "Jewellery Luxury Brand",
-    websiteUrl: "https://vellumandco.novarastudios.co.uk",
-    previewImageSrc: "/images/portfolio/vellum-and-co-preview.png",
-  },
-  {
-    id: "redfield-fc",
-    name: "Redfield FC",
-    category: "Football Club",
-    websiteUrl: "https://redfieldfc.novarastudios.co.uk",
-    previewImageSrc: "/images/portfolio/redfield-fc-preview.png",
+    id: "calabash",
+    name: "Calabash",
+    category: "Restaurant (Normal)",
+    websiteUrl: "https://calabash.novarastudios.co.uk",
+    previewImageSrc: "/images/portfolio/calabash-preview.png",
   },
   {
     id: "willow-wellness",
@@ -101,6 +102,7 @@ export const PORTFOLIO_ITEMS: readonly PortfolioItem[] = [
   },
 ];
 
+/** Label shown in the portfolio project `<select>` (category only). */
 export function getPortfolioLabel(item: PortfolioItem): string {
-  return `${item.name} — ${item.category}`;
+  return item.category;
 }

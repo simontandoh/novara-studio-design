@@ -50,7 +50,7 @@ const PortfolioShowcase = () => {
           ))}
         </select>
         <p id="portfolio-project-hint" className="sr-only">
-          Choosing an option loads a screen recording or image preview and updates the project details below.
+          Choosing a category loads a screen recording or image preview and updates the project name and link below.
         </p>
       </div>
 
