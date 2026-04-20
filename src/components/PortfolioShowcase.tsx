@@ -62,14 +62,16 @@ const PortfolioShowcase = () => {
         }}
       >
         {showImage ? (
-          <img
-            key={selected.id}
-            src={selected.previewImageSrc}
-            alt={`${selected.name} — ${selected.category} preview`}
-            className="absolute inset-0 h-full w-full object-contain object-center"
-            loading="lazy"
-            decoding="async"
-          />
+          <div className="absolute inset-0 flex min-h-0 items-center justify-center p-1 sm:p-2">
+            <img
+              key={selected.id}
+              src={selected.previewImageSrc}
+              alt={`${selected.name} — ${selected.category} preview`}
+              className="block h-auto w-auto max-h-full max-w-full object-contain object-center"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
         ) : showVideo ? (
           <video
             key={selected.id}
@@ -85,7 +87,7 @@ const PortfolioShowcase = () => {
             <source src={selected.videoSrc} type="video/mp4" />
           </video>
         ) : (
-          <div className="flex h-full w-full min-h-[200px] flex-col items-center justify-center gap-2 px-6 text-center text-muted-foreground">
+          <div className="absolute inset-0 flex min-h-0 flex-col items-center justify-center gap-2 px-6 text-center text-muted-foreground">
             <p className="body-refined text-foreground/90">{selected.name}</p>
             <p className="text-sm">
               {videoFailed && selected.videoSrc
