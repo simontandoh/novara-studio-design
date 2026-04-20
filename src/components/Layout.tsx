@@ -3,9 +3,9 @@ import { useLocation } from "react-router-dom";
 import NovaNav from "./NovaNav";
 import Footer from "./Footer";
 import FloatingWhatsApp from "./FloatingWhatsApp";
+import PageStarBackdrop from "./home/PageStarBackdrop";
 
 const SpaceBackground = lazy(() => import("./home/SpaceBackground"));
-const PageStarBackdrop = lazy(() => import("./home/PageStarBackdrop"));
 
 interface LayoutProps {
   children: ReactNode;
@@ -33,11 +33,7 @@ const Layout = ({ children }: LayoutProps) => {
           <SpaceBackground />
         </Suspense>
       )}
-      {isStarBackdrop && (
-        <Suspense fallback={null}>
-          <PageStarBackdrop />
-        </Suspense>
-      )}
+      {isStarBackdrop ? <PageStarBackdrop /> : null}
       <NovaNav />
       <main id="main-content" className="flex-1 pt-16 md:pt-20 relative z-10 text-center">
         {children}
