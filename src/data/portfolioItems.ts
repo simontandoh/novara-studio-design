@@ -23,11 +23,11 @@ export const PORTFOLIO_ITEMS: readonly PortfolioItem[] = [
     previewImageSrc: "/images/portfolio/celeste-vane-preview.png",
   },
   {
-    id: "elodie-ray",
-    name: "Elodie Ray",
+    id: "elodie-marsh",
+    name: "Elodie Marsh",
     category: "Photographer",
-    websiteUrl: "https://elodieray.novarastudios.co.uk",
-    videoSrc: "/videos/portfolio/elodie-ray.mp4",
+    websiteUrl: "https://elodiemarsh.novarastudios.co.uk",
+    videoSrc: "/videos/portfolio/elodie-marsh.mp4",
   },
   {
     id: "ironside",
