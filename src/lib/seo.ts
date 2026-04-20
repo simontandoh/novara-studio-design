@@ -5,7 +5,7 @@ export const ORGANIZATION_SCHEMA = {
   "@type": "Organization",
   name: "NOVARA Studios",
   url: SITE_URL,
-  logo: `${SITE_URL}/favicon.png`,
+  logo: `${SITE_URL}/novara-mark.png`,
   email: "hello@novarastudios.co.uk",
 };
 

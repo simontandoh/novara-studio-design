@@ -12,22 +12,44 @@ const navLinks = [
 const focusSelector =
   'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
 
-const MenuIcon = ({ open }: { open: boolean }) => {
-  return (
+/** Hamburger when closed, X when open (mobile menu control). */
+const NavToggleIcon = ({ open }: { open: boolean }) =>
+  open ? (
     <svg
       aria-hidden="true"
       viewBox="0 0 24 24"
-      className={`h-4 w-4 transition-transform duration-[180ms] ${open ? "rotate-180" : ""}`}
+      className="h-5 w-5"
       fill="none"
       stroke="currentColor"
-      strokeWidth="1.8"
+      strokeWidth="1.85"
       strokeLinecap="round"
-      strokeLinejoin="round"
     >
-      <path d="M6 9l6 6 6-6" />
+      <path d="M6 6l12 12M18 6L6 18" />
+    </svg>
+  ) : (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="h-5 w-5"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.85"
+      strokeLinecap="round"
+    >
+      <path d="M4 7h16M4 12h16M4 17h16" />
     </svg>
   );
-};
+
+const brandLogoImg = (
+  <img
+    src="/novara-mark.png"
+    alt=""
+    width={36}
+    height={36}
+    decoding="async"
+    className="h-8 w-8 object-contain md:h-9 md:w-9"
+  />
+);
 
 const NovaNav = () => {
   const location = useLocation();
@@ -153,37 +175,66 @@ const NovaNav = () => {
         }`}
       >
         <div className="container-editorial">
-          <div className="grid grid-cols-3 items-center h-16 md:h-20">
-            <div />
-            <div className="flex justify-center">
-              <Link
-                to="/"
-                className="flex items-center gap-3 text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-              >
-                <img
-                  src="/favicon.png"
-                  alt="Novara logo"
-                  width={36}
-                  height={36}
-                  className="h-9 w-9 object-contain"
-                />
-                <span className="text-lg font-light tracking-[0.4em]">NOVARA</span>
-              </Link>
-            </div>
-            <div className="flex justify-end items-center justify-self-end w-full">
-              <button
-                ref={toggleRef}
-                type="button"
-                aria-label={open ? "Close navigation menu" : "Open navigation menu"}
-                aria-expanded={open}
-                aria-controls="nova-nav-panel"
-                onClick={handleToggle}
-                className="text-foreground rounded-full p-2.5 min-h-[44px] min-w-[44px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-              >
-                <span className="sr-only">Toggle navigation</span>
-                <MenuIcon open={open} />
-              </button>
-            </div>
+          <div className="grid grid-cols-3 items-center h-16 md:h-20 gap-2 sm:gap-3">
+            {isMobileOrTablet ? (
+              <>
+                <Link
+                  to="/"
+                  onClick={() => handleNavClick("Home", "/")}
+                  className="justify-self-start flex items-center rounded-md text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                  aria-label="Novara home"
+                >
+                  {brandLogoImg}
+                </Link>
+                <Link
+                  to="/"
+                  onClick={() => handleNavClick("Home", "/")}
+                  className="justify-self-center text-lg font-light tracking-[0.4em] text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                >
+                  NOVARA
+                </Link>
+                <div className="justify-self-end flex items-center">
+                  <button
+                    ref={toggleRef}
+                    type="button"
+                    aria-label={open ? "Close navigation menu" : "Open navigation menu"}
+                    aria-expanded={open}
+                    aria-controls="nova-nav-panel"
+                    onClick={handleToggle}
+                    className="text-foreground rounded-full p-2.5 min-h-[44px] min-w-[44px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                  >
+                    <span className="sr-only">Toggle navigation</span>
+                    <NavToggleIcon open={open} />
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <div />
+                <Link
+                  to="/"
+                  onClick={() => handleNavClick("Home", "/")}
+                  className="flex justify-center items-center gap-3 justify-self-center text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                >
+                  {brandLogoImg}
+                  <span className="text-lg font-light tracking-[0.4em]">NOVARA</span>
+                </Link>
+                <div className="flex justify-end items-center justify-self-end w-full">
+                  <button
+                    ref={toggleRef}
+                    type="button"
+                    aria-label={open ? "Close navigation menu" : "Open navigation menu"}
+                    aria-expanded={open}
+                    aria-controls="nova-nav-panel"
+                    onClick={handleToggle}
+                    className="text-foreground rounded-full p-2.5 min-h-[44px] min-w-[44px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                  >
+                    <span className="sr-only">Toggle navigation</span>
+                    <NavToggleIcon open={open} />
+                  </button>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>
