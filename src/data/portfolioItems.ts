@@ -90,7 +90,7 @@ export const PORTFOLIO_ITEMS: readonly PortfolioItem[] = [
     name: "Redfield FC",
     category: "Football Club",
     websiteUrl: "https://redfieldfc.novarastudios.co.uk",
-    videoSrc: "/videos/portfolio/redfield-fc.mp4",
+    previewImageSrc: "/images/portfolio/redfield-fc-preview.png",
   },
   {
     id: "willow-wellness",
