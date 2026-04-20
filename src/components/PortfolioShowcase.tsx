@@ -66,14 +66,14 @@ const PortfolioShowcase = () => {
             key={selected.id}
             src={selected.previewImageSrc}
             alt={`${selected.name} — ${selected.category} preview`}
-            className="h-full w-full object-cover object-top"
+            className="absolute inset-0 h-full w-full object-contain object-center"
             loading="lazy"
             decoding="async"
           />
         ) : showVideo ? (
           <video
             key={selected.id}
-            className="h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full object-cover object-center"
             muted
             playsInline
             loop
