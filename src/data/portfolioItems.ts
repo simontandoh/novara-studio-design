@@ -62,7 +62,7 @@ export const PORTFOLIO_ITEMS: readonly PortfolioItem[] = [
     name: "Onyx",
     category: "Luxury Restaurant",
     websiteUrl: "https://onyx.novarastudios.co.uk",
-    videoSrc: "/videos/portfolio/onyx.mp4",
+    previewImageSrc: "/images/portfolio/onyx-preview.png",
   },
   {
     id: "lola-nails",
