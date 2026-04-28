@@ -9,8 +9,8 @@ import { Link } from "react-router-dom";
 
 const HOME_PORTFOLIO_SNIPPETS: PortfolioCarouselSlide[] = [
   { id: "onyx", imageSrc: "/images/portfolio/onyx-preview.png" },
-  { id: "marcus-cole", imageSrc: "/images/portfolio/marcus-cole-preview.png" },
-  { id: "ironside", imageSrc: "/images/portfolio/ironside-preview.png" },
+  { id: "celeste-vane", imageSrc: "/images/portfolio/celeste-vane-preview.png" },
+  { id: "redfield-fc", imageSrc: "/images/portfolio/redfield-fc-preview.png" },
 ];
 
 const servicePaths = [
