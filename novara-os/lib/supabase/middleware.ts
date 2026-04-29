@@ -3,7 +3,26 @@ import { NextResponse, type NextRequest } from "next/server";
 import type { Database } from "@/types/database";
 import { getSupabaseEnv } from "@/lib/supabase/env";
 
+const PROTECTED_ROUTES = [
+  "/",
+  "/clients",
+  "/intake",
+  "/templates",
+  "/components",
+  "/generator",
+  "/checklist",
+  "/projects",
+];
+
+function isProtectedPath(pathname: string) {
+  return PROTECTED_ROUTES.some((route) => {
+    if (route === "/") return pathname === "/";
+    return pathname === route || pathname.startsWith(`${route}/`);
+  });
+}
+
 export async function updateSession(request: NextRequest) {
+  const pathname = request.nextUrl.pathname;
   const response = NextResponse.next({
     request,
   });
@@ -31,7 +50,25 @@ export async function updateSession(request: NextRequest) {
     },
   );
 
-  await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user && isProtectedPath(pathname)) {
+    const url = request.nextUrl.clone();
+    url.pathname = "/login";
+    if (pathname !== "/") {
+      url.searchParams.set("next", pathname);
+    }
+    return NextResponse.redirect(url);
+  }
+
+  if (user && pathname === "/login") {
+    const url = request.nextUrl.clone();
+    url.pathname = "/";
+    url.search = "";
+    return NextResponse.redirect(url);
+  }
 
   return response;
 }

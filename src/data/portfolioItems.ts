@@ -63,7 +63,7 @@ export const PORTFOLIO_ITEMS: readonly PortfolioItem[] = [
     name: "Lola Nails",
     category: "Nail Tech",
     websiteUrl: "https://lolanails.novarastudios.co.uk",
-    videoSrc: "/videos/portfolio/lola-nails.mp4",
+    previewImageSrc: "/images/portfolio/lola-nails-preview.png",
   },
   {
     id: "elodie-marsh",
