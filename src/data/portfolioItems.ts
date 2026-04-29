@@ -95,7 +95,7 @@ export const PORTFOLIO_ITEMS: readonly PortfolioItem[] = [
   },
   {
     id: "willow-wellness",
-    name: "Willow Wellness",
+    name: "Willow & Stone Wellness",
     category: "Spa & Wellness",
     websiteUrl: "https://willowwellness.novarastudios.co.uk",
     previewImageSrc: "/images/portfolio/willow-wellness-preview.png",
